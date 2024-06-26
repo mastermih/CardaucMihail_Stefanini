@@ -1,4 +1,6 @@
 package ValueObjects;
 
-public class Description {
+public class Description
+{
+
 }

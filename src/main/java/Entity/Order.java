@@ -6,21 +6,12 @@ import java.util.Map;
 public class Order
 {
     //Map ?
-    private String orderId;
-    private User user;
+    private int orderId;
+    private User userId;
     private List<Product> products;
     private int totalPrice;
 
 
 
-    public int totalPrice()
-    {
-        totalPrice=0;
-        for(Product product: products)
-        {
-            totalPrice += product.getPrice().getProductPrice();
-        }
-        return totalPrice;
-    }
 
 }

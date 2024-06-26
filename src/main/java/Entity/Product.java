@@ -7,7 +7,6 @@ import java.lang.reflect.Parameter;
 
 public class Product
 
-    // Prodact, Category, Order in baza la order sa va face Maintenanceul
     // need to modify the generic item wh can be caegorised by category example (lift, oglinda aircoler, alarm sys)
 {
     private ID id;
@@ -21,12 +20,4 @@ public class Product
     private Description description;
 
 
-    //Pentru calculul pretului total
-    public Price getPrice() {
-        return price;
-    }
-
-    public void setPrice(Price price) {
-        this.price = price;
-    }
 }
