@@ -3,20 +3,22 @@ package Entity;
 import Enum.*;
 import ValueObjects.*;
 
+import java.lang.reflect.Parameter;
+
 public class Product
 
     // Prodact, Category, Order in baza la order sa va face Maintenanceul
-    // La order se atribuie si alte chitibusuri ca oglind lampi si asa mai departe
     // need to modify the generic item wh can be caegorised by category example (lift, oglinda aircoler, alarm sys)
 {
     private ID id;
     private Price price;
-    private Size size;
+    private Parameter parameter;
     private Category category;
     private Type type;
     private ProductBrand productBrand;
     private ProductName productName;
     private ElectricityConsumption electricityConsumption;
+    private Description description;
 
 
     //Pentru calculul pretului total

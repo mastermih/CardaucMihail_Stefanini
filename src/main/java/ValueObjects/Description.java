@@ -1,2 +1,4 @@
-package ValueObjects;public class Description {
+package ValueObjects;
+
+public class Description {
 }

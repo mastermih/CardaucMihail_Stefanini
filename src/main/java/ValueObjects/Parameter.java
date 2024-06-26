@@ -1,6 +1,6 @@
 package ValueObjects;
 
-public class Size
+public class Parameter
 {
     // Common size parameters
     private double width;
