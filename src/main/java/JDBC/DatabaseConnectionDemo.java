@@ -22,7 +22,7 @@ public class DatabaseConnectionDemo
             return DriverManager.getConnection(PropertiesUtil.get(URL_KEY), PropertiesUtil.get(USERNAME_KEY),
                     PropertiesUtil.get(PASSWORD_KEY));
         } catch (SQLException e) {
-            throw new RuntimeException(e); // may create custom?
+            throw new RuntimeException(e);
         }
     }
 

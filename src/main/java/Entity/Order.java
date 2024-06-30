@@ -5,30 +5,15 @@ import java.util.Map;
 
 public class Order
 {
-    //Map ? Adaugam Product product
-    private int id;
-    private int orderId;
-    private int userId;
-    private Product product;
-    private int price;
+    private long orderId;
+    private long userId;
 
-    public Order(int id, int orderId, int userId, Product product, int price) {
-        this.id = id;
+    public Order(long orderId, long userId) {
         this.orderId = orderId;
         this.userId = userId;
-        this.product = product;
-        this.price = price;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getOrderId() {
+    public long getOrderId() {
         return orderId;
     }
 
@@ -36,7 +21,7 @@ public class Order
         this.orderId = orderId;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
@@ -44,31 +29,11 @@ public class Order
         this.userId = userId;
     }
 
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     @Override
     public String toString() {
         return "Order{" +
-                "id=" + id +
-                ", orderId=" + orderId +
+                "orderId=" + orderId +
                 ", userId=" + userId +
-                ", product=" + product +
-                ", price=" + price +
                 '}';
     }
 }

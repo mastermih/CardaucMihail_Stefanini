@@ -8,7 +8,7 @@ public class Product {
     private ID product_id;
     private Price price;
     private Width width;
-    private Category category_id;
+    private Category category;
     private ProductBrand productBrand;
     private ProductName productName;
     private ElectricityConsumption electricityConsumption;
@@ -17,14 +17,14 @@ public class Product {
     private Depth depth;
 
     public Product(ID productId, Price price, Width width, Height height, Depth depth,
-                   Category category_id, ProductBrand productBrand, ProductName productName,
+                   Category category, ProductBrand productBrand, ProductName productName,
                    ElectricityConsumption electricityConsumption, Description description) {
         this.product_id = productId;
         this.price = price;
         this.width = width;
         this.height = height;
         this.depth = depth;
-        this.category_id = category_id;
+        this.category = category;
         this.productBrand = productBrand;
         this.productName = productName;
         this.electricityConsumption = electricityConsumption;
@@ -105,12 +105,12 @@ public class Product {
         this.description = description;
     }
 
-    public Category getCategory_id() {
-        return category_id;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory_id(Category category_id) {
-        this.category_id = category_id;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
@@ -119,7 +119,7 @@ public class Product {
                 "product_id=" + product_id +
                 ", price=" + price +
                 ", width=" + width +
-                ", category_id=" + category_id +
+                ", category=" + category +
                 ", productBrand=" + productBrand +
                 ", productName=" + productName +
                 ", electricityConsumption=" + electricityConsumption +

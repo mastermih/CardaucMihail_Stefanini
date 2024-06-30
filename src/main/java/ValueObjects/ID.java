@@ -2,17 +2,17 @@ package ValueObjects;
 
 public class ID
 {
-    private int product_id;
+    private long product_id;
 
-    public ID(int id) {
+    public ID(long id) {
         this.product_id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return product_id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.product_id = id;
     }
 

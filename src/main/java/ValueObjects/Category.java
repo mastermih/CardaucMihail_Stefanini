@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Category
 {
-    private int id;
+    private long id;
     private String name;
     private Category parent;
     private List<Category> subCategories;
 
-    public Category(int id, String name, Category parent) {
+    public Category(long id, String name, Category parent) {
         this.id = id;
         this.name = name;
         this.parent = parent;
@@ -20,11 +20,11 @@ public class Category
         }
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
