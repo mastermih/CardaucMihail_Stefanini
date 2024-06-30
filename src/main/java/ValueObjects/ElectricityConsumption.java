@@ -2,5 +2,24 @@ package ValueObjects;
 
 public class ElectricityConsumption
 {
-    private double kWh;
+    private int kWh;
+
+    public ElectricityConsumption(int kWh) {
+        this.kWh = kWh;
+    }
+
+    public int getkWh() {
+        return kWh;
+    }
+
+    public void setkWh(int kWh) {
+        this.kWh = kWh;
+    }
+
+    @Override
+    public String toString() {
+        return "ElectricityConsumption{" +
+                "kWh=" + kWh +
+                '}';
+    }
 }
