@@ -2,11 +2,14 @@ package DaoImplementation;
 
 import DaoWork.AbstractDao;
 import Entity.Order;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 
-public class OrderDaoImpl extends AbstractDao<Order> {
-
+public class OrderDaoImpl extends AbstractDao<Order>
+{
+     private static final Logger logger = LoggerFactory.getLogger(OrderDaoImpl.class);
     public OrderDaoImpl(Connection connection) {
         super(connection);
     }
@@ -19,6 +22,7 @@ public class OrderDaoImpl extends AbstractDao<Order> {
             statement.setLong(2, order.getUserId());
             statement.executeUpdate();
         }
+        logger.info("Inserted order with order_id: {}", order.getOrderId());
     }
 
     @Override
@@ -29,6 +33,8 @@ public class OrderDaoImpl extends AbstractDao<Order> {
             statement.setLong(2, order.getOrderId());
             statement.executeUpdate();
         }
+        logger.info("Updated order with order_id: {}", order.getOrderId());
+
     }
 
     @Override
@@ -38,6 +44,8 @@ public class OrderDaoImpl extends AbstractDao<Order> {
             statement.setLong(1, id);
             statement.executeUpdate();
         }
+        logger.info("Deleted order with order_id: {}", id);
+
     }
 
     @Override
@@ -62,7 +70,7 @@ public class OrderDaoImpl extends AbstractDao<Order> {
         return new Order(orderId, userId);
     }
 
-
+// Pad vaprosam
     public String getOrderWithProduct(long id) throws SQLException {
         String sql = "SELECT * FROM `order` WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {

@@ -3,13 +3,18 @@ package DaoImplementation;
 import DaoWork.AbstractDao;
 import Entity.Product;
 import ValueObjects.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mysql.cj.conf.PropertyKey.logger;
+
 public class ProductDaoImpl extends AbstractDao<Product>
 {
+    private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
 
     public ProductDaoImpl(Connection connection)
     {
@@ -30,7 +35,10 @@ public class ProductDaoImpl extends AbstractDao<Product>
             statement.setDouble(8, product.getHeight().getHeight());
             statement.setDouble(9, product.getDepth().getDepth());
             statement.setInt(10, product.getPrice().getProductPrice());
+            System.out.println(product.getProduct_id().getId());
             statement.executeUpdate();
+            logger.info("Inserted product with ID: {}", product.getProduct_id().getId());
+
         }
     }
 
@@ -50,6 +58,8 @@ public class ProductDaoImpl extends AbstractDao<Product>
             statement.setInt(9, product.getPrice().getProductPrice());
             statement.setLong(10, product.getProduct_id().getId());
             statement.executeUpdate();
+            logger.info("Updated product with ID: {}", product.getProduct_id().getId());
+
         }
     }
 
@@ -59,7 +69,10 @@ public class ProductDaoImpl extends AbstractDao<Product>
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             statement.executeUpdate();
+
         }
+        logger.info("Deleted product with ID: {}", id);
+
     }
 
     @Override
