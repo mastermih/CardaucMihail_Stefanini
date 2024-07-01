@@ -1,6 +1,7 @@
 package DaoImplementation;
 
 import DaoWork.AbstractDao;
+import Entity.Category;
 import Entity.Product;
 import ValueObjects.*;
 import org.slf4j.Logger;
@@ -9,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.mysql.cj.conf.PropertyKey.logger;
 
 public class ProductDaoImpl extends AbstractDao<Product>
 {

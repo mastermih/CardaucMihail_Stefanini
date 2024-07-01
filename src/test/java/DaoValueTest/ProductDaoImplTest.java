@@ -1,16 +1,14 @@
 package DaoValueTest;
 
 import DaoImplementation.ProductDaoImpl;
+import Entity.Category;
 import Entity.Product;
 import JDBC.DatabaseConnectionDemo;
 import ValueObjects.*;
 import org.junit.jupiter.api.*;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;

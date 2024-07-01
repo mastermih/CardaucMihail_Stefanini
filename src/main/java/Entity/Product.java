@@ -1,7 +1,6 @@
 package Entity;
 
 import ValueObjects.*;
-import Enum.Type; // Import the entire Type class containing enums
 
 public class Product {
 

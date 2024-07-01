@@ -1,5 +1,7 @@
 package ValueObjects;
-import Enum.*;
+import ValueObjects.*;
+
+import java.lang.reflect.Type;
 
 
 public class FilterComponents
