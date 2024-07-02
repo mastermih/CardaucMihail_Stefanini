@@ -1,22 +1,18 @@
 package DaoValueTest;
 
-import DaoImplementation.CategoryDaoImpl;
-import DaoImplementation.OrderDaoImpl;
-import DaoImplementation.ProductDaoImpl;
-import Entity.Category;
-import Entity.Product;
-import JDBC.DatabaseConnectionDemo;
-import ValueObjects.*;
+import daoimplementation.CategoryDaoImpl;
+import entity.Category;
+import jdbc.DatabaseConnectionDemo;
 import org.junit.jupiter.api.*;
+import valueobjects.Id;
+import valueobjects.Name;
 
-import javax.lang.model.element.Name;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CategoryDaoImplTest {
+public class CategoryDaoImplTest  {
     private static Connection connection;
     private static CategoryDaoImpl categoryDao;
 
@@ -32,43 +28,90 @@ public class CategoryDaoImplTest {
             connection.close();
         }
     }
+    //No parent_id
     @Test
     public void testInsert() throws SQLException
     {
-        Category category = new Category(15L, "TestCat", null);
-        categoryDao.insert(category);
-        Category foundCategory = categoryDao.findById(15L);
+        Category category = new Category(
+           null,
+           new Name("HzBrat"),
+           null
+        );
+        long generatedId = categoryDao.insert(category);
+        Category foundCategory = categoryDao.findById(generatedId);
         assertNotNull(foundCategory);
-        assertEquals(15L, foundCategory.getId());
-        categoryDao.deleteById(15L);
+        assertEquals(generatedId, foundCategory.getId().getId());
+        categoryDao.deleteById(generatedId);
     }
     @Test
+    public void testInsertWithParent() throws SQLException {
+        Category parentCategory = new Category(
+                null,
+                new Name("Lucreza"),
+                null
+        );
+        long generatedIdParent = categoryDao.insert(parentCategory);
+        parentCategory.setId(new Id(generatedIdParent));
+
+        Category category = new Category(
+                null,
+                new Name("Da Lucreaza"),
+                parentCategory  // Correctly set the parent category
+        );
+        long generatedIdChild = categoryDao.insert(category);
+        category.setId(new Id(generatedIdChild));
+
+        Category foundCategory = categoryDao.findById(generatedIdChild);
+        assertNotNull(foundCategory);
+        assertNotNull(foundCategory.getParentId());
+        assertEquals(parentCategory.getId().getId(), foundCategory.getParentId().getId().getId());
+
+        // Clean up
+        categoryDao.deleteById(generatedIdChild);
+        categoryDao.deleteById(generatedIdParent);
+    }
+
+    @Test
     public void testDelete() throws SQLException {
-        Category category = new Category(14L, "TestCat2", null);
-        categoryDao.insert(category);
-        categoryDao.deleteById(14L);
+        Category category = new Category(
+                null,
+                new Name("EHUUUU"),
+                null
+        );
+        long generatedId = categoryDao.insert(category);
+        categoryDao.deleteById(generatedId);
     }
     @Test
     public void testFiendById()throws SQLException
     {
-        Category category = new Category(16L, "TestCat3", null);
-        categoryDao.insert(category);
-        Category newCategory  = categoryDao.findById(16L);
+        Category category = new Category(
+                null,
+                new Name("Pabedaaaaa"),
+                null
+        );
+        long generatedId = categoryDao.insert(category);
+        category.setId(new Id(generatedId));
+        Category newCategory  = categoryDao.findById(generatedId);
         assertNotNull(category);
-        assertEquals(category.getId(), newCategory.getId());
-        assertEquals(category.getName(), newCategory.getName());
-        categoryDao.deleteById(16L);
+        assertEquals(category.getId().getId(), newCategory.getId().getId());
+        assertEquals(category.getName().getName(), newCategory.getName().getName());
+        categoryDao.deleteById(generatedId);
     }
     @Test
     public void testUpdate() throws SQLException
     {
-        Category category = new Category(21L, "TestCat4", null);
-        categoryDao.insert(category);
-        category.setName("HESOYAM");
+        Category category = new Category(
+                null,
+                new Name("GoGoGOGO"),
+                null
+        );
+        long generatedId = categoryDao.insert(category);
+        category.setId(new Id(generatedId));
+        category.setName(new Name("NONONONONO"));
         categoryDao.update(category);
-        Category fiendCategory = categoryDao.findById(21L);
+        Category fiendCategory = categoryDao.findById(generatedId);
         assertNotNull(fiendCategory);
-        assertEquals("HESOYAM", fiendCategory.getName());
-        categoryDao.deleteById(21L);
+        assertEquals("NONONONONO", fiendCategory.getName().getName());
+        categoryDao.deleteById(generatedId);
     }
 }

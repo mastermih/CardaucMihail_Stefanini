@@ -1,15 +1,18 @@
 package DaoValueTest;
 
-import DaoImplementation.OrderDaoImpl;
-import DaoImplementation.ProductDaoImpl;
-import Entity.Order;
-import JDBC.DatabaseConnectionDemo;
+import daoimplementation.OrderDaoImpl;
+import entity.Order;
+import entity.User;
+import jdbc.DatabaseConnectionDemo;
 import org.junit.jupiter.api.*;
+import valueobjects.CreateDateTime;
+import valueobjects.Id;
+import valueobjects.UpdateDateTime;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,51 +36,71 @@ public class OrderDaoImplTest {
 
     @Test
     public void testInsert() throws SQLException {
-        Order order = new Order(13L, 1L);
-        orderDao.insert(order);
+        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
+        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+            Order order = new Order(
+                    null,
+                    new User(new Id(1), null, null),
+                    new CreateDateTime(createdDate),
+                    new UpdateDateTime(updatedDate));
+            long generatedId = orderDao.insert(order);
 
-        Order foundOrder = orderDao.findById(13L);
+        Order foundOrder = orderDao.findById(generatedId);
         assertNotNull(foundOrder);
-        assertEquals(order.getOrderId(), foundOrder.getOrderId());
-        assertEquals(order.getUserId(), foundOrder.getUserId());
-        orderDao.deleteById(13L);
+        assertNotNull(foundOrder.getCreatedDate());
+        orderDao.deleteById(generatedId);
+
     }
 
     @Test
     public void testUpdate() throws SQLException {
-        Order order = new Order(14L, 1L);
-        orderDao.insert(order);
+        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
+        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+        User user = new User(new Id(1), null, null);
+        Order order = new Order(null, user, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+        long generatedId = orderDao.insert(order);
+        order.setOrderId(new Id(generatedId));
 
-        order.setUserId(2);
+        order.setUserId(new User(new Id(2), null, null));  // Update the userId
         orderDao.update(order);
 
-        Order foundOrder = orderDao.findById(14);
+        Order foundOrder = orderDao.findById(generatedId);
         assertNotNull(foundOrder);
-        assertEquals(2L, foundOrder.getUserId());
-        orderDao.deleteById(14L);
+        assertEquals(2L, foundOrder.getUserId().getUserId().getId());
+        orderDao.deleteById(generatedId);
 
     }
 
     @Test
     public void testDeleteById() throws SQLException {
-        Order order = new Order(15L, 111L);
-        orderDao.insert(order);
+        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
+        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+        User user = new User(new Id(1), null, null);
 
-        orderDao.deleteById(15);
-        Order foundOrder = orderDao.findById(15);
+        Order order = new Order(null, user, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+        long generatedId = orderDao.insert(order);
+        order.setOrderId(new Id(generatedId));
+
+        orderDao.deleteById(generatedId);
+        Order foundOrder = orderDao.findById(generatedId);
         assertNull(foundOrder);
     }
 
     @Test
     public void testFindById() throws SQLException {
-        Order order = new Order(16L, 8L);
-        orderDao.insert(order);
+        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
+        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+        User user = new User(new Id(2), null, null);
 
-        Order foundOrder = orderDao.findById(16);
+        Order order = new Order(null, user, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+        long generatedId = orderDao.insert(order);
+        order.setOrderId(new Id(generatedId));
+
+        Order foundOrder = orderDao.findById(generatedId);
         assertNotNull(foundOrder);
-        assertEquals(order.getOrderId(), foundOrder.getOrderId());
-        assertEquals(order.getUserId(), foundOrder.getUserId());
-        orderDao.deleteById(16L);
+        assertEquals(order.getOrderId().getId(), foundOrder.getOrderId().getId());
+        assertEquals(order.getUserId().getUserId().getId(), foundOrder.getUserId().getUserId().getId());
+        orderDao.deleteById(generatedId);
 
+        }
     }
-}

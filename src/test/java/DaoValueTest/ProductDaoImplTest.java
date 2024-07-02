@@ -1,10 +1,10 @@
 package DaoValueTest;
 
-import DaoImplementation.ProductDaoImpl;
-import Entity.Category;
-import Entity.Product;
-import JDBC.DatabaseConnectionDemo;
-import ValueObjects.*;
+import daoimplementation.ProductDaoImpl;
+import entity.Category;
+import entity.Product;
+import jdbc.DatabaseConnectionDemo;
+import valueobjects.*;
 import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
@@ -35,113 +35,121 @@ public class ProductDaoImplTest {
     @Test
     public void testInsert() throws SQLException {
         Product product = new Product(
-                new ID(29),
+                null,
                 new Price(Integer.valueOf(100)),
                 new Width(Double.valueOf(50.00)),
                 new Height(Double.valueOf(20.00)),
                 new Depth(Double.valueOf(30.00)),
-                new Category(1, null, null),
-                //new Category(1, "Category", null),
+                new Category(new Id(1), null, null),
                 new ProductBrand("Brand"),
                 new ProductName("Name"),
                 new ElectricityConsumption(10),
                 new Description("Description")
         );
-        productDao.insert(product);
-
-        Product foundProduct = productDao.findById(29L);
+                long generatedId = productDao.insert(product);
+                 //product.setProductId(new Id(generatedId));
+        Product foundProduct = productDao.findById(generatedId);
         assertNotNull(foundProduct);
-        assertEquals(product.getProduct_id().getId(), foundProduct.getProduct_id().getId());
+        assertEquals(generatedId, foundProduct.getProductId().getId());
         assertEquals(product.getProductName().getProductName(), foundProduct.getProductName().getProductName());
+        productDao.deleteById(generatedId);
     }
 
     @Test
     public void testUpdate() throws SQLException {
         Product product = new Product(
-                new ID(30),
+                null,
                 new Price(Integer.valueOf(200)),
                 new Width(Double.valueOf(60.00)),
                 new Height(Double.valueOf(25.00)),
                 new Depth(Double.valueOf(35.00)),
-                new Category(2, null, null),
+                new Category(new Id(1), null, null),
                 new ProductBrand("Brand"),
                 new ProductName("Name"),
                 new ElectricityConsumption(20),
                 new Description("Description")
         );
-        productDao.insert(product);
+                long generatedId = productDao.insert(product);
+                product.setProductId(new Id(generatedId));
+
 
         product.setProductName(new ProductName("Updated Name"));
         productDao.update(product);
 
-        Product foundProduct = productDao.findById(30L);
+        Product foundProduct = productDao.findById(generatedId);
         assertNotNull(foundProduct);
         assertEquals("Updated Name", foundProduct.getProductName().getProductName());
-
+        productDao.deleteById(generatedId);
     }
 
     @Test
     public void testDeleteById() throws SQLException {
         Product product = new Product(
-                new ID(31),
+                null,
                 new Price(Integer.valueOf(300)),
                 new Width(Double.valueOf(70.00)),
                 new Height(Double.valueOf(30.00)),
                 new Depth(Double.valueOf(40.00)),
-                new Category(3, null, null),
+                new Category(new Id(1), null, null),
                 new ProductBrand("Brand"),
                 new ProductName("Name"),
                 new ElectricityConsumption(30),
                 new Description("Description")
         );
-        productDao.insert(product);
+        long generatedId = productDao.insert(product);
 
-        productDao.deleteById(31L);
-        Product foundProduct = productDao.findById(31L);
+        productDao.deleteById(generatedId);
+        Product foundProduct = productDao.findById(generatedId);
         assertNull(foundProduct);
+        productDao.deleteById(generatedId);
     }
 
     @Test
     public void testFindById() throws SQLException {
         Product product = new Product(
-                new ID(32),
+                null,
                 new Price(Integer.valueOf(400)),
                 new Width(Double.valueOf(80.00)),
                 new Height(Double.valueOf(35.00)),
                 new Depth(Double.valueOf(45.00)),
-                new Category(4, null, null),
+                new Category(new Id(1), null, null),
                 new ProductBrand("Brand"),
                 new ProductName("Name"),
                 new ElectricityConsumption(40),
                 new Description("Description")
         );
-        productDao.insert(product);
+        long generatedId = productDao.insert(product);
+        product.setProductId(new Id(generatedId));
 
-        Product foundProduct = productDao.findById(32L);
+        Product foundProduct = productDao.findById(generatedId);
         assertNotNull(foundProduct);
-        assertEquals(product.getProduct_id().getId(), foundProduct.getProduct_id().getId());
+        assertEquals(product.getProductId().getId(), foundProduct.getProductId().getId());
         assertEquals(product.getProductName().getProductName(), foundProduct.getProductName().getProductName());
+         productDao.deleteById(generatedId);
     }
 
     @Test
     public void testGetProductPagination() throws SQLException {
-        for (int i = 5; i <= 10; i++) {
+        for (int i = 37; i <= 47; i++) {
             Product product = new Product(
-                    new ID(i),
+                    null,
                     new Price(Integer.valueOf(100 + i)),
                     new Width(Double.valueOf(50.00 + i)),
                     new Height(Double.valueOf(20.00 + i)),
                     new Depth(Double.valueOf(30.00 + i)),
-                    new Category(i, null, null),
+                    new Category(new Id(i), null, null),
                     new ProductBrand("Brand"),
                     new ProductName("Name" + i),
                     new ElectricityConsumption(10 + i),
                     new Description("Description" + i)
             );
-            productDao.insert(product);
+            long generatedId = productDao.insert(product);
         }
 
         List<Product> products = productDao.getProductPagination(3);
         assertEquals(3, products.size());
+        for (int i = 37; i <= 47; i++) {
+            productDao.deleteById(i);
+        }
     }
 }
