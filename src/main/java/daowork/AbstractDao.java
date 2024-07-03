@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import daointerface.Dao;
 
-// add Interfaces
 public abstract class AbstractDao<T> implements Dao<T>
 {
     protected Connection connection;
@@ -24,6 +23,5 @@ public abstract class AbstractDao<T> implements Dao<T>
 
     public abstract T findById(long id) throws SQLException;
     public abstract T mapResultSetToEntity(ResultSet resultSet) throws SQLException;
-    //public abstract long findOrderByCreatedDate (T entity) throws SQLException;
-    //public abstract long findOrderByUpdatedDate (T entity) throws SQLException;
+
 }
