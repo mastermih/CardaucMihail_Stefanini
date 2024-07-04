@@ -45,15 +45,16 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
         }
         return orderProduct.getOrderId().getOrderId().getId();
     }
-    //Trebu de clarificat cu DAo si te ster metodele acestea doua
+    //Trebu de clarificat cu DAO si te sters metodele acestea doua
     @Override
     public long deleteById(long id) throws SQLException {
-        return 0;
+        throw new UnsupportedOperationException("Not implemented");
+
     }
 
     @Override
     public OrderProduct findById(long id) throws SQLException {
-        return null;
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override

@@ -9,5 +9,4 @@ public interface OrderProductDao {
     long update(OrderProduct orderProduct) throws SQLException;
     long deleteById(long orderId, long productId) throws SQLException;
     OrderProduct findById(long orderId, long productId) throws SQLException;
-    //List<OrderProduct> findAll() throws SQLException; // Optional, if you need to fetch all entries
 }
