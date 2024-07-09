@@ -1,0 +1,19 @@
+package com.ImperioElevator.ordermanagement.dao;
+
+
+import com.ImperioElevator.ordermanagement.entity.Order;
+import com.ImperioElevator.ordermanagement.entity.Paginable;
+import com.ImperioElevator.ordermanagement.enumobects.Status;
+
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+
+public interface OrderDao extends Dao<Order>{
+    Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime createdDate, Long numberOfOrders, Long page) throws SQLException;
+
+    Paginable<Order> findPaginableOrderByUpdatedDate(LocalDateTime updatedDate, Long numberOfOrders, Long page) throws SQLException;
+
+    Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime createdDate, Status status, Long numberOfOrders, Long page) throws SQLException;
+
+
+}
