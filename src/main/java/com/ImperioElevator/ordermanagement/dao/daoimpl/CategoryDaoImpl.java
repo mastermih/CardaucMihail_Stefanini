@@ -5,7 +5,6 @@ package com.ImperioElevator.ordermanagement.dao.daoimpl;
 import com.ImperioElevator.ordermanagement.entity.Category;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Name;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -17,7 +16,7 @@ import java.sql.*;
 public class CategoryDaoImpl extends AbstractDao<Category> {
     private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
+
     public CategoryDaoImpl(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }

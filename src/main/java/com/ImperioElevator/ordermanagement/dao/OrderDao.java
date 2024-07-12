@@ -15,5 +15,6 @@ public interface OrderDao extends Dao<Order>{
 
     Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime createdDate, Status status, Long numberOfOrders, Long page) throws SQLException;
 
+    LocalDateTime findLastCreatedDate() throws SQLException;
 
 }

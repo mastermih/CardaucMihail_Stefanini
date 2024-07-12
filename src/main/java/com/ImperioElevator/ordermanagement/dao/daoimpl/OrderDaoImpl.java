@@ -133,7 +133,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         return new Paginable<>(orders, page, totalPages);
     }
 
-
+ // Maper rowMapper // 1 maper
     @Override
     public Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime createdDate, Status status, Long numberOfOrders, Long page) throws SQLException {
         String countSql = "SELECT COUNT(*) FROM `order` WHERE created_date = ? AND order_status = ?";
@@ -149,6 +149,13 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
         Long totalPages = (long) Math.ceil((double) totalItems / numberOfOrders);
         return new Paginable<>(orders, page, totalPages);
+    }
+
+    //treb de testat
+    @Override
+    public LocalDateTime findLastCreatedDate() throws SQLException {
+        String sql = "SELECT MAX(created_date) FROM `order`";
+        return jdbcTemplate.queryForObject(sql, LocalDateTime.class);
     }
 
 }

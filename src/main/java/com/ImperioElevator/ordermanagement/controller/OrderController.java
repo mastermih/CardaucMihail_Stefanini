@@ -5,15 +5,12 @@ import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-
+// Citesc articolul
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -24,14 +21,17 @@ public class OrderController {
   public OrderController(OrdersService ordersService){
    this.ordersService = ordersService;
   }
-
-  @GetMapping("/createDate")
+ // Data format per toata aplicatia
+ // Jackson() OBJECT MAPER /cu DTO?
+ @CrossOrigin(origins = "http://localhost:3000")
+ @GetMapping("/createDate")
  public Paginable<Order> listOrdersByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime createdDate,
                                             @RequestParam Long numberOfOrders,
                                             @RequestParam Long page) throws SQLException {
    return ordersService.findPaginableOrderByCreatedDate(createdDate, numberOfOrders, page);
   }
 
+ @CrossOrigin(origins = "http://localhost:3000") //CORS
  @GetMapping("/status-createDate")
  public Paginable<Order> listOrdersByPeriodStatus(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime createdDate,
                                                   @RequestParam Status status,
@@ -40,5 +40,9 @@ public class OrderController {
   return ordersService.findPaginableOrderByCreatedDateAndStatus(createdDate, status, numberOfOrders, page);
  }
 
-
+ @CrossOrigin(origins = "http://localhost:3000")
+ @GetMapping("/lastCreatedDate")
+ public LocalDateTime getLastCreatedDate() throws SQLException {
+  return ordersService.findLastCreatedDate();
+ }
 }

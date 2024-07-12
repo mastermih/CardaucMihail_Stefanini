@@ -1,12 +1,9 @@
 package com.ImperioElevator.ordermanagement.dao.daoimpl;
 
-
-
 import com.ImperioElevator.ordermanagement.dao.Dao;
 import com.ImperioElevator.ordermanagement.entity.Category;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -18,7 +15,7 @@ import java.sql.*;
 @Repository
 public class ProductDaoImpl extends AbstractDao<Product> implements Dao<Product> {
     private final JdbcTemplate jdbcTemplate;
-    @Autowired
+
     public ProductDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -63,6 +60,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements Dao<Product>
             product.getDepth().getDepth(),
             product.getPrice().getPrice(),
             product.getProductId().getId());
+
         return product.getProductId().getId();
     }
 

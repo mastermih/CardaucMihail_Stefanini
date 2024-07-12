@@ -2,7 +2,6 @@ package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
 
 
-//TODO treb de facut o interfata orderServicecu doua metode (listeaza ordere dupa perioada + dupastatus)/
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dto.OrderProductDTO;

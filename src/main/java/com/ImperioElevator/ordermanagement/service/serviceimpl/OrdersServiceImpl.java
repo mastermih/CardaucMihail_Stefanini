@@ -5,7 +5,6 @@ import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -13,9 +12,13 @@ import java.time.LocalDateTime;
 
 @Service
 public class OrdersServiceImpl implements OrdersService {
+    @Override
+    public LocalDateTime findLastCreatedDate() throws SQLException {
+        return orderDao.findLastCreatedDate();
+    }
+
     private final OrderDaoImpl orderDao;
 
-    @Autowired
     public OrdersServiceImpl(OrderDaoImpl orderDao) {
         this.orderDao = orderDao;
     }
