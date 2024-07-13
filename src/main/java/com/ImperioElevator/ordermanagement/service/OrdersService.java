@@ -6,9 +6,10 @@ import com.ImperioElevator.ordermanagement.enumobects.Status;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface OrdersService {
-    Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime createdDate, Long numberOfOrders, Long page) throws SQLException;
-    Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime createdDate, Status status, Long numberOfOrders, Long page) throws SQLException;
-    LocalDateTime findLastCreatedDate()throws SQLException;
+    Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
+    Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate, LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException;
+    List<Order> findLastCreatedOrders(Number limit)throws SQLException;
 }

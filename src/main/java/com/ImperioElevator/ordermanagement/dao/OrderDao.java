@@ -7,14 +7,15 @@ import com.ImperioElevator.ordermanagement.enumobects.Status;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface OrderDao extends Dao<Order>{
-    Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime createdDate, Long numberOfOrders, Long page) throws SQLException;
+    Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime startDate,LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
 
-    Paginable<Order> findPaginableOrderByUpdatedDate(LocalDateTime updatedDate, Long numberOfOrders, Long page) throws SQLException;
+    Paginable<Order> findPaginableOrderByUpdatedDate(LocalDateTime startDate,LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
 
-    Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime createdDate, Status status, Long numberOfOrders, Long page) throws SQLException;
+    Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate,LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException;
 
-    LocalDateTime findLastCreatedDate() throws SQLException;
+    List<Order> findLastCreatedOrders(Number limit) throws SQLException;
 
 }

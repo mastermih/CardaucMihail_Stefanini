@@ -99,15 +99,15 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
-    public Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime createdDate, Long numberOfOrders, Long page) throws SQLException {
-        String countSql = "SELECT COUNT(*) FROM `order` WHERE created_date = ?";
-        String sql = "SELECT * FROM `order` WHERE created_date = ? LIMIT ? OFFSET ?";
+    public Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate,  Long numberOfOrders, Long page) throws SQLException {
+        String countSql = "SELECT COUNT(*) FROM `order` WHERE created_date BETWEEN ? AND ?";
+        String sql = "SELECT * FROM `order` WHERE created_date BETWEEN ? AND ? LIMIT ? OFFSET ?";
         List<Order> orders = new ArrayList<>();
         Long offset = (page - 1) * numberOfOrders;
 
-        Long totalItems = jdbcTemplate.queryForObject(countSql, new Object[]{createdDate}, Long.class);
+        Long totalItems = jdbcTemplate.queryForObject(countSql, new Object[]{startDate, endDate}, Long.class);
 
-        jdbcTemplate.query(sql, new Object[]{createdDate, numberOfOrders, offset}, (resultSet) -> {
+        jdbcTemplate.query(sql, new Object[]{startDate, endDate, numberOfOrders, offset}, (resultSet) -> {
             orders.add(mapResultSetToEntity(resultSet));
         });
 
@@ -116,16 +116,16 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
-    public Paginable<Order> findPaginableOrderByUpdatedDate(LocalDateTime updatedDate, Long numberOfOrders, Long page) throws SQLException {
+    public Paginable<Order> findPaginableOrderByUpdatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {
 
-        String countSql = "SELECT COUNT(*) FROM `order` WHERE updated_date = ?";
-        String sql = "SELECT * FROM `order` WHERE updated_date = ? LIMIT ? OFFSET ?";
+        String countSql = "SELECT COUNT(*) FROM `order` WHERE updated_date BETWEEN ? AND ?";
+        String sql = "SELECT * FROM `order` WHERE updated_date BETWEEN ? AND ? LIMIT ? OFFSET ?";
         List<Order> orders = new ArrayList<>();
         Long offset = (page - 1) * numberOfOrders;
 
-        Long totalItems = jdbcTemplate.queryForObject(countSql, new Object[]{updatedDate}, Long.class);
+        Long totalItems = jdbcTemplate.queryForObject(countSql, new Object[]{startDate, endDate}, Long.class);
 
-        jdbcTemplate.query(sql, new Object[]{updatedDate, numberOfOrders, offset}, (resultSet) -> {
+        jdbcTemplate.query(sql, new Object[]{startDate, endDate, numberOfOrders, offset}, (resultSet) -> {
             orders.add(mapResultSetToEntity(resultSet));
         });
 
@@ -135,15 +135,15 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
  // Maper rowMapper // 1 maper
     @Override
-    public Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime createdDate, Status status, Long numberOfOrders, Long page) throws SQLException {
-        String countSql = "SELECT COUNT(*) FROM `order` WHERE created_date = ? AND order_status = ?";
-        String sql = "SELECT * FROM `order` WHERE created_date = ? AND order_status = ? LIMIT ? OFFSET ?";
+    public Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate, LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException {
+        String countSql = "SELECT COUNT(*) FROM `order` WHERE created_date BETWEEN ? AND ? AND order_status = ?";
+        String sql = "SELECT * FROM `order` WHERE created_date BETWEEN ? AND ? AND order_status = ? LIMIT ? OFFSET ?";
         List<Order> orders = new ArrayList<>();
         Long offset = (page - 1) * numberOfOrders;
 
-        Long totalItems = jdbcTemplate.queryForObject(countSql, new Object[]{createdDate, status.name()}, Long.class);
+        Long totalItems = jdbcTemplate.queryForObject(countSql, new Object[]{startDate, endDate, status.name()}, Long.class);
 
-        jdbcTemplate.query(sql, new Object[]{createdDate, status.name(), numberOfOrders, offset}, (resultSet) -> {
+        jdbcTemplate.query(sql, new Object[]{startDate, endDate, status.name(), numberOfOrders, offset}, (resultSet) -> {
             orders.add(mapResultSetToEntity(resultSet));
         });
 
@@ -153,9 +153,13 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     //treb de testat
     @Override
-    public LocalDateTime findLastCreatedDate() throws SQLException {
-        String sql = "SELECT MAX(created_date) FROM `order`";
-        return jdbcTemplate.queryForObject(sql, LocalDateTime.class);
+    public List<Order> findLastCreatedOrders(Number limit) throws SQLException {
+        String sql = "SELECT * FROM `order` ORDER BY id ASC LIMIT ?";
+        List<Order> orders = new ArrayList<>();
+        jdbcTemplate.query(sql, new Object[]{limit}, (resultSet) -> {
+            orders.add(mapResultSetToEntity(resultSet));
+        });
+        return orders;
     }
 
 }

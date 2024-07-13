@@ -10,6 +10,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
+
 // Citesc articolul
 @RestController
 @RequestMapping("/orders")
@@ -25,24 +27,26 @@ public class OrderController {
  // Jackson() OBJECT MAPER /cu DTO?
  @CrossOrigin(origins = "http://localhost:3000")
  @GetMapping("/createDate")
- public Paginable<Order> listOrdersByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime createdDate,
+ public Paginable<Order> listOrdersByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+                                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
                                             @RequestParam Long numberOfOrders,
                                             @RequestParam Long page) throws SQLException {
-   return ordersService.findPaginableOrderByCreatedDate(createdDate, numberOfOrders, page);
+   return ordersService.findPaginableOrderByCreatedDate(startDate, endDate,  numberOfOrders, page);
   }
 
  @CrossOrigin(origins = "http://localhost:3000") //CORS
  @GetMapping("/status-createDate")
- public Paginable<Order> listOrdersByPeriodStatus(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime createdDate,
+ public Paginable<Order> listOrdersByPeriodStatus(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+                                                  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
                                                   @RequestParam Status status,
                                                   @RequestParam Long numberOfOrders,
                                                   @RequestParam Long page) throws SQLException {
-  return ordersService.findPaginableOrderByCreatedDateAndStatus(createdDate, status, numberOfOrders, page);
+  return ordersService.findPaginableOrderByCreatedDateAndStatus(startDate, endDate, status, numberOfOrders, page);
  }
 
  @CrossOrigin(origins = "http://localhost:3000")
- @GetMapping("/lastCreatedDate")
- public LocalDateTime getLastCreatedDate() throws SQLException {
-  return ordersService.findLastCreatedDate();
+ @GetMapping("/lastCreated")
+ public List<Order> getLastCreatedDate(@RequestParam("limit") Number limit) throws SQLException {
+  return ordersService.findLastCreatedOrders(limit);
  }
 }
