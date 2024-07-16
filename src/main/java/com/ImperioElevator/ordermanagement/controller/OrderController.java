@@ -12,29 +12,26 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-// Citesc articolul
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
- @Autowired
  private final OrdersService ordersService;
 
  @Autowired
-  public OrderController(OrdersService ordersService){
-   this.ordersService = ordersService;
-  }
- // Data format per toata aplicatia
- // Jackson() OBJECT MAPER /cu DTO?
+ public OrderController(OrdersService ordersService) {
+  this.ordersService = ordersService;
+ }
+
  @CrossOrigin(origins = "http://localhost:3000")
  @GetMapping("/createDate")
  public Paginable<Order> listOrdersByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
                                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
                                             @RequestParam Long numberOfOrders,
                                             @RequestParam Long page) throws SQLException {
-   return ordersService.findPaginableOrderByCreatedDate(startDate, endDate,  numberOfOrders, page);
-  }
+  return ordersService.findPaginableOrderByCreatedDate(startDate, endDate, numberOfOrders, page);
+ }
 
- @CrossOrigin(origins = "http://localhost:3000") //CORS
+ @CrossOrigin(origins = "http://localhost:3000")
  @GetMapping("/status-createDate")
  public Paginable<Order> listOrdersByPeriodStatus(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
                                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,

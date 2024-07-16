@@ -13,18 +13,19 @@
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.context.SpringBootTest;
 //import org.springframework.test.context.ActiveProfiles;
-//import java.sql.Connection;
+//
 //import javax.sql.DataSource;
+//import java.sql.Connection;
+//import java.sql.Date;
 //import java.sql.PreparedStatement;
 //import java.sql.SQLException;
-//import java.time.LocalDateTime;
+//import java.time.LocalDate;
 //import java.util.List;
 //
 //import static org.junit.jupiter.api.Assertions.*;
-////ToDO date :(
+//
 //@SpringBootTest(classes = OrderManagementApplication.class)
 //@ActiveProfiles("test")
-//
 //public class OrderDaoImplTest {
 //
 //    @Autowired
@@ -35,14 +36,14 @@
 //
 //    @Test
 //    public void testInsert() throws SQLException {
-//        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
-//        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+//        LocalDate localDate = LocalDate.of(2024, 7, 1);
+//        Date sqlDate = Date.valueOf(localDate);
 //        Order order = new Order(
 //                null,
 //                new User(new Id(1L), null, null),
 //                Status.NEW,
-//                new CreateDateTime(createdDate),
-//                new UpdateDateTime(updatedDate)
+//                new CreateDateTime(sqlDate),
+//                new UpdateDateTime(sqlDate)
 //        );
 //        Long generatedId = orderDao.insert(order);
 //        order.setOrderId(new Id(generatedId));
@@ -54,10 +55,10 @@
 //
 //    @Test
 //    public void testUpdate() throws SQLException {
-//        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
-//        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+//        LocalDate localDate = LocalDate.of(2024, 7, 1);
+//        Date sqlDate = Date.valueOf(localDate);
 //        User user = new User(new Id(1L), null, null);
-//        Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+//        Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate));
 //        Long generatedId = orderDao.insert(order);
 //        order.setOrderId(new Id(generatedId));
 //
@@ -72,11 +73,11 @@
 //
 //    @Test
 //    public void testDeleteById() throws SQLException {
-//        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
-//        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+//        LocalDate localDate = LocalDate.of(2024, 7, 1);
+//        Date sqlDate = Date.valueOf(localDate);
 //        User user = new User(new Id(1L), null, null);
 //
-//        Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+//        Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate));
 //        Long generatedId = orderDao.insert(order);
 //        order.setOrderId(new Id(generatedId));
 //
@@ -87,11 +88,11 @@
 //
 //    @Test
 //    public void testFindById() throws SQLException {
-//        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
-//        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+//        LocalDate localDate = LocalDate.of(2024, 7, 1);
+//        Date sqlDate = Date.valueOf(localDate);
 //        User user = new User(new Id(2L), null, null);
 //
-//        Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+//        Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate));
 //        Long generatedId = orderDao.insert(order);
 //        order.setOrderId(new Id(generatedId));
 //
@@ -106,122 +107,120 @@
 //    public void testFindPaginableOrderByCreatedDate() throws SQLException {
 //        clearOrders();
 //
-//        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
-//        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+//        LocalDate localDate = LocalDate.of(2024, 7, 1);
+//        Date sqlDate = Date.valueOf(localDate);
 //        for (int i = 0; i < 10; i++) {
 //            User user = new User(new Id(2L), null, null);
-//            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+//            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate));
 //            Long generatedId = orderDao.insert(order);
 //            order.setOrderId(new Id(generatedId));
 //            System.out.println("Inserted Order ID: " + generatedId);
 //        }
 //
-//        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(createdDate, 5L, 2L);
+//        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(sqlDate, sqlDate, 5L, 2L);
 //        List<Order> orders = response.getItems();
 //        assertEquals(5, orders.size(), "Expected number of orders returned by query.");
 //        for (Order order : orders) {
-//            assertEquals(createdDate, order.getCreatedDate().getCreateDateTime());
+//            assertEquals(sqlDate, order.getCreatedDate().getCreateDateTime());
 //        }
 //
-//       // clearOrders();
+//        clearOrders();
 //    }
-//
-//
 //
 //    @Test
 //    public void testFindPaginableOrderByUpdatedDate() throws SQLException {
-//        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
-//        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+//        LocalDate localDate = LocalDate.of(2024, 7, 1);
+//        Date sqlDate = Date.valueOf(localDate);
 //        for (int i = 0; i <= 10; i++) {
 //            User user = new User(new Id(2L), null, null);
-//            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+//            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate));
 //            Long generatedId = orderDao.insert(order);
 //            order.setOrderId(new Id(generatedId));
 //        }
-//        Paginable<Order> response = orderDao.findPaginableOrderByUpdatedDate(updatedDate, 5L, 1L);
+//        Paginable<Order> response = orderDao.findPaginableOrderByUpdatedDate(sqlDate, sqlDate, 5L, 1L);
 //        List<Order> orders = response.getItems();
 //        assertEquals(5, orders.size());
 //        for (Order order : orders) {
-//            assertEquals(updatedDate, order.getUpdatedDate().getUpdateDateTime());
+//            assertEquals(sqlDate, order.getUpdatedDate().getUpdateDateTime());
 //        }
 //        clearOrders();
 //    }
 //
 //    @Test
 //    public void testFindPaginableOrderByCreatedDateAndStatus() throws SQLException {
-//        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
-//        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+//        LocalDate localDate = LocalDate.of(2024, 7, 1);
+//        Date sqlDate = Date.valueOf(localDate);
 //        for (int i = 0; i <= 10; i++) {
 //            User user = new User(new Id(2L), null, null);
-//            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+//            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate));
 //            Long generatedId = orderDao.insert(order);
 //            order.setOrderId(new Id(generatedId));
 //        }
-//        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDateAndStatus(createdDate, Status.CLOSED, 5L, 2L);
+//        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDateAndStatus(sqlDate, sqlDate, Status.CLOSED, 5L, 2L);
 //        List<Order> orders = response.getItems();
 //        assertEquals(5, orders.size());
 //        for (Order order : orders) {
-//            assertEquals(createdDate, order.getCreatedDate().getCreateDateTime());
+//            assertEquals(sqlDate, order.getCreatedDate().getCreateDateTime());
 //            assertEquals(Status.CLOSED, order.getOrderStatus());
 //        }
-//       // clearOrders();
+//        clearOrders();
 //    }
 //
 //    @Test
 //    public void testFindPaginableOrderWahtIsLeftByCreatedDate() throws SQLException {
-//        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
-//        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+//        LocalDate localDate = LocalDate.of(2024, 7, 1);
+//        Date sqlDate = Date.valueOf(localDate);
 //        for (int i = 0; i <= 10; i++) {
 //            User user = new User(new Id(2L), null, null);
-//            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+//            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate));
 //            Long generatedId = orderDao.insert(order);
 //            order.setOrderId(new Id(generatedId));
 //        }
-//        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(createdDate, 6L, 2L);
+//        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(sqlDate, sqlDate, 6L, 2L);
 //        List<Order> orders = response.getItems();
 //        assertEquals(5, orders.size());
 //        for (Order order : orders) {
-//            assertEquals(createdDate, order.getCreatedDate().getCreateDateTime());
+//            assertEquals(sqlDate, order.getCreatedDate().getCreateDateTime());
 //        }
 //        clearOrders();
 //    }
 //
 //    @Test
 //    public void testFindPaginableGetThirdPageByCreatedDate() throws SQLException {
-//        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
-//        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+//        LocalDate localDate = LocalDate.of(2024, 7, 1);
+//        Date sqlDate = Date.valueOf(localDate);
 //        for (int i = 0; i <= 10; i++) {
 //            User user = new User(new Id(2L), null, null);
-//            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+//            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate));
 //            Long generatedId = orderDao.insert(order);
 //            order.setOrderId(new Id(generatedId));
 //        }
-//        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(createdDate, 3L, 3L);
-//        Paginable<Order> response2 = orderDao.findPaginableOrderByCreatedDate(createdDate, 3L, 4L);
+//        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(sqlDate, sqlDate, 3L, 3L);
+//        Paginable<Order> response2 = orderDao.findPaginableOrderByCreatedDate(sqlDate, sqlDate, 3L, 4L);
 //        List<Order> orders = response.getItems();
 //        List<Order> orders2 = response2.getItems();
 //        assertEquals(3, orders.size());
 //        assertEquals(2, orders2.size());
 //        for (Order order : orders) {
-//            assertEquals(createdDate, order.getCreatedDate().getCreateDateTime());
+//            assertEquals(sqlDate, order.getCreatedDate().getCreateDateTime());
 //        }
 //        for (Order order2 : orders2) {
-//            assertEquals(createdDate, order2.getCreatedDate().getCreateDateTime());
+//            assertEquals(sqlDate, order2.getCreatedDate().getCreateDateTime());
 //        }
 //        clearOrders();
 //    }
 //
 //    @Test
 //    public void testPaginableToMuchRequestedOrders() throws SQLException {
-//        LocalDateTime createdDate = LocalDateTime.of(2024, 7, 1, 14, 30, 50);
-//        LocalDateTime updatedDate = LocalDateTime.of(2024, 7, 1, 15, 30, 50);
+//        LocalDate localDate = LocalDate.of(2024, 7, 1);
+//        Date sqlDate = Date.valueOf(localDate);
 //        for (int i = 0; i <= 10; i++) {
 //            User user = new User(new Id(2L), null, null);
-//            Order order = new Order(null, user, Status.IN_PROGRESS, new CreateDateTime(createdDate), new UpdateDateTime(updatedDate));
+//            Order order = new Order(null, user, Status.IN_PROGRESS, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate));
 //            Long generatedId = orderDao.insert(order);
 //            order.setOrderId(new Id(generatedId));
 //        }
-//        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(createdDate, 20L, 1L);
+//        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(sqlDate, sqlDate, 20L, 1L);
 //        List<Order> orders = response.getItems();
 //        assertEquals(11, orders.size(), "The number of orders is 11 as the requested page exceeds the total number of pages.");
 //        clearOrders();
@@ -238,3 +237,4 @@
 //        }
 //    }
 //}
+//

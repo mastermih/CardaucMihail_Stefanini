@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Repository
@@ -32,15 +33,19 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
+    private Timestamp setTimeToZero(LocalDateTime dateTime) {
+        LocalDateTime dateOnly = dateTime.toLocalDate().atStartOfDay();
+        return Timestamp.valueOf(dateOnly);
+    }
+
     public Long insert(Order order) throws SQLException {
         String sql = "INSERT INTO `order` (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setLong(1, order.getUserId().getUserId().getId());
-            ps.setObject(2, order.getCreatedDate().getCreateDateTime());
-            ps.setObject(3, order.getUpdatedDate().getUpdateDateTime());
+            ps.setTimestamp(2, setTimeToZero(order.getCreatedDate().getCreateDateTime()));
+            ps.setTimestamp(3, setTimeToZero(order.getUpdatedDate().getUpdateDateTime()));
             ps.setString(4, order.getOrderStatus().toString());
             return ps;
         }, keyHolder);
@@ -133,7 +138,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         return new Paginable<>(orders, page, totalPages);
     }
 
- // Maper rowMapper // 1 maper
+    // Maper rowMapper // 1 maper
     @Override
     public Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate, LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException {
         String countSql = "SELECT COUNT(*) FROM `order` WHERE created_date BETWEEN ? AND ? AND order_status = ?";
