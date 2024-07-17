@@ -3,13 +3,10 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="clear-databasechangelog" author="Cardauc Mihail">
-        <preConditions onFail="MARK_RAN">
-            <tableExists tableName="DATABASECHANGELOG"/>
-        </preConditions>
-        <sql>
-            DELETE FROM DATABASECHANGELOG;
-        </sql>
-    </changeSet>
+    <include file="1-changeset-user-table-test.xml" relativeToChangelogFile="true"/>
+    <include file="2-changeset-category-table-test.xml" relativeToChangelogFile="true"/>
+    <include file="3-changeset-product-table-test.xml" relativeToChangelogFile="true"/>
+    <include file="4-changeset-order-table-test.xml" relativeToChangelogFile="true"/>
+
 
 </databaseChangeLog>

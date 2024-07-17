@@ -4,24 +4,39 @@ import com.ImperioElevator.ordermanagement.OrderManagementApplication;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.entity.Category;
-import com.ImperioElevator.ordermanagement.valueobjects.Price;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.core.env.Environment;
 
+import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = OrderManagementApplication.class)
 @ActiveProfiles("test")
-
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ProductDaoImplTest {
 
     @Autowired
     private ProductDaoImpl productDao;
+
+    @Autowired
+    private Environment environment;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @BeforeEach
+    public void setUp() throws SQLException {
+        System.out.println("Active Profiles: " + Arrays.toString(environment.getActiveProfiles()));
+        System.out.println("Datasource URL: " + dataSource.getConnection().getMetaData().getURL());
+    }
 
     @Test
     public void testInsert() throws SQLException {
@@ -43,7 +58,7 @@ public class ProductDaoImplTest {
         assertNotNull(foundProduct);
         assertEquals(generatedId, foundProduct.getProductId().getId());
         assertEquals(product.getProductName().getProductName(), foundProduct.getProductName().getProductName());
-        productDao.deleteById(generatedId);
+        // productDao.deleteById(generatedId);
     }
 
     @Test
@@ -116,4 +131,3 @@ public class ProductDaoImplTest {
         productDao.deleteById(generatedId);
     }
 }
-

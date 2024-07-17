@@ -3,19 +3,24 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="2" author="Mihai">
-        <createTable tableName="category">
+    <changeSet id="1" author="Mihai">
+        <createTable tableName="user">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="VARCHAR(255)">
+            <column name="username" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="parent_id" type="BIGINT"/>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
-    <changeSet id="2.1" author="Mihai">
-        <loadData tableName="category" file="db/test-data/category-test-data.csv"/>
+    <changeSet id="1.1" author="Mihai">
+        <loadData tableName="user" file="db/test-data/user-test-data.csv"/>
     </changeSet>
 </databaseChangeLog>
