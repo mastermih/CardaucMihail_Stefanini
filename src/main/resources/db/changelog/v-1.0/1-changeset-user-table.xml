@@ -3,25 +3,25 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="4" author="Mihai">
-
-        <sqlFile
-                dbms="mysql"
-                encoding="utf8"
-                path="sql/04-create-user-table.sql"
-                relativeToChangelogFile="true"
-                splitStatements="true"
-                stripComments="true"/>
-
-        <rollback>
-            <sqlFile
-                    dbms="mysql"
-                    encoding="utf8"
-                    path="sql/04-drop-user-table.sql"
-                    relativeToChangelogFile="true"
-                    splitStatements="true"
-                    stripComments="true"/>
-        </rollback>
+    <changeSet id="1" author="Mihai">
+        <createTable tableName="user">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_date" type="DATETIME"/>
+        </createTable>
     </changeSet>
 
 </databaseChangeLog>

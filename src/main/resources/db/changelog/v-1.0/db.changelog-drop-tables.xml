@@ -31,13 +31,6 @@
         <dropTable tableName="order"/>
     </changeSet>
 
-    <changeSet id="drop-category-table" author="Mihai">
-        <preConditions onFail="MARK_RAN">
-            <tableExists tableName="category"/>
-        </preConditions>
-        <dropTable tableName="category"/>
-    </changeSet>
-
     <changeSet id="drop-product-table" author="Mihai">
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="product"/>
@@ -50,6 +43,13 @@
             <tableExists tableName="user"/>
         </preConditions>
         <dropTable tableName="user"/>
+    </changeSet>
+
+    <changeSet id="drop-category-table" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="category"/>
+        </preConditions>
+        <dropTable tableName="category"/>
     </changeSet>
 
 </databaseChangeLog>

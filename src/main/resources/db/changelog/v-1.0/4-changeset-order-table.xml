@@ -4,24 +4,27 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <changeSet id="1" author="Mihai">
+        <createTable tableName="order">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_date" type="DATETIME"/>
+            <column name="order_status" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
 
-        <sqlFile
-                dbms="mysql"
-                encoding="utf8"
-                path="sql/01-create-order-table.sql"
-                relativeToChangelogFile="true"
-                splitStatements="true"
-                stripComments="true"/>
-
-        <rollback>
-            <sqlFile
-                    dbms="mysql"
-                    encoding="utf8"
-                    path="sql/01-drop-order-table.sql"
-                    relativeToChangelogFile="true"
-                    splitStatements="true"
-                    stripComments="true"/>
-        </rollback>
+        <addForeignKeyConstraint baseTableName="order"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_order_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
     </changeSet>
 
 </databaseChangeLog>
