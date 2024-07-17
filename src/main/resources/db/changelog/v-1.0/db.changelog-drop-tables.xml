@@ -3,6 +3,17 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+    <!-- Clear DATABASECHANGELOG first -->
+    <changeSet id="clear-databasechangelog" author="Cardauc Mihail">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="DATABASECHANGELOG"/>
+        </preConditions>
+        <sql>
+            DELETE FROM DATABASECHANGELOG;
+        </sql>
+    </changeSet>
+
+    <!-- Drop foreign key constraints -->
     <changeSet id="drop-order-product-foreign-key-1" author="Mihai">
         <preConditions onFail="MARK_RAN">
             <foreignKeyConstraintExists foreignKeyName="fk_order_product_order"/>
@@ -24,6 +35,7 @@
         <dropForeignKeyConstraint baseTableName="product" constraintName="product_ibfk_1"/>
     </changeSet>
 
+    <!-- Drop tables -->
     <changeSet id="drop-order-table" author="Mihai">
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="order"/>
@@ -45,6 +57,7 @@
         <dropTable tableName="user"/>
     </changeSet>
 
+    <!-- Drop category table last -->
     <changeSet id="drop-category-table" author="Mihai">
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="category"/>

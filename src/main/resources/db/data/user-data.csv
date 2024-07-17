@@ -1,0 +1,6 @@
+id,username,email,password
+1,john_doe,john@example.com,pass1234
+2,jane_smith,jane@example.com,securepass
+3,bob_jones,bob@example.com,123password
+4,alice_williams,alice@example.com,alicepass
+5,charlie_brown,charlie@example.com,charlie123

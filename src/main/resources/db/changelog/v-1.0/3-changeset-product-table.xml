@@ -3,25 +3,48 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="3" author="Mihai">
+    <changeSet id="3.1" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="product"/>
+            </not>
+        </preConditions>
+        <createTable tableName="product">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_brand" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_name" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="electricity_consumption" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_width" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_height" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_depth" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 
-        <sqlFile
-                dbms="mysql"
-                encoding="utf8"
-                path="sql/03-create-product-table.sql"
-                relativeToChangelogFile="true"
-                splitStatements="true"
-                stripComments="true"/>
-
-        <rollback>
-            <sqlFile
-                    dbms="mysql"
-                    encoding="utf8"
-                    path="sql/03-drop-product-table.sql"
-                    relativeToChangelogFile="true"
-                    splitStatements="true"
-                    stripComments="true"/>
-        </rollback>
+    <changeSet id="3.2" author="Mihai">
+        <loadData tableName="product" file="db/data/product-data.csv"/>
     </changeSet>
 
 </databaseChangeLog>

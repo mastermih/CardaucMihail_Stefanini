@@ -17,11 +17,10 @@
             <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="created_date" type="DATETIME">
-                <constraints nullable="false"/>
-            </column>
-            <column name="updated_date" type="DATETIME"/>
         </createTable>
     </changeSet>
 
+    <changeSet id="1.1" author="Mihai">
+        <loadData tableName="user" file="db/data/user-data.csv"/>
+    </changeSet>
 </databaseChangeLog>

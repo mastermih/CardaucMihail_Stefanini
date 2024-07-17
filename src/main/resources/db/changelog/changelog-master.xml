@@ -12,8 +12,7 @@
         <tagDatabase tag="db_init"/>
     </changeSet>
 
-    <!--<include file="v-1.0/db.changelog-clear-databasechangelog.xml" relativeToChangelogFile="true"/> -->
-    <include file="v-1.0/db.changelog-drop-tables.xml" relativeToChangelogFile="true"/>
+    <!--<include file="v-1.0/db.changelog-drop-tables.xml" relativeToChangelogFile="true"/> -->
     <include file="v-1.0/db.changelog-create-tables.xml" relativeToChangelogFile="true"/>
 
     <changeSet id="1" author="Cardauc Mihail">

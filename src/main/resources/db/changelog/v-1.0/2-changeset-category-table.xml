@@ -24,4 +24,8 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="2.1" author="Mihai">
+        <loadData tableName="category" file="db/data/category-data.csv"/>
+    </changeSet>
+
 </databaseChangeLog>
