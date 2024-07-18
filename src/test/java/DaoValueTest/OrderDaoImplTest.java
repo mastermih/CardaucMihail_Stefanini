@@ -16,12 +16,10 @@ import org.springframework.test.context.ActiveProfiles;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,8 +36,8 @@ public class OrderDaoImplTest {
 
     @Test
     public void testInsert() throws SQLException {
-        LocalDate localDate = LocalDate.of(2024, 7, 1);
-        LocalDateTime localDateTime = localDate.atStartOfDay();
+        LocalDateTime localDateTime = LocalDateTime.of(2024, 7, 1, 0, 0);
+        // LocalDateTime localDateTime = localDate.atStartOfDay();
         Order order = new Order(
                 null,
                 new User(new Id(1L), null, null),
@@ -53,6 +51,7 @@ public class OrderDaoImplTest {
         assertNotNull(foundOrder);
         assertNotNull(foundOrder.getCreatedDate());
         orderDao.deleteById(new Id(generatedId).getId());
+
     }
 
     @Test
@@ -107,7 +106,7 @@ public class OrderDaoImplTest {
 
     @Test
     public void testFindPaginableOrderByCreatedDate() throws SQLException {
-        clearOrders();
+        // clearOrders();
 
         LocalDate localDate = LocalDate.of(2024, 7, 1);
         LocalDateTime localDateTime = localDate.atStartOfDay();
@@ -126,7 +125,7 @@ public class OrderDaoImplTest {
             assertEquals(localDateTime, order.getCreatedDate().getCreateDateTime());
         }
 
-        clearOrders();
+         clearOrders();
     }
 
     @Test
@@ -145,7 +144,7 @@ public class OrderDaoImplTest {
         for (Order order : orders) {
             assertEquals(localDateTime, order.getUpdatedDate().getUpdateDateTime());
         }
-        clearOrders();
+          clearOrders();
     }
 
     @Test
@@ -184,7 +183,7 @@ public class OrderDaoImplTest {
         for (Order order : orders) {
             assertEquals(localDateTime, order.getCreatedDate().getCreateDateTime());
         }
-        clearOrders();
+         clearOrders();
     }
 
     @Test
@@ -229,13 +228,10 @@ public class OrderDaoImplTest {
     }
 
     private void clearOrders() throws SQLException {
-        String sql = "DELETE FROM `order`";
+        String sql = "DELETE FROM \"ORDER\"";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
         }
     }
 }

@@ -28,10 +28,10 @@
 //    @Test
 //    void testInsert() throws SQLException {
 //        LocalDate localDate = LocalDate.of(2024, 7, 1);
-//        Date sqlDate = Date.valueOf(localDate);
+//        //Date sqlDate = Date.valueOf(localDate);
 //
 //        OrderProduct orderProduct = new OrderProduct(
-//                new Order(new Id(1L), null, Status.NEW, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate)),
+//                new Order(new Id(1L), null, Status.NEW, new CreateDateTime(localDate.atStartOfDay()), new UpdateDateTime(localDate.atStartOfDay())),
 //                new Product(new Id(1L), null, null, null, null, null, null, null, null, null),
 //                new Quantity(1),
 //                new Price(323)
@@ -46,10 +46,10 @@
 //    @Test
 //    public void testUpdate() throws SQLException {
 //        LocalDate localDate = LocalDate.of(2024, 7, 1);
-//        Date sqlDate = Date.valueOf(localDate);
+//        //Date sqlDate = Date.valueOf(localDate);
 //
 //        OrderProduct orderProduct = new OrderProduct(
-//                new Order(new Id(1L), null, Status.NEW, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate)),
+//                new Order(new Id(1L), null, Status.NEW, new CreateDateTime(localDate.atStartOfDay()), new UpdateDateTime(localDate.atStartOfDay())),
 //                new Product(new Id(1L), null, null, null, null, null, null, null, null, null),
 //                new Quantity(1),
 //                new Price(323)
@@ -72,10 +72,10 @@
 //    @Test
 //    public void testDeleteById() throws SQLException {
 //        LocalDate localDate = LocalDate.of(2024, 7, 1);
-//        Date sqlDate = Date.valueOf(localDate);
+//       // Date sqlDate = Date.valueOf(localDate);
 //
 //        OrderProduct orderProduct = new OrderProduct(
-//                new Order(new Id(1L), null, Status.NEW, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate)),
+//                new Order(new Id(1L), null, Status.NEW, new CreateDateTime(localDate.atStartOfDay()), new UpdateDateTime(localDate.atStartOfDay())),
 //                new Product(new Id(1L), null, null, null, null, null, null, null, null, null),
 //                new Quantity(1),
 //                new Price(323)
@@ -91,10 +91,10 @@
 //    @Test
 //    public void testFindById() throws SQLException {
 //        LocalDate localDate = LocalDate.of(2024, 7, 1);
-//        Date sqlDate = Date.valueOf(localDate);
+//       // Date sqlDate = Date.valueOf(localDate);
 //
 //        OrderProduct orderProduct = new OrderProduct(
-//                new Order(new Id(1L), null, Status.NEW, new CreateDateTime(sqlDate), new UpdateDateTime(sqlDate)),
+//                new Order(new Id(1L), null, Status.NEW, new CreateDateTime(localDate.atStartOfDay()), new UpdateDateTime(localDate.atStartOfDay())),
 //                new Product(new Id(1L), null, null, null, null, null, null, null, null, null),
 //                new Quantity(1),
 //                new Price(323)
