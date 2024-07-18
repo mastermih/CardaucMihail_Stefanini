@@ -8,5 +8,4 @@
   <include file="3-changeset-product-table.xml" relativeToChangelogFile="true"/>
   <include file="4-changeset-order-table.xml" relativeToChangelogFile="true"/>
 
-
 </databaseChangeLog>

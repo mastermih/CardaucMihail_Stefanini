@@ -3,6 +3,7 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+    <!-- ChangeSet for creating the category table -->
     <changeSet id="2" author="Mihai">
         <createTable tableName="category">
             <column name="id" type="BIGINT" autoIncrement="true">
@@ -15,7 +16,19 @@
         </createTable>
     </changeSet>
 
+    <!-- Data loading for MySQL -->
     <changeSet id="2.1" author="Mihai">
-        <loadData tableName="category" file="db/test-data/category-test-data.csv"/>
+        <preConditions onFail="MARK_RAN">
+            <dbms type="mysql"/>
+        </preConditions>
+        <loadData tableName="category" file="db/data/mysql/category-data.csv"/>
+    </changeSet>
+
+    <!-- Data loading for HSQLDB -->
+    <changeSet id="2.2" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="hsqldb"/>
+        </preConditions>
+        <loadData tableName="category" file="db/data/hsqldb/category-data.csv"/>
     </changeSet>
 </databaseChangeLog>

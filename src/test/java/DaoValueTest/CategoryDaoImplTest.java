@@ -5,28 +5,41 @@ import com.ImperioElevator.ordermanagement.dao.daoimpl.CategoryDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.Category;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Name;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = OrderManagementApplication.class)
 @ActiveProfiles("test")
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 
 public class CategoryDaoImplTest {
+    private static final Logger logger = LoggerFactory.getLogger(CategoryDaoImplTest.class);
 
     @Autowired
     private CategoryDaoImpl categoryDao;
 
     @Autowired
     private DataSource dataSource;
+
+    @BeforeEach
+    public void setUp() throws SQLException {
+        try (Connection connection = dataSource.getConnection()) {
+            logger.info("Database URL: {}", connection.getMetaData().getURL());
+            logger.info("Database User: {}", connection.getMetaData().getUserName());
+        }
+    }
 
     @Test
     public void testInsert() throws SQLException {

@@ -3,48 +3,53 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="3.1" author="Mihai">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="product"/>
-            </not>
-        </preConditions>
+    <!-- ChangeSet for creating the product table -->
+    <changeSet id="3" author="Mihai">
         <createTable tableName="product">
             <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="category_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="product_brand" type="VARCHAR(45)">
+            <column name="product_brand" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="product_name" type="VARCHAR(45)">
+            <column name="product_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="electricity_consumption" type="DOUBLE">
+            <column name="electricity_consumption" type="DECIMAL(10,2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="product_description" type="VARCHAR(255)">
+            <column name="product_description" type="VARCHAR(255)"/>
+            <column name="product_width" type="DECIMAL(10,2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="product_width" type="DOUBLE">
+            <column name="product_height" type="DECIMAL(10,2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="product_height" type="DOUBLE">
+            <column name="product_depth" type="DECIMAL(10,2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="product_depth" type="DOUBLE">
-                <constraints nullable="false"/>
-            </column>
-            <column name="price" type="INT">
+            <column name="price" type="DECIMAL(10,2)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
 
-    <changeSet id="3.2" author="Mihai">
-        <loadData tableName="product" file="db/data/product-data.csv"/>
+    <!-- Data loading for MySQL -->
+    <changeSet id="3.1" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="mysql"/>
+        </preConditions>
+        <loadData tableName="product" file="db/data/mysql/product-data.csv"/>
     </changeSet>
 
+    <!-- Data loading for HSQLDB -->
+    <changeSet id="3.2" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="hsqldb"/>
+        </preConditions>
+        <loadData tableName="product" file="db/data/hsqldb/product-data.csv"/>
+    </changeSet>
 </databaseChangeLog>

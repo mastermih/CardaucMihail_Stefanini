@@ -3,6 +3,7 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+    <!-- ChangeSet for creating the user table -->
     <changeSet id="1" author="Mihai">
         <createTable tableName="user">
             <column name="id" type="BIGINT" autoIncrement="true">
@@ -20,7 +21,19 @@
         </createTable>
     </changeSet>
 
+    <!-- Data loading for MySQL -->
     <changeSet id="1.1" author="Mihai">
-        <loadData tableName="user" file="db/data/user-data.csv"/>
+        <preConditions onFail="MARK_RAN">
+            <dbms type="mysql"/>
+        </preConditions>
+        <loadData tableName="user" file="db/data/mysql/user-data.csv"/>
+    </changeSet>
+
+    <!-- Data loading for HSQLDB -->
+    <changeSet id="1.2" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="hsqldb"/>
+        </preConditions>
+        <loadData tableName="user" file="db/data/hsqldb/user-data.csv"/>
     </changeSet>
 </databaseChangeLog>
