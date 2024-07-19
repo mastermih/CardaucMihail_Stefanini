@@ -228,7 +228,7 @@ public class OrderDaoImplTest {
     }
 
     private void clearOrders() throws SQLException {
-        String sql = "DELETE FROM \"ORDER\"";
+        String sql = "DELETE FROM client_order";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.executeUpdate();

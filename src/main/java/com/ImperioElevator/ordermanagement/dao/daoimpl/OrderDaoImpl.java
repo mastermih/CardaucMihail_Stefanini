@@ -35,7 +35,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Long insert(Order order) throws SQLException {
-        String sql = "INSERT INTO \"ORDER\" (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO client_order (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -48,13 +48,13 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         if (keyHolder.getKey() != null) {
             return keyHolder.getKey().longValue();
         } else {
-            throw new SQLException("Creating order failed, no ID obtained.");
+            throw new SQLException("Creating client_order failed, no ID obtained.");
         }
     }
 
     @Override
     public Long update(Order order) throws SQLException {
-        String sql = "UPDATE \"ORDER\" SET user_id = ?, updated_date = ?, order_status = ? WHERE id = ?";
+        String sql = "UPDATE client_order SET user_id = ?, updated_date = ?, order_status = ? WHERE id = ?";
         jdbcTemplate.update(sql,
                 order.getUserId().getUserId().getId(),
                 setTimeToZero(order.getUpdatedDate().getUpdateDateTime()),
@@ -65,14 +65,14 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Long deleteById(Long id) throws SQLException {
-        String sql = "DELETE FROM \"ORDER\" WHERE id = ?";
+        String sql = "DELETE FROM client_order WHERE id = ?";
         jdbcTemplate.update(sql, id);
         return id;
     }
 
     @Override
     public Order findById(Long id) throws SQLException {
-        String sql = "SELECT * FROM \"ORDER\" WHERE id = ?";
+        String sql = "SELECT * FROM client_order WHERE id = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) -> mapResultSetToEntity(resultSet));
         } catch (EmptyResultDataAccessException e) {
@@ -98,8 +98,8 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {
-        String countSql = "SELECT COUNT(*) FROM \"ORDER\" WHERE created_date BETWEEN ? AND ?";
-        String sql = "SELECT * FROM \"ORDER\" WHERE created_date BETWEEN ? AND ? LIMIT ? OFFSET ?";
+        String countSql = "SELECT COUNT(*) FROM client_order WHERE created_date BETWEEN ? AND ?";
+        String sql = "SELECT * FROM client_order WHERE created_date BETWEEN ? AND ? LIMIT ? OFFSET ?";
         List<Order> orders = new ArrayList<>();
         Long offset = (page - 1) * numberOfOrders;
 
@@ -115,8 +115,8 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Paginable<Order> findPaginableOrderByUpdatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {
-        String countSql = "SELECT COUNT(*) FROM \"ORDER\" WHERE updated_date BETWEEN ? AND ?";
-        String sql = "SELECT * FROM \"ORDER\" WHERE updated_date BETWEEN ? AND ? LIMIT ? OFFSET ?";
+        String countSql = "SELECT COUNT(*) FROM client_order WHERE updated_date BETWEEN ? AND ?";
+        String sql = "SELECT * FROM client_order WHERE updated_date BETWEEN ? AND ? LIMIT ? OFFSET ?";
         List<Order> orders = new ArrayList<>();
         Long offset = (page - 1) * numberOfOrders;
 
@@ -132,8 +132,8 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate, LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException {
-        String countSql = "SELECT COUNT(*) FROM \"ORDER\" WHERE created_date BETWEEN ? AND ? AND order_status = ?";
-        String sql = "SELECT * FROM \"ORDER\" WHERE created_date BETWEEN ? AND ? AND order_status = ? LIMIT ? OFFSET ?";
+        String countSql = "SELECT COUNT(*) FROM client_order WHERE created_date BETWEEN ? AND ? AND order_status = ?";
+        String sql = "SELECT * FROM client_order WHERE created_date BETWEEN ? AND ? AND order_status = ? LIMIT ? OFFSET ?";
         List<Order> orders = new ArrayList<>();
         Long offset = (page - 1) * numberOfOrders;
 
@@ -149,7 +149,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public List<Order> findLastCreatedOrders(Number limit) throws SQLException {
-        String sql = "SELECT * FROM \"ORDER\" ORDER BY id ASC LIMIT ?";
+        String sql = "SELECT * FROM client_order ORDER BY id ASC LIMIT ?";
         List<Order> orders = new ArrayList<>();
         jdbcTemplate.query(sql, new Object[]{limit}, (resultSet) -> {
             orders.add(mapResultSetToEntity(resultSet));
