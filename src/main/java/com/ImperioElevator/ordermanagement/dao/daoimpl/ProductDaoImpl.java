@@ -8,11 +8,12 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 
-@Repository
+@Component
 public class ProductDaoImpl extends AbstractDao<Product> implements Dao<Product> {
     private final JdbcTemplate jdbcTemplate;
 

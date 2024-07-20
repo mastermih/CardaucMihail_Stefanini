@@ -9,12 +9,13 @@ import com.ImperioElevator.ordermanagement.valueobjects.Price;
 import com.ImperioElevator.ordermanagement.valueobjects.Quantity;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Repository
+@Component
 public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements OrderProductDao {
 
     private final JdbcTemplate jdbcTemplate;

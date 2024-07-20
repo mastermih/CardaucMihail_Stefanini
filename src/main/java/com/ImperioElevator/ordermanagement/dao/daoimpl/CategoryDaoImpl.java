@@ -9,10 +9,12 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
-@Repository
+// trebu de scos repository Dao spring data
+@Component
 public class CategoryDaoImpl extends AbstractDao<Category> {
     private final JdbcTemplate jdbcTemplate;
 
