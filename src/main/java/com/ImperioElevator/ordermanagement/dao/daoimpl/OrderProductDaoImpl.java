@@ -71,7 +71,7 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
         Price priceOrder = new Price(resultSet.getInt("price_order"));
 
         Order order = new Order(orderId, null, null, null, null); // Adjust constructor params as needed
-        Product product = new Product(productId, null, null, null, null, null, null, null, null, null); // Adjust constructor params as needed
+        Product product = new Product(productId, null, null, null, null, null, null, null, null, null, null); // Adjust constructor params as needed
 
         return new OrderProduct(order, product, quantity, priceOrder);
     }

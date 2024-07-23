@@ -1,9 +1,11 @@
 package com.ImperioElevator.ordermanagement.dao.daoimpl;
 
 import com.ImperioElevator.ordermanagement.dao.Dao;
+import com.ImperioElevator.ordermanagement.dao.ProductDao;
 import com.ImperioElevator.ordermanagement.entity.Category;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
+import com.ImperioElevator.ordermanagement.valueobjects.Number;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -12,9 +14,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
-public class ProductDaoImpl extends AbstractDao<Product> implements Dao<Product> {
+public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
     private final JdbcTemplate jdbcTemplate;
 
     public ProductDaoImpl(JdbcTemplate jdbcTemplate) {
@@ -23,7 +27,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements Dao<Product>
 
     @Override
     public Long insert(Product product) throws SQLException {
-        String sql = "INSERT INTO product (category_id, product_brand, product_name, electricity_consumption, product_description, product_width, product_height, product_depth, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO product (category_id, product_brand, product_name, electricity_consumption, product_description, product_width, product_height, product_depth, price, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
@@ -37,6 +41,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements Dao<Product>
             ps.setDouble(7, product.getHeight().getHeight());
             ps.setDouble(8, product.getDepth().getDepth());
             ps.setInt(9, product.getPrice().getPrice());
+            ps.setString(10, product.getPath().getPath());
             return ps;
         }, keyHolder);
 
@@ -94,8 +99,19 @@ public class ProductDaoImpl extends AbstractDao<Product> implements Dao<Product>
         Height height = new Height(resultSet.getDouble("product_height"));
         Depth depth = new Depth(resultSet.getDouble("product_depth"));
         Price price = new Price(resultSet.getInt("price"));
+        Image image = new Image(resultSet.getString("image_path"));
         Category category = new Category(categoryId, null, null);
 
-        return new Product(productId, price, width, height, depth, category, productBrand, productName, electricityConsumption, description);
+        return new Product(productId, price, width, height, depth, category, productBrand, productName, electricityConsumption, description, image);
+    }
+
+    @Override
+    public List<Product> fiendProductForMainPage(Long limit, Long categoryId) {
+        String sql = "SELECT * FROM product WHERE category_id = ? ORDER BY category_id ASC LIMIT ?";
+        List<Product> products = new ArrayList<>();
+        jdbcTemplate.query(sql, new Object[]{limit, categoryId}, (result) -> {
+            products.add(mapResultSetToEntity(result));
+        });
+        return products;
     }
 }

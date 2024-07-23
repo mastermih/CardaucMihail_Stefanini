@@ -2,6 +2,7 @@ package com.ImperioElevator.ordermanagement.service;
 
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
+import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 
 import java.sql.SQLException;

@@ -20,9 +20,9 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Feiecare classa incepa dechide un testContext nou idk daca asta e bine
 @SpringBootTest(classes = OrderManagementApplication.class)
 @ActiveProfiles("test")
-//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 
 public class CategoryDaoImplTest {
     private static final Logger logger = LoggerFactory.getLogger(CategoryDaoImplTest.class);

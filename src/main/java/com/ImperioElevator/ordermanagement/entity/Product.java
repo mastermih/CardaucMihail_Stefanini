@@ -14,10 +14,11 @@ public class Product {
     private ProductName productName;
     private ElectricityConsumption electricityConsumption;
     private Description description;
+    private Image path;
 
     public Product(Id productId, Price price, Width width, Height height, Depth depth, Category category,
                    ProductBrand productBrand, ProductName productName, ElectricityConsumption electricityConsumption,
-                   Description description) {
+                   Description description, Image path) {
         this.productId = productId;
         this.price = price;
         this.width = width;
@@ -28,6 +29,7 @@ public class Product {
         this.productName = productName;
         this.electricityConsumption = electricityConsumption;
         this.description = description;
+        this.path = path;
     }
 
     public Id getProductId() {
@@ -110,6 +112,14 @@ public class Product {
         this.description = description;
     }
 
+    public Image getPath() {
+        return path;
+    }
+
+    public void setPath(Image path) {
+        this.path = path;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -123,6 +133,7 @@ public class Product {
                 ", productName=" + productName +
                 ", electricityConsumption=" + electricityConsumption +
                 ", description=" + description +
+                ", path=" + path +
                 '}';
     }
 }

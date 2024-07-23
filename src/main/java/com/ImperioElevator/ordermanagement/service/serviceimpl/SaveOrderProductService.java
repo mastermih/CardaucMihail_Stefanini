@@ -58,7 +58,7 @@ public class SaveOrderProductService {
             orderProduct.add(new OrderProduct(
                     order,
                     new Product(new Id(orderProducts.getPrdoductId().getId()), null, null, null,
-                            null, null, null, null, null, null),
+                            null, null, null, null, null, null, null),
                     new Quantity(orderProducts.getQuantity().getQuantity()),
                     new Price(orderProducts.getPriceOrder().getPrice())
             ));
