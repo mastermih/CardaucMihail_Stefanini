@@ -8,6 +8,7 @@ import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.CreateDateTime;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
+import org.apache.tomcat.jni.Local;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -29,20 +30,24 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private Timestamp setTimeToZero(LocalDateTime dateTime) {
-        LocalDateTime dateOnly = dateTime.toLocalDate().atStartOfDay();
-        return Timestamp.valueOf(dateOnly);
-    }
 
     @Override
+    //ToDo take out the (Cu ore minute secunde) Tip Record data type
     public Long insert(Order order) throws SQLException {
         String sql = "INSERT INTO client_order (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
+        LocalDateTime curentDateTime = LocalDateTime.now();
+        if (order.getCreatedDate() == null){
+            order.setCreatedDate(new CreateDateTime(curentDateTime));
+        }
+        if (order.getUpdatedDate() == null){
+            order.setUpdatedDate(new UpdateDateTime(curentDateTime));
+        }
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setLong(1, order.getUserId().getUserId().getId());
-            ps.setTimestamp(2, setTimeToZero(order.getCreatedDate().getCreateDateTime()));
-            ps.setTimestamp(3, setTimeToZero(order.getUpdatedDate().getUpdateDateTime()));
+            ps.setTimestamp(2, Timestamp.valueOf((order.getCreatedDate().getCreateDateTime())));
+            ps.setTimestamp(3, Timestamp.valueOf(order.getUpdatedDate().getUpdateDateTime()));
             ps.setString(4, order.getOrderStatus().toString());
             return ps;
         }, keyHolder);
@@ -56,9 +61,19 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     @Override
     public Long update(Order order) throws SQLException {
         String sql = "UPDATE client_order SET user_id = ?, updated_date = ?, order_status = ? WHERE id = ?";
+
         jdbcTemplate.update(sql,
                 order.getUserId().getUserId().getId(),
-                setTimeToZero(order.getUpdatedDate().getUpdateDateTime()),
+                Timestamp.valueOf(order.getUpdatedDate().getUpdateDateTime()),
+                order.getOrderStatus().toString(),
+                order.getOrderId().getId());
+        return order.getOrderId().getId();
+    }
+
+    @Override
+    public Long updateStatus(Order order) throws SQLException {
+        String sql = "UPDATE client_order SET order_status = ? WHERE id = ?";
+        jdbcTemplate.update(sql,
                 order.getOrderStatus().toString(),
                 order.getOrderId().getId());
         return order.getOrderId().getId();

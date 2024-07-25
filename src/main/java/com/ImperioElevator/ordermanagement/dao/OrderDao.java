@@ -18,4 +18,6 @@ public interface OrderDao extends Dao<Order>{
 
     List<Order> findLastCreatedOrders(Number limit) throws SQLException;
 
+    Long updateStatus(Order order) throws SQLException;
+
 }

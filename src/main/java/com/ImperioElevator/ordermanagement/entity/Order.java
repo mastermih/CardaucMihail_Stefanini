@@ -6,6 +6,8 @@ import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.CreateDateTime;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +21,13 @@ public class Order {
     private UpdateDateTime updatedDate;
     private List<OrderProduct> orderProducts;
 
-    public Order(Id orderId, User userId, Status orderStatus, CreateDateTime createdDate, UpdateDateTime updatedDate) {
-        this.orderId = orderId;
+    @JsonCreator
+    public Order(@JsonProperty("id") Long id){
+        this.orderId = new Id(id);
+    }
+
+    public Order(Id orderid, User userId, Status orderStatus, CreateDateTime createdDate, UpdateDateTime updatedDate) {
+        this.orderId = orderid;
         this.userId = userId;
         this.orderStatus = orderStatus;
         this.createdDate = createdDate;

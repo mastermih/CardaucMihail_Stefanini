@@ -4,6 +4,8 @@ public enum Status {
     OPEN,
     NEW,
     CLOSED,
-    IN_PROGRES,
-    IN_PROGRESS, DECLINED_BY_CLIENT
+    INITIALISED, // After it was added to cart
+    CANCELED, // Befeore it is set to New
+    IN_PROGRESS,
+    DECLINED_BY_CLIENT
 }

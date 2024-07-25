@@ -41,4 +41,9 @@ public class OrdersServiceImpl implements OrdersService {
         return orderDao.insert(order);
     }
 
+    @Override
+    public Long updateOrderStatus(Order order) throws SQLException {
+        return orderDao.updateStatus(order);
+    }
+
 }

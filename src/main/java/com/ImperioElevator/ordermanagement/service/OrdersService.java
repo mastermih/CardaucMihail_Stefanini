@@ -13,4 +13,5 @@ public interface OrdersService {
     Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate, LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException;
     List<Order> findLastCreatedOrders(Number limit)throws SQLException;
     Long createOrder(Order order) throws SQLException;
+    Long updateOrderStatus(Order order) throws SQLException;
 }

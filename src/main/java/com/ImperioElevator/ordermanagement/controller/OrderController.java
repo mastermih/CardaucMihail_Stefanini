@@ -15,7 +15,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping()
 public class OrderController {
 
  private final OrdersService ordersService;
@@ -26,7 +26,7 @@ public class OrderController {
  }
 
  @CrossOrigin(origins = "http://localhost:3000")
- @GetMapping("/createDate")
+ @GetMapping("/orders/createDate")
  public Paginable<Order> listOrdersByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
                                             @RequestParam Long numberOfOrders,
@@ -37,7 +37,7 @@ public class OrderController {
  }
 
  @CrossOrigin(origins = "http://localhost:3000")
- @GetMapping("/status-createDate")
+ @GetMapping("/orders/status-createDate")
  public Paginable<Order> listOrdersByPeriodStatus(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
                                                   @RequestParam Status status,
@@ -49,9 +49,22 @@ public class OrderController {
  }
 
  @CrossOrigin(origins = "http://localhost:3000")
- @GetMapping("/lastCreated")
+ @GetMapping("/orders/lastCreated")
  public List<Order> getLastCreatedDate(@RequestParam("limit") Number limit) throws SQLException {
   return ordersService.findLastCreatedOrders(limit);
  }
+
+ @CrossOrigin(origins = "http://localhost:3000")
+ @PostMapping("/MakeOrder/{id}")
+ public Long postUserOrder(@PathVariable Long id, @RequestBody Order order) throws SQLException {
+  return ordersService.createOrder(order);
+ }
+ @CrossOrigin(origins = "http://localhost:3000")
+ @PutMapping("/MakeOrder/{id}")
+ public Long updateUserOrder(@PathVariable Long id, @RequestBody Order order) throws SQLException{
+  return ordersService.updateOrderStatus(order);
+ }
+
+
 
 }
