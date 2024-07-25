@@ -1,9 +1,13 @@
 package com.ImperioElevator.ordermanagement.valueobjects;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Id {
     private long id;
 
-    public Id(long id) {
+    @JsonCreator
+    public Id(@JsonProperty("id") Long id) {
         this.id = id;
     }
 

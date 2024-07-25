@@ -21,13 +21,15 @@ public class Order {
     private UpdateDateTime updatedDate;
     private List<OrderProduct> orderProducts;
 
-    @JsonCreator
-    public Order(@JsonProperty("id") Long id){
-        this.orderId = new Id(id);
-    }
 
-    public Order(Id orderid, User userId, Status orderStatus, CreateDateTime createdDate, UpdateDateTime updatedDate) {
-        this.orderId = orderid;
+    @JsonCreator
+
+    public Order(@JsonProperty("orderId") Id orderId,
+                 @JsonProperty("userId") User userId,
+                 @JsonProperty("orderStatus") Status orderStatus,
+                 @JsonProperty("createdDate") CreateDateTime createdDate,
+                 @JsonProperty("updatedDate") UpdateDateTime updatedDate) {
+        this.orderId = orderId;
         this.userId = userId;
         this.orderStatus = orderStatus;
         this.createdDate = createdDate;
