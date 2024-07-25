@@ -4,6 +4,8 @@ package com.ImperioElevator.ordermanagement.entity;
 import com.ImperioElevator.ordermanagement.valueobjects.Email;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Name;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User
 {
@@ -11,11 +13,18 @@ public class User
     private Name name;
     private Email email;
 
+
+    @JsonCreator
+    public User(@JsonProperty("id") Long id) {
+        this.userId = new Id(id);
+    }
+
     public User(Id userId, Name name, Email email) {
         this.userId = userId;
         this.name = name;
         this.email = email;
     }
+    public User(){}
 
     public Id getUserId() {
         return userId;

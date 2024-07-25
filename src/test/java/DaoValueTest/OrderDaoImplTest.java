@@ -45,6 +45,7 @@ public class OrderDaoImplTest {
                 new CreateDateTime(localDateTime),
                 new UpdateDateTime(localDateTime)
         );
+
         Long generatedId = orderDao.insert(order);
         order.setOrderId(new Id(generatedId));
         Order foundOrder = orderDao.findById(new Id(generatedId).getId());

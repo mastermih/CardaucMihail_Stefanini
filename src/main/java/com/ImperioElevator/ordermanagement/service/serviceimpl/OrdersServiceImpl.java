@@ -3,7 +3,6 @@ package com.ImperioElevator.ordermanagement.service.serviceimpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
-import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import org.springframework.stereotype.Service;
@@ -35,6 +34,11 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public List<Order> findLastCreatedOrders(Number limit) throws SQLException {
         return orderDao.findLastCreatedOrders(limit);
+    }
+
+    @Override
+    public Long createOrder(Order order) throws SQLException {
+        return orderDao.insert(order);
     }
 
 }

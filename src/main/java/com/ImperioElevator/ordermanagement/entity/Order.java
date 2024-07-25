@@ -27,7 +27,8 @@ public class Order {
         this.updatedDate = updatedDate;
         this.orderProducts = new ArrayList<>();
     }
-
+    public Order() {
+    }
 
     public Id getOrderId() {
         return orderId;
