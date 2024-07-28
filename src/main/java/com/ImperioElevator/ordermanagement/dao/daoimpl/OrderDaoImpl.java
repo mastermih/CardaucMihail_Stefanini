@@ -8,18 +8,17 @@ import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.CreateDateTime;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
-import org.apache.tomcat.jni.Local;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Component
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
@@ -30,27 +29,24 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
     @Override
-    //ToDo take out the (Cu ore minute secunde) Tip Record data type
     public Long insert(Order order) throws SQLException {
         String sql = "INSERT INTO client_order (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        LocalDateTime curentDateTime = LocalDateTime.now();
-        if (order.getCreatedDate() == null){
-            order.setCreatedDate(new CreateDateTime(curentDateTime));
-        }
-        if (order.getUpdatedDate() == null){
-            order.setUpdatedDate(new UpdateDateTime(curentDateTime));
-        }
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
+        CreateDateTime createdDate = order.createdDate() != null ? order.createdDate() : new CreateDateTime(currentDateTime);
+        UpdateDateTime updatedDate = order.updatedDate() != null ? order.updatedDate() : new UpdateDateTime(currentDateTime);
+
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setLong(1, order.getUserId().getUserId().getId());
-            ps.setTimestamp(2, Timestamp.valueOf((order.getCreatedDate().getCreateDateTime())));
-            ps.setTimestamp(3, Timestamp.valueOf(order.getUpdatedDate().getUpdateDateTime()));
-            ps.setString(4, order.getOrderStatus().toString());
+            ps.setLong(1, order.userId().userId().id());
+            ps.setTimestamp(2, Timestamp.valueOf(createdDate.createDateTime()));
+            ps.setTimestamp(3, Timestamp.valueOf(updatedDate.updateDateTime()));
+            ps.setString(4, order.orderStatus().name());
             return ps;
         }, keyHolder);
+
         if (keyHolder.getKey() != null) {
             return keyHolder.getKey().longValue();
         } else {
@@ -58,25 +54,25 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 
+
     @Override
     public Long update(Order order) throws SQLException {
         String sql = "UPDATE client_order SET user_id = ?, updated_date = ?, order_status = ? WHERE id = ?";
-
         jdbcTemplate.update(sql,
-                order.getUserId().getUserId().getId(),
-                Timestamp.valueOf(order.getUpdatedDate().getUpdateDateTime()),
-                order.getOrderStatus().toString(),
-                order.getOrderId().getId());
-        return order.getOrderId().getId();
+                order.userId().userId().id(),
+                Timestamp.valueOf(order.updatedDate().updateDateTime()),
+                order.orderStatus().toString(),
+                order.orderId().id());
+        return order.orderId().id();
     }
 
     @Override
     public Long updateStatus(Order order) throws SQLException {
         String sql = "UPDATE client_order SET order_status = ? WHERE id = ?";
         jdbcTemplate.update(sql,
-                order.getOrderStatus().toString(),
-                order.getOrderId().getId());
-        return order.getOrderId().getId();
+                order.orderStatus().toString(),
+                order.orderId().id());
+        return order.orderId().id();
     }
 
     @Override
@@ -108,7 +104,8 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 new User(new Id(userId), null, null),
                 orderStatus,
                 new CreateDateTime(createdDateTime),
-                new UpdateDateTime(updatedDateTime)
+                new UpdateDateTime(updatedDateTime),
+              new ArrayList<>()
         );
     }
 
@@ -121,7 +118,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
         Long totalItems = jdbcTemplate.queryForObject(countSql, new Object[]{Timestamp.valueOf(startDate), Timestamp.valueOf(endDate)}, Long.class);
 
-        jdbcTemplate.query(sql, new Object[]{Timestamp.valueOf(startDate), Timestamp.valueOf(endDate), numberOfOrders, offset}, (resultSet) -> {
+        jdbcTemplate.query(sql, new Object[]{Timestamp.valueOf(startDate), Timestamp.valueOf(endDate), numberOfOrders, offset}, resultSet -> {
             orders.add(mapResultSetToEntity(resultSet));
         });
 
@@ -138,7 +135,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
         Long totalItems = jdbcTemplate.queryForObject(countSql, new Object[]{Timestamp.valueOf(startDate), Timestamp.valueOf(endDate)}, Long.class);
 
-        jdbcTemplate.query(sql, new Object[]{Timestamp.valueOf(startDate), Timestamp.valueOf(endDate), numberOfOrders, offset}, (resultSet) -> {
+        jdbcTemplate.query(sql, new Object[]{Timestamp.valueOf(startDate), Timestamp.valueOf(endDate), numberOfOrders, offset}, resultSet -> {
             orders.add(mapResultSetToEntity(resultSet));
         });
 
@@ -155,7 +152,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
         Long totalItems = jdbcTemplate.queryForObject(countSql, new Object[]{Timestamp.valueOf(startDate), Timestamp.valueOf(endDate), status.name()}, Long.class);
 
-        jdbcTemplate.query(sql, new Object[]{Timestamp.valueOf(startDate), Timestamp.valueOf(endDate), status.name(), numberOfOrders, offset}, (resultSet) -> {
+        jdbcTemplate.query(sql, new Object[]{Timestamp.valueOf(startDate), Timestamp.valueOf(endDate), status.name(), numberOfOrders, offset}, resultSet -> {
             orders.add(mapResultSetToEntity(resultSet));
         });
 
@@ -167,7 +164,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     public List<Order> findLastCreatedOrders(Number limit) throws SQLException {
         String sql = "SELECT * FROM client_order ORDER BY id ASC LIMIT ?";
         List<Order> orders = new ArrayList<>();
-        jdbcTemplate.query(sql, new Object[]{limit}, (resultSet) -> {
+        jdbcTemplate.query(sql, new Object[]{limit}, resultSet -> {
             orders.add(mapResultSetToEntity(resultSet));
         });
         return orders;

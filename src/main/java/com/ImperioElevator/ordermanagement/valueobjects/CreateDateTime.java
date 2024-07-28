@@ -7,26 +7,9 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 import java.time.LocalDateTime;
 
-public class CreateDateTime {
-    private LocalDateTime createDateTime;
 
-    @JsonCreator
-    public CreateDateTime(@JsonProperty("createDateTime") LocalDateTime createDateTime) {
-        this.createDateTime = createDateTime;
-    }
+public record CreateDateTime(
+        @JsonProperty("createDateTime") LocalDateTime createDateTime
+) {
 
-    public LocalDateTime getCreateDateTime() {
-        return createDateTime;
-    }
-
-    public void setCreateDateTime(LocalDateTime createDateTime) {
-        this.createDateTime = createDateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "CreateDateTime{" +
-                "createDateTime=" + createDateTime +
-                '}';
-    }
 }

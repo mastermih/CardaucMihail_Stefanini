@@ -49,9 +49,9 @@ public class CategoryDaoImplTest {
                 null
         );
         Long generatedId = categoryDao.insert(category);
-        Category foundCategory = categoryDao.findById(new Id(generatedId).getId());
+        Category foundCategory = categoryDao.findById(new Id(generatedId).id());
         assertNotNull(foundCategory);
-        assertEquals(generatedId, foundCategory.getId().getId());
+        assertEquals(generatedId, foundCategory.id().id());
         //categoryDao.deleteById(new Id(generatedId).getId());
     }
 
@@ -63,7 +63,7 @@ public class CategoryDaoImplTest {
                 null
         );
         Long generatedIdParent = categoryDao.insert(parentCategory);
-        parentCategory.setId(new Id(generatedIdParent));
+        parentCategory = new Category(new Id(generatedIdParent), parentCategory.name(), null);
 
         Category category = new Category(
                 null,
@@ -71,15 +71,15 @@ public class CategoryDaoImplTest {
                 parentCategory
         );
         Long generatedIdChild = categoryDao.insert(category);
-        category.setId(new Id(generatedIdChild));
+        category = new Category(new Id(generatedIdChild), category.name(), parentCategory);
 
-        Category foundCategory = categoryDao.findById(new Id(generatedIdChild).getId());
+        Category foundCategory = categoryDao.findById(new Id(generatedIdChild).id());
         assertNotNull(foundCategory);
-        assertNotNull(foundCategory.getParentId());
-        assertEquals(parentCategory.getId().getId(), foundCategory.getParentId().getId().getId());
+        assertNotNull(foundCategory.parentId());
+        assertEquals(parentCategory.id().id(), foundCategory.parentId().id().id());
 
-        categoryDao.deleteById(new Id(generatedIdChild).getId());
-        categoryDao.deleteById(new Id(generatedIdParent).getId());
+        categoryDao.deleteById(new Id(generatedIdChild).id());
+        categoryDao.deleteById(new Id(generatedIdParent).id());
     }
 
     @Test
@@ -90,8 +90,8 @@ public class CategoryDaoImplTest {
                 null
         );
         Long generatedId = categoryDao.insert(category);
-        categoryDao.deleteById(new Id(generatedId).getId());
-        Category foundCategory = categoryDao.findById(new Id(generatedId).getId());
+        categoryDao.deleteById(new Id(generatedId).id());
+        Category foundCategory = categoryDao.findById(new Id(generatedId).id());
         assertNull(foundCategory);
     }
 
@@ -103,12 +103,12 @@ public class CategoryDaoImplTest {
                 null
         );
         Long generatedId = categoryDao.insert(category);
-        category.setId(new Id(generatedId));
-        Category foundCategory = categoryDao.findById(new Id(generatedId).getId());
+        category = new Category(new Id(generatedId), category.name(), null);
+        Category foundCategory = categoryDao.findById(new Id(generatedId).id());
         assertNotNull(foundCategory);
-        assertEquals(category.getId().getId(), foundCategory.getId().getId());
-        assertEquals(category.getName().getName(), foundCategory.getName().getName());
-        categoryDao.deleteById(new Id(generatedId).getId());
+        assertEquals(category.id().id(), foundCategory.id().id());
+        assertEquals(category.name().name(), foundCategory.name().name());
+        categoryDao.deleteById(new Id(generatedId).id());
     }
 
     @Test
@@ -119,12 +119,12 @@ public class CategoryDaoImplTest {
                 null
         );
         Long generatedId = categoryDao.insert(category);
-        category.setId(new Id(generatedId));
-        category.setName(new Name("NONONONONO"));
+        category = new Category(new Id(generatedId), new Name("NONONONONO"), null);
+        category.name().name();
         categoryDao.update(category);
-        Category foundCategory = categoryDao.findById(new Id(generatedId).getId());
+        Category foundCategory = categoryDao.findById(new Id(generatedId).id());
         assertNotNull(foundCategory);
-        assertEquals("NONONONONO", foundCategory.getName().getName());
-        categoryDao.deleteById(new Id(generatedId).getId());
+        assertEquals("NONONONONO", foundCategory.name().name());
+        categoryDao.deleteById(new Id(generatedId).id());
     }
 }

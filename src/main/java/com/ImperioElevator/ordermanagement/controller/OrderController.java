@@ -57,8 +57,11 @@ public class OrderController {
  @CrossOrigin(origins = "http://localhost:3000")
  @PostMapping("/MakeOrder/{id}")
  public Long postUserOrder(@PathVariable Long id, @RequestBody Order order) throws SQLException {
+  System.out.println("Received order: " + order);
   return ordersService.createOrder(order);
  }
+
+
  @CrossOrigin(origins = "http://localhost:3000")
  @PutMapping("/MakeOrder/{id}")
  public Long updateUserOrder(@PathVariable Long id, @RequestBody Order order) throws SQLException{

@@ -63,11 +63,10 @@ public class ProductDaoImplTest {
                 new Image("")
         );
         Long generatedId = productDao.insert(product);
-        product.setProductId(new Id(generatedId));
-        Product foundProduct = productDao.findById(generatedId);
+        Product foundProduct = productDao.findById(new Id(generatedId).id());
         assertNotNull(foundProduct);
-        assertEquals(generatedId, foundProduct.getProductId().getId());
-        assertEquals(product.getProductName().getProductName(), foundProduct.getProductName().getProductName());
+        assertEquals(generatedId, foundProduct.productId().id());
+        assertEquals(product.productName().getProductName(), foundProduct.productName().getProductName());
         // productDao.deleteById(generatedId);
     }
 
@@ -88,14 +87,12 @@ public class ProductDaoImplTest {
 
         );
         Long generatedId = productDao.insert(product);
-        product.setProductId(new Id(generatedId));
-
-        product.setProductName(new ProductName("Updated Name"));
+        product = new Product(new Id(generatedId), new Price(200), product.width(), product.height(), product.depth(), product.category(), product.productBrand(), product.productName(), product.electricityConsumption(), product.description(), product.path());
         productDao.update(product);
 
-        Product foundProduct = productDao.findById(generatedId);
+        Product foundProduct = productDao.findById(new Id(generatedId).id());
         assertNotNull(foundProduct);
-        assertEquals("Updated Name", foundProduct.getProductName().getProductName());
+        assertEquals(200.0, foundProduct.price().getPrice());
         productDao.deleteById(generatedId);
     }
 
@@ -138,12 +135,11 @@ public class ProductDaoImplTest {
 
         );
         Long generatedId = productDao.insert(product);
-        product.setProductId(new Id(generatedId));
-
+        product = new Product(new Id(generatedId), product.price(), product.width(), product.height(), product.depth(), product.category(), product.productBrand(), product.productName(), product.electricityConsumption(), product.description(), product.path());
         Product foundProduct = productDao.findById(generatedId);
         assertNotNull(foundProduct);
-        assertEquals(product.getProductId().getId(), foundProduct.getProductId().getId());
-        assertEquals(product.getProductName().getProductName(), foundProduct.getProductName().getProductName());
+        assertEquals(product.productId().id(), foundProduct.productId().id());
+        assertEquals(product.productName().getProductName(), foundProduct.productName().getProductName());
         productDao.deleteById(generatedId);
     }
 

@@ -31,9 +31,9 @@ public class CategoryDaoImpl extends AbstractDao<Category> {
 
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, category.getName().getName());
-            if (category.getParentId() != null) {
-                ps.setLong(2, category.getParentId().getId().getId());
+            ps.setString(1, category.name().name());
+            if (category.parentId() != null) {
+                ps.setLong(2, category.parentId().id().id());
             } else {
                 ps.setNull(2, java.sql.Types.BIGINT);
             }
@@ -53,10 +53,10 @@ public class CategoryDaoImpl extends AbstractDao<Category> {
     {
         String sql = "UPDATE category SET name = ?, parent_id = ? WHERE id = ?";
          jdbcTemplate.update(sql,
-         category.getName().getName(),
-         category.getParentId() != null ? category.getParentId().getId().getId() : null,  // Handle null parent ID
-         category.getId().getId());
-         return category.getId().getId();
+         category.name().name(),
+         category.parentId() != null ? category.parentId().id().id() : null,  // Handle null parent ID
+         category.id().id());
+         return category.id().id();
     }
 
     @Override

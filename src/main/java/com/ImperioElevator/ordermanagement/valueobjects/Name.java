@@ -1,24 +1,9 @@
 package com.ImperioElevator.ordermanagement.valueobjects;
 
-public class Name {
-    private String name;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public Name(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Name{" +
-                "name='" + name + '\'' +
-                '}';
-    }
+public record Name(
+        @JsonProperty("name") String name
+)
+{
 }

@@ -32,16 +32,16 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setLong(1, product.getCategory().getId().getId());
-            ps.setString(2, product.getProductBrand().getProductBrand());
-            ps.setString(3, product.getProductName().getProductName());
-            ps.setInt(4, product.getElectricityConsumption().getkWh());
-            ps.setString(5, product.getDescription().getDescription());
-            ps.setDouble(6, product.getWidth().getWidth());
-            ps.setDouble(7, product.getHeight().getHeight());
-            ps.setDouble(8, product.getDepth().getDepth());
-            ps.setInt(9, product.getPrice().getPrice());
-            ps.setString(10, product.getPath().getPath());
+            ps.setLong(1, product.category().id().id());
+            ps.setString(2, product.productBrand().getProductBrand());
+            ps.setString(3, product.productName().getProductName());
+            ps.setInt(4, product.electricityConsumption().getkWh());
+            ps.setString(5, product.description().getDescription());
+            ps.setDouble(6, product.width().getWidth());
+            ps.setDouble(7, product.height().getHeight());
+            ps.setDouble(8, product.depth().getDepth());
+            ps.setInt(9, product.price().getPrice());
+            ps.setString(10, product.path().getPath());
             return ps;
         }, keyHolder);
 
@@ -56,18 +56,18 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
     public Long update(Product product) throws SQLException {
         String sql = "UPDATE product SET category_id = ?, product_brand = ?, product_name = ?, electricity_consumption = ?, product_description = ?, product_width = ?, product_height = ?, product_depth = ?, price = ? WHERE id = ?";
 
-        jdbcTemplate.update(sql, product.getCategory().getId().getId(),
-            product.getProductBrand().getProductBrand(),
-            product.getProductName().getProductName(),
-            product.getElectricityConsumption().getkWh(),
-            product.getDescription().getDescription(),
-            product.getWidth().getWidth(),
-            product.getHeight().getHeight(),
-            product.getDepth().getDepth(),
-            product.getPrice().getPrice(),
-            product.getProductId().getId());
+        jdbcTemplate.update(sql, product.category().id().id(),
+            product.productBrand().getProductBrand(),
+            product.productName().getProductName(),
+            product.electricityConsumption().getkWh(),
+            product.description().getDescription(),
+            product.width().getWidth(),
+            product.height().getHeight(),
+            product.depth().getDepth(),
+            product.price().getPrice(),
+            product.productId().id());
 
-        return product.getProductId().getId();
+        return product.productId().id();
     }
 
     @Override
