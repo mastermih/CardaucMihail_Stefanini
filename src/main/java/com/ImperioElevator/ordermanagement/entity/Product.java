@@ -1,7 +1,10 @@
 package com.ImperioElevator.ordermanagement.entity;
 
 
+import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record Product(
         Id productId,
@@ -14,5 +17,8 @@ public record Product(
         ProductName productName,
         ElectricityConsumption electricityConsumption,
         Description description,
-        Image path) {
+        Image path,
+        CategoryType categoryType) {
+
+
 }

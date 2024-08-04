@@ -25,7 +25,6 @@ public class OrderController {
   this.ordersService = ordersService;
  }
 
- @CrossOrigin(origins = "http://localhost:3000")
  @GetMapping("/orders/createDate")
  public Paginable<Order> listOrdersByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
@@ -36,7 +35,6 @@ public class OrderController {
   return ordersService.findPaginableOrderByCreatedDate(startDateTime, endDateTime, numberOfOrders, page);
  }
 
- @CrossOrigin(origins = "http://localhost:3000")
  @GetMapping("/orders/status-createDate")
  public Paginable<Order> listOrdersByPeriodStatus(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
@@ -48,21 +46,18 @@ public class OrderController {
   return ordersService.findPaginableOrderByCreatedDateAndStatus(startDateTime, endDateTime, status, numberOfOrders, page);
  }
 
- @CrossOrigin(origins = "http://localhost:3000")
  @GetMapping("/orders/lastCreated")
  public List<Order> getLastCreatedDate(@RequestParam("limit") Number limit) throws SQLException {
   return ordersService.findLastCreatedOrders(limit);
  }
 
- @CrossOrigin(origins = "http://localhost:3000")
+
  @PostMapping("/MakeOrder/{id}")
  public Long postUserOrder(@PathVariable Long id, @RequestBody Order order) throws SQLException {
-  System.out.println("Received order: " + order);
   return ordersService.createOrder(order);
  }
 
 
- @CrossOrigin(origins = "http://localhost:3000")
  @PutMapping("/MakeOrder/{id}")
  public Long updateUserOrder(@PathVariable Long id, @RequestBody Order order) throws SQLException{
   return ordersService.updateOrderStatus(order);

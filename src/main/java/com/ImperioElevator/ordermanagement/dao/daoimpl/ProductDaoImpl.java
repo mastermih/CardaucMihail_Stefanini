@@ -1,17 +1,15 @@
 package com.ImperioElevator.ordermanagement.dao.daoimpl;
 
-import com.ImperioElevator.ordermanagement.dao.Dao;
 import com.ImperioElevator.ordermanagement.dao.ProductDao;
 import com.ImperioElevator.ordermanagement.entity.Category;
 import com.ImperioElevator.ordermanagement.entity.Product;
+import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
-import com.ImperioElevator.ordermanagement.valueobjects.Number;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -27,7 +25,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
 
     @Override
     public Long insert(Product product) throws SQLException {
-        String sql = "INSERT INTO product (category_id, product_brand, product_name, electricity_consumption, product_description, product_width, product_height, product_depth, price, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO product (category_id, product_brand, product_name, electricity_consumption, product_description, product_width, product_height, product_depth, price, image_path, category_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
@@ -42,6 +40,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
             ps.setDouble(8, product.depth().getDepth());
             ps.setInt(9, product.price().getPrice());
             ps.setString(10, product.path().getPath());
+            ps.setString(11, product.categoryType().name());
             return ps;
         }, keyHolder);
 
@@ -54,7 +53,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
 
     @Override
     public Long update(Product product) throws SQLException {
-        String sql = "UPDATE product SET category_id = ?, product_brand = ?, product_name = ?, electricity_consumption = ?, product_description = ?, product_width = ?, product_height = ?, product_depth = ?, price = ? WHERE id = ?";
+        String sql = "UPDATE product SET category_id = ?, product_brand = ?, product_name = ?, electricity_consumption = ?, product_description = ?, product_width = ?, product_height = ?, product_depth = ?, price = ?, category_type = ? WHERE id = ?";
 
         jdbcTemplate.update(sql, product.category().id().id(),
             product.productBrand().getProductBrand(),
@@ -65,7 +64,8 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
             product.height().getHeight(),
             product.depth().getDepth(),
             product.price().getPrice(),
-            product.productId().id());
+            product.productId().id(),
+            product.categoryType().toString());
 
         return product.productId().id();
     }
@@ -100,18 +100,27 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         Depth depth = new Depth(resultSet.getDouble("product_depth"));
         Price price = new Price(resultSet.getInt("price"));
         Image image = new Image(resultSet.getString("image_path"));
+        CategoryType categoryType = CategoryType.valueOf(resultSet.getString("category_type"));
         Category category = new Category(categoryId, null, null);
 
-        return new Product(productId, price, width, height, depth, category, productBrand, productName, electricityConsumption, description, image);
+        return new Product(productId, price, width, height, depth, category, productBrand, productName, electricityConsumption, description, image, categoryType);
     }
 
     @Override
-    public List<Product> fiendProductForMainPage(Long limit, Long categoryId) {
-        String sql = "SELECT * FROM product WHERE category_id = ? ORDER BY category_id ASC LIMIT ?";
+    public List<Product> fiendProductForMainPage(Long limit, String categoryType) {
+        String sql = "SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?";
         List<Product> products = new ArrayList<>();
-        jdbcTemplate.query(sql, new Object[]{limit, categoryId}, (result) -> {
+        jdbcTemplate.query(sql, new Object[]{categoryType, limit}, (result) -> {
             products.add(mapResultSetToEntity(result));
         });
         return products;
+    }
+
+    @Override
+    public List<Product> fiendProductByName(String name) {
+        String sql = "SELECT * FROM product WHERE product_name LIKE ? AND category_type NOT IN ('Elevator')";
+        String searchQuery = "%" + name + "%";
+        return jdbcTemplate.query(sql, new Object[]{searchQuery}, (result, i) ->
+                mapResultSetToEntity(result));
     }
 }

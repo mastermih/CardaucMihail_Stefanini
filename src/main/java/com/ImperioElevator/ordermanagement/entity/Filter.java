@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-//ToDo ma apuc de filtru
 public class Filter implements FilterService {
 
     @Override

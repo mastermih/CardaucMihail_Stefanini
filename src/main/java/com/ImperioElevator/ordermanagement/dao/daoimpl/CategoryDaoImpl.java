@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
-// trebu de scos repository Dao spring data
 @Component
 public class CategoryDaoImpl extends AbstractDao<Category> {
     private final JdbcTemplate jdbcTemplate;
@@ -54,7 +53,7 @@ public class CategoryDaoImpl extends AbstractDao<Category> {
         String sql = "UPDATE category SET name = ?, parent_id = ? WHERE id = ?";
          jdbcTemplate.update(sql,
          category.name().name(),
-         category.parentId() != null ? category.parentId().id().id() : null,  // Handle null parent ID
+         category.parentId() != null ? category.parentId().id().id() : null,
          category.id().id());
          return category.id().id();
     }

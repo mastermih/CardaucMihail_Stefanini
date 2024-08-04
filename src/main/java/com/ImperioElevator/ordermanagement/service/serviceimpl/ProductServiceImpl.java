@@ -3,8 +3,6 @@ package com.ImperioElevator.ordermanagement.service.serviceimpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.service.ProductService;
-import com.ImperioElevator.ordermanagement.valueobjects.Name;
-import com.ImperioElevator.ordermanagement.valueobjects.Number;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -21,12 +19,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> fiendProductForMainPage(Long limit, Long categoryId) throws SQLException {
-        return productDao.fiendProductForMainPage(limit, categoryId);
+    public List<Product> fiendProductForMainPage(Long limit, String categoryType) throws SQLException {
+        return productDao.fiendProductForMainPage(limit, categoryType);
     }
 
     @Override
     public Product findProductById(Long id) throws SQLException {
         return productDao.findById(id);
+    }
+
+    @Override
+    public List<Product> findProductByName(String  name) throws SQLException {
+        return productDao.fiendProductByName(name);
     }
 }

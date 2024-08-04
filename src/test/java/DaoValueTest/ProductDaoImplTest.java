@@ -8,6 +8,7 @@ import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.entity.Category;
 import com.ImperioElevator.ordermanagement.entity.User;
+import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
 import org.junit.jupiter.api.*;
@@ -60,8 +61,10 @@ public class ProductDaoImplTest {
                 new ProductName("Name"),
                 new ElectricityConsumption(10),
                 new Description("Description"),
-                new Image("")
-        );
+                new Image(""),
+                CategoryType.Elevator
+
+                );
         Long generatedId = productDao.insert(product);
         Product foundProduct = productDao.findById(new Id(generatedId).id());
         assertNotNull(foundProduct);
@@ -83,11 +86,13 @@ public class ProductDaoImplTest {
                 new ProductName("Name"),
                 new ElectricityConsumption(20),
                 new Description("Description"),
-                new Image("")
+                new Image(""),
+                CategoryType.Elevator
+
 
         );
         Long generatedId = productDao.insert(product);
-        product = new Product(new Id(generatedId), new Price(200), product.width(), product.height(), product.depth(), product.category(), product.productBrand(), product.productName(), product.electricityConsumption(), product.description(), product.path());
+        product = new Product(new Id(generatedId), new Price(200), product.width(), product.height(), product.depth(), product.category(), product.productBrand(), product.productName(), product.electricityConsumption(), product.description(), product.path(), product.categoryType());
         productDao.update(product);
 
         Product foundProduct = productDao.findById(new Id(generatedId).id());
@@ -109,7 +114,8 @@ public class ProductDaoImplTest {
                 new ProductName("Name"),
                 new ElectricityConsumption(30),
                 new Description("Description"),
-                new Image("")
+                new Image(""),
+                CategoryType.Elevator
 
         );
         Long generatedId = productDao.insert(product);
@@ -131,11 +137,13 @@ public class ProductDaoImplTest {
                 new ProductName("Name"),
                 new ElectricityConsumption(40),
                 new Description("Description"),
-                new Image("")
+                new Image(""),
+                CategoryType.Elevator
+
 
         );
         Long generatedId = productDao.insert(product);
-        product = new Product(new Id(generatedId), product.price(), product.width(), product.height(), product.depth(), product.category(), product.productBrand(), product.productName(), product.electricityConsumption(), product.description(), product.path());
+        product = new Product(new Id(generatedId), product.price(), product.width(), product.height(), product.depth(), product.category(), product.productBrand(), product.productName(), product.electricityConsumption(), product.description(), product.path(), product.categoryType());
         Product foundProduct = productDao.findById(generatedId);
         assertNotNull(foundProduct);
         assertEquals(product.productId().id(), foundProduct.productId().id());
