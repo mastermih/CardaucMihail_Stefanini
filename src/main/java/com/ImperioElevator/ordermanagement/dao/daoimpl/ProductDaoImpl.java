@@ -38,7 +38,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
             ps.setDouble(6, product.width().getWidth());
             ps.setDouble(7, product.height().getHeight());
             ps.setDouble(8, product.depth().getDepth());
-            ps.setInt(9, product.price().getPrice());
+            ps.setDouble(9, product.price().price());
             ps.setString(10, product.path().getPath());
             ps.setString(11, product.categoryType().name());
             return ps;
@@ -63,7 +63,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
             product.width().getWidth(),
             product.height().getHeight(),
             product.depth().getDepth(),
-            product.price().getPrice(),
+            product.price().price(),
             product.productId().id(),
             product.categoryType().toString());
 

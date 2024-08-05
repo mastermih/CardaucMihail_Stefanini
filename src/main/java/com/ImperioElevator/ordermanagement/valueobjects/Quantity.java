@@ -1,24 +1,11 @@
 package com.ImperioElevator.ordermanagement.valueobjects;
 
-public class Quantity {
-    private int quantity;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public Quantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    @Override
-    public String toString() {
-        return "Quantity{" +
-                "quantity=" + quantity +
-                '}';
+public record Quantity(@JsonProperty("quantity") int quantity) {
+    @JsonCreator
+    public Quantity {
+        // This compact constructor ensures the class invariants
     }
 }

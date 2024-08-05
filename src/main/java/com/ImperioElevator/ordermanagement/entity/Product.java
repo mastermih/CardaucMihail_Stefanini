@@ -20,5 +20,4 @@ public record Product(
         Image path,
         CategoryType categoryType) {
 
-
 }

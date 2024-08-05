@@ -1,24 +1,11 @@
 package com.ImperioElevator.ordermanagement.valueobjects;
 
-public class Price {
-    private int price;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public Price(int price) {
-        this.price = price;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int Price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Price{" +
-                "price=" + price +
-                '}';
+public record Price(@JsonProperty("price") double price) {
+    @JsonCreator
+    public Price {
+        // This compact constructor ensures the class invariants
     }
 }

@@ -1,6 +1,7 @@
 package com.ImperioElevator.ordermanagement.dto;
 
 import com.ImperioElevator.ordermanagement.entity.User;
+import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.CreateDateTime;
 import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
 
@@ -10,6 +11,7 @@ public class UserOrderDTO {
     private User userId;
     private CreateDateTime createdDate;
     private UpdateDateTime updatedDate;
+    private Status orderStatus;
     private List<OrderProductDTO> orderProducts;
 
     public UserOrderDTO(User userId, CreateDateTime createdDate, UpdateDateTime updatedDate, List<OrderProductDTO> orderProducts) {

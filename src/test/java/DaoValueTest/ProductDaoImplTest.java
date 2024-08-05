@@ -97,7 +97,7 @@ public class ProductDaoImplTest {
 
         Product foundProduct = productDao.findById(new Id(generatedId).id());
         assertNotNull(foundProduct);
-        assertEquals(200.0, foundProduct.price().getPrice());
+        assertEquals(200.0, foundProduct.price().price());
         productDao.deleteById(generatedId);
     }
 
