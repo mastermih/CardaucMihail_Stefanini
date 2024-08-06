@@ -51,4 +51,9 @@ public class SaveOrderProductServiceImpl implements SaveOrderProductService {
         }
         return orderId;
     }
+
+    @Override
+    public List<OrderProduct> getFirstPageOrderProduct(Number number) throws SQLException {
+        return orderProductDao.findLastCreatedOrderProducts(number);
+    }
 }

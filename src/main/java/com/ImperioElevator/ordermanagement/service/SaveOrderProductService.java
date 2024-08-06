@@ -9,4 +9,5 @@ import java.util.List;
 public interface SaveOrderProductService {
 
      Long saveOrderProducts( List<OrderProduct> orderProducts) throws SQLException;
+     List<OrderProduct> getFirstPageOrderProduct (Number number) throws  SQLException;
 }

@@ -14,6 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements OrderProductDao {
@@ -62,6 +64,17 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
             return null;
         }
     }
+
+    @Override
+    public List<OrderProduct> findLastCreatedOrderProducts(Number limit) throws SQLException {
+        String sql = "SELECT * FROM order_product ORDER BY order_id ASC LIMIT ?";
+        List<OrderProduct> orderProducts = new ArrayList<>();
+        jdbcTemplate.query(sql, new Object[]{limit}, resultSet -> {
+            orderProducts.add(mapResultSetToEntity(resultSet));
+        });
+        return orderProducts;
+    }
+
 
     @Override
     public OrderProduct mapResultSetToEntity(ResultSet resultSet) throws SQLException {

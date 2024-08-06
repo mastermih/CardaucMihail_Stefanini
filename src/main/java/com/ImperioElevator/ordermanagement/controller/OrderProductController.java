@@ -25,4 +25,9 @@ public class OrderProductController {
     public Long addOrderProducts(@RequestBody List<OrderProduct> orderProducts) throws SQLException {
         return saveOrderProductService.saveOrderProducts(orderProducts);
     }
+
+    @GetMapping("/orderProduct")
+    public List<OrderProduct> getLastCreatedDate(@RequestParam("limit") Number limit) throws SQLException {
+        return saveOrderProductService.getFirstPageOrderProduct(limit);
+    }
 }
