@@ -3,6 +3,7 @@ package com.ImperioElevator.ordermanagement.dao.daoimpl;
 import com.ImperioElevator.ordermanagement.dao.OrderProductDao;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
+import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Price;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +75,23 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
             orderProducts.add(mapResultSetToEntity(resultSet));
         });
         return orderProducts;
+    }
+
+    @Override
+    public Paginable<OrderProduct> finedPaginableOrderProductByProductPice(Double startPrice, Double endPrice, Long page, Long numberOfOrderProducts) throws SQLException {
+        String countSql = "SELECT COUNT(*) FROM order_product WHERE price_product BETWEEN ? AND ?";
+        String sql = "SELECT * FROM order_product WHERE price_product BETWEEN ? AND ? LIMIT ? OFFSET ?";
+        List<OrderProduct> orderProducts = new ArrayList<>();
+        Long offset = (page - 1) * numberOfOrderProducts;
+
+        Long totalItems = jdbcTemplate.queryForObject(countSql, new Object[] {(startPrice), (endPrice)}, Long.class);
+
+        jdbcTemplate.query(sql, new Object[]{startPrice, endPrice, numberOfOrderProducts, offset}, resultSet -> {
+            orderProducts.add(mapResultSetToEntity(resultSet));
+        });
+
+        Long totalPages = (long) Math.ceil((double) totalItems / numberOfOrderProducts);
+        return new Paginable<>(orderProducts, page, totalPages);
     }
 
 

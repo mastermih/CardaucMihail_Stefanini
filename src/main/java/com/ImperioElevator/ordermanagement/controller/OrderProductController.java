@@ -2,7 +2,9 @@ package com.ImperioElevator.ordermanagement.controller;
 
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
+import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.service.SaveOrderProductService;
+import com.ImperioElevator.ordermanagement.valueobjects.Price;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,5 +31,13 @@ public class OrderProductController {
     @GetMapping("/orderProduct")
     public List<OrderProduct> getLastCreatedDate(@RequestParam("limit") Number limit) throws SQLException {
         return saveOrderProductService.getFirstPageOrderProduct(limit);
+    }
+
+    @GetMapping("/orderProduct/price")
+    public Paginable<OrderProduct> listOrderProductByPrice(@RequestParam Double startPrice,
+                                                           @RequestParam Double endPrice,
+                                                           @RequestParam Long page,
+                                                           @RequestParam Long totalOrderProducts) throws SQLException{
+        return saveOrderProductService.findPaginableOrderProductByPriceProduct(startPrice, endPrice, page, totalOrderProducts);
     }
 }
