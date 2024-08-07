@@ -63,4 +63,9 @@ public class SaveOrderProductServiceImpl implements SaveOrderProductService {
     public Paginable<OrderProduct> findPaginableOrderProductByPriceProduct(Double startPrice, Double endPrice, Long page, Long numberOfOrderProdcuts) throws SQLException {
         return orderProductDao.finedPaginableOrderProductByProductPice(startPrice, endPrice, page, numberOfOrderProdcuts);
     }
+
+    @Override
+    public Long updateOrderProucts(OrderProduct orderProduct) throws SQLException {
+        return orderProductDao.update(orderProduct);
+    }
 }
