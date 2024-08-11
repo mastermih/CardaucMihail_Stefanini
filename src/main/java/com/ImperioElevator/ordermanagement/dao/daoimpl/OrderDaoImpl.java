@@ -68,10 +68,23 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Long updateStatus(Order order) throws SQLException {
-        String sql = "UPDATE client_order SET order_status = ? WHERE id = ?";
+        String sql = "UPDATE client_order SET order_status = ?, updated_date = ? WHERE id = ?";
         jdbcTemplate.update(sql,
                 order.orderStatus().toString(),
+                order.updatedDate() != null ? order.updatedDate().updateDateTime() : new java.sql.Timestamp(System.currentTimeMillis()),
                 order.orderId().id());
+        return order.orderId().id();
+    }
+
+    @Override
+    public Long updateOrderEmailConfirmStatus(Order order) throws SQLException {
+        String selectSql = "SELECT id FROM client_order ORDER BY updated_date ASC LIMIT 1";
+        Long recentOrderId = jdbcTemplate.queryForObject(selectSql, Long.class);
+
+        if (recentOrderId != null && recentOrderId.equals(order.orderId().id())) {
+            String updateSql = "UPDATE client_order SET order_status = 'CONFIRMED' WHERE id = ?";
+            jdbcTemplate.update(updateSql, recentOrderId);
+        }
         return order.orderId().id();
     }
 

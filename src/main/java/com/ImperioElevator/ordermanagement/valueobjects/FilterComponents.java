@@ -1,7 +1,7 @@
 package com.ImperioElevator.ordermanagement.valueobjects;
 
 
-import jdk.jfr.Category;
+import com.ImperioElevator.ordermanagement.entity.Category;
 
 public class FilterComponents {
     private Price price;

@@ -6,14 +6,17 @@ public class EmailDetails {
     private String recipient;
     private String msgBody;
     private String subject;
+    private Long orderId;
+    private String link;
 
     public EmailDetails() {}
-
 
     public EmailDetails(String recipient, String msgBody, String subject) {
         this.recipient = recipient;
         this.msgBody = msgBody;
         this.subject = subject;
+        this.orderId = orderId;
+        this.link = link;
     }
 
     public String getRecipient() {
@@ -40,7 +43,21 @@ public class EmailDetails {
         this.subject = subject;
     }
 
+    public Long getOrderId() {
+        return orderId;
+    }
 
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getLink(String confirmationLink) {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     @Override
     public String toString() {
@@ -48,6 +65,8 @@ public class EmailDetails {
                 "recipient='" + recipient + '\'' +
                 ", msgBody='" + msgBody + '\'' +
                 ", subject='" + subject + '\'' +
+                ", orderId=" + orderId +
+                ", link='" + link + '\'' +
                 '}';
     }
 }
