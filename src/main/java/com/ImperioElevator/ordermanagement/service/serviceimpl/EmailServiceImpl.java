@@ -28,7 +28,6 @@ public class EmailServiceImpl implements EmailService {
         this.orderDao = orderDao;
     }
 
-
     public String sendSimpleMail(EmailDetails details) {
         try {
 
@@ -56,18 +55,14 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public String sendConfirmationMail(EmailDetails details, Long orderId) {
-        String confirmationLink = "http://localhost:8080/orders/confirm/Email" + orderId;
-
+        String confirmationLink = "http://localhost:3000/sendMail/confirm/" + orderId;
         try {
-            // Creating a simple mail message
             SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-            // Constructing the email body
-            String emailBody = details.getMsgBody() + "\n\n" +
-                    "Order ID: " + orderId + "\n" +
-                    "Click the link below to confirm your order:\n" +
-                    confirmationLink;
-
+      //       Constructing the email body
+          String emailBody = details.getMsgBody() + "\n\n" +
+                   "Click the link below to confirm your order:\n" +
+                  confirmationLink;
             // Setting up necessary details
             mailMessage.setFrom(sender);
             mailMessage.setTo(details.getRecipient());

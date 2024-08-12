@@ -28,9 +28,13 @@ private final EmailService emailService;
     public String sendMailOrderId(@RequestBody EmailDetails details, Long orderId) {
         return emailService.sendConfirmationMail(details, orderId);
     }
-    @PostMapping("/orders/confirm/{id}")
-     public Long sendConfirmationOrderEmailStatus(@RequestParam Long id, @RequestBody Order order) throws SQLException {
+    @PostMapping("/sendMail/confirm/{id}")
+     public Long sendConfirmationOrderEmailStatus(@RequestBody Order order) throws SQLException {
     return emailService.updateOrderEmailConfirmStatus(order);
+    }
+    @GetMapping("/sendMail/confirm/{id}")
+         public Order getOrderIdConfirmEmail(@PathVariable("id") Long id) throws SQLException{
+         return null;
     }
 }
 

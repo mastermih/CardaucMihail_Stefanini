@@ -64,7 +64,10 @@ public class OrderController {
  public Long updateUserOrder(@PathVariable Long id, @RequestBody Order order) throws SQLException{
   return ordersService.updateOrderStatus(order);
  }
-
+// @GetMapping("/sendMail/confirm/{id}")
+// public Order getOrderIdConfirmEmail(@PathVariable Long id) throws SQLException{
+//  return ordersService.fiendOrderById(id);
+// }
 
 
 }

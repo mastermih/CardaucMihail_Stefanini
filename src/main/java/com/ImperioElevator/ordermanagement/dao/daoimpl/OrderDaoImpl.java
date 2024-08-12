@@ -18,7 +18,6 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Component
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
@@ -78,15 +77,17 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Long updateOrderEmailConfirmStatus(Order order) throws SQLException {
-        String selectSql = "SELECT id FROM client_order ORDER BY updated_date ASC LIMIT 1";
+        String selectSql = "SELECT id FROM client_order ORDER BY updated_date DESC LIMIT 1";
         Long recentOrderId = jdbcTemplate.queryForObject(selectSql, Long.class);
-
-        if (recentOrderId != null && recentOrderId.equals(order.orderId().id())) {
+        if (recentOrderId == null) {
+            System.out.println("Order or OrderId is null");
+            throw new IllegalArgumentException("Order or Order ID cannot be null");
+        }
             String updateSql = "UPDATE client_order SET order_status = 'CONFIRMED' WHERE id = ?";
             jdbcTemplate.update(updateSql, recentOrderId);
-        }
-        return order.orderId().id();
+        return recentOrderId;
     }
+
 
     @Override
     public Long deleteById(Long id) throws SQLException {
