@@ -4,6 +4,7 @@ import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.EmailDetails;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.service.EmailService;
+import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -80,8 +81,8 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public Long updateOrderEmailConfirmStatus(Order order) throws SQLException {
-        return orderDao.updateOrderEmailConfirmStatus(order);
+    public Long updateOrderEmailConfirmStatus(Long id) throws SQLException {
+        return orderDao.updateOrderEmailConfirmStatus(id);
     }
 
 
