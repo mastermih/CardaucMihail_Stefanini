@@ -41,28 +41,15 @@ public class ProductController {
         return productService.findProductByName(name);
     }
 
-    @GetMapping("catalog/categoryType")
-    public List<Product> filterProductByCategory(@RequestParam("category_type") CategoryType categoryType) throws SQLException {
-        return productService.filterProductByCategory(categoryType);
-    }
-
-    @GetMapping("catalog/name")
-    public List<Product> filterProductByName(@RequestParam String name) throws SQLException {
-        return productService.filterProductByName(name);
-    }
-
-    @GetMapping("catalog/brand")
-    public List<Product> filterProductByBrand(@RequestParam String brand) throws SQLException {
-        return productService.filterProductByBrand(brand);
-    }
 
     @GetMapping("catalog/filter")
     public List<Product> filterProucts(@RequestParam(required = false) CategoryType category_type,
                                        @RequestParam(required = false) ProductName product_name,
                                        @RequestParam(required = false) ProductBrand product_brand,
-                                       @RequestParam(required = false) Double price,
+                                       @RequestParam(required = false) Double minPrice,
+                                       @RequestParam(required = false) Double maxPrice,
                                        @RequestParam(required = false) Double electricity_consumption) throws SQLException {
-        FilterComponents filterComponents = new FilterComponents(price, category_type, product_brand, product_name, electricity_consumption);
+        FilterComponents filterComponents = new FilterComponents(minPrice, maxPrice, category_type, product_brand, product_name, electricity_consumption);
         return productService.filterProducts(filterComponents);
     }
 }

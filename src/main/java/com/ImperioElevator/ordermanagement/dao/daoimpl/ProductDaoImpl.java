@@ -125,31 +125,18 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
     }
 
     @Override
-    public List<Product> filterProductByCategory(CategoryType categoryType) {
-        String sql = "SELECT * FROM product WHERE category_type = ?";
-        return jdbcTemplate.query(sql, new Object[]{categoryType.name()}, (result, i) -> mapResultSetToEntity(result));
-    }
-
-    @Override
-    public List<Product> filterProductByName(String name) {
-        String sql = "SELECT * FROM product WHERE product_name LIKE ?";
-        return jdbcTemplate.query(sql, new Object[]{name}, (result, i) -> mapResultSetToEntity(result));
-    }
-
-    @Override
-    public List<Product> filterProductByBrand(String brand) {
-        String sql = "SELECT * FROM product WHERE  product_brand LIKE ?";
-        return jdbcTemplate.query(sql, new Object[]{brand}, (result, i) -> mapResultSetToEntity(result));
-    }
-
-    @Override
     public List<Product> filterProducts(FilterComponents filterComponents) {
         StringBuilder sql = new StringBuilder("SELECT * FROM product WHERE 1=1");
         if (filterComponents.getCategoryType() != null) {
             sql.append(" AND category_type = ?");
         }
-        if (filterComponents.getPrice() != null) {
-            sql.append(" AND price = ?");
+        if (filterComponents.getMinPrice() != null && filterComponents.getMaxPrice() != null) {
+            sql.append(" AND price BETWEEN ? AND ?");
+        }
+        else if (filterComponents.getMinPrice() != null) {
+            sql.append(" AND price >= ?");
+        } else if (filterComponents.getMaxPrice() != null) {
+            sql.append(" AND price <= ?");
         }
         if (filterComponents.getProductBrand() != null) {
             sql.append(" AND product_brand = ?");
@@ -167,8 +154,13 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
             if (filterComponents.getCategoryType() != null) {
                 preparedStatement.setString(index++, String.valueOf(filterComponents.getCategoryType()));
             }
-            if (filterComponents.getPrice() != null) {
-                preparedStatement.setDouble(index++, filterComponents.getPrice()); // Assuming Price has a method price()
+            if (filterComponents.getMaxPrice() != null && filterComponents.getMinPrice() != null) {
+                preparedStatement.setDouble(index++, filterComponents.getMinPrice());
+                preparedStatement.setDouble(index++, filterComponents.getMaxPrice());
+            } else if (filterComponents.getMinPrice() != null) {
+                preparedStatement.setDouble(index++, filterComponents.getMinPrice());
+            } else if (filterComponents.getMaxPrice() != null) {
+                preparedStatement.setDouble(index++, filterComponents.getMaxPrice());
             }
             if (filterComponents.getProductBrand() != null) {
                 preparedStatement.setString(index++, filterComponents.getProductBrand().getProductBrand());

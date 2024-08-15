@@ -36,21 +36,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> filterProductByCategory(CategoryType categoryType) throws SQLException {
-        return productDao.filterProductByCategory(categoryType);
-    }
-
-    @Override
-    public List<Product> filterProductByName(String name) throws SQLException {
-        return productDao.filterProductByName(name);
-    }
-
-    @Override
-    public List<Product> filterProductByBrand(String brand) throws SQLException {
-        return productDao.filterProductByBrand(brand);
-    }
-
-    @Override
     public List<Product> filterProducts(FilterComponents filterComponents) throws SQLException {
         return productDao.filterProducts(filterComponents);
     }

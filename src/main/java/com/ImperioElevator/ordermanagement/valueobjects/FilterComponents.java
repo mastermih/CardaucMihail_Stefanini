@@ -5,28 +5,39 @@ import com.ImperioElevator.ordermanagement.entity.Category;
 import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 
 public class FilterComponents {
-    private Double price;
+    private Double minPrice;
+    private Double maxPrice;
     private CategoryType categoryType;
     private ProductBrand productBrand;
     private ProductName productName;
     private Double electricityConsumption;
 
 
-    public FilterComponents(Double price, CategoryType categoryType, ProductBrand productBrand, ProductName productName, Double electricityConsumption) {
+    public FilterComponents(Double minPrice, Double maxPrice, CategoryType categoryType, ProductBrand productBrand, ProductName productName, Double electricityConsumption) {
 
-        this.price = price;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
         this.categoryType = categoryType;
         this.productBrand = productBrand;
         this.productName = productName;
         this.electricityConsumption = electricityConsumption;
     }
 
-    public Double getPrice() {
-        return price;
+
+    public Double getMinPrice() {
+        return minPrice;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setMinPrice(Double minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public Double getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(Double maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
     public CategoryType getCategoryType() {

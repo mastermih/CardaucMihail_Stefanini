@@ -11,8 +11,5 @@ import java.util.List;
 public interface ProductDao extends Dao<Product> {
    List<Product> fiendProductForMainPage(Long limit, String categoryType);
    List<Product> fiendProductByName(String name);
-   List<Product> filterProductByCategory(CategoryType categoryType);
-   List<Product> filterProductByName(String name);
-   List<Product> filterProductByBrand(String brand);
    List<Product> filterProducts(FilterComponents filterComponents);
 }
