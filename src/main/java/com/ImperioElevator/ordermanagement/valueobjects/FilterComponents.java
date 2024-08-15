@@ -2,38 +2,39 @@ package com.ImperioElevator.ordermanagement.valueobjects;
 
 
 import com.ImperioElevator.ordermanagement.entity.Category;
+import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 
 public class FilterComponents {
-    private Price price;
-    private Category category;
+    private Double price;
+    private CategoryType categoryType;
     private ProductBrand productBrand;
     private ProductName productName;
-    private ElectricityConsumption electricityConsumption;
+    private Double electricityConsumption;
 
 
-    public FilterComponents(Price price, Category category, ProductBrand productBrand, ProductName productName, ElectricityConsumption electricityConsumption) {
+    public FilterComponents(Double price, CategoryType categoryType, ProductBrand productBrand, ProductName productName, Double electricityConsumption) {
 
         this.price = price;
-        this.category = category;
+        this.categoryType = categoryType;
         this.productBrand = productBrand;
         this.productName = productName;
         this.electricityConsumption = electricityConsumption;
     }
 
-    public Price getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Price price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
+    public CategoryType getCategoryType() {
+        return categoryType;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryType(CategoryType categoryType) {
+        this.categoryType = categoryType;
     }
 
     public ProductBrand getProductBrand() {
@@ -52,11 +53,11 @@ public class FilterComponents {
         this.productName = productName;
     }
 
-    public ElectricityConsumption getElectricityConsumption() {
+    public Double getElectricityConsumption() {
         return electricityConsumption;
     }
 
-    public void setElectricityConsumption(ElectricityConsumption electricityConsumption) {
+    public void setElectricityConsumption(Double electricityConsumption) {
         this.electricityConsumption = electricityConsumption;
     }
 }

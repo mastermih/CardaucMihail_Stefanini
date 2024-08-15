@@ -33,7 +33,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
             ps.setLong(1, product.category().id().id());
             ps.setString(2, product.productBrand().getProductBrand());
             ps.setString(3, product.productName().getProductName());
-            ps.setInt(4, product.electricityConsumption().getkWh());
+            ps.setDouble(4, product.electricityConsumption().getkWh());
             ps.setString(5, product.description().getDescription());
             ps.setDouble(6, product.width().getWidth());
             ps.setDouble(7, product.height().getHeight());
@@ -56,16 +56,16 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         String sql = "UPDATE product SET category_id = ?, product_brand = ?, product_name = ?, electricity_consumption = ?, product_description = ?, product_width = ?, product_height = ?, product_depth = ?, price = ?, category_type = ? WHERE id = ?";
 
         jdbcTemplate.update(sql, product.category().id().id(),
-            product.productBrand().getProductBrand(),
-            product.productName().getProductName(),
-            product.electricityConsumption().getkWh(),
-            product.description().getDescription(),
-            product.width().getWidth(),
-            product.height().getHeight(),
-            product.depth().getDepth(),
-            product.price().price(),
-            product.productId().id(),
-            product.categoryType().toString());
+                product.productBrand().getProductBrand(),
+                product.productName().getProductName(),
+                product.electricityConsumption().getkWh(),
+                product.description().getDescription(),
+                product.width().getWidth(),
+                product.height().getHeight(),
+                product.depth().getDepth(),
+                product.price().price(),
+                product.productId().id(),
+                product.categoryType().toString());
 
         return product.productId().id();
     }
@@ -73,8 +73,8 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
     @Override
     public Long deleteById(Long id) throws SQLException {
         String sql = "DELETE FROM product WHERE id = ?";
-         jdbcTemplate.update(sql, id);
-         return id;
+        jdbcTemplate.update(sql, id);
+        return id;
     }
 
     @Override
@@ -82,10 +82,10 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         String sql = "SELECT * FROM product WHERE id = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) -> mapResultSetToEntity(resultSet));
-        }catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
-        }
+    }
 
     @Override
     public Product mapResultSetToEntity(ResultSet resultSet) throws SQLException {
@@ -122,5 +122,67 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         String searchQuery = "%" + name + "%";
         return jdbcTemplate.query(sql, new Object[]{searchQuery}, (result, i) ->
                 mapResultSetToEntity(result));
+    }
+
+    @Override
+    public List<Product> filterProductByCategory(CategoryType categoryType) {
+        String sql = "SELECT * FROM product WHERE category_type = ?";
+        return jdbcTemplate.query(sql, new Object[]{categoryType.name()}, (result, i) -> mapResultSetToEntity(result));
+    }
+
+    @Override
+    public List<Product> filterProductByName(String name) {
+        String sql = "SELECT * FROM product WHERE product_name LIKE ?";
+        return jdbcTemplate.query(sql, new Object[]{name}, (result, i) -> mapResultSetToEntity(result));
+    }
+
+    @Override
+    public List<Product> filterProductByBrand(String brand) {
+        String sql = "SELECT * FROM product WHERE  product_brand LIKE ?";
+        return jdbcTemplate.query(sql, new Object[]{brand}, (result, i) -> mapResultSetToEntity(result));
+    }
+
+    @Override
+    public List<Product> filterProducts(FilterComponents filterComponents) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM product WHERE 1=1");
+        if (filterComponents.getCategoryType() != null) {
+            sql.append(" AND category_type = ?");
+        }
+        if (filterComponents.getPrice() != null) {
+            sql.append(" AND price = ?");
+        }
+        if (filterComponents.getProductBrand() != null) {
+            sql.append(" AND product_brand = ?");
+        }
+        if (filterComponents.getProductName() != null) {
+            sql.append(" AND product_name = ?");
+        }
+        if (filterComponents.getElectricityConsumption() != null) {
+            sql.append(" AND electricity_consumption = ?");
+        }
+        return jdbcTemplate.query(sql.toString(), preparedStatement -> {
+            int index = 1;
+
+            // Set parameters using PreparedStatement
+            if (filterComponents.getCategoryType() != null) {
+                preparedStatement.setString(index++, String.valueOf(filterComponents.getCategoryType()));
+            }
+            if (filterComponents.getPrice() != null) {
+                preparedStatement.setDouble(index++, filterComponents.getPrice()); // Assuming Price has a method price()
+            }
+            if (filterComponents.getProductBrand() != null) {
+                preparedStatement.setString(index++, filterComponents.getProductBrand().getProductBrand());
+            }
+//            if (filterComponents.getProductName() != null) {
+//                preparedStatement.setString(index++, "%" + filterComponents.getProductName().getProductName() + "%");
+
+                if (filterComponents.getProductName() != null) {
+                    preparedStatement.setString(index++,  filterComponents.getProductName().getProductName());
+            }
+            if (filterComponents.getElectricityConsumption() != null) {
+                preparedStatement.setDouble(index++, filterComponents.getElectricityConsumption());
+            }
+
+        }, (resultSet, i) -> mapResultSetToEntity(resultSet));
     }
 }

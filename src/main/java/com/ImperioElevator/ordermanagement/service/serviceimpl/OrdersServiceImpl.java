@@ -46,10 +46,4 @@ public class OrdersServiceImpl implements OrdersService {
         return orderDao.updateStatus(order);
     }
 
-//    @Override
-//    public Order fiendOrderById(Long id) throws SQLException {
-//        return orderDao.findById(id);
-//    }
-
-
 }

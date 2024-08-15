@@ -15,7 +15,7 @@ public class FilterServiceImpl implements FilterService {
     @Override
     public List<Product> filter(List<Product> products, FilterComponents filterComponents) {
          Predicate<Product> priceProduct = (product) -> filterComponents.getPrice() == null || product.price().equals(filterComponents.getPrice());
-         Predicate<Product> categoryProduct = (product) -> filterComponents.getCategory() == null || product.category().equals(filterComponents.getCategory());
+         Predicate<Product> categoryProduct = (product) -> filterComponents.getCategoryType() == null || product.category().equals(filterComponents.getCategoryType());
          Predicate<Product> productBrand = (product) -> filterComponents.getProductBrand() == null || product.productBrand().equals(filterComponents.getProductBrand());
          Predicate<Product> electriciyProduct = (prodct) -> filterComponents.getElectricityConsumption() == null || prodct.electricityConsumption().equals(filterComponents.getElectricityConsumption());
          return products.stream()
