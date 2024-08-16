@@ -1,5 +1,6 @@
 package com.ImperioElevator.ordermanagement.dao;
 
+import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.valueobjects.FilterComponents;
@@ -11,5 +12,5 @@ import java.util.List;
 public interface ProductDao extends Dao<Product> {
    List<Product> fiendProductForMainPage(Long limit, String categoryType);
    List<Product> fiendProductByName(String name);
-   List<Product> filterProducts(FilterComponents filterComponents);
+   Paginable<Product> filterProducts(FilterComponents filterComponents, Long page, Long pageSize);
 }

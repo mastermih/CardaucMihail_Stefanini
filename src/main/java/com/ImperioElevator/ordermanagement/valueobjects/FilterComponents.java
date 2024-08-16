@@ -7,13 +7,13 @@ import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 public class FilterComponents {
     private Double minPrice;
     private Double maxPrice;
-    private CategoryType categoryType;
+    private String categoryType;
     private ProductBrand productBrand;
     private ProductName productName;
     private Double electricityConsumption;
 
 
-    public FilterComponents(Double minPrice, Double maxPrice, CategoryType categoryType, ProductBrand productBrand, ProductName productName, Double electricityConsumption) {
+    public FilterComponents(Double minPrice, Double maxPrice, String categoryType, ProductBrand productBrand, ProductName productName, Double electricityConsumption) {
 
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
@@ -40,11 +40,11 @@ public class FilterComponents {
         this.maxPrice = maxPrice;
     }
 
-    public CategoryType getCategoryType() {
+    public String getCategoryType() {
         return categoryType;
     }
 
-    public void setCategoryType(CategoryType categoryType) {
+    public void setCategoryType(String categoryType) {
         this.categoryType = categoryType;
     }
 

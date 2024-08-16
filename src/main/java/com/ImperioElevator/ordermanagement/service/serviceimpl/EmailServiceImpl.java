@@ -18,12 +18,12 @@ import java.sql.SQLException;
 public class EmailServiceImpl implements EmailService {
 
     @Autowired
-    private JavaMailSender javaMailSender; // Studiu ++
+    private JavaMailSender javaMailSender;
 
     private final OrderDaoImpl orderDao;
 
     @Value("${spring.mail.username}")
-    private String sender;  // Studiu ++
+    private String sender;
 
     public EmailServiceImpl(OrderDaoImpl orderDao) {
         this.orderDao = orderDao;
@@ -56,7 +56,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public String sendConfirmationMail(EmailDetails details, Long orderId) {
-        String confirmationLink = "http://localhost:3000/sendMail/confirm/" + orderId;
+        String confirmationLink = "http://localhost:3000/sendMail/confirm/" + orderId; //Ar tebui de scos
         try {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
 
@@ -72,7 +72,6 @@ public class EmailServiceImpl implements EmailService {
                 return "Mail Sent Successfully...";
             }
 
-            // Catch block to handle the exceptions
             catch (Exception e) {
                 return "Error while Sending Mail " + e;
             }

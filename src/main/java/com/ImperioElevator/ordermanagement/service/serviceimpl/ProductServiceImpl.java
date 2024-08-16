@@ -1,8 +1,8 @@
 package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
+import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.Product;
-import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.service.ProductService;
 import com.ImperioElevator.ordermanagement.valueobjects.FilterComponents;
 import org.springframework.stereotype.Service;
@@ -36,8 +36,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> filterProducts(FilterComponents filterComponents) throws SQLException {
-        return productDao.filterProducts(filterComponents);
+    public Paginable<Product> filterProducts(FilterComponents filterComponents, Long page, Long pageSize) throws SQLException {
+        return productDao.filterProducts(filterComponents, page, pageSize);
     }
 
 }

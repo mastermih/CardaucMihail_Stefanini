@@ -2,6 +2,7 @@ package com.ImperioElevator.ordermanagement.dao.daoimpl;
 
 import com.ImperioElevator.ordermanagement.dao.ProductDao;
 import com.ImperioElevator.ordermanagement.entity.Category;
+import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
@@ -125,56 +126,71 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
     }
 
     @Override
-    public List<Product> filterProducts(FilterComponents filterComponents) {
+    public Paginable<Product> filterProducts(FilterComponents filterComponents, Long page, Long pageSize) {
         StringBuilder sql = new StringBuilder("SELECT * FROM product WHERE 1=1");
+        StringBuilder countSql = new StringBuilder("SELECT COUNT(*) FROM product WHERE 1=1");
+
+        List<Object> params = new ArrayList<>();
+        List<Object> countParams = new ArrayList<>();
+
+        // Append conditions to the SQL and count queries and add corresponding parameters to the lists
         if (filterComponents.getCategoryType() != null) {
             sql.append(" AND category_type = ?");
+            countSql.append(" AND category_type = ?");
+            params.add(filterComponents.getCategoryType());
+            countParams.add(filterComponents.getCategoryType());
         }
         if (filterComponents.getMinPrice() != null && filterComponents.getMaxPrice() != null) {
             sql.append(" AND price BETWEEN ? AND ?");
-        }
-        else if (filterComponents.getMinPrice() != null) {
+            countSql.append(" AND price BETWEEN ? AND ?");
+            params.add(filterComponents.getMinPrice());
+            params.add(filterComponents.getMaxPrice());
+            countParams.add(filterComponents.getMinPrice());
+            countParams.add(filterComponents.getMaxPrice());
+        } else if (filterComponents.getMinPrice() != null) {
             sql.append(" AND price >= ?");
+            countSql.append(" AND price >= ?");
+            params.add(filterComponents.getMinPrice());
+            countParams.add(filterComponents.getMinPrice());
         } else if (filterComponents.getMaxPrice() != null) {
             sql.append(" AND price <= ?");
+            countSql.append(" AND price <= ?");
+            params.add(filterComponents.getMaxPrice());
+            countParams.add(filterComponents.getMaxPrice());
         }
         if (filterComponents.getProductBrand() != null) {
             sql.append(" AND product_brand = ?");
+            countSql.append(" AND product_brand = ?");
+            params.add(filterComponents.getProductBrand().getProductBrand());
+            countParams.add(filterComponents.getProductBrand().getProductBrand());
         }
         if (filterComponents.getProductName() != null) {
             sql.append(" AND product_name = ?");
+            countSql.append(" AND product_name = ?");
+            params.add(filterComponents.getProductName().getProductName());
+            countParams.add(filterComponents.getProductName().getProductName());
         }
         if (filterComponents.getElectricityConsumption() != null) {
             sql.append(" AND electricity_consumption = ?");
+            countSql.append(" AND electricity_consumption = ?");
+            params.add(filterComponents.getElectricityConsumption());
+            countParams.add(filterComponents.getElectricityConsumption());
         }
-        return jdbcTemplate.query(sql.toString(), preparedStatement -> {
-            int index = 1;
 
-            // Set parameters using PreparedStatement
-            if (filterComponents.getCategoryType() != null) {
-                preparedStatement.setString(index++, String.valueOf(filterComponents.getCategoryType()));
-            }
-            if (filterComponents.getMaxPrice() != null && filterComponents.getMinPrice() != null) {
-                preparedStatement.setDouble(index++, filterComponents.getMinPrice());
-                preparedStatement.setDouble(index++, filterComponents.getMaxPrice());
-            } else if (filterComponents.getMinPrice() != null) {
-                preparedStatement.setDouble(index++, filterComponents.getMinPrice());
-            } else if (filterComponents.getMaxPrice() != null) {
-                preparedStatement.setDouble(index++, filterComponents.getMaxPrice());
-            }
-            if (filterComponents.getProductBrand() != null) {
-                preparedStatement.setString(index++, filterComponents.getProductBrand().getProductBrand());
-            }
-//            if (filterComponents.getProductName() != null) {
-//                preparedStatement.setString(index++, "%" + filterComponents.getProductName().getProductName() + "%");
 
-                if (filterComponents.getProductName() != null) {
-                    preparedStatement.setString(index++,  filterComponents.getProductName().getProductName());
-            }
-            if (filterComponents.getElectricityConsumption() != null) {
-                preparedStatement.setDouble(index++, filterComponents.getElectricityConsumption());
-            }
+        Long offset = (page - 1) * pageSize;
+        sql.append(" ORDER BY id ASC LIMIT ? OFFSET ?");
 
-        }, (resultSet, i) -> mapResultSetToEntity(resultSet));
+        params.add(pageSize);
+        params.add(offset);
+
+
+        Long totalItems = jdbcTemplate.queryForObject(countSql.toString(), countParams.toArray(), Long.class);
+
+        Long totalPages = (long) Math.ceil((double) totalItems / pageSize);
+
+        List<Product> products = jdbcTemplate.query(sql.toString(), params.toArray(), (resultSet, i) -> mapResultSetToEntity(resultSet));
+
+        return new Paginable<>(products, page, totalPages);
     }
 }
