@@ -5,6 +5,11 @@
 
     <!-- ChangeSet for creating the user table -->
     <changeSet id="1" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user"/>
+            </not>
+        </preConditions>
         <createTable tableName="user">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -20,6 +25,7 @@
             </column>
         </createTable>
     </changeSet>
+
 
     <!-- Data loading for MySQL -->
     <changeSet id="1.1" author="Mihai">

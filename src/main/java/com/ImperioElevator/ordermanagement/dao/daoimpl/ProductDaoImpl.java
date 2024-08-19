@@ -41,7 +41,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
             ps.setDouble(8, product.depth().getDepth());
             ps.setDouble(9, product.price().price());
             ps.setString(10, product.path().getPath());
-            ps.setString(11, product.categoryType().name());
+            ps.setString(11, String.valueOf(product.categoryType()));
             return ps;
         }, keyHolder);
 
@@ -65,9 +65,8 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
                 product.height().getHeight(),
                 product.depth().getDepth(),
                 product.price().price(),
-                product.productId().id(),
-                product.categoryType().toString());
-
+                String.valueOf(product.categoryType()),
+        product.productId().id());
         return product.productId().id();
     }
 
@@ -133,7 +132,6 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         List<Object> params = new ArrayList<>();
         List<Object> countParams = new ArrayList<>();
 
-        // Append conditions to the SQL and count queries and add corresponding parameters to the lists
         if (filterComponents.getCategoryType() != null) {
             sql.append(" AND category_type = ?");
             countSql.append(" AND category_type = ?");

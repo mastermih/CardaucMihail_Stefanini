@@ -35,6 +35,10 @@
                 <constraints nullable="false"/>
             </column>
             <column name="image_path" type="VARCHAR(255)"/>
+
+            <column name="category_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
