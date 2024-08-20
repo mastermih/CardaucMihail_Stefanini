@@ -90,25 +90,6 @@ public class OrderDaoImplTest {
         assertNull(foundOrder);
     }
 
-//    @Test
-//    public void testFindById() throws SQLException {
-//        LocalDate localDate = LocalDate.of(2024, 7, 1);
-//        LocalDateTime localDateTime = localDate.atStartOfDay();
-//        User user = new User(new Id(2L), null, null);
-//
-//        Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime), new ArrayList<>());
-//        Long generatedId = orderDao.insert(order);
-//
-//        Order foundOrder = orderDao.findById(generatedId);
-//        assertNotNull(foundOrder);
-//        assertEquals(order.orderId().id(), foundOrder.orderId().id());
-//        assertEquals(order.userId().userId().id(), foundOrder.userId().userId().id());
-//        orderDao.deleteById(generatedId);
-//    }
-
-
-
-
     @Test
     public void testFindPaginableOrderByCreatedDate() throws SQLException {
         LocalDate localDate = LocalDate.of(2024, 7, 1);

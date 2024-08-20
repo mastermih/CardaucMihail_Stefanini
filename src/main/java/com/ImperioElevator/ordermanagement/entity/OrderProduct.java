@@ -12,7 +12,8 @@ public record OrderProduct(
         @JsonProperty("order") Order order,
         @JsonProperty("product") Product product,
         @JsonProperty("quantity") Quantity quantity,
-        @JsonProperty("priceOrder") Price priceOrder
+        @JsonProperty("priceOrder") Price priceOrder,
+        @JsonProperty("parent") Id parent
 ) {
     @JsonCreator
     public OrderProduct {

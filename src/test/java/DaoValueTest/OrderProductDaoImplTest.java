@@ -46,11 +46,12 @@ public class OrderProductDaoImplTest {
         );
 
         OrderProduct orderProduct = new OrderProduct(
-                new Id(1L),       // OrderProduct ID (assuming you have an ID for this too)
-                order,             // The Order object
-                product,           // The Product object
-                new Quantity(3),   // Quantity
-                new Price(323)
+                new Id(1L),
+                order,
+                product,
+                new Quantity(3),
+                new Price(323),
+                new Id(null)
         );
 
         orderProductDao.insert(orderProduct);
@@ -59,8 +60,6 @@ public class OrderProductDaoImplTest {
 
         orderProductDao.deleteById(order.orderId().id(), product.productId().id());
     }
-
-
 
     @Test
     public void testUpdate() throws SQLException {
@@ -81,11 +80,12 @@ public class OrderProductDaoImplTest {
         );
 
         OrderProduct orderProduct = new OrderProduct(
-                new Id(1L),       // OrderProduct ID (assuming you have an ID for this too)
-                order,             // The Order object
-                product,           // The Product object
-                new Quantity(3),   // Quantity
-                new Price(323)
+                new Id(1L),
+                order,
+                product,
+                new Quantity(3),
+                new Price(323),
+                new Id(2L)
         );
 
         Long orderId = orderProduct.orderId().id();
@@ -93,7 +93,7 @@ public class OrderProductDaoImplTest {
         orderProductDao.insert(orderProduct);
         //orderProduct.quantity(new Quantity(2));
         //orderProduct.priceOrder(new Price(500));
-        OrderProduct foundOrder = new OrderProduct(new Id(1L), order, product, new Quantity(42), new Price(42L));
+        OrderProduct foundOrder = new OrderProduct(new Id(1L), order, product, new Quantity(42), new Price(42L), new Id(42L));
         orderProductDao.update(foundOrder);
 
        // orderProductDao.update(foundOrder);
@@ -124,11 +124,12 @@ public class OrderProductDaoImplTest {
         );
 
         OrderProduct orderProduct = new OrderProduct(
-                new Id(1L),       // OrderProduct ID (assuming you have an ID for this too)
-                order,             // The Order object
-                product,           // The Product object
-                new Quantity(3),   // Quantity
-                new Price(323)
+                new Id(1L),
+                order,
+                product,
+                new Quantity(3),
+                new Price(323),
+                new Id(null)
         );
         Long orderId = orderProduct.orderId().id();
         Long productId = orderProduct.product().productId().id();
@@ -157,11 +158,12 @@ public class OrderProductDaoImplTest {
         );
 
         OrderProduct orderProduct = new OrderProduct(
-                new Id(1L),       // OrderProduct ID (assuming you have an ID for this too)
-                order,             // The Order object
-                product,           // The Product object
-                new Quantity(3),   // Quantity
-                new Price(323)
+                new Id(1L),
+                order,
+                product,
+                new Quantity(3),
+                new Price(323),
+                new Id(null)
         );
         Long orderId = orderProduct.orderId().id();
         Long productId = orderProduct.product().productId().id();

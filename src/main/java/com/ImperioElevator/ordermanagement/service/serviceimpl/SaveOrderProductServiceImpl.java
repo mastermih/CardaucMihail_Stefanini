@@ -47,7 +47,8 @@ public class SaveOrderProductServiceImpl implements SaveOrderProductService {
                     updatedOrder,
                     orderProduct.product(),
                     orderProduct.quantity(),
-                    orderProduct.priceOrder()
+                    orderProduct.priceOrder(),
+                    orderProduct.parent()
             );
             orderProductDao.insert(updatedOrderProduct);
         }

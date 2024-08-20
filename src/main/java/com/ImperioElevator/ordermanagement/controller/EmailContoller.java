@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
-
+//ToDo Sterg email Controler si implementez asta in Oreder ori OrderProduct ;)
 @RestController
 @RequestMapping()
 public class EmailContoller {

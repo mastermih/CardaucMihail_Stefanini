@@ -30,12 +30,15 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
 
     @Override
     public Long insert(OrderProduct orderProduct) throws SQLException {
-        String sql = "INSERT INTO order_product (order_id, product_id, quantity, price_product) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO order_product (order_id, product_id, quantity, price_product, parent) VALUES (?, ?, ?, ? ,?)";
+        Long parentId = (orderProduct.parent() != null) ? orderProduct.parent().id() : null;
+
         jdbcTemplate.update(sql,
                 orderProduct.order().orderId().id(),
                 orderProduct.product().productId().id(),
                 orderProduct.quantity().quantity(),
-                orderProduct.priceOrder().price());
+                orderProduct.priceOrder().price(),
+                parentId);
         return orderProduct.order().orderId().id();
     }
 
@@ -108,7 +111,8 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
                 new Order(new Id(orderId), null, null, null, null, null),
                 new Product(new Id(productId), null, null, null, null, null, null, null, null, null, null, null),
                 new Quantity(quantity),
-                new Price(priceOrder)
+                new Price(priceOrder),
+                new Id(orderId)
         );
     }
 }
