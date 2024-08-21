@@ -7,6 +7,7 @@ import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Price;
+import com.ImperioElevator.ordermanagement.valueobjects.ProductName;
 import com.ImperioElevator.ordermanagement.valueobjects.Quantity;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,12 +31,13 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
 
     @Override
     public Long insert(OrderProduct orderProduct) throws SQLException {
-        String sql = "INSERT INTO order_product (order_id, product_id, quantity, price_product, parent) VALUES (?, ?, ?, ? ,?)";
-        Long parentId = (orderProduct.parent() != null) ? orderProduct.parent().id() : null;
+        String sql = "INSERT INTO order_product (order_id, product_name, quantity, price_product, parent) VALUES (?, ?, ?, ? ,?)";
+        Long parentId = orderProduct.parent().id();
+        String productName = orderProduct.product().productName().productName();
 
         jdbcTemplate.update(sql,
                 orderProduct.order().orderId().id(),
-                orderProduct.product().productId().id(),
+                productName,
                 orderProduct.quantity().quantity(),
                 orderProduct.priceOrder().price(),
                 parentId);
@@ -44,27 +46,28 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
 
     @Override
     public Long update(OrderProduct orderProduct) throws SQLException {
-        String sql = "UPDATE order_product SET quantity = ?, price_product = ? WHERE order_id = ? AND product_id = ?";
+        String sql = "UPDATE order_product SET quantity = ?, price_product = ? WHERE order_id = ? AND product_name = ?";
+        String productName = orderProduct.product().productName().productName();
         jdbcTemplate.update(sql,
                 orderProduct.quantity().quantity(),
                 orderProduct.priceOrder().price(),
                 orderProduct.order().orderId().id(),
-                orderProduct.product().productId().id());
+                productName);
         return orderProduct.order().orderId().id();
     }
 
     @Override
-    public Long deleteById(Long orderId, Long productId) throws SQLException {
-        String sql = "DELETE FROM order_product WHERE order_id = ? AND product_id = ?";
-        jdbcTemplate.update(sql, orderId, productId);
+    public Long deleteById(Long orderId, String productName) throws SQLException {
+        String sql = "DELETE FROM order_product WHERE order_id = ? AND product_name = ?";
+        jdbcTemplate.update(sql, orderId, productName);
         return orderId;
     }
 
     @Override
-    public OrderProduct findById(Long orderId, Long productId) throws SQLException {
-        String sql = "SELECT * FROM order_product WHERE order_id = ? AND product_id = ?";
+    public OrderProduct findById(Long orderId, String productName) throws SQLException {
+        String sql = "SELECT * FROM order_product WHERE order_id = ? AND product_name = ?";
         try {
-            return jdbcTemplate.queryForObject(sql, new Object[]{orderId, productId}, (resultSet, i) -> mapResultSetToEntity(resultSet));
+            return jdbcTemplate.queryForObject(sql, new Object[]{orderId, productName}, (resultSet, i) -> mapResultSetToEntity(resultSet));
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -101,18 +104,20 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
     @Override
     public OrderProduct mapResultSetToEntity(ResultSet resultSet) throws SQLException {
         Long orderId = resultSet.getLong("order_id");
-        Long productId = resultSet.getLong("product_id");
+        String productName = resultSet.getString("product_name");
         int quantity = resultSet.getInt("quantity");
         int priceOrder = resultSet.getInt("price_product");
+        Long parentId = resultSet.getLong("parent");
+
 
         // Create and return a new OrderProduct object
         return new OrderProduct(
                 new Id(null),
                 new Order(new Id(orderId), null, null, null, null, null),
-                new Product(new Id(productId), null, null, null, null, null, null, null, null, null, null, null),
+                new Product(null, null, null, null, null, null, null, new ProductName(productName), null, null, null, null),
                 new Quantity(quantity),
                 new Price(priceOrder),
-                new Id(orderId)
+                new Id(parentId)
         );
     }
 }

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record Id(
-        @JsonProperty("id") Long id
-) {
+        @JsonProperty("id") Long id) {
 
 }

@@ -33,7 +33,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setLong(1, product.category().id().id());
             ps.setString(2, product.productBrand().getProductBrand());
-            ps.setString(3, product.productName().getProductName());
+            ps.setString(3, product.productName().productName());
             ps.setDouble(4, product.electricityConsumption().getkWh());
             ps.setString(5, product.description().getDescription());
             ps.setDouble(6, product.width().getWidth());
@@ -58,7 +58,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
 
         jdbcTemplate.update(sql, product.category().id().id(),
                 product.productBrand().getProductBrand(),
-                product.productName().getProductName(),
+                product.productName().productName(),
                 product.electricityConsumption().getkWh(),
                 product.description().getDescription(),
                 product.width().getWidth(),
@@ -165,8 +165,8 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         if (filterComponents.getProductName() != null) {
             sql.append(" AND product_name = ?");
             countSql.append(" AND product_name = ?");
-            params.add(filterComponents.getProductName().getProductName());
-            countParams.add(filterComponents.getProductName().getProductName());
+            params.add(filterComponents.getProductName().productName());
+            countParams.add(filterComponents.getProductName().productName());
         }
         if (filterComponents.getElectricityConsumption() != null) {
             sql.append(" AND electricity_consumption = ?");

@@ -69,7 +69,7 @@ public class ProductDaoImplTest {
         Product foundProduct = productDao.findById(new Id(generatedId).id());
         assertNotNull(foundProduct);
         assertEquals(generatedId, foundProduct.productId().id());
-        assertEquals(product.productName().getProductName(), foundProduct.productName().getProductName());
+        assertEquals(product.productName().productName(), foundProduct.productName().productName());
         // productDao.deleteById(generatedId);
     }
 
@@ -147,7 +147,7 @@ public class ProductDaoImplTest {
         Product foundProduct = productDao.findById(generatedId);
         assertNotNull(foundProduct);
         assertEquals(product.productId().id(), foundProduct.productId().id());
-        assertEquals(product.productName().getProductName(), foundProduct.productName().getProductName());
+        assertEquals(product.productName().productName(), foundProduct.productName().productName());
         productDao.deleteById(generatedId);
     }
 
