@@ -22,4 +22,5 @@ public interface OrderProductDao {
 
     Paginable<OrderProduct> finedPaginableOrderProductByProductPice(Double startPrice, Double endPrice, Long numberOfOrderProducts, Long page) throws SQLException;
 
+
 }

@@ -24,38 +24,6 @@ public class SaveOrderProductServiceImpl implements SaveOrderProductService {
     }
 
     @Override
-    public Long saveOrderProducts(List<OrderProduct> orderProducts) throws SQLException {
-        if (orderProducts.isEmpty()) {
-            throw new IllegalArgumentException("Order products list cannot be empty");
-        }
-
-        Long orderId = orderProducts.get(0).order().orderId().id(); // Extract the orderId from the first OrderProduct
-
-        for (OrderProduct orderProduct : orderProducts) {
-            // Create new OrderProduct with updated Order Id
-            Order updatedOrder = new Order(
-                    new Id(orderId),
-                    orderProduct.order().userId(),
-                    orderProduct.order().orderStatus(),
-                    orderProduct.order().createdDate(),
-                    orderProduct.order().updatedDate(),
-                    orderProducts
-            );
-
-            OrderProduct updatedOrderProduct = new OrderProduct(
-                    new Id(orderId), // Use the new Id for the OrderProduct
-                    updatedOrder,
-                    orderProduct.product(),
-                    orderProduct.quantity(),
-                    orderProduct.priceOrder(),
-                    orderProduct.parent()
-            );
-            orderProductDao.insert(updatedOrderProduct);
-        }
-        return orderId;
-    }
-
-    @Override
     public List<OrderProduct> getFirstPageOrderProduct(Number number) throws SQLException {
         return orderProductDao.findLastCreatedOrderProducts(number);
     }
@@ -68,5 +36,10 @@ public class SaveOrderProductServiceImpl implements SaveOrderProductService {
     @Override
     public Long updateOrderProucts(OrderProduct orderProduct) throws SQLException {
         return orderProductDao.update(orderProduct);
+    }
+
+    @Override
+    public Long orderProductExtraProduct(OrderProduct orderProduct) throws SQLException {
+        return orderProductDao.insert(orderProduct);
     }
 }

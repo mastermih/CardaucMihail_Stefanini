@@ -11,8 +11,9 @@ import java.util.List;
 
 public interface SaveOrderProductService {
 
-     Long saveOrderProducts(List<OrderProduct> orderProducts) throws SQLException;
+   //  Long saveOrderProducts(List<OrderProduct> orderProducts) throws SQLException;
      List<OrderProduct> getFirstPageOrderProduct (Number number) throws  SQLException;
      Paginable<OrderProduct> findPaginableOrderProductByPriceProduct (Double startPrice, Double endPrice, Long page, Long numberOfOrderProdcuts)  throws SQLException;
      Long updateOrderProucts(OrderProduct orderProduct) throws SQLException;
+     Long orderProductExtraProduct(OrderProduct orderProduct) throws SQLException;
 }

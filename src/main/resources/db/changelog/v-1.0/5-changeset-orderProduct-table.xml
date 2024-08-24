@@ -18,6 +18,8 @@
             <column name="price_product" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
+            <column name="parent" type="BIGINT">
+            </column>
         </createTable>
     </changeSet>
 

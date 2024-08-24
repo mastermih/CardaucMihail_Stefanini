@@ -5,12 +5,18 @@ import com.ImperioElevator.ordermanagement.entity.OrderProduct;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import liquibase.sql.Sql;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface OrdersService {
+    @Transactional
+        // Ensures the operation is atomic
+    //Avantiura nu tragetiatentia
+    Long createOrderWithProducts(Order order, List<OrderProduct> orderProducts) throws SQLException;
+
     Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
     Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate, LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException;
     List<Order> findLastCreatedOrders(Number limit)throws SQLException;

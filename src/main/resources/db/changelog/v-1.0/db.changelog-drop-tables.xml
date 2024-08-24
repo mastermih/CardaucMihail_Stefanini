@@ -28,9 +28,9 @@
     <!-- Drop tables -->
     <changeSet id="drop-order-table" author="Mihai">
         <preConditions onFail="MARK_RAN">
-            <tableExists tableName="order"/>
+            <tableExists tableName="orders"/>
         </preConditions>
-        <dropTable tableName="order"/>
+        <dropTable tableName="orders"/>
     </changeSet>
 
     <changeSet id="drop-product-table" author="Mihai">

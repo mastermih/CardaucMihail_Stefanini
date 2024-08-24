@@ -46,13 +46,13 @@ public class OrderProductDaoImplTest {
         );
 
         OrderProduct orderProduct = new OrderProduct(
-                new Id(1L),
-                order,
-                product,
+                        new Id(1L),
+                        order,
                 new Quantity(3),
                 new Price(323),
-                new Id(null)
-        );
+                new Id(null),
+                product
+                );
 
         orderProductDao.insert(orderProduct);
         OrderProduct foundOrderProduct = orderProductDao.findById(order.orderId().id(), product.productName().productName());
@@ -80,20 +80,20 @@ public class OrderProductDaoImplTest {
         );
 
         OrderProduct orderProduct = new OrderProduct(
-                new Id(1L),
-                order,
-                product,
+                        new Id(1L),
+                        order,
                 new Quantity(3),
                 new Price(323),
-                new Id(2L)
-        );
+                new Id(2L),
+                product
+                );
 
         Long orderId = orderProduct.orderId().id();
         String productName = orderProduct.product().productName().productName();
         orderProductDao.insert(orderProduct);
         //orderProduct.quantity(new Quantity(2));
         //orderProduct.priceOrder(new Price(500));
-        OrderProduct foundOrder = new OrderProduct(new Id(1L), order, product, new Quantity(42), new Price(42L), new Id(42L));
+        OrderProduct foundOrder = new OrderProduct(new Id(1L), order, new Quantity(42), new Price(42L), new Id(42L), product);
         orderProductDao.update(foundOrder);
 
        // orderProductDao.update(foundOrder);
@@ -124,13 +124,13 @@ public class OrderProductDaoImplTest {
         );
 
         OrderProduct orderProduct = new OrderProduct(
-                new Id(1L),
-                order,
-                product,
+                        new Id(1L),
+                        order,
                 new Quantity(3),
                 new Price(323),
-                new Id(null)
-        );
+                new Id(null),
+                product
+                );
         Long orderId = orderProduct.orderId().id();
         String productName = orderProduct.product().productName().productName();
         orderProductDao.insert(orderProduct);
@@ -158,13 +158,13 @@ public class OrderProductDaoImplTest {
         );
 
         OrderProduct orderProduct = new OrderProduct(
-                new Id(1L),
-                order,
-                product,
+                        new Id(1L),
+                        order,
                 new Quantity(3),
                 new Price(323),
-                new Id(null)
-        );
+                new Id(null),
+                product
+                );
         Long orderId = orderProduct.orderId().id();
         String productName = orderProduct.product().productName().productName();
         orderProductDao.insert(orderProduct);

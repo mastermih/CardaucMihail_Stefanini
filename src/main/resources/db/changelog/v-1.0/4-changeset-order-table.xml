@@ -5,7 +5,7 @@
 
     <!-- ChangeSet for creating the order table -->
     <changeSet id="4" author="Mihai">
-        <createTable tableName="client_order">
+        <createTable tableName="orders">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
@@ -29,7 +29,7 @@
         <preConditions onFail="MARK_RAN">
             <dbms type="mysql"/>
         </preConditions>
-        <loadData tableName="client_order" file="db/data/mysql/client_order-data.csv"/>
+        <loadData tableName="orders" file="db/data/mysql/client_order-data.csv"/>
     </changeSet>
 
     <!-- Data loading for HSQLDB -->
@@ -37,6 +37,6 @@
         <preConditions onFail="MARK_RAN">
             <dbms type="hsqldb"/>
         </preConditions>
-        <loadData tableName="client_order" file="db/data/hsqldb/client_order-data.csv"/>
+        <loadData tableName="orders" file="db/data/hsqldb/client_order-data.csv"/>
     </changeSet>
 </databaseChangeLog>

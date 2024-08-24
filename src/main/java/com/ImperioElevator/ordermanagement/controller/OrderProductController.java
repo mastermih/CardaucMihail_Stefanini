@@ -14,6 +14,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping()
+//Todo to add in order the logic of orderProduct ...
+//Poate va fi sters :)
 public class OrderProductController {
 
     @Autowired
@@ -23,21 +25,4 @@ public class OrderProductController {
         this.saveOrderProductService = saveOrderProductService;
     }
 
-    @PostMapping("/MakeOrder/ProductOrder")
-    public Long addOrderProducts(@RequestBody List<OrderProduct> orderProducts) throws SQLException {
-        return saveOrderProductService.saveOrderProducts(orderProducts);
-    }
-
-    @GetMapping("/orderProduct")
-    public List<OrderProduct> getLastCreatedDate(@RequestParam("limit") Number limit) throws SQLException {
-        return saveOrderProductService.getFirstPageOrderProduct(limit);
-    }
-
-    @GetMapping("/orderProduct/price")
-    public Paginable<OrderProduct> listOrderProductByPrice(@RequestParam Double startPrice,
-                                                           @RequestParam Double endPrice,
-                                                           @RequestParam Long page,
-                                                           @RequestParam Long totalOrderProducts) throws SQLException{
-        return saveOrderProductService.findPaginableOrderProductByPriceProduct(startPrice, endPrice, page, totalOrderProducts);
-    }
 }
