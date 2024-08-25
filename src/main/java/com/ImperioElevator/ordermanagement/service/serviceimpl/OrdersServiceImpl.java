@@ -1,9 +1,7 @@
 package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
-import com.ImperioElevator.ordermanagement.dao.OrderProductDao;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
-import com.ImperioElevator.ordermanagement.dto.OrderProductDTO;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
@@ -81,6 +79,16 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
         return orderDao.updateStatus(order);
+    }
+
+    @Override
+    public Order fiendOrderById(Long id) throws SQLException {
+        return orderDao.findById(id);
+    }
+
+    @Override
+    public List<Object[]> getOrderWithExtraProducts(Long orderId) throws SQLException {
+        return orderDao.getOrderWithExtraProducts(orderId);
     }
 
 

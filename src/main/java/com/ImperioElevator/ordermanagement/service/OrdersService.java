@@ -4,7 +4,6 @@ import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
-import liquibase.sql.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
@@ -22,6 +21,6 @@ public interface OrdersService {
     List<Order> findLastCreatedOrders(Number limit)throws SQLException;
     Long createOrder(Order order) throws SQLException;
     Long updateOrderStatus(Order order) throws SQLException;
-   // Order fiendOrderById(Long id) throws SQLException;
-
+    Order fiendOrderById(Long id) throws SQLException;
+    List<Object[]> getOrderWithExtraProducts(Long orderId) throws SQLException;
 }

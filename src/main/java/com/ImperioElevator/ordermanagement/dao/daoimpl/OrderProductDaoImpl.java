@@ -123,11 +123,6 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
         String productName = resultSet.getString("product_name");
         Long parentId = resultSet.getLong("parent_product_id");
         Long productId = resultSet.getLong("product_id");
-
-
-
-
-
         // Create and return a new OrderProduct object
         return new OrderProduct(
                 new Id(null),

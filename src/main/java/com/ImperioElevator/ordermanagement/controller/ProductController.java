@@ -31,7 +31,7 @@ public class ProductController {
                                                     @RequestParam("categoryType") String categoryType) throws SQLException {
         return productService.fiendProductForMainPage(limit, categoryType);
     }
-
+//Huinea ibanaia tebu de schimbat la cart ca maninc pizdeala de nu fac asta
     @GetMapping("/product/{id}")
     public Product getFindProductById(@PathVariable("id") Long id) throws SQLException {
         return productService.findProductById(id);

@@ -17,7 +17,9 @@ import org.springframework.stereotype.Component;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
@@ -82,30 +84,64 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         return id;
     }
 
+    // Make order scot din BD orderu dupa ce i bagam in cart
     @Override
     public List<Object[]> getOrderWithExtraProducts(Long orderId) {
-//        String sql = "SELECT " +
-//                "    o.id AS order_id," +
-//                "    op.product_name AS main_product_name," +
-//                "    op.quantity AS main_quantity," +
-//                "    op.price_product AS main_price," +
-//                "    op.product_id AS main_product_id," +
-//                "    ep.product_name AS extra_product_name," +
-//                "    ep.quantity AS extra_quantity," +
-//                "    ep.price_product AS extra_price," +
-//                "    ep.product_id AS extra_product_id" +
-//                "FROM " +
-//                "    client_order o" +
-//                "JOIN " +
-//                "    order_product op ON o.id = op.order_id" +
-//                "LEFT JOIN " +
-//                "    order_product ep ON op.product_id = ep.parent" +
-//                "WHERE " +
-//                "    o.id = ?" +
-//                "AND " +
-//                "    op.parent IS NULL;";
-        return null;
-   }
+        String sql = "SELECT " +
+                "    op_main.order_id AS order_id, " +
+                "    op_main.product_name AS main_product_name, " +
+                "    op_main.quantity AS main_quantity, " +
+                "    op_main.price_product AS main_price, " +
+                "    op_main.product_id AS main_product_id, " +
+                "    op_child.product_name AS extra_product_name, " +
+                "    op_child.quantity AS extra_quantity, " +
+                "    op_child.price_product AS extra_price, " +
+                "    op_child.product_id AS extra_product_id " +
+                "FROM " +
+                "    order_product op_main " +
+                "LEFT JOIN " +
+                "    order_product op_child " +
+                "ON " +
+                "    op_main.product_id = op_child.parent_product_id " +
+                "    AND op_child.order_id = op_main.order_id " +
+                "WHERE " +
+                "    op_main.order_id = ? " +
+                "    AND op_main.parent_product_id IS NULL; ";
+
+        try {
+            List<Object[]> result = new ArrayList<>();
+            List<Long> addedMainProductIds = new ArrayList<>();
+            jdbcTemplate.query(sql, new Object[]{orderId}, (resultSet) -> {
+                //  main product se adauga numa odata
+                if (!addedMainProductIds.contains(resultSet.getLong("main_product_id"))) {
+                    result.add(new Object[]{
+                            resultSet.getLong("order_id"),
+                            resultSet.getString("main_product_name"),
+                            resultSet.getInt("main_quantity"),
+                            resultSet.getBigDecimal("main_price"),
+                            resultSet.getLong("main_product_id")
+                    });
+                    addedMainProductIds.add(resultSet.getLong("main_product_id"));
+                }
+
+                //  extra product if exist
+                if (resultSet.getString("extra_product_name") != null) {
+                    result.add(new Object[]{
+                            resultSet.getLong("order_id"),
+                            resultSet.getString("extra_product_name"),
+                            resultSet.getInt("extra_quantity"),
+                            resultSet.getBigDecimal("extra_price"),
+                            resultSet.getLong("extra_product_id")
+                    });
+                }
+            });
+
+            return result;
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
 
 
     @Override

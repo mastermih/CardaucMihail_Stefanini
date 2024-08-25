@@ -121,7 +121,6 @@ public String sendMail(@RequestBody EmailDetails details) {
   return saveOrderProductService.findPaginableOrderProductByPriceProduct(startPrice, endPrice, page, totalOrderProducts);
  }
 
- //Sub iNtrebare avatiura
 
  @PostMapping("/MakeOrder")
  public Long createOrderWithProducts(@RequestBody OrderWithProductsDTO orderWithProductsDTO) throws SQLException {
@@ -139,6 +138,18 @@ public String sendMail(@RequestBody EmailDetails details) {
  @PostMapping("/MakeOrder/ProductOrder")
  public Long orderProductExtraProduct (@RequestBody OrderProduct orderProduct) throws SQLException{
   return saveOrderProductService.orderProductExtraProduct(orderProduct);
+ }
+
+
+// @GetMapping("/MakeOrder")
+// public Order getOrderById(@RequestParam  Long id) throws SQLException{
+//  return ordersService.fiendOrderById(id);
+// }
+
+ // Get the orderProduct
+ @GetMapping("/MakeOrder/{id}")
+ public List<Object[]> getOrderWithExtraProducts(@PathVariable("id") Long orderId) throws SQLException {
+  return ordersService.getOrderWithExtraProducts(orderId);
  }
 
 
