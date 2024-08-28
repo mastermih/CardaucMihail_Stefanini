@@ -58,7 +58,7 @@ public class OrderProductDaoImplTest {
         OrderProduct foundOrderProduct = orderProductDao.findByIdAndName(order.orderId().id(), product.productName().productName());
         assertNotNull(foundOrderProduct);
 
-        orderProductDao.deleteById(order.orderId().id(), product.productName().productName());
+        orderProductDao.deleteByIdAndName(order.orderId().id(), product.productName().productName());
     }
 
     @Test
@@ -102,7 +102,7 @@ public class OrderProductDaoImplTest {
         assertNotEquals(orderProduct.quantity().quantity(), foundOrderProduct.quantity().quantity());
         assertNotEquals(orderProduct.priceOrder().price(), foundOrderProduct.priceOrder().price());
 
-        orderProductDao.deleteById(orderId, productName);
+        orderProductDao.deleteByIdAndName(orderId, productName);
     }
 
     @Test
@@ -134,7 +134,7 @@ public class OrderProductDaoImplTest {
         Long orderId = orderProduct.orderId().id();
         String productName = orderProduct.product().productName().productName();
         orderProductDao.insert(orderProduct);
-        orderProductDao.deleteById(orderId, productName);
+        orderProductDao.deleteByIdAndName(orderId, productName);
         OrderProduct foundOrderProduct = orderProductDao.findByIdAndName(orderId, productName);
         assertNull(foundOrderProduct);
     }
@@ -171,6 +171,6 @@ public class OrderProductDaoImplTest {
         OrderProduct foundOrderProduct = orderProductDao.findByIdAndName(orderId, productName);
         assertNotNull(foundOrderProduct);
 
-        orderProductDao.deleteById(orderId, productName);
+        orderProductDao.deleteByIdAndName(orderId, productName);
     }
 }

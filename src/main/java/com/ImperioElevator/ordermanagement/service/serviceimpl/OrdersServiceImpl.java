@@ -9,9 +9,8 @@ import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
-import com.ImperioElevator.ordermanagement.service.SaveOrderProductService;
+import com.ImperioElevator.ordermanagement.service.OrderProductService;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
-import com.ImperioElevator.ordermanagement.valueobjects.Price;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +22,13 @@ import java.util.List;
 public class OrdersServiceImpl implements OrdersService {
 
     private final OrderDaoImpl orderDao;
-    private final SaveOrderProductService saveOrderProductService;
+    private final OrderProductService orderProductService;
     private final OrderProductDaoImpl orderProductDaoImpl;
     private final ProductDaoImpl productDao;
 
-    public OrdersServiceImpl(OrderDaoImpl orderDao, SaveOrderProductService saveOrderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao) {
+    public OrdersServiceImpl(OrderDaoImpl orderDao, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao) {
         this.orderDao = orderDao;
-        this.saveOrderProductService = saveOrderProductService;
+        this.orderProductService = orderProductService;
         this.orderProductDaoImpl = orderProductDaoImpl;
         this.productDao = productDao;
     }

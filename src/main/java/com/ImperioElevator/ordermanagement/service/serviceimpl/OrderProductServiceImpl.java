@@ -1,12 +1,9 @@
 package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
 import com.ImperioElevator.ordermanagement.dao.OrderProductDao;
-import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
-import com.ImperioElevator.ordermanagement.service.SaveOrderProductService;
-import com.ImperioElevator.ordermanagement.valueobjects.Id;
-import com.ImperioElevator.ordermanagement.valueobjects.Price;
+import com.ImperioElevator.ordermanagement.service.OrderProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +11,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Service
-public class SaveOrderProductServiceImpl implements SaveOrderProductService {
+public class OrderProductServiceImpl implements OrderProductService {
 
     private final OrderProductDao orderProductDao;
 
     @Autowired
-    public SaveOrderProductServiceImpl(OrderProductDao orderProductDao) {
+    public OrderProductServiceImpl(OrderProductDao orderProductDao) {
         this.orderProductDao = orderProductDao;
     }
 
@@ -39,8 +36,13 @@ public class SaveOrderProductServiceImpl implements SaveOrderProductService {
     }
 
     @Override
-    //ToDo Validare pretului  cecuim pretu daca corespunde daca nu corespunde luam din bd // pretul poate sa nu corespunda
-    public Long orderProductExtraProduct(OrderProduct orderProduct) throws SQLException {
+    public Long orderProductInsertExtraProduct(OrderProduct orderProduct) throws SQLException {
         return orderProductDao.insert(orderProduct);
     }
+
+    @Override
+    public Long deleteOrderProductExtraProduct(Long orderId, String productName) throws SQLException {
+        return orderProductDao.deleteByIdAndName(orderId, productName);
+    }
+
 }

@@ -14,7 +14,7 @@ public interface OrderProductDao {
 
     Long update(OrderProduct orderProduct) throws SQLException;
 
-    Long deleteById(Long orderId, String productName) throws SQLException;
+    Long deleteByIdAndName(Long orderId, String productName) throws SQLException;
 
     OrderProduct findByIdAndName(Long orderId, String productName) throws SQLException;
 

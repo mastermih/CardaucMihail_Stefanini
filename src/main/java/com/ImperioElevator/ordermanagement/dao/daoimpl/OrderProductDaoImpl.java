@@ -69,8 +69,8 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
     }
 
     @Override
-    public Long deleteById(Long orderId, String productName) throws SQLException {
-        String sql = "DELETE FROM order_product WHERE order_id = ? AND product_name = ?";
+    public Long deleteByIdAndName(Long orderId, String productName) throws SQLException {
+        String sql = "DELETE FROM order_product WHERE order_id = ? AND product_name = ? LIMIT 1";
         jdbcTemplate.update(sql, orderId, productName);
         return orderId;
     }

@@ -1,20 +1,17 @@
-SELECT  
-                    op_main.order_id AS order_id,  
-                    op_main.product_name AS main_product_name,  
-                    op_main.quantity AS main_quantity,  
-                    op_main.price_product AS main_price,  
-                    op_main.product_id AS main_product_id,  
-                    op_child.product_name AS extra_product_name,  
-                    op_child.quantity AS extra_quantity,  
-                    op_child.price_product AS extra_price,  
-                    op_child.product_id AS extra_product_id  
-                FROM  
-                    order_product op_main  
-                LEFT JOIN  
-                    order_product op_child  
-                ON  
-                    op_main.product_id = op_child.parent_product_id  
-                    AND op_child.order_id = op_main.order_id  
-                WHERE  
-                    op_main.order_id = 207
-                    AND op_main.parent_product_id IS NULL; 
+SELECT 
+                   op.order_id, 
+                   op.quantity, 
+                   op.price_product, 
+                   op.product_id,  
+                   op.parent_product_id, 
+                   p.product_name, 
+                   p.category_type, 
+                   p.image_path    
+                FROM 
+                   order_product op 
+                JOIN 
+                   product p 
+                ON 
+                   op.product_id = p.id 
+                WHERE 
+                   op.order_id = 217;

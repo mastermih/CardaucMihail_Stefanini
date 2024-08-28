@@ -8,9 +8,13 @@ import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
-import com.ImperioElevator.ordermanagement.service.SaveOrderProductService;
+import com.ImperioElevator.ordermanagement.service.OrderProductService;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
+import liquibase.pro.packaged.S;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,17 +30,15 @@ public class OrderController {
 
  private final OrdersService ordersService;
  private final EmailService emailService;
- private final SaveOrderProductService saveOrderProductService;
+ private final OrderProductService orderProductService;
 
  @Autowired
- public OrderController(OrdersService ordersService, EmailService emailService, SaveOrderProductService saveOrderProductService) {
+ public OrderController(OrdersService ordersService, EmailService emailService, OrderProductService orderProductService) {
   this.ordersService = ordersService;
   this.emailService = emailService;
-  this.saveOrderProductService = saveOrderProductService;
+  this.orderProductService = orderProductService;
  }
-//ToDo The productOrder Logic request on back  5 metode   vizualizare, ordere in details, 3 metode pentru submit
- //ToDo OrderPrdcut parent si id trebu cumva in controler de zapihnit, de spus orice logica de genu de pe Ui
- //ToDO rename parent in parentProductId
+
  @GetMapping("/orders/createDate")
  public Paginable<Order> listOrdersByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
@@ -70,7 +72,6 @@ public class OrderController {
 
 
 
-
  @PostMapping("/sendMail")
 public String sendMail(@RequestBody EmailDetails details) {
  return emailService.sendSimpleMail(details);
@@ -91,7 +92,7 @@ public String sendMail(@RequestBody EmailDetails details) {
  @GetMapping("/orderProduct")
 
  public List<OrderProduct> getLastCreatedDateOrderProduct(@RequestParam("limit") Number limit) throws SQLException {
-  return saveOrderProductService.getFirstPageOrderProduct(limit);
+  return orderProductService.getFirstPageOrderProduct(limit);
  }
 
  @GetMapping("/orderProduct/price")
@@ -99,24 +100,28 @@ public String sendMail(@RequestBody EmailDetails details) {
                                                         @RequestParam Double endPrice,
                                                         @RequestParam Long page,
                                                         @RequestParam Long totalOrderProducts) throws SQLException{
-  return saveOrderProductService.findPaginableOrderProductByPriceProduct(startPrice, endPrice, page, totalOrderProducts);
+  return orderProductService.findPaginableOrderProductByPriceProduct(startPrice, endPrice, page, totalOrderProducts);
  }
 
 
  @PostMapping("/MakeOrder")
- //ToDo take atention on wraper response entity / have to be
- public Long createOrderWithProducts(@RequestBody OrderWithProductsDTO orderWithProductsDTO) throws SQLException {
+ public ResponseEntity<Long> createOrderWithProducts(@RequestBody OrderWithProductsDTO orderWithProductsDTO) throws SQLException {
   Order order = orderWithProductsDTO.getOrder();
   List<OrderProduct> orderProducts = orderWithProductsDTO.getOrderProducts();
 
   Long orderId = ordersService.createOrderWithProducts(order, orderProducts);
 
-  return orderId;
- }
+  HttpHeaders headers = new HttpHeaders();
+  headers.add("Order-Creation-Message", "Order and associated products were successfully created.");
+  headers.add("Number-Of-Products", String.valueOf(orderProducts.size()));
+
+   return new ResponseEntity<>(orderId, headers, HttpStatus.CREATED);
+  }
+
 
  @PostMapping("/MakeOrder/ProductOrder")
  public Long orderProductExtraProduct (@RequestBody OrderProduct orderProduct) throws SQLException{
-  return saveOrderProductService.orderProductExtraProduct(orderProduct);
+  return orderProductService.orderProductInsertExtraProduct(orderProduct);
  }
 
 
@@ -127,5 +132,9 @@ public String sendMail(@RequestBody EmailDetails details) {
   return ordersService.getOrderWithExtraProducts(orderId);
  }
 
-
+ @DeleteMapping("/MakeOrder/ProductOrder")
+ public Long deleteOrderProductExtraProduct(@RequestParam("id") Long orderId,
+                                            @RequestParam("product_name") String productName) throws SQLException{
+  return orderProductService.deleteOrderProductExtraProduct(orderId, productName);
+ }
 }

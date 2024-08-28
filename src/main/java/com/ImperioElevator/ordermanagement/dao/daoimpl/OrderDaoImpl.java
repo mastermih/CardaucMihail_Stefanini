@@ -88,7 +88,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     //ToDo In doua selecturi odata scoate order si data despre order si in al doile order product
     // Get an object that hold all the data for the makeorder   2 request -1/ order info /2 order product slect the list where i will join with prodct
     public List<Object[]> getOrderWithExtraProducts(Long orderId) {
-        // Query 1: Get order information
+        //order information
         String sqlOrderInfo = "SELECT " +
                 "    o.id, " +
                 "    o.order_status, " +
@@ -99,16 +99,16 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 "WHERE " +
                 "    o.id = ?";
 
-        // Query 2: Get order products with join on product table
+        //  order products with join on product table
         String sqlOrderProducts = "SELECT " +
                 "    op.order_id, " +
                 "    op.quantity, " +
                 "    op.price_product, " +
-                "    op.product_id, " +  // Added a comma here
+                "    op.product_id, " +
                 "    op.parent_product_id, " +
                 "    p.product_name, " +
                 "    p.category_type, " +
-                "    p.image_path " +     // Removed the extra comma here
+                "    p.image_path " +
                 "FROM " +
                 "    order_product op " +
                 "JOIN " +
@@ -120,7 +120,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
 
         try {
-            // Step 1: Retrieve order information
             List<Object[]> orderInfo = jdbcTemplate.query(sqlOrderInfo, new Object[]{orderId}, (resultSet, i) -> new Object[]{
                     resultSet.getLong("id"),
                     resultSet.getString("order_status"),
@@ -128,7 +127,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                     resultSet.getTimestamp("updated_date").toLocalDateTime()
             });
 
-            // Step 2: Retrieve order products with product details
             List<Object[]> orderProducts = jdbcTemplate.query(sqlOrderProducts, new Object[]{orderId}, (resultSet, i) -> {
                 Long parentProductId = resultSet.getLong("parent_product_id");
                 return new Object[]{

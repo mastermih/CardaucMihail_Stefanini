@@ -12,8 +12,7 @@ import java.util.List;
 
 public interface OrdersService {
     @Transactional
-        // Ensures the operation is atomic
-    //Avantiura nu tragetiatentia
+
     Long createOrderWithProducts(Order order, List<OrderProduct> orderProducts) throws SQLException;
 
     Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
