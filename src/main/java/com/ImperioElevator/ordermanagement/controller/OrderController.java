@@ -63,23 +63,12 @@ public class OrderController {
   return ordersService.findLastCreatedOrders(limit);
  }
 
-
-// @PostMapping("/MakeOrder/{id}")
-// public Long postUserOrder(@PathVariable Long id, @RequestBody Order order) throws SQLException {
-//  //nu uita sa stergi asta
-//  System.out.println(order);
-//  return ordersService.createOrder(order);
-//
-// }
-
-
  @PutMapping("/MakeOrder/{id}")
  public Long updateUserOrder(@PathVariable Long id, @RequestBody Order order) throws SQLException{
   return ordersService.updateOrderStatus(order);
  }
 
 
-// the Email stuf
 
 
  @PostMapping("/sendMail")
@@ -99,14 +88,6 @@ public String sendMail(@RequestBody EmailDetails details) {
   return null;
  }
 
- //The fost OrderProduct is now here
-
-
-// @PostMapping("/MakeOrder/ProductOrder")
-// public Long addOrderProducts(@RequestBody List<OrderProduct> orderProducts) throws SQLException {
-//  return saveOrderProductService.saveOrderProducts(orderProducts);
-// }
-
  @GetMapping("/orderProduct")
 
  public List<OrderProduct> getLastCreatedDateOrderProduct(@RequestParam("limit") Number limit) throws SQLException {
@@ -123,15 +104,13 @@ public String sendMail(@RequestBody EmailDetails details) {
 
 
  @PostMapping("/MakeOrder")
+ //ToDo take atention on wraper response entity / have to be
  public Long createOrderWithProducts(@RequestBody OrderWithProductsDTO orderWithProductsDTO) throws SQLException {
-  // Extract order and orderProducts from the DTO
   Order order = orderWithProductsDTO.getOrder();
   List<OrderProduct> orderProducts = orderWithProductsDTO.getOrderProducts();
 
-  // Create the order and the  order_products
   Long orderId = ordersService.createOrderWithProducts(order, orderProducts);
 
-  // Return the generated orderId to the client
   return orderId;
  }
 
@@ -141,10 +120,6 @@ public String sendMail(@RequestBody EmailDetails details) {
  }
 
 
-// @GetMapping("/MakeOrder")
-// public Order getOrderById(@RequestParam  Long id) throws SQLException{
-//  return ordersService.fiendOrderById(id);
-// }
 
  // Get the orderProduct
  @GetMapping("/MakeOrder/{id}")

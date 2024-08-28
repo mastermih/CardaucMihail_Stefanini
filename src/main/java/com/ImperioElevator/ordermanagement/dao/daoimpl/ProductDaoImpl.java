@@ -191,4 +191,11 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
 
         return new Paginable<>(products, page, totalPages);
     }
+
+    @Override
+    public Product findProductId(Long id) throws SQLException {
+        String sql = "SELECT * FROM product WHERE id = ?";
+            return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) -> mapResultSetToEntity(resultSet));
+    }
+
 }

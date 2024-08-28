@@ -33,7 +33,6 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
         String sql = "INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)";
 
         Long parentId = orderProduct.parentProductId() != null ? orderProduct.parentProductId().id() : null;
-       // Long productId = orderProduct.product().productId() != null ? orderProduct.product().productId().id() : null;
         String productName = orderProduct.product().productName().productName();
 
         jdbcTemplate.update(connection -> {
@@ -58,14 +57,13 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
 
     @Override
     public Long update(OrderProduct orderProduct) throws SQLException {
-        String sql = "UPDATE order_product SET quantity = ?, price_product = ? product_id WHERE order_id = ? AND product_name = ?";
+        String sql = "UPDATE order_product SET quantity = ?, price_product = ?, product_id = ? WHERE order_id = ? AND product_name = ?";
         String productName = orderProduct.product().productName().productName();
         jdbcTemplate.update(sql,
                 orderProduct.quantity().quantity(),
                 orderProduct.priceOrder().price(),
                 orderProduct.product().productId().id(),
                 orderProduct.order().orderId().id(),
-
                 productName);
         return orderProduct.order().orderId().id();
     }
@@ -78,7 +76,7 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
     }
 
     @Override
-    public OrderProduct findById(Long orderId, String productName) throws SQLException {
+    public OrderProduct findByIdAndName(Long orderId, String productName) throws SQLException {
         String sql = "SELECT * FROM order_product WHERE order_id = ? AND product_name = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new Object[]{orderId, productName}, (resultSet, i) -> mapResultSetToEntity(resultSet));
@@ -113,6 +111,13 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
         Long totalPages = (long) Math.ceil((double) totalItems / numberOfOrderProducts);
         return new Paginable<>(orderProducts, page, totalPages);
     }
+
+    @Override
+    public List<OrderProduct> findByOrderId(Long orderId) throws SQLException {
+        String sql = "SELECT * FROM order_product WHERE order_id = ?";
+        return jdbcTemplate.query(sql, new Object[]{orderId}, (resultSet, i) -> mapResultSetToEntity(resultSet));
+    }
+
 
 
     @Override

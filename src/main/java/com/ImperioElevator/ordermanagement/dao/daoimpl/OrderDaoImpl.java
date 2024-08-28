@@ -84,59 +84,70 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         return id;
     }
 
-    // Make order scot din BD orderu dupa ce i bagam in cart
     @Override
+    //ToDo In doua selecturi odata scoate order si data despre order si in al doile order product
+    // Get an object that hold all the data for the makeorder   2 request -1/ order info /2 order product slect the list where i will join with prodct
     public List<Object[]> getOrderWithExtraProducts(Long orderId) {
-        String sql = "SELECT " +
-                "    op_main.order_id AS order_id, " +
-                "    op_main.product_name AS main_product_name, " +
-                "    op_main.quantity AS main_quantity, " +
-                "    op_main.price_product AS main_price, " +
-                "    op_main.product_id AS main_product_id, " +
-                "    op_child.product_name AS extra_product_name, " +
-                "    op_child.quantity AS extra_quantity, " +
-                "    op_child.price_product AS extra_price, " +
-                "    op_child.product_id AS extra_product_id " +
+        // Query 1: Get order information
+        String sqlOrderInfo = "SELECT " +
+                "    o.id, " +
+                "    o.order_status, " +
+                "    o.created_date, " +
+                "    o.updated_date " +
                 "FROM " +
-                "    order_product op_main " +
-                "LEFT JOIN " +
-                "    order_product op_child " +
-                "ON " +
-                "    op_main.product_id = op_child.parent_product_id " +
-                "    AND op_child.order_id = op_main.order_id " +
+                "    orders o " +
                 "WHERE " +
-                "    op_main.order_id = ? " +
-                "    AND op_main.parent_product_id IS NULL; ";
+                "    o.id = ?";
+
+        // Query 2: Get order products with join on product table
+        String sqlOrderProducts = "SELECT " +
+                "    op.order_id, " +
+                "    op.quantity, " +
+                "    op.price_product, " +
+                "    op.product_id, " +  // Added a comma here
+                "    op.parent_product_id, " +
+                "    p.product_name, " +
+                "    p.category_type, " +
+                "    p.image_path " +     // Removed the extra comma here
+                "FROM " +
+                "    order_product op " +
+                "JOIN " +
+                "    product p " +
+                "ON " +
+                "    op.product_id = p.id " +
+                "WHERE " +
+                "    op.order_id = ?";
+
 
         try {
-            List<Object[]> result = new ArrayList<>();
-            List<Long> addedMainProductIds = new ArrayList<>();
-            jdbcTemplate.query(sql, new Object[]{orderId}, (resultSet) -> {
-                //  main product se adauga numa odata
-                if (!addedMainProductIds.contains(resultSet.getLong("main_product_id"))) {
-                    result.add(new Object[]{
-                            resultSet.getLong("order_id"),
-                            resultSet.getString("main_product_name"),
-                            resultSet.getInt("main_quantity"),
-                            resultSet.getBigDecimal("main_price"),
-                            resultSet.getLong("main_product_id")
-                    });
-                    addedMainProductIds.add(resultSet.getLong("main_product_id"));
-                }
-
-                //  extra product if exist
-                if (resultSet.getString("extra_product_name") != null) {
-                    result.add(new Object[]{
-                            resultSet.getLong("order_id"),
-                            resultSet.getString("extra_product_name"),
-                            resultSet.getInt("extra_quantity"),
-                            resultSet.getBigDecimal("extra_price"),
-                            resultSet.getLong("extra_product_id")
-                    });
-                }
+            // Step 1: Retrieve order information
+            List<Object[]> orderInfo = jdbcTemplate.query(sqlOrderInfo, new Object[]{orderId}, (resultSet, i) -> new Object[]{
+                    resultSet.getLong("id"),
+                    resultSet.getString("order_status"),
+                    resultSet.getTimestamp("created_date").toLocalDateTime(),
+                    resultSet.getTimestamp("updated_date").toLocalDateTime()
             });
 
-            return result;
+            // Step 2: Retrieve order products with product details
+            List<Object[]> orderProducts = jdbcTemplate.query(sqlOrderProducts, new Object[]{orderId}, (resultSet, i) -> {
+                Long parentProductId = resultSet.getLong("parent_product_id");
+                return new Object[]{
+                        resultSet.getLong("order_id"),
+                        resultSet.getString("product_name"),
+                        resultSet.getInt("quantity"),
+                        resultSet.getBigDecimal("price_product"),
+                        resultSet.getLong("product_id"),
+                        parentProductId != 0 ? parentProductId : null, // Replace 0 with null
+                        resultSet.getString("image_path"),
+                        resultSet.getString("category_type")
+                };
+            });
+
+            List<Object[]> combinedResult = new ArrayList<>();
+            combinedResult.addAll(orderInfo);
+            combinedResult.addAll(orderProducts);
+
+            return combinedResult;
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

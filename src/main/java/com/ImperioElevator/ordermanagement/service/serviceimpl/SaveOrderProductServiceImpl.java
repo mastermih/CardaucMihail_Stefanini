@@ -39,6 +39,7 @@ public class SaveOrderProductServiceImpl implements SaveOrderProductService {
     }
 
     @Override
+    //ToDo Validare pretului  cecuim pretu daca corespunde daca nu corespunde luam din bd // pretul poate sa nu corespunda
     public Long orderProductExtraProduct(OrderProduct orderProduct) throws SQLException {
         return orderProductDao.insert(orderProduct);
     }

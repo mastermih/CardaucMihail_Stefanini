@@ -55,7 +55,7 @@ public class OrderProductDaoImplTest {
                 );
 
         orderProductDao.insert(orderProduct);
-        OrderProduct foundOrderProduct = orderProductDao.findById(order.orderId().id(), product.productName().productName());
+        OrderProduct foundOrderProduct = orderProductDao.findByIdAndName(order.orderId().id(), product.productName().productName());
         assertNotNull(foundOrderProduct);
 
         orderProductDao.deleteById(order.orderId().id(), product.productName().productName());
@@ -97,7 +97,7 @@ public class OrderProductDaoImplTest {
         orderProductDao.update(foundOrder);
 
        // orderProductDao.update(foundOrder);
-        OrderProduct foundOrderProduct = orderProductDao.findById(orderId, productName);
+        OrderProduct foundOrderProduct = orderProductDao.findByIdAndName(orderId, productName);
         assertNotNull(foundOrderProduct);
         assertNotEquals(orderProduct.quantity().quantity(), foundOrderProduct.quantity().quantity());
         assertNotEquals(orderProduct.priceOrder().price(), foundOrderProduct.priceOrder().price());
@@ -135,7 +135,7 @@ public class OrderProductDaoImplTest {
         String productName = orderProduct.product().productName().productName();
         orderProductDao.insert(orderProduct);
         orderProductDao.deleteById(orderId, productName);
-        OrderProduct foundOrderProduct = orderProductDao.findById(orderId, productName);
+        OrderProduct foundOrderProduct = orderProductDao.findByIdAndName(orderId, productName);
         assertNull(foundOrderProduct);
     }
 
@@ -168,7 +168,7 @@ public class OrderProductDaoImplTest {
         Long orderId = orderProduct.orderId().id();
         String productName = orderProduct.product().productName().productName();
         orderProductDao.insert(orderProduct);
-        OrderProduct foundOrderProduct = orderProductDao.findById(orderId, productName);
+        OrderProduct foundOrderProduct = orderProductDao.findByIdAndName(orderId, productName);
         assertNotNull(foundOrderProduct);
 
         orderProductDao.deleteById(orderId, productName);

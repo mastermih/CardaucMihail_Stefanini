@@ -2,13 +2,16 @@ package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
+import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
+import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import com.ImperioElevator.ordermanagement.service.SaveOrderProductService;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
+import com.ImperioElevator.ordermanagement.valueobjects.Price;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,11 +25,13 @@ public class OrdersServiceImpl implements OrdersService {
     private final OrderDaoImpl orderDao;
     private final SaveOrderProductService saveOrderProductService;
     private final OrderProductDaoImpl orderProductDaoImpl;
+    private final ProductDaoImpl productDao;
 
-    public OrdersServiceImpl(OrderDaoImpl orderDao, SaveOrderProductService saveOrderProductService, OrderProductDaoImpl orderProductDaoImple) {
+    public OrdersServiceImpl(OrderDaoImpl orderDao, SaveOrderProductService saveOrderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao) {
         this.orderDao = orderDao;
         this.saveOrderProductService = saveOrderProductService;
-        this.orderProductDaoImpl = orderProductDaoImple;
+        this.orderProductDaoImpl = orderProductDaoImpl;
+        this.productDao = productDao;
     }
 
     @Override
@@ -78,8 +83,39 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
+        List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
+        boolean priceChanged = false;
+
+        for (OrderProduct orderProduct : orderProducts) {
+            Product product = productDao.findById(orderProduct.product().productId().id());
+            System.out.println("YEAAAAAAAAAAAAAAAA  "+product);
+            if (product == null) {
+                throw new SQLException("Product not found for ID: " + orderProduct.product().productId().id());
+            }
+
+            if (!product.price().equals(orderProduct.priceOrder())) {
+                priceChanged = true;
+
+                orderProduct = new OrderProduct(
+                        orderProduct.orderId(),
+                        order,
+                        orderProduct.quantity(),
+                        product.price(), // This is it :)
+                        orderProduct.parentProductId(),
+                        orderProduct.product()
+                );
+
+                orderProductDaoImpl.update(orderProduct);
+            }
+        }
+
+        if (priceChanged) {
+            System.out.println("Prices were updated for the order " + order.orderId().id());
+        }
+
         return orderDao.updateStatus(order);
     }
+
 
     @Override
     public Order fiendOrderById(Long id) throws SQLException {

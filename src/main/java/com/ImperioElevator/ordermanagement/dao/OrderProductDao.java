@@ -16,11 +16,13 @@ public interface OrderProductDao {
 
     Long deleteById(Long orderId, String productName) throws SQLException;
 
-    OrderProduct findById(Long orderId, String productName) throws SQLException;
+    OrderProduct findByIdAndName(Long orderId, String productName) throws SQLException;
 
     List<OrderProduct> findLastCreatedOrderProducts(Number limit) throws SQLException;
 
     Paginable<OrderProduct> finedPaginableOrderProductByProductPice(Double startPrice, Double endPrice, Long numberOfOrderProducts, Long page) throws SQLException;
+
+    List<OrderProduct> findByOrderId(Long orderId) throws SQLException;
 
 
 }
