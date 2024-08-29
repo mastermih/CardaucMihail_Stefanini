@@ -34,7 +34,7 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    @Transactional // Ensures atomicity
+    @Transactional //  atomicity
     public Long createOrderWithProducts(Order order, List<OrderProduct> orderProducts) throws SQLException {
         // Create the Order and get the generated orderId
         Long orderId = orderDao.insert(order);
@@ -87,7 +87,7 @@ public class OrdersServiceImpl implements OrdersService {
 
         for (OrderProduct orderProduct : orderProducts) {
             Product product = productDao.findById(orderProduct.product().productId().id());
-            System.out.println("YEAAAAAAAAAAAAAAAA  "+product);
+           // System.out.println("YEAAAAAAAAAAAAAAAA  "+product);
             if (product == null) {
                 throw new SQLException("Product not found for ID: " + orderProduct.product().productId().id());
             }
@@ -99,7 +99,7 @@ public class OrdersServiceImpl implements OrdersService {
                         orderProduct.orderId(),
                         order,
                         orderProduct.quantity(),
-                        product.price(), // This is it :)
+                        product.price(),
                         orderProduct.parentProductId(),
                         orderProduct.product()
                 );
@@ -122,7 +122,7 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public List<Object[]> getOrderWithExtraProducts(Long orderId) throws SQLException {
+    public Order getOrderWithExtraProducts(Long orderId) throws SQLException {
         return orderDao.getOrderWithExtraProducts(orderId);
     }
 

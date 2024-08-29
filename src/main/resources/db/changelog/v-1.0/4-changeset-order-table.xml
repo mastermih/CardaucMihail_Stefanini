@@ -29,7 +29,7 @@
         <preConditions onFail="MARK_RAN">
             <dbms type="mysql"/>
         </preConditions>
-        <loadData tableName="orders" file="db/data/mysql/client_order-data.csv"/>
+        <loadData tableName="orders" file="db/data/mysql/orders-data.csv"/>
     </changeSet>
 
     <!-- Data loading for HSQLDB -->
@@ -37,6 +37,6 @@
         <preConditions onFail="MARK_RAN">
             <dbms type="hsqldb"/>
         </preConditions>
-        <loadData tableName="orders" file="db/data/hsqldb/client_order-data.csv"/>
+        <loadData tableName="orders" file="db/data/hsqldb/orders-data.csv"/>
     </changeSet>
 </databaseChangeLog>

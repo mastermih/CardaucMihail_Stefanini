@@ -56,12 +56,11 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public String sendConfirmationMail(EmailDetails details, Long orderId) {
-        String confirmationLink = "http://localhost:3000/sendMail/confirm/" + orderId; //Ar tebui de scos
         try {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
 
       //      Constructing the email body
-          String emailBody = details.getMsgBody();
+          String emailBody = details.getMsgBody() ;
             // Setting up necessary details
             mailMessage.setFrom(sender);
             mailMessage.setTo(details.getRecipient());

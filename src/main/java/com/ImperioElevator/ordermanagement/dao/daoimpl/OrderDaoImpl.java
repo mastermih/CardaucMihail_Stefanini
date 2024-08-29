@@ -1,19 +1,18 @@
 package com.ImperioElevator.ordermanagement.dao.daoimpl;
 
 import com.ImperioElevator.ordermanagement.dao.OrderDao;
-import com.ImperioElevator.ordermanagement.entity.Order;
-import com.ImperioElevator.ordermanagement.entity.Paginable;
-import com.ImperioElevator.ordermanagement.entity.User;
+import com.ImperioElevator.ordermanagement.entity.*;
+import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
-import com.ImperioElevator.ordermanagement.valueobjects.CreateDateTime;
-import com.ImperioElevator.ordermanagement.valueobjects.Id;
-import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
+import com.ImperioElevator.ordermanagement.valueobjects.*;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.jdbc.core.RowMapper;
 
+import java.lang.Number;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -87,10 +86,10 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     @Override
     //ToDo In doua selecturi odata scoate order si data despre order si in al doile order product
     // Get an object that hold all the data for the makeorder   2 request -1/ order info /2 order product slect the list where i will join with prodct
-    public List<Object[]> getOrderWithExtraProducts(Long orderId) {
-        //order information
+    public Order getOrderWithExtraProducts(Long orderId) {
         String sqlOrderInfo = "SELECT " +
                 "    o.id, " +
+                "    o.user_id, " +
                 "    o.order_status, " +
                 "    o.created_date, " +
                 "    o.updated_date " +
@@ -99,7 +98,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 "WHERE " +
                 "    o.id = ?";
 
-        //  order products with join on product table
         String sqlOrderProducts = "SELECT " +
                 "    op.order_id, " +
                 "    op.quantity, " +
@@ -118,34 +116,18 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 "WHERE " +
                 "    op.order_id = ?";
 
-
         try {
-            List<Object[]> orderInfo = jdbcTemplate.query(sqlOrderInfo, new Object[]{orderId}, (resultSet, i) -> new Object[]{
-                    resultSet.getLong("id"),
-                    resultSet.getString("order_status"),
-                    resultSet.getTimestamp("created_date").toLocalDateTime(),
-                    resultSet.getTimestamp("updated_date").toLocalDateTime()
+            Order order = jdbcTemplate.queryForObject(sqlOrderInfo, new Object[]{orderId}, (resultSet, i) -> {
+                return mapResultSetToEntity(resultSet);
             });
 
-            List<Object[]> orderProducts = jdbcTemplate.query(sqlOrderProducts, new Object[]{orderId}, (resultSet, i) -> {
-                Long parentProductId = resultSet.getLong("parent_product_id");
-                return new Object[]{
-                        resultSet.getLong("order_id"),
-                        resultSet.getString("product_name"),
-                        resultSet.getInt("quantity"),
-                        resultSet.getBigDecimal("price_product"),
-                        resultSet.getLong("product_id"),
-                        parentProductId != 0 ? parentProductId : null, // Replace 0 with null
-                        resultSet.getString("image_path"),
-                        resultSet.getString("category_type")
-                };
-            });
+            List<OrderProduct> orderProducts = jdbcTemplate.query(sqlOrderProducts, new Object[]{orderId}, this::mapOrderProduct);
 
-            List<Object[]> combinedResult = new ArrayList<>();
-            combinedResult.addAll(orderInfo);
-            combinedResult.addAll(orderProducts);
+            // Attach the list of products to the order
+            order.orderProducts().addAll(orderProducts);
 
-            return combinedResult;
+            return order;
+
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -184,6 +166,26 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 new CreateDateTime(createdDateTime),
                 new UpdateDateTime(updatedDateTime),
               new ArrayList<>()
+        );
+    }
+    // ResultSet to  OrderProduct entity
+    private OrderProduct mapOrderProduct(ResultSet resultSet, int i) throws SQLException {
+        Long parentProductId = resultSet.getLong("parent_product_id");
+
+        return new OrderProduct(
+                new Id(resultSet.getLong("product_id")),
+                null,  //cyc depend
+                new Quantity(resultSet.getInt("quantity")),
+                new Price(resultSet.getDouble("price_product")),
+                new Id(parentProductId),
+                new Product(
+                        new Id(resultSet.getLong("product_id")),
+                        null, null, null, null, null, null,
+                        new ProductName(resultSet.getString("product_name")),
+                        null, null,
+                        new Image(resultSet.getString("image_path")),
+                        CategoryType.valueOf(resultSet.getString("category_type"))
+                )
         );
     }
 

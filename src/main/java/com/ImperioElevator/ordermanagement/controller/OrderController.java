@@ -1,10 +1,7 @@
 package com.ImperioElevator.ordermanagement.controller;
 
 import com.ImperioElevator.ordermanagement.dto.OrderWithProductsDTO;
-import com.ImperioElevator.ordermanagement.entity.EmailDetails;
-import com.ImperioElevator.ordermanagement.entity.Order;
-import com.ImperioElevator.ordermanagement.entity.OrderProduct;
-import com.ImperioElevator.ordermanagement.entity.Paginable;
+import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
@@ -25,14 +22,13 @@ import java.time.LocalTime;
 import java.util.List;
 
 @RestController
-@RequestMapping()
+
 public class OrderController {
 
  private final OrdersService ordersService;
  private final EmailService emailService;
  private final OrderProductService orderProductService;
 
- @Autowired
  public OrderController(OrdersService ordersService, EmailService emailService, OrderProductService orderProductService) {
   this.ordersService = ordersService;
   this.emailService = emailService;
@@ -65,6 +61,7 @@ public class OrderController {
   return ordersService.findLastCreatedOrders(limit);
  }
 
+ //Confirm The Order + OrderProduct Price (Confirm Order)
  @PutMapping("/MakeOrder/{id}")
  public Long updateUserOrder(@PathVariable Long id, @RequestBody Order order) throws SQLException{
   return ordersService.updateOrderStatus(order);
@@ -104,31 +101,33 @@ public String sendMail(@RequestBody EmailDetails details) {
  }
 
 
+ //Creation of The Order + OrderProduct the initialization /1
  @PostMapping("/MakeOrder")
- public ResponseEntity<Long> createOrderWithProducts(@RequestBody OrderWithProductsDTO orderWithProductsDTO) throws SQLException {
+ public ResponseEntity<OrderCreationResponse> createOrderWithProducts(@RequestBody OrderWithProductsDTO orderWithProductsDTO) throws SQLException {
   Order order = orderWithProductsDTO.getOrder();
   List<OrderProduct> orderProducts = orderWithProductsDTO.getOrderProducts();
 
   Long orderId = ordersService.createOrderWithProducts(order, orderProducts);
 
-  HttpHeaders headers = new HttpHeaders();
-  headers.add("Order-Creation-Message", "Order and associated products were successfully created.");
-  headers.add("Number-Of-Products", String.valueOf(orderProducts.size()));
+  OrderCreationResponse response = new OrderCreationResponse(
+          orderId,
+          "Order and associated products were successfully created.",
+          orderProducts.size()
+  );
 
-   return new ResponseEntity<>(orderId, headers, HttpStatus.CREATED);
-  }
+  return new ResponseEntity<>(response, HttpStatus.CREATED);
+ }
 
-
+ // Create just the orderProduct after the Order and first OrderProduct was created /2
  @PostMapping("/MakeOrder/ProductOrder")
  public Long orderProductExtraProduct (@RequestBody OrderProduct orderProduct) throws SQLException{
   return orderProductService.orderProductInsertExtraProduct(orderProduct);
  }
 
 
-
- // Get the orderProduct
+ //The double select method that take the order and the order product with join product table
  @GetMapping("/MakeOrder/{id}")
- public List<Object[]> getOrderWithExtraProducts(@PathVariable("id") Long orderId) throws SQLException {
+ public Order getOrderWithExtraProducts(@PathVariable("id") Long orderId) throws SQLException {
   return ordersService.getOrderWithExtraProducts(orderId);
  }
 

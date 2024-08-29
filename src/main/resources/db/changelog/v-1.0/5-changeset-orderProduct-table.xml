@@ -9,7 +9,7 @@
             <column name="order_id" type="BIGINT">
 
             </column>
-            <column name="product_id" type="BIGINT">
+            <column name="product_name" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
             <column name="quantity" type="BIGINT">
@@ -18,7 +18,10 @@
             <column name="price_product" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="parent" type="BIGINT">
+            <column name="parent_product_id" type="BIGINT">
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>

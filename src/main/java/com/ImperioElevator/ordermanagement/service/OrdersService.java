@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface OrdersService {
-    @Transactional
 
     Long createOrderWithProducts(Order order, List<OrderProduct> orderProducts) throws SQLException;
 
@@ -21,5 +20,5 @@ public interface OrdersService {
     Long createOrder(Order order) throws SQLException;
     Long updateOrderStatus(Order order) throws SQLException;
     Order fiendOrderById(Long id) throws SQLException;
-    List<Object[]> getOrderWithExtraProducts(Long orderId) throws SQLException;
+    Order getOrderWithExtraProducts(Long orderId) throws SQLException;
 }

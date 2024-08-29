@@ -24,6 +24,6 @@ public interface OrderDao extends Dao<Order>{
 
     Long updateOrderEmailConfirmStatus(Long id) throws SQLException;
 
-    List<Object[]> getOrderWithExtraProducts(Long orderId);
+    Order getOrderWithExtraProducts(Long orderId);
 
 }
