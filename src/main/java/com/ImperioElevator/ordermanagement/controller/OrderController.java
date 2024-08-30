@@ -119,6 +119,7 @@ public String sendMail(@RequestBody EmailDetails details) {
  }
 
  // Create just the orderProduct after the Order and first OrderProduct was created /2
+ //Rowmapper
  @PostMapping("/MakeOrder/ProductOrder")
  public Long orderProductExtraProduct (@RequestBody OrderProduct orderProduct) throws SQLException{
   return orderProductService.orderProductInsertExtraProduct(orderProduct);
@@ -126,11 +127,14 @@ public String sendMail(@RequestBody EmailDetails details) {
 
 
  //The double select method that take the order and the order product with join product table
+ //rowMapper enitatea sau id-ul
  @GetMapping("/MakeOrder/{id}")
  public Order getOrderWithExtraProducts(@PathVariable("id") Long orderId) throws SQLException {
   return ordersService.getOrderWithExtraProducts(orderId);
  }
 
+ //La toate schimba co Row mapper
+ //Mesaj succes object
  @DeleteMapping("/MakeOrder/ProductOrder")
  public Long deleteOrderProductExtraProduct(@RequestParam("id") Long orderId,
                                             @RequestParam("product_name") String productName) throws SQLException{

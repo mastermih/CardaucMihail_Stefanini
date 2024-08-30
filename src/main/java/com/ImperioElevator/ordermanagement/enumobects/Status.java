@@ -8,5 +8,6 @@ public enum Status {
     CANCELED, // This state comes after the New state / After user removed the item from the cart   - ?
     IN_PROGRESS,
     CONFIRMED, // This state comes after the New state / After user confirmed the order throw Email  -3
-    DECLINED_BY_CLIENT
+    DECLINED_BY_CLIENT,
+    EXPIRED
 }
