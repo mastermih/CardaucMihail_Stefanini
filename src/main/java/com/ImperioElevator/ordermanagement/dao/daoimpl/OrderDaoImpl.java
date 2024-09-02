@@ -5,6 +5,7 @@ import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
+import liquibase.pro.packaged.I;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -84,8 +85,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
-    //ToDo In doua selecturi odata scoate order si data despre order si in al doile order product
-    // Get an object that hold all the data for the makeorder   2 request -1/ order info /2 order product slect the list where i will join with prodct
     public Order getOrderWithExtraProducts(Long orderId) {
         String sqlOrderInfo = "SELECT " +
                 "    o.id, " +
@@ -134,12 +133,11 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
-    public Long deleteUnconfirmedOrderByEmail() throws SQLException {
+    public Integer deleteUnconfirmedOrderByEmail() throws SQLException {
         String sql = "UPDATE orders SET order_status = 'EXPIRED' " +
                 "WHERE order_status = 'NEW' " +
                 "AND updated_date <= NOW() - INTERVAL 1 DAY;";
-        jdbcTemplate.update(sql);
-        return null;
+        return jdbcTemplate.update(sql);
     }
 
 
@@ -169,7 +167,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         Status orderStatus = Status.valueOf(resultSet.getString("order_status"));
         return new Order(
                 new Id(orderId),
-                new User(new Id(userId), null, null),
+                new User(new Id(userId), null, null, null, null, true),
                 orderStatus,
                 new CreateDateTime(createdDateTime),
                 new UpdateDateTime(updatedDateTime),

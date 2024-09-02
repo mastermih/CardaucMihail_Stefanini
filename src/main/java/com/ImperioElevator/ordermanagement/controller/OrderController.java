@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -31,6 +34,8 @@ public class OrderController {
   this.emailService = emailService;
   this.orderProductService = orderProductService;
  }
+
+ private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
  @GetMapping("/orders/createDate")
  public Paginable<Order> listOrdersByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
@@ -69,11 +74,22 @@ public String sendMail(@RequestBody EmailDetails details) {
  return emailService.sendSimpleMail(details);
 }
 
+//The email that is  sent to user /1
  @PostMapping("/sendMail/OrderId")
  public String sendMailOrderId(@RequestBody EmailDetails details, Long orderId) {
-  return emailService.sendConfirmationMail(details, orderId);
+  //There is no Id in the log because it is taken from UI
+  logger.info("Attempting to send an email for order ID: {}", orderId);
+  try{
+   String response = emailService.sendConfirmationMail(details, orderId);
+   logger.info("Email sent successfully for order ID: {}", orderId);
+    return response;
+  }catch (Exception e){
+   logger.error("Error sending email for order ID: {}: {}", orderId, e.getMessage());
+   throw e;
+  }
  }
 
+ // The confirmaton that user send
  @PostMapping("/sendMail/confirm/{id}")
  public Long sendConfirmationOrderEmailStatus(@RequestBody Id id) throws SQLException {
   return emailService.updateOrderEmailConfirmStatus(id.id());

@@ -23,6 +23,5 @@ public class OrderCleanupService {
         int expiredOrders = Math.toIntExact(orderDao.deleteUnconfirmedOrderByEmail());
 
         logger.info("Expired Orders: " + expiredOrders);
-        System.out.println("WAAAAAAAAAAAAAAAAAAA");
     }
 }
