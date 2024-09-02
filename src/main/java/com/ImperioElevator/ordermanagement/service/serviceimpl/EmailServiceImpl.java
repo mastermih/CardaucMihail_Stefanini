@@ -59,7 +59,7 @@ public class EmailServiceImpl implements EmailService {
         try {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-      //      Constructing the email body
+      //    Constructing the email body
           String emailBody = details.getMsgBody() ;
             // Setting up necessary details
             mailMessage.setFrom(sender);

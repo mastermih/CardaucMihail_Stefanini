@@ -3,10 +3,7 @@ package com.ImperioElevator.ordermanagement.service.serviceimpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
-import com.ImperioElevator.ordermanagement.entity.Order;
-import com.ImperioElevator.ordermanagement.entity.OrderProduct;
-import com.ImperioElevator.ordermanagement.entity.Paginable;
-import com.ImperioElevator.ordermanagement.entity.Product;
+import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import com.ImperioElevator.ordermanagement.service.OrderProductService;
@@ -25,12 +22,14 @@ public class OrdersServiceImpl implements OrdersService {
     private final OrderProductService orderProductService;
     private final OrderProductDaoImpl orderProductDaoImpl;
     private final ProductDaoImpl productDao;
+    private final EmailServiceImpl emailService;
 
-    public OrdersServiceImpl(OrderDaoImpl orderDao, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao) {
+    public OrdersServiceImpl(OrderDaoImpl orderDao, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, EmailServiceImpl emailService) {
         this.orderDao = orderDao;
         this.orderProductService = orderProductService;
         this.orderProductDaoImpl = orderProductDaoImpl;
         this.productDao = productDao;
+        this.emailService = emailService;
     }
 
     @Override
@@ -80,6 +79,7 @@ public class OrdersServiceImpl implements OrdersService {
         return orderDao.insert(order);
     }
 
+    //Ma boy is here WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
         List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
@@ -87,7 +87,6 @@ public class OrdersServiceImpl implements OrdersService {
 
         for (OrderProduct orderProduct : orderProducts) {
             Product product = productDao.findById(orderProduct.product().productId().id());
-           // System.out.println("YEAAAAAAAAAAAAAAAA  "+product);
             if (product == null) {
                 throw new SQLException("Product not found for ID: " + orderProduct.product().productId().id());
             }
@@ -106,6 +105,10 @@ public class OrdersServiceImpl implements OrdersService {
 
                 orderProductDaoImpl.update(orderProduct);
             }
+            // Send email after updating the order product
+            EmailDetails emailDetails = constructEmailDetails(order);
+            String emailResult = emailService.sendConfirmationMail(emailDetails, order.orderId().id());
+            System.out.println("Email Result: " + emailResult);
         }
 
         if (priceChanged) {
@@ -114,7 +117,20 @@ public class OrdersServiceImpl implements OrdersService {
 
         return orderDao.updateStatus(order);
     }
+    private EmailDetails constructEmailDetails(Order order) {
+        // Construct email details based on the order information
+        String recipient = "cardaucmihai@gmail.com";
+        String subject = "Order Confirmation";
+        String confirmationLink = "http://localhost:3000/sendMail/confirm/" + order.orderId().id();
+        String messageBody = "Your order with ID " + order.orderId().id() + " has been successfully created.   "  + confirmationLink;;
 
+        EmailDetails details = new EmailDetails();
+        details.setRecipient(recipient);
+        details.setSubject(subject);
+        details.setMsgBody(messageBody);
+        details.setOrderId(order.orderId().id()); // Ensure orderId is included
+        return details;
+    }
 
     @Override
     public Order fiendOrderById(Long id) throws SQLException {

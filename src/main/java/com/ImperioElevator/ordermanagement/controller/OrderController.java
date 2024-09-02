@@ -69,25 +69,26 @@ public class OrderController {
   return ordersService.updateOrderStatus(order);
  }
 
- @PostMapping("/sendMail")
-public String sendMail(@RequestBody EmailDetails details) {
- return emailService.sendSimpleMail(details);
-}
+// @PostMapping("/sendMail")
+//public String sendMail(@RequestBody EmailDetails details) {
+// return emailService.sendSimpleMail(details);
+//}
 
 //The email that is  sent to user /1
- @PostMapping("/sendMail/OrderId")
- public String sendMailOrderId(@RequestBody EmailDetails details, Long orderId) {
-  //There is no Id in the log because it is taken from UI
-  logger.info("Attempting to send an email for order ID: {}", orderId);
-  try{
-   String response = emailService.sendConfirmationMail(details, orderId);
-   logger.info("Email sent successfully for order ID: {}", orderId);
-    return response;
-  }catch (Exception e){
-   logger.error("Error sending email for order ID: {}: {}", orderId, e.getMessage());
-   throw e;
-  }
- }
+ //The email must work with no controler
+// @PostMapping("/sendMail/OrderId")
+// public String sendMailOrderId(@RequestBody EmailDetails details, Long orderId) {
+//  //There is no Id in the log because it is taken from UI
+//  logger.info("Attempting to send an email for order ID: {}", orderId);
+//  try{
+//   String response = emailService.sendConfirmationMail(details, orderId);
+//   logger.info("Email sent successfully for order ID: {}", orderId);
+//    return response;
+//  }catch (Exception e){
+//   logger.error("Error sending email for order ID: {}: {}", orderId, e.getMessage());
+//   throw e;
+//  }
+// }
 
  // The confirmaton that user send
  @PostMapping("/sendMail/confirm/{id}")
