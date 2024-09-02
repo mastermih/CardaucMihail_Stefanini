@@ -106,6 +106,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         return new Product(productId, price, width, height, depth, category, productBrand, productName, electricityConsumption, description, image, categoryType);
     }
 
+    //Nu chimba in back pe Elevator ca poate sa am pagina aparte pentru exrta products
     @Override
     public List<Product> fiendProductForMainPage(Long limit, String categoryType) {
         String sql = "SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?";

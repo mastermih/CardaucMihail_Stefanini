@@ -7,9 +7,6 @@ import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import com.ImperioElevator.ordermanagement.service.OrderProductService;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
-import liquibase.pro.packaged.S;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,20 +64,21 @@ public class OrderController {
   return ordersService.updateOrderStatus(order);
  }
 
-
-
  @PostMapping("/sendMail")
 public String sendMail(@RequestBody EmailDetails details) {
  return emailService.sendSimpleMail(details);
 }
+
  @PostMapping("/sendMail/OrderId")
  public String sendMailOrderId(@RequestBody EmailDetails details, Long orderId) {
   return emailService.sendConfirmationMail(details, orderId);
  }
+
  @PostMapping("/sendMail/confirm/{id}")
  public Long sendConfirmationOrderEmailStatus(@RequestBody Id id) throws SQLException {
   return emailService.updateOrderEmailConfirmStatus(id.id());
  }
+
  @GetMapping("/sendMail/confirm/{id}")
  public Order getOrderIdConfirmEmail(@PathVariable("id") Long id) throws SQLException{
   return null;
@@ -103,41 +101,46 @@ public String sendMail(@RequestBody EmailDetails details) {
 
  //Creation of The Order + OrderProduct the initialization /1
  @PostMapping("/MakeOrder")
- public ResponseEntity<OrderCreationResponse> createOrderWithProducts(@RequestBody OrderWithProductsDTO orderWithProductsDTO) throws SQLException {
+ public ResponseEntity<EntityCreationResponse> createOrderWithProducts(@RequestBody OrderWithProductsDTO orderWithProductsDTO) throws SQLException {
   Order order = orderWithProductsDTO.getOrder();
   List<OrderProduct> orderProducts = orderWithProductsDTO.getOrderProducts();
 
   Long orderId = ordersService.createOrderWithProducts(order, orderProducts);
 
-  OrderCreationResponse response = new OrderCreationResponse(
+  EntityCreationResponse response = new EntityCreationResponse(
           orderId,
-          "Order and associated products were successfully created.",
-          orderProducts.size()
+          "Order and associated products were successfully created."
   );
 
   return new ResponseEntity<>(response, HttpStatus.CREATED);
  }
 
  // Create just the orderProduct after the Order and first OrderProduct was created /2
- //Rowmapper
  @PostMapping("/MakeOrder/ProductOrder")
- public Long orderProductExtraProduct (@RequestBody OrderProduct orderProduct) throws SQLException{
-  return orderProductService.orderProductInsertExtraProduct(orderProduct);
+ public ResponseEntity<EntityCreationResponse> orderProductExtraProduct (@RequestBody OrderProduct orderProduct) throws SQLException{
+
+  Long orderId = orderProductService.orderProductInsertExtraProduct(orderProduct);
+  EntityCreationResponse response = new EntityCreationResponse(
+          orderId,
+          "Extra Product was added"
+  );
+  return new ResponseEntity<>(response, HttpStatus.CREATED);
  }
 
-
  //The double select method that take the order and the order product with join product table
- //rowMapper enitatea sau id-ul
  @GetMapping("/MakeOrder/{id}")
  public Order getOrderWithExtraProducts(@PathVariable("id") Long orderId) throws SQLException {
   return ordersService.getOrderWithExtraProducts(orderId);
  }
 
- //La toate schimba co Row mapper
- //Mesaj succes object
  @DeleteMapping("/MakeOrder/ProductOrder")
- public Long deleteOrderProductExtraProduct(@RequestParam("id") Long orderId,
+ public ResponseEntity<EntityCreationResponse> deleteOrderProductExtraProduct(@RequestParam("id") Long orderId,
                                             @RequestParam("product_name") String productName) throws SQLException{
-  return orderProductService.deleteOrderProductExtraProduct(orderId, productName);
+  Long extraProductId = orderProductService.deleteOrderProductExtraProduct(orderId, productName);
+  EntityCreationResponse response = new EntityCreationResponse(
+          extraProductId,
+          "Was deleted successfully"
+  );
+  return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
  }
 }

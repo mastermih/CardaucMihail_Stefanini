@@ -1,0 +1,202 @@
+2024-09-02 09:46:25 [scheduling-1] DEBUG o.s.jdbc.core.JdbcTemplate - Executing SQL update [UPDATE orders SET order_status = 'EXPIRED' WHERE order_status = 'NEW' AND updated_date <= NOW() - INTERVAL 1 DAY;]
+2024-09-02 09:46:25 [scheduling-1] DEBUG o.s.jdbc.core.JdbcTemplate - Executing SQL update [UPDATE orders SET order_status = 'EXPIRED' WHERE order_status = 'NEW' AND updated_date <= NOW() - INTERVAL 1 DAY;]
+2024-09-02 09:46:25 [scheduling-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 09:46:25 [scheduling-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 09:46:25 [scheduling-1] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 09:46:25 [scheduling-1] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:00:22 [scheduling-1] DEBUG o.s.jdbc.core.JdbcTemplate - Executing SQL update [UPDATE orders SET order_status = 'EXPIRED' WHERE order_status = 'NEW' AND updated_date <= NOW() - INTERVAL 1 DAY;]
+2024-09-02 10:00:22 [scheduling-1] DEBUG o.s.jdbc.core.JdbcTemplate - Executing SQL update [UPDATE orders SET order_status = 'EXPIRED' WHERE order_status = 'NEW' AND updated_date <= NOW() - INTERVAL 1 DAY;]
+2024-09-02 10:00:22 [scheduling-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:00:22 [scheduling-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:00:22 [scheduling-1] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:00:22 [scheduling-1] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:21:31 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 40104 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-02 10:21:31 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-02 10:21:32 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-02 10:21:33 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-02 10:21:33 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-02 10:21:33 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-02 10:21:33 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-02 10:21:33 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1732 ms
+2024-09-02 10:21:33 [main] DEBUG o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.cj.jdbc.Driver
+2024-09-02 10:21:33 [main] DEBUG o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.cj.jdbc.Driver
+2024-09-02 10:21:33 [main] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:21:33 [main] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:21:34 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-02 10:21:35 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-02 10:21:35 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-02 10:21:36 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-02 10:21:36 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-02 10:21:36 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 6.218 seconds (JVM running for 6.955)
+2024-09-02 10:21:36 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-02 10:28:46 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 27700 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-02 10:28:46 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-02 10:28:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-02 10:28:47 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-02 10:28:47 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-02 10:28:47 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-02 10:28:48 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-02 10:28:48 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1431 ms
+2024-09-02 10:28:48 [main] DEBUG o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.cj.jdbc.Driver
+2024-09-02 10:28:48 [main] DEBUG o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.cj.jdbc.Driver
+2024-09-02 10:28:48 [main] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:28:48 [main] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:28:48 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-02 10:28:49 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-02 10:28:49 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-02 10:28:49 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderCleanupService' defined in file [C:\Users\MCARDAUC\Desktop\order-management\target\classes\com\ImperioElevator\ordermanagement\entity\OrderCleanupService.class]: Instantiation of bean failed; nested exception is java.lang.ExceptionInInitializerError
+2024-09-02 10:28:49 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2024-09-02 10:28:49 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2024-09-02 10:28:49 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderCleanupService' defined in file [C:\Users\MCARDAUC\Desktop\order-management\target\classes\com\ImperioElevator\ordermanagement\entity\OrderCleanupService.class]: Instantiation of bean failed; nested exception is java.lang.ExceptionInInitializerError
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at com.ImperioElevator.ordermanagement.OrderManagementApplication.main(OrderManagementApplication.java:18)
+Caused by: java.lang.ExceptionInInitializerError: null
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1326)
+	... 17 common frames omitted
+Caused by: java.lang.ClassCastException: class ch.qos.logback.classic.Logger cannot be cast to class java.util.logging.Logger (ch.qos.logback.classic.Logger is in unnamed module of loader 'app'; java.util.logging.Logger is in module java.logging of loader 'bootstrap')
+	at com.ImperioElevator.ordermanagement.entity.OrderCleanupService.<clinit>(OrderCleanupService.java:18)
+	... 25 common frames omitted
+2024-09-02 10:40:11 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 43580 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-02 10:40:11 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-02 10:40:13 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-02 10:40:13 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-02 10:40:13 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-02 10:40:13 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-02 10:40:13 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-02 10:40:13 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1600 ms
+2024-09-02 10:40:13 [main] DEBUG o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.cj.jdbc.Driver
+2024-09-02 10:40:13 [main] DEBUG o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.cj.jdbc.Driver
+2024-09-02 10:40:13 [main] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:40:13 [main] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:40:14 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-02 10:40:14 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-02 10:40:14 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-02 10:40:15 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-02 10:40:15 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-02 10:40:15 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 4.187 seconds (JVM running for 4.691)
+2024-09-02 10:40:15 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-02 10:47:52 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-02 10:47:52 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-02 10:47:52 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-02 10:47:52 [http-nio-8080-exec-1] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:52 [http-nio-8080-exec-1] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:52 [http-nio-8080-exec-1] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?]
+2024-09-02 10:47:52 [http-nio-8080-exec-1] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?]
+2024-09-02 10:47:52 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:52 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:52 [http-nio-8080-exec-1] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:52 [http-nio-8080-exec-1] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:52 [http-nio-8080-exec-2] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:52 [http-nio-8080-exec-2] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:52 [http-nio-8080-exec-2] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?]
+2024-09-02 10:47:52 [http-nio-8080-exec-2] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?]
+2024-09-02 10:47:52 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:52 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:52 [http-nio-8080-exec-2] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:52 [http-nio-8080-exec-2] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:54 [http-nio-8080-exec-3] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:54 [http-nio-8080-exec-3] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:54 [http-nio-8080-exec-3] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM product WHERE id = ?]
+2024-09-02 10:47:54 [http-nio-8080-exec-3] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM product WHERE id = ?]
+2024-09-02 10:47:54 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:54 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:54 [http-nio-8080-exec-3] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:54 [http-nio-8080-exec-3] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:54 [http-nio-8080-exec-4] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:54 [http-nio-8080-exec-4] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:54 [http-nio-8080-exec-4] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM product WHERE id = ?]
+2024-09-02 10:47:54 [http-nio-8080-exec-4] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM product WHERE id = ?]
+2024-09-02 10:47:54 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:54 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:54 [http-nio-8080-exec-4] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:54 [http-nio-8080-exec-4] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:56 [http-nio-8080-exec-6] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:56 [http-nio-8080-exec-6] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:56 [http-nio-8080-exec-6] DEBUG o.s.jdbc.core.JdbcTemplate - Executing SQL update and returning generated keys
+2024-09-02 10:47:56 [http-nio-8080-exec-6] DEBUG o.s.jdbc.core.JdbcTemplate - Executing SQL update and returning generated keys
+2024-09-02 10:47:56 [http-nio-8080-exec-6] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement
+2024-09-02 10:47:56 [http-nio-8080-exec-6] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement
+2024-09-02 10:47:56 [http-nio-8080-exec-6] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL update
+2024-09-02 10:47:56 [http-nio-8080-exec-6] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL update
+2024-09-02 10:47:56 [http-nio-8080-exec-6] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement
+2024-09-02 10:47:56 [http-nio-8080-exec-6] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?]
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?]
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?]
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?]
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:57 [http-nio-8080-exec-7] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?]
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?]
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL query
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?]
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?]
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 10:47:57 [http-nio-8080-exec-8] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 11:00:00 [scheduling-1] DEBUG o.s.jdbc.core.JdbcTemplate - Executing SQL update [UPDATE orders SET order_status = 'EXPIRED' WHERE order_status = 'NEW' AND updated_date <= NOW() - INTERVAL 1 DAY;]
+2024-09-02 11:00:00 [scheduling-1] DEBUG o.s.jdbc.core.JdbcTemplate - Executing SQL update [UPDATE orders SET order_status = 'EXPIRED' WHERE order_status = 'NEW' AND updated_date <= NOW() - INTERVAL 1 DAY;]
+2024-09-02 11:00:00 [scheduling-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 11:00:00 [scheduling-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2024-09-02 11:00:00 [scheduling-1] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 11:00:00 [scheduling-1] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:mysql://localhost:3306/test]
+2024-09-02 11:00:00 [scheduling-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+java.lang.NullPointerException: Cannot invoke "java.lang.Long.longValue()" because the return value of "com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl.deleteUnconfirmedOrderByEmail()" is null
+	at com.ImperioElevator.ordermanagement.entity.OrderCleanupService.cancelOrder(OrderCleanupService.java:26)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)

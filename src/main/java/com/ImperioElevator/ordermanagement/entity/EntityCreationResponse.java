@@ -1,14 +1,12 @@
 package com.ImperioElevator.ordermanagement.entity;
 
-public class OrderCreationResponse {
+public class EntityCreationResponse {
     private Long orderId;
     private String message;
-    private int numberOfProducts;
 
-    public OrderCreationResponse(Long orderId, String message, int numberOfProducts) {
+    public EntityCreationResponse(Long orderId, String message) {
         this.orderId = orderId;
         this.message = message;
-        this.numberOfProducts = numberOfProducts;
     }
 
     public Long getOrderId() {
@@ -25,13 +23,5 @@ public class OrderCreationResponse {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public int getNumberOfProducts() {
-        return numberOfProducts;
-    }
-
-    public void setNumberOfProducts(int numberOfProducts) {
-        this.numberOfProducts = numberOfProducts;
     }
 }

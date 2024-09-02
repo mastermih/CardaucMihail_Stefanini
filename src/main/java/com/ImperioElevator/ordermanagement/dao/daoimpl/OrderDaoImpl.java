@@ -133,6 +133,14 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 
+    @Override
+    public Long deleteUnconfirmedOrderByEmail() throws SQLException {
+        String sql = "UPDATE orders SET order_status = 'EXPIRED' " +
+                "WHERE order_status = 'NEW' " +
+                "AND updated_date <= NOW() - INTERVAL 1 DAY;";
+        jdbcTemplate.update(sql);
+        return null;
+    }
 
 
     @Override
