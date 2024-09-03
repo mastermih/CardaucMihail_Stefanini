@@ -909,3 +909,212 @@
 2024-09-03 13:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
 2024-09-03 13:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
 2024-09-03 13:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-03 14:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 1 unconfirmed orders
+2024-09-03 14:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 1 unconfirmed orders
+2024-09-03 14:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 1
+2024-09-03 14:06:24 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 23168 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-03 14:06:24 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-03 14:06:25 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-03 14:06:25 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-03 14:06:25 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-03 14:06:25 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-03 14:06:25 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-03 14:06:25 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1704 ms
+2024-09-03 14:06:26 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-03 14:06:27 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-03 14:06:27 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-03 14:06:28 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-03 14:06:28 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-03 14:06:28 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 5.08 seconds (JVM running for 5.652)
+2024-09-03 14:06:28 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-03 14:06:50 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-03 14:06:50 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-03 14:06:50 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-03 14:43:51 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 4376 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-03 14:43:51 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-03 14:43:52 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-03 14:43:53 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-03 14:43:53 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-03 14:43:53 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-03 14:43:53 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-03 14:43:53 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1886 ms
+2024-09-03 14:43:54 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-03 14:43:54 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-03 14:43:55 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-03 14:43:56 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-03 14:43:56 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-03 14:43:56 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 5.914 seconds (JVM running for 6.51)
+2024-09-03 14:43:56 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-03 14:44:05 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-03 14:44:05 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-03 14:44:05 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-09-03 14:44:05 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-03 14:44:05 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-03 14:44:05 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-03 14:44:05 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-03 14:44:05 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-03 14:44:05 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-03 14:44:05 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-03 14:44:05 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-03 14:44:06 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-03 14:44:06 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-03 14:44:06 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-03 14:44:06 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-03 14:44:09 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
+2024-09-03 14:44:09 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
+2024-09-03 14:44:09 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 2
+2024-09-03 14:44:09 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 2
+2024-09-03 14:44:09 [http-nio-8080-exec-6] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-09-03 14:44:09 [http-nio-8080-exec-6] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-09-03 14:44:09 [http-nio-8080-exec-6] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 174
+2024-09-03 14:44:09 [http-nio-8080-exec-6] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 174
+2024-09-03 14:44:10 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-03 14:44:10 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-03 14:44:10 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 174
+2024-09-03 14:44:10 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 174
+2024-09-03 14:44:10 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-03 14:44:10 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-03 14:44:10 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 174
+2024-09-03 14:44:10 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 174
+2024-09-03 14:44:16 [http-nio-8080-exec-10] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-03 14:44:16 [http-nio-8080-exec-10] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-03 14:44:16 [http-nio-8080-exec-10] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 174
+2024-09-03 14:44:16 [http-nio-8080-exec-10] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 174
+2024-09-03 14:44:16 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-03 14:44:16 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-03 14:44:18 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-03 14:44:18 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-03 14:44:18 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-03 14:44:18 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-03 14:44:18 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-03 14:44:18 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-03 14:44:18 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-03 14:44:18 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-03 14:44:37 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-03 14:44:37 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-03 14:44:37 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 174
+2024-09-03 14:44:37 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 174
+2024-09-03 14:49:12 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 22836 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-03 14:49:12 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-03 14:49:14 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-03 14:49:14 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-03 14:49:14 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-03 14:49:14 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-03 14:49:14 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-03 14:49:14 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1561 ms
+2024-09-03 14:49:15 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-03 14:49:15 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-03 14:49:16 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-03 14:49:18 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-03 14:49:18 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-03 14:49:18 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 6.303 seconds (JVM running for 6.844)
+2024-09-03 14:49:18 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-03 14:55:49 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 18456 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-03 14:55:49 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-03 14:55:50 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-03 14:55:50 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-03 14:55:50 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-03 14:55:50 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-03 14:55:51 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-03 14:55:51 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1540 ms
+2024-09-03 14:55:51 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-03 14:55:52 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-03 14:55:52 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-03 14:55:53 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-03 14:55:53 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-03 14:55:53 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 5.048 seconds (JVM running for 5.583)
+2024-09-03 14:55:53 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-03 14:55:56 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-03 14:55:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-03 14:55:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-03 14:55:58 [http-nio-8080-exec-9] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 743 ms
+2024-09-03 15:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-03 15:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-03 15:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-03 16:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 2 unconfirmed orders
+2024-09-03 16:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 2 unconfirmed orders
+2024-09-03 16:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 2
+2024-09-03 17:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 1 unconfirmed orders
+2024-09-03 17:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 1 unconfirmed orders
+2024-09-03 17:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 1
+2024-09-03 17:13:20 [http-nio-8080-exec-4] INFO  o.a.coyote.http11.Http11Processor - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target [/portal/webclient/index.html#/home ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:502)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:269)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-03 17:13:45 [http-nio-8080-exec-4] INFO  o.a.coyote.http11.Http11Processor - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target [/api/getServices?name[]=$() ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:494)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:269)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-03 17:13:45 [http-nio-8080-exec-3] INFO  o.a.coyote.http11.Http11Processor - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target [/webconsole/Controller?mode=8700&operation=1&datagrid=179&json={%220xf00x9f0xa60x9e%22:%22test%22} ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:494)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:269)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-03 17:13:46 [http-nio-8080-exec-16] INFO  o.a.coyote.http11.Http11Processor - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target [/AdvWorks/equipment/catalog_type.asp?ProductType=|shell(%22c:cmd.exe%22)| ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:494)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:269)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-03 17:13:46 [http-nio-8080-exec-18] INFO  o.a.coyote.http11.Http11Processor - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target [/ASPSamp/AdvWorks/equipment/catalog_type.asp?ProductType=|shell(%22c:cmd.exe%22)| ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:494)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:269)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-03 17:13:54 [http-nio-8080-exec-2] INFO  o.a.coyote.http11.Http11Processor - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x030x010x8f0x010x000x010x8b0x030x03[0x180xc90xf60xa4*q0xbf0x080xa4/0x87y0xc50xd10x150xe70x820x890x8b0x920xcf0xf70xd20x9bB0xce0x04,M0x9b6 ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:419)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:269)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-03 18:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 4 unconfirmed orders
+2024-09-03 18:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 4 unconfirmed orders
+2024-09-03 18:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 4
