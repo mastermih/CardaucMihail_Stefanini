@@ -22,7 +22,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @RestController
-
+//ToDo fiecare controler trebu sa aiba cite un comentariu ce face
 public class OrderController {
 
  private final OrdersService ordersService;
@@ -63,42 +63,16 @@ public class OrderController {
   return ordersService.findLastCreatedOrders(limit);
  }
 
- //Confirm The Order + OrderProduct Price (Confirm Order)
+ //Confirm The Order + OrderProduct Price (Confirm Order) + Email
  @PutMapping("/MakeOrder/{id}")
  public Long updateUserOrder(@PathVariable Long id, @RequestBody Order order) throws SQLException{
   return ordersService.updateOrderStatus(order);
  }
 
-// @PostMapping("/sendMail")
-//public String sendMail(@RequestBody EmailDetails details) {
-// return emailService.sendSimpleMail(details);
-//}
-
-//The email that is  sent to user /1
- //The email must work with no controler
-// @PostMapping("/sendMail/OrderId")
-// public String sendMailOrderId(@RequestBody EmailDetails details, Long orderId) {
-//  //There is no Id in the log because it is taken from UI
-//  logger.info("Attempting to send an email for order ID: {}", orderId);
-//  try{
-//   String response = emailService.sendConfirmationMail(details, orderId);
-//   logger.info("Email sent successfully for order ID: {}", orderId);
-//    return response;
-//  }catch (Exception e){
-//   logger.error("Error sending email for order ID: {}: {}", orderId, e.getMessage());
-//   throw e;
-//  }
-// }
-
- // The confirmaton that user send
+ // The confirmaton that user send (From email link)
  @PostMapping("/sendMail/confirm/{id}")
  public Long sendConfirmationOrderEmailStatus(@RequestBody Id id) throws SQLException {
   return emailService.updateOrderEmailConfirmStatus(id.id());
- }
-
- @GetMapping("/sendMail/confirm/{id}")
- public Order getOrderIdConfirmEmail(@PathVariable("id") Long id) throws SQLException{
-  return null;
  }
 
  @GetMapping("/orderProduct")

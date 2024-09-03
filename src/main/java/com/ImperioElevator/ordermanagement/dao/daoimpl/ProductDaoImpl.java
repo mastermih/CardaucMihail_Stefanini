@@ -6,6 +6,9 @@ import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -18,7 +21,9 @@ import java.util.List;
 
 @Component
 public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
+
     private final JdbcTemplate jdbcTemplate;
+    private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
 
     public ProductDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -29,26 +34,37 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         String sql = "INSERT INTO product (category_id, product_brand, product_name, electricity_consumption, product_description, product_width, product_height, product_depth, price, image_path, category_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setLong(1, product.category().id().id());
-            ps.setString(2, product.productBrand().getProductBrand());
-            ps.setString(3, product.productName().productName());
-            ps.setDouble(4, product.electricityConsumption().getkWh());
-            ps.setString(5, product.description().getDescription());
-            ps.setDouble(6, product.width().getWidth());
-            ps.setDouble(7, product.height().getHeight());
-            ps.setDouble(8, product.depth().getDepth());
-            ps.setDouble(9, product.price().price());
-            ps.setString(10, product.path().getPath());
-            ps.setString(11, String.valueOf(product.categoryType()));
-            return ps;
-        }, keyHolder);
 
-        if (keyHolder.getKey() != null) {
-            return keyHolder.getKey().longValue();
-        } else {
-            throw new SQLException("Creating product failed, no ID obtained.");
+        try {
+            logger.debug("Executing SQL for product insert: {}", sql);
+
+            jdbcTemplate.update(connection -> {
+                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setLong(1, product.category().id().id());
+                ps.setString(2, product.productBrand().getProductBrand());
+                ps.setString(3, product.productName().productName());
+                ps.setDouble(4, product.electricityConsumption().getkWh());
+                ps.setString(5, product.description().getDescription());
+                ps.setDouble(6, product.width().getWidth());
+                ps.setDouble(7, product.height().getHeight());
+                ps.setDouble(8, product.depth().getDepth());
+                ps.setDouble(9, product.price().price());
+                ps.setString(10, product.path().getPath());
+                ps.setString(11, String.valueOf(product.categoryType()));
+                return ps;
+            }, keyHolder);
+
+            logger.info("Successfully inserted Product with name: {}", product.productName().productName());
+
+            if (keyHolder.getKey() != null) {
+                return keyHolder.getKey().longValue();
+            } else {
+                throw new SQLException("Creating product failed, no ID obtained.");
+            }
+
+        } catch (SQLException ex) {
+            logger.error("Failed to insert Product with name: {}", product.productName().productName(), ex);
+            throw ex;
         }
     }
 
@@ -56,34 +72,66 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
     public Long update(Product product) throws SQLException {
         String sql = "UPDATE product SET category_id = ?, product_brand = ?, product_name = ?, electricity_consumption = ?, product_description = ?, product_width = ?, product_height = ?, product_depth = ?, price = ?, category_type = ? WHERE id = ?";
 
-        jdbcTemplate.update(sql, product.category().id().id(),
-                product.productBrand().getProductBrand(),
-                product.productName().productName(),
-                product.electricityConsumption().getkWh(),
-                product.description().getDescription(),
-                product.width().getWidth(),
-                product.height().getHeight(),
-                product.depth().getDepth(),
-                product.price().price(),
-                String.valueOf(product.categoryType()),
-        product.productId().id());
-        return product.productId().id();
+        try {
+            logger.debug("Executing SQL for product update: {}", sql);
+
+            jdbcTemplate.update(sql,
+                    product.category().id().id(),
+                    product.productBrand().getProductBrand(),
+                    product.productName().productName(),
+                    product.electricityConsumption().getkWh(),
+                    product.description().getDescription(),
+                    product.width().getWidth(),
+                    product.height().getHeight(),
+                    product.depth().getDepth(),
+                    product.price().price(),
+                    String.valueOf(product.categoryType()),
+                    product.productId().id());
+
+            logger.info("Successfully updated Product with id: {}", product.productId().id());
+
+            return product.productId().id();
+
+        } catch (DataAccessException ex) {
+            logger.error("Failed to update Product with id: {}", product.productId().id(), ex);
+            throw ex;
+        }
     }
 
     @Override
     public Long deleteById(Long id) throws SQLException {
         String sql = "DELETE FROM product WHERE id = ?";
-        jdbcTemplate.update(sql, id);
-        return id;
+
+        try {
+            logger.debug("Executing SQL to delete Product: {}", sql);
+
+            jdbcTemplate.update(sql, id);
+
+            logger.info("Successfully deleted Product with id: {}", id);
+
+            return id;
+
+        } catch (DataAccessException ex) {
+            logger.error("Failed to delete Product with id: {}", id, ex);
+            throw ex;
+        }
     }
 
     @Override
     public Product findById(Long id) throws SQLException {
         String sql = "SELECT * FROM product WHERE id = ?";
+
         try {
+            logger.debug("Executing SQL to find Product by id: {}", sql);
+
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) -> mapResultSetToEntity(resultSet));
+
         } catch (EmptyResultDataAccessException e) {
+            logger.error("No Product found with id: {}", id, e);
             return null;
+        } catch (DataAccessException ex) {
+            logger.error("Failed to find Product with id: {}", id, ex);
+            throw ex;
         }
     }
 
@@ -106,23 +154,42 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         return new Product(productId, price, width, height, depth, category, productBrand, productName, electricityConsumption, description, image, categoryType);
     }
 
-    //Nu chimba in back pe Elevator ca poate sa am pagina aparte pentru exrta products
     @Override
     public List<Product> fiendProductForMainPage(Long limit, String categoryType) {
         String sql = "SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?";
         List<Product> products = new ArrayList<>();
-        jdbcTemplate.query(sql, new Object[]{categoryType, limit}, (result) -> {
-            products.add(mapResultSetToEntity(result));
-        });
-        return products;
+
+        try {
+            logger.debug("Executing SQL to find Products for main page: {}", sql);
+
+            jdbcTemplate.query(sql, new Object[]{categoryType, limit}, (result) -> {
+                products.add(mapResultSetToEntity(result));
+            });
+
+            logger.info("Successfully retrieved Products for main page with categoryType: {}", categoryType);
+
+            return products;
+
+        } catch (DataAccessException ex) {
+            logger.error("Failed to retrieve Products for main page with categoryType: {}", categoryType, ex);
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
     public List<Product> fiendProductByName(String name) {
         String sql = "SELECT * FROM product WHERE product_name LIKE ? AND category_type NOT IN ('Elevator')";
         String searchQuery = "%" + name + "%";
-        return jdbcTemplate.query(sql, new Object[]{searchQuery}, (result, i) ->
-                mapResultSetToEntity(result));
+
+        try {
+            logger.debug("Executing SQL to find Products by name: {}", sql);
+
+            return jdbcTemplate.query(sql, new Object[]{searchQuery}, (result, i) -> mapResultSetToEntity(result));
+
+        } catch (DataAccessException ex) {
+            logger.error("Failed to retrieve Products by name: {}", name, ex);
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
@@ -176,27 +243,46 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
             countParams.add(filterComponents.getElectricityConsumption());
         }
 
-
         Long offset = (page - 1) * pageSize;
         sql.append(" ORDER BY id ASC LIMIT ? OFFSET ?");
 
         params.add(pageSize);
         params.add(offset);
 
+        try {
+            logger.debug("Executing SQL to filter Products: {}", sql);
 
-        Long totalItems = jdbcTemplate.queryForObject(countSql.toString(), countParams.toArray(), Long.class);
+            Long totalItems = jdbcTemplate.queryForObject(countSql.toString(), countParams.toArray(), Long.class);
 
-        Long totalPages = (long) Math.ceil((double) totalItems / pageSize);
+            Long totalPages = (long) Math.ceil((double) totalItems / pageSize);
 
-        List<Product> products = jdbcTemplate.query(sql.toString(), params.toArray(), (resultSet, i) -> mapResultSetToEntity(resultSet));
+            List<Product> products = jdbcTemplate.query(sql.toString(), params.toArray(), (resultSet, i) -> mapResultSetToEntity(resultSet));
 
-        return new Paginable<>(products, page, totalPages);
+            logger.info("Successfully filtered Products with page: {} and pageSize: {}", page, pageSize);
+
+            return new Paginable<>(products, page, totalPages);
+
+        } catch (DataAccessException ex) {
+            logger.error("Failed to filter Products", ex);
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
     public Product findProductId(Long id) throws SQLException {
         String sql = "SELECT * FROM product WHERE id = ?";
-            return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) -> mapResultSetToEntity(resultSet));
-    }
 
+        try {
+            logger.debug("Executing SQL to find Product by id: {}", sql);
+
+            return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) -> mapResultSetToEntity(resultSet));
+
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No Product found with id: {}", id, e);
+            return null;
+        } catch (DataAccessException ex) {
+            logger.error("Failed to find Product with id: {}", id, ex);
+            throw ex;
+        }
+    }
 }

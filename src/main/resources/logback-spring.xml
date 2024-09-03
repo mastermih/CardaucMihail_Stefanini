@@ -16,10 +16,7 @@
     </appender>
 
     <!-- Logger settings specifically for JDBC operations -->
-    <logger name="org.springframework.jdbc.core.JdbcTemplate" level="DEBUG" additivity="true">
-        <appender-ref ref="FILE" />
-    </logger>
-    <logger name="org.springframework.jdbc.datasource" level="DEBUG" additivity="true">
+    <logger name="com.ImperioElevator.ordermanagement.dao.daoimpl" level="DEBUG" additivity="true">
         <appender-ref ref="FILE" />
     </logger>
 

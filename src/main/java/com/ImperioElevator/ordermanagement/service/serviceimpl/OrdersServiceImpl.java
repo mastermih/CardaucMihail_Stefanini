@@ -79,7 +79,6 @@ public class OrdersServiceImpl implements OrdersService {
         return orderDao.insert(order);
     }
 
-    //Ma boy is here WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
         List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
@@ -105,7 +104,7 @@ public class OrdersServiceImpl implements OrdersService {
 
                 orderProductDaoImpl.update(orderProduct);
             }
-            // Send email after updating the order product
+
             EmailDetails emailDetails = constructEmailDetails(order);
             String emailResult = emailService.sendConfirmationMail(emailDetails, order.orderId().id());
             System.out.println("Email Result: " + emailResult);
@@ -122,8 +121,9 @@ public class OrdersServiceImpl implements OrdersService {
         String recipient = "cardaucmihai@gmail.com";
         String subject = "Order Confirmation";
         String confirmationLink = "http://localhost:3000/sendMail/confirm/" + order.orderId().id();
-        String messageBody = "Your order with ID " + order.orderId().id() + " has been successfully created.   "  + confirmationLink;;
-
+        String messageBody = "Your order with ID " + order.orderId().id() + " has been successfully created.\n\n"
+                + "Please confirm your order by clicking the link below:\n"
+                + confirmationLink;
         EmailDetails details = new EmailDetails();
         details.setRecipient(recipient);
         details.setSubject(subject);
