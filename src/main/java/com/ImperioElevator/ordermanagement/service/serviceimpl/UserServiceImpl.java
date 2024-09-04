@@ -5,10 +5,12 @@ import com.ImperioElevator.ordermanagement.entity.EmailDetails;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 
-//TODO BLEAAAA sa nu uiti sa adaugi user_roles dupa ce se creaiaza userul
+@Service
+
 public class UserServiceImpl implements UserSevice {
     public final UserDaoImpl userDao;
     public final EmailServiceImpl emailService;
@@ -23,9 +25,11 @@ public class UserServiceImpl implements UserSevice {
         EmailDetails emailDetails = constructEmailDetails(user);
         String emailResult = emailService.sendConfirmationMail(emailDetails, user.userId().id());
         System.out.println("Email Result: " + emailResult);
-        return userId; // Return the generated user ID
+        userDao.giveToUserARole(userId, user.role());
+        return userId;
     }
 
+    // Userul confirma entitatea din email
     @Override
     public Long confirmUserByEmail(Long id) throws SQLException {
         return userDao.confirmUserByEmailConfirmationLocked(id);
@@ -37,7 +41,7 @@ public class UserServiceImpl implements UserSevice {
         String subject = "Registration Confirmation";
         String confirmationLink = "http://localhost:3000/sendMail/confirm/" + user.userId().id();
         String messageBody = "Your order with ID " + user.userId().id() + " has been successfully created.\n\n"
-                + "Please confirm your order by clicking the link below:\n"
+                + "Please confirm your user creation  by clicking the link below:\n"
                 + confirmationLink;
         EmailDetails details = new EmailDetails();
         details.setRecipient(recipient);

@@ -32,30 +32,27 @@ private final JdbcTemplate jdbcTemplate;
     }
     private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
 
-    @Override
     public Long insert(User user) throws SQLException {
-        String sql = "INSERT INTO user (id, username, email, password, role, account_not_locked) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         try {
             logger.debug("Executing creation of the user: {}", sql);  // Log the SQL query
-            //fa ca in esxemplu de mai jos
+
             jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ps.setLong(1, user.userId().id());
-                ps.setString(2, user.name().name());
-                ps.setString(3, user.email().email());
-                ps.setString(4, user.password());
-                ps.setString(5, String.valueOf(user.role()));
-                ps.setBoolean(6, user.accountNonLocked());
+                ps.setString(1, user.name().name());         // username
+                ps.setString(2, user.email().email());       // email
+                ps.setString(3, user.password());            // password
+                ps.setBoolean(4, user.accountNonLocked());   // account locked status
                 return ps;
             }, keyHolder);
 
-            logger.info("Successfully inserted User with userId: {}", user.userId().id());
-
-            // Return the generated key
+            // Retrieve the auto-generated userId from the database
             if (keyHolder.getKey() != null) {
-                return keyHolder.getKey().longValue();
+                Long generatedUserId = keyHolder.getKey().longValue();
+                logger.info("Successfully inserted User with userId: {}", generatedUserId);
+                return generatedUserId;
             } else {
                 throw new SQLException("Creating user failed, no ID obtained.");
             }
@@ -65,6 +62,7 @@ private final JdbcTemplate jdbcTemplate;
             throw e;
         }
     }
+
 
     @Override
     public Long update(User user) throws SQLException{
@@ -140,4 +138,26 @@ private final JdbcTemplate jdbcTemplate;
         }
 
     }
-}
+
+    @Override
+    public Long giveToUserARole(Long userId, Role role) throws SQLException {
+        String sql = "INSERT INTO user_roles (user_id, role_name) VALUES (? ,?)";
+
+        try {
+            logger.debug("Executing SQL for user_role insert: {}", sql);
+
+            // Update the query to pass the userId (primitive) and role name (as String)
+            jdbcTemplate.update(sql, new Object[] {
+                    userId,                 // Primitive userId (Long)
+                    role.name()             // Convert Role enum to its String representation
+            });
+
+            logger.info("Successfully inserted Role for userId: {}", userId);
+            return userId;  // Return the userId after insertion (can be modified based on logic)
+
+        } catch (DataAccessException e) {
+            logger.error("Failed to insert role for userId: {}", userId, e);
+            throw e;  // Rethrow the exception for further handling
+        }
+    }
+    }
