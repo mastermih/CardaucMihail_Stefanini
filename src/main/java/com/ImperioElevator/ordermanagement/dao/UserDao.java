@@ -7,5 +7,5 @@ import java.sql.SQLException;
 
 public interface UserDao extends Dao<User> {
     Long confirmUserByEmailConfirmationLocked(Long id) throws SQLException;
-    Long giveToUserARole(Long userId,Role role) throws SQLException;
+    Long giveToUserARole(Long userId, Long roleId) throws SQLException;
 }

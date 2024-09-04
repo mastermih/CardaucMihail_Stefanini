@@ -3177,3 +3177,1333 @@ java.sql.SQLException: Incorrect integer value: 'USER' for column 'role_name' at
 2024-09-04 12:48:39 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_name) VALUES (? ,?)
 2024-09-04 12:48:39 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Role for userId: 13
 2024-09-04 12:48:39 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Role for userId: 13
+2024-09-04 13:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 2 unconfirmed orders
+2024-09-04 13:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 2 unconfirmed orders
+2024-09-04 13:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 2
+2024-09-04 13:46:29 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
+2024-09-04 13:46:29 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
+2024-09-04 13:46:29 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
+2024-09-04 13:46:29 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
+2024-09-04 13:46:29 [http-nio-8080-exec-5] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-09-04 13:46:29 [http-nio-8080-exec-5] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-09-04 13:46:29 [http-nio-8080-exec-5] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 184
+2024-09-04 13:46:29 [http-nio-8080-exec-5] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 184
+2024-09-04 13:46:31 [http-nio-8080-exec-7] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:31 [http-nio-8080-exec-7] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:31 [http-nio-8080-exec-7] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 176
+2024-09-04 13:46:31 [http-nio-8080-exec-7] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 176
+2024-09-04 13:46:31 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:31 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:32 [http-nio-8080-exec-8] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:32 [http-nio-8080-exec-8] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:32 [http-nio-8080-exec-8] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 177
+2024-09-04 13:46:32 [http-nio-8080-exec-8] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 177
+2024-09-04 13:46:32 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:32 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-9] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-9] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-9] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 178
+2024-09-04 13:46:33 [http-nio-8080-exec-9] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 178
+2024-09-04 13:46:33 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-10] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-10] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-10] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 179
+2024-09-04 13:46:33 [http-nio-8080-exec-10] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 179
+2024-09-04 13:46:33 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-2] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-2] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-2] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 180
+2024-09-04 13:46:33 [http-nio-8080-exec-2] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 180
+2024-09-04 13:46:33 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-1] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-1] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-1] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 181
+2024-09-04 13:46:33 [http-nio-8080-exec-1] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 181
+2024-09-04 13:46:33 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:33 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 176
+2024-09-04 13:46:53 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 176
+2024-09-04 13:46:53 [http-nio-8080-exec-3] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-3] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-3] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 182
+2024-09-04 13:46:53 [http-nio-8080-exec-3] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 182
+2024-09-04 13:46:53 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 177
+2024-09-04 13:46:53 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 177
+2024-09-04 13:46:53 [http-nio-8080-exec-4] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-4] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-4] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 183
+2024-09-04 13:46:53 [http-nio-8080-exec-4] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 183
+2024-09-04 13:46:53 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:53 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 178
+2024-09-04 13:46:54 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 178
+2024-09-04 13:46:54 [http-nio-8080-exec-5] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-5] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-5] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 184
+2024-09-04 13:46:54 [http-nio-8080-exec-5] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 184
+2024-09-04 13:46:54 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 179
+2024-09-04 13:46:54 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 179
+2024-09-04 13:46:54 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 180
+2024-09-04 13:46:54 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 180
+2024-09-04 13:46:54 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:46:54 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 181
+2024-09-04 13:46:54 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 181
+2024-09-04 13:47:14 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:47:14 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:47:14 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 182
+2024-09-04 13:47:14 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 182
+2024-09-04 13:47:15 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:47:15 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:47:15 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 183
+2024-09-04 13:47:15 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 183
+2024-09-04 13:47:15 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:47:15 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 13:47:15 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 184
+2024-09-04 13:47:15 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 184
+2024-09-04 14:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 14:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 14:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-04 14:11:08 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 14:11:08 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 14:11:08 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 14:11:08 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 15:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 15:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 15:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-04 15:05:53 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
+2024-09-04 15:05:53 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
+2024-09-04 15:05:53 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
+2024-09-04 15:05:53 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
+2024-09-04 15:05:53 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 15:05:53 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 15:05:53 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 15:05:53 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 15:05:53 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
+2024-09-04 15:05:53 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
+2024-09-04 15:05:53 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
+2024-09-04 15:05:53 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
+2024-09-04 15:22:01 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 15:22:01 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 15:22:01 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 14
+2024-09-04 15:22:01 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 14
+2024-09-04 15:22:22 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_name) VALUES (? ,?)
+2024-09-04 15:22:22 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_name) VALUES (? ,?)
+2024-09-04 15:22:22 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Role for userId: 14
+2024-09-04 15:22:22 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Role for userId: 14
+2024-09-04 15:23:26 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 15:23:26 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 15:23:26 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 15
+2024-09-04 15:23:26 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 15
+2024-09-04 15:23:47 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_name) VALUES (? ,?)
+2024-09-04 15:23:47 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_name) VALUES (? ,?)
+2024-09-04 15:23:48 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Role for userId: 15
+2024-09-04 15:23:48 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Role for userId: 15
+2024-09-04 15:24:51 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 15:24:51 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 15:24:51 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 15:24:51 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 15:26:10 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 15:26:10 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 15:26:10 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 16
+2024-09-04 15:26:10 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 16
+2024-09-04 15:26:31 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_name) VALUES (? ,?)
+2024-09-04 15:26:31 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_name) VALUES (? ,?)
+2024-09-04 15:26:31 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Role for userId: 16
+2024-09-04 15:26:31 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Role for userId: 16
+2024-09-04 15:52:46 [http-nio-8080-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'multipart/form-data;boundary=----WebKitFormBoundaryORUolINnjhASXUB7;charset=UTF-8' not supported]
+2024-09-04 15:53:42 [http-nio-8080-exec-4] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'multipart/form-data;boundary=----WebKitFormBoundarySNBXJyMlVGJn3TTJ;charset=UTF-8' not supported]
+2024-09-04 15:54:12 [http-nio-8080-exec-5] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `com.ImperioElevator.ordermanagement.enumobects.Role` from String "User": not one of the values accepted for Enum class: [USER, MANAGER, SALESMAN, ADMIN]; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `com.ImperioElevator.ordermanagement.enumobects.Role` from String "User": not one of the values accepted for Enum class: [USER, MANAGER, SALESMAN, ADMIN]<EOL> at [Source: (PushbackInputStream); line: 1, column: 96] (through reference chain: com.ImperioElevator.ordermanagement.entity.User["role"])]
+2024-09-04 15:54:23 [http-nio-8080-exec-7] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `com.ImperioElevator.ordermanagement.enumobects.Role` from String "User": not one of the values accepted for Enum class: [USER, MANAGER, SALESMAN, ADMIN]; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `com.ImperioElevator.ordermanagement.enumobects.Role` from String "User": not one of the values accepted for Enum class: [USER, MANAGER, SALESMAN, ADMIN]<EOL> at [Source: (PushbackInputStream); line: 1, column: 96] (through reference chain: com.ImperioElevator.ordermanagement.entity.User["role"])]
+2024-09-04 15:54:44 [http-nio-8080-exec-9] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `com.ImperioElevator.ordermanagement.enumobects.Role` from String "User": not one of the values accepted for Enum class: [USER, MANAGER, SALESMAN, ADMIN]; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `com.ImperioElevator.ordermanagement.enumobects.Role` from String "User": not one of the values accepted for Enum class: [USER, MANAGER, SALESMAN, ADMIN]<EOL> at [Source: (PushbackInputStream); line: 1, column: 96] (through reference chain: com.ImperioElevator.ordermanagement.entity.User["role"])]
+2024-09-04 15:55:04 [http-nio-8080-exec-10] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `com.ImperioElevator.ordermanagement.enumobects.Role` from String "User": not one of the values accepted for Enum class: [USER, MANAGER, SALESMAN, ADMIN]; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `com.ImperioElevator.ordermanagement.enumobects.Role` from String "User": not one of the values accepted for Enum class: [USER, MANAGER, SALESMAN, ADMIN]<EOL> at [Source: (PushbackInputStream); line: 1, column: 96] (through reference chain: com.ImperioElevator.ordermanagement.entity.User["role"])]
+2024-09-04 16:23:02 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 16:23:02 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 16:23:02 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-04 16:46:55 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 16:46:55 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 16:46:55 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 17
+2024-09-04 16:46:55 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 17
+2024-09-04 16:47:16 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_name) VALUES (? ,?)
+2024-09-04 16:47:16 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_name) VALUES (? ,?)
+2024-09-04 16:47:17 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Role for userId: 17
+2024-09-04 16:47:17 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Role for userId: 17
+2024-09-04 16:47:57 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-04 16:47:57 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-04 16:47:57 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-04 16:47:57 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-04 16:47:57 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-04 16:47:57 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-04 16:47:57 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-04 16:47:57 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-04 16:47:59 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 16:47:59 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 16:47:59 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 16:47:59 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 16:48:00 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
+2024-09-04 16:48:00 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
+2024-09-04 16:48:00 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
+2024-09-04 16:48:00 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
+2024-09-04 16:48:00 [http-nio-8080-exec-9] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-09-04 16:48:00 [http-nio-8080-exec-9] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-09-04 16:48:00 [http-nio-8080-exec-9] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 185
+2024-09-04 16:48:00 [http-nio-8080-exec-9] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 185
+2024-09-04 16:48:03 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-04 16:48:03 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-04 16:48:03 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 185
+2024-09-04 16:48:03 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 185
+2024-09-04 16:48:03 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-04 16:48:03 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-04 16:48:03 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 185
+2024-09-04 16:48:03 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 185
+2024-09-04 16:53:20 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 16:53:20 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 16:53:20 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 16:53:20 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to confirm Order status by email: UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?
+2024-09-04 17:01:43 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 17:01:43 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 17:01:43 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-04 18:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 18:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 18:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-04 18:03:50 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 30376 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-04 18:03:50 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-04 18:03:51 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-04 18:03:51 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-04 18:03:51 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-04 18:03:51 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-04 18:03:51 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-04 18:03:51 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1369 ms
+2024-09-04 18:03:52 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-04 18:03:52 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-04 18:03:52 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-04 18:03:53 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-04 18:03:53 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-04 18:03:53 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 4.45 seconds (JVM running for 4.917)
+2024-09-04 18:03:53 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-04 18:05:03 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-04 18:05:03 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-04 18:05:03 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-09-04 18:05:03 [http-nio-8080-exec-2] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 18:05:03 [http-nio-8080-exec-2] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-04 18:05:03 [http-nio-8080-exec-2] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 185
+2024-09-04 18:05:03 [http-nio-8080-exec-2] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 185
+2024-09-04 18:05:03 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 18:05:03 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 18:05:05 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-04 18:05:05 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-04 18:05:05 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-04 18:05:05 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-04 18:05:05 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-04 18:05:05 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-04 18:05:05 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-04 18:05:05 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-04 18:05:07 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 18:05:07 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 18:05:07 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 18:05:07 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-04 18:05:08 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status, confirmation_token) VALUES (?, ?, ?, ?, ?)
+2024-09-04 18:05:08 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status, confirmation_token) VALUES (?, ?, ?, ?, ?)
+2024-09-04 18:05:08 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
+2024-09-04 18:05:08 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
+2024-09-04 18:05:08 [http-nio-8080-exec-8] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-09-04 18:05:08 [http-nio-8080-exec-8] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-09-04 18:05:08 [http-nio-8080-exec-8] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 186
+2024-09-04 18:05:08 [http-nio-8080-exec-8] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 186
+2024-09-04 18:05:09 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-04 18:05:09 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-04 18:05:09 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 186
+2024-09-04 18:05:09 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 186
+2024-09-04 18:05:09 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-04 18:05:09 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-04 18:05:09 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 186
+2024-09-04 18:05:09 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 186
+2024-09-04 18:05:24 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 18:05:24 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-04 18:05:24 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 185
+2024-09-04 18:05:24 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 185
+2024-09-04 18:27:44 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 25400 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-04 18:27:44 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-04 18:27:45 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-04 18:27:45 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-04 18:27:45 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-04 18:27:45 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-04 18:27:45 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-04 18:27:45 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1340 ms
+2024-09-04 18:27:46 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-04 18:27:47 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-04 18:27:47 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-04 18:27:48 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-04 18:27:48 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-04 18:27:48 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 4.284 seconds (JVM running for 4.72)
+2024-09-04 18:27:48 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-04 18:28:31 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-04 18:28:31 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-04 18:28:31 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-09-04 18:28:31 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 18:28:31 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 18:28:31 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 18
+2024-09-04 18:28:31 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 18
+2024-09-04 18:28:52 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)
+2024-09-04 18:28:52 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)
+2024-09-04 18:28:52 [http-nio-8080-exec-2] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to insert role for userId: 18
+org.springframework.jdbc.UncategorizedSQLException: PreparedStatementCallback; uncategorized SQLException for SQL [INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)]; SQL state [HY000]; error code [1366]; Incorrect integer value: '\xAC\xED\x00\x05~r\x003com.ImperioElevator.ordermanagement.enumobects.Role\x00\x00\x00\x00\x00\x00\x00\x00\x12\x00\x00xr\x00\x0E' for column 'role_id' at row 1; nested exception is java.sql.SQLException: Incorrect integer value: '\xAC\xED\x00\x05~r\x003com.ImperioElevator.ordermanagement.enumobects.Role\x00\x00\x00\x00\x00\x00\x00\x00\x12\x00\x00xr\x00\x0E' for column 'role_id' at row 1
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1542)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:667)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:960)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1015)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1025)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl.giveToUserARole(UserDaoImpl.java:149)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$FastClassBySpringCGLIB$$1fb49de4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$EnhancerBySpringCGLIB$$d791288b.giveToUserARole(<generated>)
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:28)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.sql.SQLException: Incorrect integer value: '\xAC\xED\x00\x05~r\x003com.ImperioElevator.ordermanagement.enumobects.Role\x00\x00\x00\x00\x00\x00\x00\x00\x12\x00\x00xr\x00\x0E' for column 'role_id' at row 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:965)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:651)
+	... 70 common frames omitted
+2024-09-04 18:28:52 [http-nio-8080-exec-2] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to insert role for userId: 18
+org.springframework.jdbc.UncategorizedSQLException: PreparedStatementCallback; uncategorized SQLException for SQL [INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)]; SQL state [HY000]; error code [1366]; Incorrect integer value: '\xAC\xED\x00\x05~r\x003com.ImperioElevator.ordermanagement.enumobects.Role\x00\x00\x00\x00\x00\x00\x00\x00\x12\x00\x00xr\x00\x0E' for column 'role_id' at row 1; nested exception is java.sql.SQLException: Incorrect integer value: '\xAC\xED\x00\x05~r\x003com.ImperioElevator.ordermanagement.enumobects.Role\x00\x00\x00\x00\x00\x00\x00\x00\x12\x00\x00xr\x00\x0E' for column 'role_id' at row 1
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1542)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:667)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:960)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1015)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1025)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl.giveToUserARole(UserDaoImpl.java:149)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$FastClassBySpringCGLIB$$1fb49de4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$EnhancerBySpringCGLIB$$d791288b.giveToUserARole(<generated>)
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:28)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.sql.SQLException: Incorrect integer value: '\xAC\xED\x00\x05~r\x003com.ImperioElevator.ordermanagement.enumobects.Role\x00\x00\x00\x00\x00\x00\x00\x00\x12\x00\x00xr\x00\x0E' for column 'role_id' at row 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:965)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:651)
+	... 70 common frames omitted
+2024-09-04 18:28:52 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.jdbc.UncategorizedSQLException: PreparedStatementCallback; uncategorized SQLException for SQL [INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)]; SQL state [HY000]; error code [1366]; Incorrect integer value: '\xAC\xED\x00\x05~r\x003com.ImperioElevator.ordermanagement.enumobects.Role\x00\x00\x00\x00\x00\x00\x00\x00\x12\x00\x00xr\x00\x0E' for column 'role_id' at row 1; nested exception is java.sql.SQLException: Incorrect integer value: '\xAC\xED\x00\x05~r\x003com.ImperioElevator.ordermanagement.enumobects.Role\x00\x00\x00\x00\x00\x00\x00\x00\x12\x00\x00xr\x00\x0E' for column 'role_id' at row 1] with root cause
+java.sql.SQLException: Incorrect integer value: '\xAC\xED\x00\x05~r\x003com.ImperioElevator.ordermanagement.enumobects.Role\x00\x00\x00\x00\x00\x00\x00\x00\x12\x00\x00xr\x00\x0E' for column 'role_id' at row 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:965)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:651)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:960)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1015)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1025)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl.giveToUserARole(UserDaoImpl.java:149)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$FastClassBySpringCGLIB$$1fb49de4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$EnhancerBySpringCGLIB$$d791288b.giveToUserARole(<generated>)
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:28)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-04 18:35:26 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 20936 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-04 18:35:26 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-04 18:35:28 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-04 18:35:28 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-04 18:35:28 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-04 18:35:28 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-04 18:35:28 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-04 18:35:28 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1376 ms
+2024-09-04 18:35:29 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-04 18:35:29 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-04 18:35:29 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-04 18:35:30 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-04 18:35:30 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-04 18:35:30 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 4.379 seconds (JVM running for 4.837)
+2024-09-04 18:35:30 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-04 18:35:59 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-04 18:35:59 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-04 18:35:59 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-04 18:35:59 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 18:35:59 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 18:35:59 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 19
+2024-09-04 18:35:59 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 19
+2024-09-04 18:36:20 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)
+2024-09-04 18:36:20 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for user_role insert: INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)
+2024-09-04 18:36:20 [http-nio-8080-exec-2] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to insert role for userId: 19
+org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)]; Column 'role_id' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'role_id' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1541)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:667)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:960)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1015)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1025)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl.giveToUserARole(UserDaoImpl.java:149)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$FastClassBySpringCGLIB$$1fb49de4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$EnhancerBySpringCGLIB$$d791288b.giveToUserARole(<generated>)
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:29)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'role_id' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:965)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:651)
+	... 70 common frames omitted
+2024-09-04 18:36:20 [http-nio-8080-exec-2] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to insert role for userId: 19
+org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)]; Column 'role_id' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'role_id' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1541)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:667)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:960)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1015)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1025)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl.giveToUserARole(UserDaoImpl.java:149)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$FastClassBySpringCGLIB$$1fb49de4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$EnhancerBySpringCGLIB$$d791288b.giveToUserARole(<generated>)
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:29)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'role_id' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:965)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:651)
+	... 70 common frames omitted
+2024-09-04 18:36:20 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)]; Column 'role_id' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'role_id' cannot be null] with root cause
+java.sql.SQLIntegrityConstraintViolationException: Column 'role_id' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:965)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:651)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:960)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1015)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1025)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl.giveToUserARole(UserDaoImpl.java:149)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$FastClassBySpringCGLIB$$1fb49de4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$EnhancerBySpringCGLIB$$d791288b.giveToUserARole(<generated>)
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:29)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-04 18:51:03 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 30896 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-04 18:51:03 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-04 18:51:04 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-04 18:51:04 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-04 18:51:04 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-04 18:51:04 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-04 18:51:04 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-04 18:51:04 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1325 ms
+2024-09-04 18:51:05 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-04 18:51:05 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-04 18:51:05 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-04 18:51:06 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-04 18:51:06 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-04 18:51:06 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 4.224 seconds (JVM running for 4.67)
+2024-09-04 18:51:06 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-04 18:51:09 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-04 18:51:09 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-04 18:51:09 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-09-04 18:51:09 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 18:51:09 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 18:51:09 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 20
+2024-09-04 18:51:09 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 20
+2024-09-04 18:51:09 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.ImperioElevator.ordermanagement.enumobects.Role.ordinal()" because "role" is null] with root cause
+java.lang.NullPointerException: Cannot invoke "com.ImperioElevator.ordermanagement.enumobects.Role.ordinal()" because "role" is null
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl$RoleMapper.getRoleId(UserServiceImpl.java:38)
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:26)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:26)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-04 18:55:51 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 25524 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-04 18:55:51 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-04 18:55:52 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-04 18:55:52 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-04 18:55:52 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-04 18:55:52 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-04 18:55:52 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-04 18:55:52 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1318 ms
+2024-09-04 18:55:53 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-04 18:55:54 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-04 18:55:54 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-04 18:55:55 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-04 18:55:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-04 18:55:55 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 4.394 seconds (JVM running for 4.831)
+2024-09-04 18:55:55 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-04 18:56:04 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-04 18:56:04 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-04 18:56:04 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-09-04 18:56:04 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Adding new user with role: null
+2024-09-04 18:56:04 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Adding new user with role: null
+2024-09-04 18:56:04 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalArgumentException: Role cannot be null] with root cause
+java.lang.IllegalArgumentException: Role cannot be null
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:33)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:26)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-04 18:57:19 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Adding new user with role: null
+2024-09-04 18:57:19 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Adding new user with role: null
+2024-09-04 18:57:19 [http-nio-8080-exec-4] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalArgumentException: Role cannot be null] with root cause
+java.lang.IllegalArgumentException: Role cannot be null
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:33)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:26)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-04 19:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 19:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 19:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-04 23:03:56 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 23:03:56 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-04 23:03:56 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-04 23:17:38 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 23696 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-04 23:17:38 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-04 23:17:39 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-04 23:17:39 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-04 23:17:39 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-04 23:17:39 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-04 23:17:40 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-04 23:17:40 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1341 ms
+2024-09-04 23:17:40 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-04 23:17:41 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-04 23:17:41 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-04 23:17:42 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-04 23:17:42 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-04 23:17:42 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 4.585 seconds (JVM running for 5.048)
+2024-09-04 23:17:42 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-04 23:17:48 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-04 23:17:48 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-04 23:17:48 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-09-04 23:17:48 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 23:17:48 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 23:17:48 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 21
+2024-09-04 23:17:48 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 21
+2024-09-04 23:17:48 [http-nio-8080-exec-1] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to fetch role_id for role: USER
+org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT role_id FROM roles WHERE role_name = ?]; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'role_id' in 'field list'
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:239)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1541)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:667)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:713)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:744)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:757)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:879)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:901)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl.getRoleIdFromRoleName(UserDaoImpl.java:162)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$FastClassBySpringCGLIB$$1fb49de4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$EnhancerBySpringCGLIB$$d791288b.getRoleIdFromRoleName(<generated>)
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:32)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:26)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'role_id' in 'field list'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1009)
+	at org.springframework.jdbc.core.JdbcTemplate$1.doInPreparedStatement(JdbcTemplate.java:722)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:651)
+	... 72 common frames omitted
+2024-09-04 23:17:48 [http-nio-8080-exec-1] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to fetch role_id for role: USER
+org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT role_id FROM roles WHERE role_name = ?]; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'role_id' in 'field list'
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:239)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1541)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:667)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:713)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:744)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:757)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:879)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:901)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl.getRoleIdFromRoleName(UserDaoImpl.java:162)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$FastClassBySpringCGLIB$$1fb49de4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$EnhancerBySpringCGLIB$$d791288b.getRoleIdFromRoleName(<generated>)
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:32)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:26)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'role_id' in 'field list'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1009)
+	at org.springframework.jdbc.core.JdbcTemplate$1.doInPreparedStatement(JdbcTemplate.java:722)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:651)
+	... 72 common frames omitted
+2024-09-04 23:17:48 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.sql.SQLException: Role not found for role_name: USER] with root cause
+java.sql.SQLException: Role not found for role_name: USER
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl.getRoleIdFromRoleName(UserDaoImpl.java:165)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$FastClassBySpringCGLIB$$1fb49de4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl$$EnhancerBySpringCGLIB$$d791288b.getRoleIdFromRoleName(<generated>)
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.addNewUser(UserServiceImpl.java:32)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUserSuperior(UserController.java:26)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-04 23:19:58 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 on R90R5BB9 with PID 29896 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-04 23:19:58 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to default profiles: default
+2024-09-04 23:19:59 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-04 23:19:59 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-04 23:19:59 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-04 23:19:59 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-09-04 23:19:59 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-04 23:19:59 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1364 ms
+2024-09-04 23:20:00 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+2024-09-04 23:20:00 [main] INFO  liquibase.changelog - Reading from test.DATABASECHANGELOG
+2024-09-04 23:20:00 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2024-09-04 23:20:01 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-04 23:20:01 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-04 23:20:01 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 4.365 seconds (JVM running for 4.831)
+2024-09-04 23:20:01 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-04 23:20:09 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-04 23:20:09 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-04 23:20:09 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-04 23:20:09 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 23:20:09 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)
+2024-09-04 23:20:09 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 22
+2024-09-04 23:20:09 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 22
+2024-09-04 23:20:11 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 22
+2024-09-04 23:20:11 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 22

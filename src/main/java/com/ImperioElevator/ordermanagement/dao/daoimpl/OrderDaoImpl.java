@@ -36,10 +36,10 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Long insert(Order order) throws SQLException {
-        String sql = "INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO orders (user_id, created_date, updated_date, order_status, confirmation_token) VALUES (?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         LocalDateTime currentDateTime = LocalDateTime.now();
-
+       String token = TokenGenerator.generateToken();
         CreateDateTime createdDate = order.createdDate() != null ? order.createdDate() : new CreateDateTime(currentDateTime);
         UpdateDateTime updatedDate = order.updatedDate() != null ? order.updatedDate() : new UpdateDateTime(currentDateTime);
 
@@ -52,6 +52,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 ps.setTimestamp(2, Timestamp.valueOf(createdDate.createDateTime()));
                 ps.setTimestamp(3, Timestamp.valueOf(updatedDate.updateDateTime()));
                 ps.setString(4, order.orderStatus().name());
+                ps.setString(5, token);
                 return ps;
             }, keyHolder);
             logger.info("Successfully inserted Order for userId: {}", order.userId().userId().id());

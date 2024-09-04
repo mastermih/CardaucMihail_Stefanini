@@ -37,14 +37,14 @@ private final JdbcTemplate jdbcTemplate;
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         try {
-            logger.debug("Executing creation of the user: {}", sql);  // Log the SQL query
+            logger.debug("Executing creation of the user: {}", sql);
 
             jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, user.name().name());         // username
-                ps.setString(2, user.email().email());       // email
-                ps.setString(3, user.password());            // password
-                ps.setBoolean(4, user.accountNonLocked());   // account locked status
+                ps.setString(1, user.name().name());
+                ps.setString(2, user.email().email());
+                ps.setString(3, user.password());
+                ps.setBoolean(4, user.accountNonLocked());
                 return ps;
             }, keyHolder);
 
@@ -140,24 +140,31 @@ private final JdbcTemplate jdbcTemplate;
     }
 
     @Override
-    public Long giveToUserARole(Long userId, Role role) throws SQLException {
-        String sql = "INSERT INTO user_roles (user_id, role_name) VALUES (? ,?)";
+    public Long giveToUserARole(Long userId, Long roleId) throws SQLException {
+        String sql = "INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)";
 
         try {
-            logger.debug("Executing SQL for user_role insert: {}", sql);
-
-            // Update the query to pass the userId (primitive) and role name (as String)
-            jdbcTemplate.update(sql, new Object[] {
-                    userId,                 // Primitive userId (Long)
-                    role.name()             // Convert Role enum to its String representation
-            });
-
-            logger.info("Successfully inserted Role for userId: {}", userId);
-            return userId;  // Return the userId after insertion (can be modified based on logic)
-
+            jdbcTemplate.update(sql, new Object[]{userId, roleId});
+            logger.info("Successfully assigned role_id: {} to userId: {}", roleId, userId);
+            return userId;
         } catch (DataAccessException e) {
             logger.error("Failed to insert role for userId: {}", userId, e);
-            throw e;  // Rethrow the exception for further handling
+            throw e;
         }
     }
+
+
+    public Long getRoleIdFromRoleName(String roleName) throws SQLException {
+        String sql = "SELECT id FROM roles WHERE role_name = ?";
+
+        try {
+            // Execute the query to fetch the role_id based on the role_name
+            return jdbcTemplate.queryForObject(sql, new Object[]{roleName}, Long.class);
+        } catch (DataAccessException e) {
+            logger.error("Failed to fetch role_id for role: {}", roleName, e);
+            throw new SQLException("Role not found for role_name: " + roleName);
+        }
     }
+
+
+}

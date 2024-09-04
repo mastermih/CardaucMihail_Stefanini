@@ -1,6 +1,7 @@
 package com.ImperioElevator.ordermanagement.controller;
 
 import com.ImperioElevator.ordermanagement.entity.User;
+import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +20,9 @@ public class UserController {
     public UserController(UserSevice userSevice) {
         this.userSevice = userSevice;
     }
+    //ToDo un response normal
     @PostMapping("createUser/Superior")
-    public Long addNewUserSuperior(@RequestBody User user)throws SQLException{
+    public Long addNewUserSuperior(@RequestBody User user,  Role role)throws SQLException{
         return userSevice.addNewUser(user);
     }
 
