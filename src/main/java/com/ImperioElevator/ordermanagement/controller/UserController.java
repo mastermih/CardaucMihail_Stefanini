@@ -1,9 +1,14 @@
 package com.ImperioElevator.ordermanagement.controller;
 
+import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
+import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
+import com.ImperioElevator.ordermanagement.service.serviceimpl.EmailServiceImpl;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,14 +21,24 @@ import java.sql.SQLException;
 @RestController
 public class UserController {
     private final UserSevice userSevice;
-
-    public UserController(UserSevice userSevice) {
+    private final EmailService emailService;
+    private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
+    public UserController(UserSevice userSevice, EmailServiceImpl emailService) {
         this.userSevice = userSevice;
+        this.emailService = emailService;
     }
     //ToDo un response normal
     @PostMapping("createUser/Superior")
-    public Long addNewUserSuperior(@RequestBody User user,  Role role)throws SQLException{
+    public Long addNewUserSuperior(@RequestBody User user)throws SQLException{
         return userSevice.addNewUser(user);
     }
+
+    // The confirmaton that user send (From email link)
+    @PostMapping("/sendMail/confirm/user/{token}")
+    public String sendConfirmationUserEmailStatus(@PathVariable String token) throws SQLException {
+        logger.debug("Token received for user confirmation: {}", token);
+        return emailService.updateUserEmailConfirmStatus(token);
+    }
+
 
 }

@@ -1,18 +1,18 @@
 package com.ImperioElevator.ordermanagement.dao.daoimpl;
 
-import java.awt.font.TextHitInfo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;  // Make sure this import is included
+import java.util.List;
 
 import com.ImperioElevator.ordermanagement.dao.UserDao;
+import com.ImperioElevator.ordermanagement.entity.TokenGenerator;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.valueobjects.Email;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Name;
-import liquibase.sql.Sql;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,20 +21,23 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.servlet.tags.EditorAwareTag;
 
 @Repository
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
-private final JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public UserDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
     private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
 
     public Long insert(User user) throws SQLException {
         String sql = "INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)";
+        String tokenSql = "INSERT INTO token (order_id, user_id, token_type, token_value, is_enabled) VALUES (?, ?, ?, ?, ?)";
+
         KeyHolder keyHolder = new GeneratedKeyHolder();
+        String token = TokenGenerator.generateToken();
 
         try {
             logger.debug("Executing creation of the user: {}", sql);
@@ -48,16 +51,22 @@ private final JdbcTemplate jdbcTemplate;
                 return ps;
             }, keyHolder);
 
-            // Retrieve the auto-generated userId from the database
-            if (keyHolder.getKey() != null) {
-                Long generatedUserId = keyHolder.getKey().longValue();
-                logger.info("Successfully inserted User with userId: {}", generatedUserId);
-                return generatedUserId;
-            } else {
-                throw new SQLException("Creating user failed, no ID obtained.");
-            }
+            Long userId = keyHolder.getKey().longValue();
+            logger.info("Successfully inserted User with userId: {}", userId);
 
-        } catch (SQLException e) {
+            // Insert the token into the token table
+            logger.debug("Inserting token for userId: {}", userId);
+            jdbcTemplate.update(tokenSql, new Object[] {
+                    null,                   // order_id (not applicable for user tokens)
+                    userId,                 // user_id
+                    "USER",                 // token_type
+                    token,                  // token_value
+                    true                    // is_enabled
+            });
+
+            return userId;
+
+        } catch (DataAccessException e) {
             logger.error("Error while creating the user: {}", e.getMessage());
             throw e;
         }
@@ -65,52 +74,54 @@ private final JdbcTemplate jdbcTemplate;
 
 
     @Override
-    public Long update(User user) throws SQLException{
-        String sql =  "UPDATE user SET username = ?, email = ?, password = ?, role = ? ,account_not_locked = ? WHERE id = ? ";
+    public Long update(User user) throws SQLException {
+        String sql = "UPDATE user SET username = ?, email = ?, password = ?, role = ? ,account_not_locked = ? WHERE id = ? ";
 
-        try{
+        try {
             logger.debug("Execute the user update: {}", sql);
             jdbcTemplate.update(sql,
                     user.userId().id(),
                     user.name().name(),
                     user.email().email(),
                     user.password(),
-                    user.role(),
+                    user.roles(),
                     user.accountNonLocked());
             logger.info("Successfully updated Product with id: {}", user.userId().id());
             return user.userId().id();
-        }catch (DataAccessException e ){
-            logger.error("Failed to update the user: {}", user.userId().id() ,e);
+        } catch (DataAccessException e) {
+            logger.error("Failed to update the user: {}", user.userId().id(), e);
             throw e;
         }
     }
+
     @Override
-    public Long deleteById(Long id) throws SQLException{
+    public Long deleteById(Long id) throws SQLException {
         String sql = "DELETE FROM user WHERE id = ?";
-        try{
+        try {
             logger.debug("Executing SQL to delete User: {}", sql);
 
             jdbcTemplate.update(sql, id);
             logger.info("Successfully deleted user with id: {}", id);
             return id;
-        }catch (DataAccessException e){
+        } catch (DataAccessException e) {
             logger.error("Failed to delete the user with id: {}", id, e);
             throw e;
         }
     }
+
     @Override
-    public User findById (Long id) throws SQLException{
-      String sql  = "SELECT * FROM user WHERE id = ?";
-      try{
-          logger.debug("Executing SQL to find User by id: {}", sql);
-          return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) -> mapResultSetToEntity(resultSet));
-      } catch (EmptyResultDataAccessException e) {
-          logger.error("No Product found with id: {}", id, e);
-          return null;
-      } catch (DataAccessException ex) {
-          logger.error("Failed to find Product with id: {}", id, ex);
-          throw ex;
-      }
+    public User findById(Long id) throws SQLException {
+        String sql = "SELECT * FROM user WHERE id = ?";
+        try {
+            logger.debug("Executing SQL to find User by id: {}", sql);
+            return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) -> mapResultSetToEntity(resultSet));
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No Product found with id: {}", id, e);
+            return null;
+        } catch (DataAccessException ex) {
+            logger.error("Failed to find Product with id: {}", id, ex);
+            throw ex;
+        }
     }
 
     @Override
@@ -118,47 +129,71 @@ private final JdbcTemplate jdbcTemplate;
         Id userId = new Id(resultSet.getLong("id"));
         Name userName = new Name(resultSet.getString("username"));
         Email email = new Email(resultSet.getString("email"));
-        String password = new String(resultSet.getString("password"));
-        Role role = Role.valueOf(new String(resultSet.getString("role")));
+        String password = resultSet.getString("password");
         boolean account_not_locked = resultSet.getBoolean("account_not_locked");
 
-        return new User(userId, userName, email,password, role, account_not_locked);
+        // Fetch the roles associated with the user
+        String roleSql = "SELECT r.role_name FROM roles r JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?";
+        List<Role> roles = jdbcTemplate.query(roleSql, new Object[]{userId.id()}, (rs, rowNum) -> Role.valueOf(rs.getString("role_name")));
+
+        // Return User object with multiple roles
+        return new User(userId, userName, email, password, roles, account_not_locked);
     }
 
-    @Override
-    public Long confirmUserByEmailConfirmationLocked(Long id) throws SQLException {
-        String sql = "UPDATE user SET account_not_locked = TRUE WHERE id = ?";
-        try{
-            logger.debug("Executing SQL to confirm new created user by email: {}", sql);
-            jdbcTemplate.update(sql, id);
-            return id;
-        }catch (DataAccessException e){
-            logger.error("Failed to confirm User by email with id: {}", id, e);
-            throw e;
-        }
 
-    }
-
-    @Override
-    public Long giveToUserARole(Long userId, Long roleId) throws SQLException {
-        String sql = "INSERT INTO user_roles (user_id, role_id) VALUES (? ,?)";
-
+    public String confirmUserByEmailConfirmationLocked(String token) throws SQLException {
+        String sql = "UPDATE user SET account_not_locked = TRUE WHERE id = (SELECT user_id FROM token WHERE token_value = ? AND is_enabled = true)";
+        String disableTokenSql = "UPDATE token SET is_enabled = false WHERE token_value = ?";
         try {
-            jdbcTemplate.update(sql, new Object[]{userId, roleId});
-            logger.info("Successfully assigned role_id: {} to userId: {}", roleId, userId);
-            return userId;
+            logger.debug("Executing SQL to confirm User account by email: {}", sql);
+            int rowsUpdated = jdbcTemplate.update(sql, token);
+            if (rowsUpdated == 0) {
+                throw new SQLException("No user found with the provided confirmation token.");
+            }
+            jdbcTemplate.update(disableTokenSql, token);
+            return token;
+        } catch (DataAccessException ex) {
+            logger.error("Failed to confirm User account by email for token: {}", token, ex);
+            throw ex;
+        }
+    }
+
+    @Override
+    public void disableTokenAfterConfirmation(String token) throws SQLException {
+        String sql = "UPDATE token SET is_enabled = false WHERE token_value = ?";
+        try {
+            logger.debug("Disabling token after user confirmation: {}", sql);
+            jdbcTemplate.update(sql, token);
+            logger.debug("Token has been disabled after user confirmation: {}", token);
+        } catch (DataAccessException ex) {
+            logger.error("Failed to disable token after user confirmation for token: {}", token, ex);
+            throw ex;
+        }
+    }
+
+
+    @Override
+    public void giveToUserRoles(Long userId, List<Long> roleIds) throws SQLException {
+        String sql = "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)";
+        try {
+            for (Long roleId : roleIds) {
+                jdbcTemplate.update(sql, userId, roleId);
+                logger.info("Successfully assigned role_id: {} to userId: {}", roleId, userId);
+            }
         } catch (DataAccessException e) {
-            logger.error("Failed to insert role for userId: {}", userId, e);
+            logger.error("Failed to assign roles for userId: {}", userId, e);
             throw e;
         }
     }
 
 
+
+    @Override
     public Long getRoleIdFromRoleName(String roleName) throws SQLException {
         String sql = "SELECT id FROM roles WHERE role_name = ?";
 
         try {
-            // Execute the query to fetch the role_id based on the role_name
+            // query to fetch the role_id based on the role_name
             return jdbcTemplate.queryForObject(sql, new Object[]{roleName}, Long.class);
         } catch (DataAccessException e) {
             logger.error("Failed to fetch role_id for role: {}", roleName, e);
@@ -166,5 +201,16 @@ private final JdbcTemplate jdbcTemplate;
         }
     }
 
+    @Override
+    public String getTheConfirmationToken(Long userId) throws SQLException {
+        String sql = "SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE";
+        try {
+            logger.debug("Selecting the user token with query: " + sql);
+            return jdbcTemplate.queryForObject(sql, new Object[]{userId}, String.class);
+        } catch (DataAccessException e) {
+            logger.error("Failed to fetch confirmation token for user ID: {}", userId, e);
+            throw new SQLException("Token not found for user ID: " + userId);
+        }
+    }
 
 }

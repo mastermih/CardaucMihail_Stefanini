@@ -2,10 +2,8 @@ package com.ImperioElevator.ordermanagement.dao;
 
 
 import com.ImperioElevator.ordermanagement.entity.Order;
-import com.ImperioElevator.ordermanagement.entity.OrderProduct;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
-import com.ImperioElevator.ordermanagement.valueobjects.Id;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -22,9 +20,12 @@ public interface OrderDao extends Dao<Order>{
 
     Long updateStatus(Order order) throws SQLException;
 
-    Long updateOrderEmailConfirmStatus(Long id) throws SQLException;
+    String updateOrderEmailConfirmStatus(String token) throws SQLException;
+
+    void disableTokenAfterConfirmation(String token) throws SQLException;
 
     Order getOrderWithExtraProducts(Long orderId);
 
     Integer deleteUnconfirmedOrderByEmail()throws SQLException;
+    String getTheConfirmationToken(Long id)  throws SQLException;
 }

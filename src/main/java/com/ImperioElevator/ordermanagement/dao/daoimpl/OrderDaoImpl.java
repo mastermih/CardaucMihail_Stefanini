@@ -5,7 +5,6 @@ import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
-import liquibase.pro.packaged.I;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -14,15 +13,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.jdbc.core.RowMapper;
 
 import java.lang.Number;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Component
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
@@ -36,37 +32,51 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Long insert(Order order) throws SQLException {
-        String sql = "INSERT INTO orders (user_id, created_date, updated_date, order_status, confirmation_token) VALUES (?, ?, ?, ?, ?)";
+        String orderSql = "INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)";
+        String tokenSql = "INSERT INTO token (order_id, user_id, token_type, token_value, is_enabled) VALUES (?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         LocalDateTime currentDateTime = LocalDateTime.now();
-       String token = TokenGenerator.generateToken();
+
+        // Generate token
+        String token = TokenGenerator.generateToken();
+
         CreateDateTime createdDate = order.createdDate() != null ? order.createdDate() : new CreateDateTime(currentDateTime);
         UpdateDateTime updatedDate = order.updatedDate() != null ? order.updatedDate() : new UpdateDateTime(currentDateTime);
 
         try {
-            logger.debug("Executing creation of the Order: {}", sql);  // Log the SQL query
-
+            // Insert the order first
+            logger.debug("Executing creation of the Order: {}", orderSql);
             jdbcTemplate.update(connection -> {
-                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement ps = connection.prepareStatement(orderSql, Statement.RETURN_GENERATED_KEYS);
                 ps.setLong(1, order.userId().userId().id());
                 ps.setTimestamp(2, Timestamp.valueOf(createdDate.createDateTime()));
                 ps.setTimestamp(3, Timestamp.valueOf(updatedDate.updateDateTime()));
                 ps.setString(4, order.orderStatus().name());
-                ps.setString(5, token);
                 return ps;
             }, keyHolder);
+
+            // Get the generated order ID
+            Long orderId = keyHolder.getKey().longValue();
             logger.info("Successfully inserted Order for userId: {}", order.userId().userId().id());
 
-            if (keyHolder.getKey() != null) {
-                return keyHolder.getKey().longValue();
-            } else {
-                throw new SQLException("Creating order failed, no ID obtained.");
-            }
-        } catch (SQLException ex) {
-            logger.error("Failed to insert Order for userId: {}", order.userId().userId().id(), ex);
+            // Insert the token into the token table
+            logger.debug("Inserting token for orderId: {}", orderId);
+            jdbcTemplate.update(tokenSql, new Object[] {
+                    orderId,               // order_id
+                    null,                  // user_id (not applicable for order tokens)
+                    "ORDER",               // token_type
+                    token,                 // token_value
+                    true                   // is_enabled
+            });
+
+            return orderId;
+
+        } catch (DataAccessException ex) {
+            logger.error("Failed to insert Order or Token for userId: {}", order.userId().userId().id(), ex);
             throw ex;
         }
     }
+
 
     @Override
     public Long update(Order order) throws SQLException {
@@ -105,19 +115,33 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 }
 
     @Override
-    public Long updateOrderEmailConfirmStatus(Long id) throws SQLException {
-        String sql = "UPDATE orders SET order_status = 'CONFIRMED' WHERE id = ?";
+    public String updateOrderEmailConfirmStatus(String token) throws SQLException {
+        String sql = "UPDATE orders SET order_status = 'CONFIRMED' WHERE id = (SELECT order_id FROM token WHERE token_value = ?)";
         try {
             logger.debug("Executing SQL to confirm Order status by email: {}", sql);
+            logger.debug("TOKEN received for order confirmation: {}", token);
 
-            jdbcTemplate.update(sql, id);
-            return id;
-
+            jdbcTemplate.update(sql, token);
+            return token;
         } catch (DataAccessException ex) {
-            logger.error("Failed to confirm Order status by email for id: {}", id, ex);
+            logger.error("Failed to confirm Order status by email for token: {}", token, ex);
             throw ex;
         }
     }
+
+
+    @Override
+    public void disableTokenAfterConfirmation(String token) throws SQLException {
+        String sql = "UPDATE token SET is_enabled = false WHERE token_value = ?";
+        try {
+            logger.debug("Disabling token after order confirmation: {}", sql);
+            jdbcTemplate.update(sql, token);
+        } catch (DataAccessException ex) {
+            logger.error("Failed to disable token after confirmation for token: {}", token, ex);
+            throw ex;
+        }
+    }
+
 
     @Override
     public Order getOrderWithExtraProducts(Long orderId) {
@@ -187,6 +211,18 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }catch (DataAccessException ex){
             logger.error("Failed to expire unconfirmed orders", ex);
             throw ex;
+        }
+    }
+
+    @Override
+    public String getTheConfirmationToken(Long orderId) throws SQLException {
+        String sql = "SELECT token_value FROM token WHERE order_id = ? AND token_type = 'ORDER' AND is_enabled = true";
+        try {
+            logger.debug("Selecting the order token with query: " + sql);
+            return jdbcTemplate.queryForObject(sql, new Object[]{orderId}, String.class);  // Query for a single object
+        } catch (DataAccessException e) {
+            logger.error("Failed to fetch confirmation token for order ID: {}", orderId, e);
+            throw new SQLException("Token not found for order ID: " + orderId);
         }
     }
 
@@ -348,4 +384,5 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
             throw ex;
         }
     }
+
 }

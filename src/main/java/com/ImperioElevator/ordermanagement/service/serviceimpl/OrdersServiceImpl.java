@@ -81,9 +81,11 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
+        // Step 1: Retrieve order products associated with the order
         List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
         boolean priceChanged = false;
 
+        // Step 2: Check if the prices of any of the products have changed
         for (OrderProduct orderProduct : orderProducts) {
             Product product = productDao.findById(orderProduct.product().productId().id());
             if (product == null) {
@@ -93,6 +95,7 @@ public class OrdersServiceImpl implements OrdersService {
             if (!product.price().equals(orderProduct.priceOrder())) {
                 priceChanged = true;
 
+                // Step 3: Update the product price in the orderProduct
                 orderProduct = new OrderProduct(
                         orderProduct.orderId(),
                         order,
@@ -102,25 +105,38 @@ public class OrdersServiceImpl implements OrdersService {
                         orderProduct.product()
                 );
 
+                // Update the orderProduct with new price
                 orderProductDaoImpl.update(orderProduct);
             }
-
-            EmailDetails emailDetails = constructEmailDetails(order);
-            String emailResult = emailService.sendConfirmationMail(emailDetails, order.orderId().id());
-            System.out.println("Email Result: " + emailResult);
         }
 
-        if (priceChanged) {
+        // Step 4: Send confirmation email with token if necessary
+        if (!priceChanged) {
+            System.out.println("No price changes detected for order " + order.orderId().id());
+        } else {
             System.out.println("Prices were updated for the order " + order.orderId().id());
         }
 
+        // Step 5: Retrieve the token for the order
+        String token = orderDao.getTheConfirmationToken(order.orderId().id());
+        if (token == null || token.isEmpty()) {
+            throw new SQLException("No confirmation token found for order ID: " + order.orderId().id());
+        }
+
+        // Step 6: Construct and send confirmation email
+        EmailDetails emailDetails = constructEmailDetails(order, token);
+        String emailResult = emailService.sendConfirmationMail(emailDetails, order.orderId().id());
+        System.out.println("Email Result: " + emailResult);
+
+        // Step 7: Update the order status (e.g., "CONFIRMED")
         return orderDao.updateStatus(order);
     }
-    private EmailDetails constructEmailDetails(Order order) {
+
+    private EmailDetails constructEmailDetails(Order order, String token) {
         // Construct email details based on the order information
         String recipient = "cardaucmihai@gmail.com";
         String subject = "Order Confirmation";
-        String confirmationLink = "http://localhost:3000/sendMail/confirm/" + order.orderId().id();
+        String confirmationLink = "http://localhost:3000/sendMail/confirm/" + token;
         String messageBody = "Your order with ID " + order.orderId().id() + " has been successfully created.\n\n"
                 + "Please confirm your order by clicking the link below:\n"
                 + confirmationLink;

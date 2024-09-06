@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 //ToDo add token confirmation in email
@@ -27,55 +28,47 @@ public class UserServiceImpl implements UserSevice {
 
     @Override
     public Long addNewUser(User user) throws SQLException {
-
         Long userId = userDao.insert(user); // Insert the user and get the generated user ID
-        Long roleId = userDao.getRoleIdFromRoleName(user.role().name());
 
-        EmailDetails emailDetails = constructEmailDetails(user);
-        String emailResult = emailService.sendConfirmationMail(emailDetails, user.userId().id());
+        // Fetch all role IDs for the user's roles
+        List<Long> roleIds = user.roles().stream()
+                .map(role -> {
+                    try {
+                        return userDao.getRoleIdFromRoleName(role.name());
+                    } catch (SQLException e) {
+                        logger.error("Error fetching role ID for role: {}", role.name(), e);
+                        throw new RuntimeException(e);  // Handle the exception as needed
+                    }
+                })
+                .toList();  // Collect the role IDs
+
+        // Assign multiple roles to the user
+        userDao.giveToUserRoles(userId, roleIds);
+
+        // Generate confirmation token and send the email
+        String token = userDao.getTheConfirmationToken(userId);
+        EmailDetails emailDetails = constructEmailDetails(user, token);
+        String emailResult = emailService.sendConfirmationMail(emailDetails, userId);
         System.out.println("Email Result: " + emailResult);
-        userDao.giveToUserARole(userId, roleId);
+
         return userId;
     }
 
-    public class RoleMapper {
-
-        public static Long getRoleId(Role role) {
-            switch (role) {
-                case USER:
-                    return 1L;
-                case ADMIN:
-                    return 2L;
-                case MANAGER:
-                    return 3L;
-                case SALESMAN:
-                    return 4L;
-                default:
-                    throw new IllegalArgumentException("Unknown role: " + role);
-            }
-        }
-    }
 
 
-    // Userul confirma entitatea din email
-    @Override
-    public Long confirmUserByEmail(Long id) throws SQLException {
-        return userDao.confirmUserByEmailConfirmationLocked(id);
-    }
-
-    private EmailDetails constructEmailDetails(User user) {
+    private EmailDetails constructEmailDetails(User user, String token) {
         // Construct email details based on the order information
         String recipient = "cardaucmihai@gmail.com";
         String subject = "Registration Confirmation";
-        String confirmationLink = "http://localhost:3000/sendMail/confirm/" + user.userId().id();
-        String messageBody = "Your order with ID " + user.userId().id() + " has been successfully created.\n\n"
+        String confirmationLink = "http://localhost:3000/sendMail/confirm/user/" + token;
+        String messageBody = "Dear " + user.name().name() + ",\n\n"
                 + "Please confirm your user creation  by clicking the link below:\n"
                 + confirmationLink;
         EmailDetails details = new EmailDetails();
         details.setRecipient(recipient);
         details.setSubject(subject);
         details.setMsgBody(messageBody);
-        details.setOrderId(user.userId().id()); // Ensure orderId is included
+        details.setOrderId(user.userId().id());
         return details;
     }
 }

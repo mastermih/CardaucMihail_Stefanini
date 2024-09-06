@@ -1,11 +1,19 @@
 package com.ImperioElevator.ordermanagement.dao;
 
 import com.ImperioElevator.ordermanagement.entity.User;
-import com.ImperioElevator.ordermanagement.enumobects.Role;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface UserDao extends Dao<User> {
-    Long confirmUserByEmailConfirmationLocked(Long id) throws SQLException;
-    Long giveToUserARole(Long userId, Long roleId) throws SQLException;
+    //String confirmUserByEmailConfirmationLocked(String toke) throws SQLException;
+
+    String confirmUserByEmailConfirmationLocked(String token) throws SQLException;
+
+    void disableTokenAfterConfirmation(String token) throws SQLException;
+
+    void giveToUserRoles(Long userId, List<Long> roleIds) throws SQLException;
+    Long getRoleIdFromRoleName (String roleName) throws SQLException;
+    String getTheConfirmationToken(Long id)  throws SQLException;
+
 }

@@ -70,10 +70,12 @@ public class OrderController {
  }
 
  // The confirmaton that user send (From email link)
- @PostMapping("/sendMail/confirm/{id}")
- public Long sendConfirmationOrderEmailStatus(@RequestBody Id id) throws SQLException {
-  return emailService.updateOrderEmailConfirmStatus(id.id());
+ @PostMapping("/sendMail/confirm/{token}")
+ public String sendConfirmationOrderEmailStatus(@PathVariable("token") String token) throws SQLException {
+  logger.debug("Received token: {}", token);
+  return emailService.updateOrderEmailConfirmStatus(token);
  }
+
 
  @GetMapping("/orderProduct")
 
