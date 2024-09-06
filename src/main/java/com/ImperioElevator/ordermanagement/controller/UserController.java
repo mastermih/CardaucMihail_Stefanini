@@ -33,12 +33,9 @@ public class UserController {
         return userSevice.addNewUser(user);
     }
 
-    // The confirmaton that user send (From email link)
     @PostMapping("/sendMail/confirm/user/{token}")
     public String sendConfirmationUserEmailStatus(@PathVariable String token) throws SQLException {
-        logger.debug("Token received for user confirmation: {}", token);
         return emailService.updateUserEmailConfirmStatus(token);
     }
-
 
 }

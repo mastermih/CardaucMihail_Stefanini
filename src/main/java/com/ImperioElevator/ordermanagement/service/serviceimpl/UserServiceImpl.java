@@ -28,19 +28,19 @@ public class UserServiceImpl implements UserSevice {
 
     @Override
     public Long addNewUser(User user) throws SQLException {
-        Long userId = userDao.insert(user); // Insert the user and get the generated user ID
+        Long userId = userDao.insert(user);
 
-        // Fetch all role IDs for the user's roles
+        // Fetch all role ids for users roles
         List<Long> roleIds = user.roles().stream()
                 .map(role -> {
                     try {
                         return userDao.getRoleIdFromRoleName(role.name());
                     } catch (SQLException e) {
                         logger.error("Error fetching role ID for role: {}", role.name(), e);
-                        throw new RuntimeException(e);  // Handle the exception as needed
+                        throw new RuntimeException(e);
                     }
                 })
-                .toList();  // Collect the role IDs
+                .toList();  // Collect role ids
 
         // Assign multiple roles to the user
         userDao.giveToUserRoles(userId, roleIds);

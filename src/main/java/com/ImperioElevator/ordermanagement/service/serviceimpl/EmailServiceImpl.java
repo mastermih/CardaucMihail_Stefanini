@@ -95,10 +95,9 @@ public class EmailServiceImpl implements EmailService {
         userDao.confirmUserByEmailConfirmationLocked(token);
 
         // Then, disable the token after confirmation
-        userDao.disableTokenAfterConfirmation(token);
+       userDao.disableTokenAfterUserConfirmation(token);
 
         return "User confirmed and token disabled.";
     }
-
 
 }

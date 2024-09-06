@@ -21,6 +21,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
@@ -57,11 +58,11 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             // Insert the token into the token table
             logger.debug("Inserting token for userId: {}", userId);
             jdbcTemplate.update(tokenSql, new Object[] {
-                    null,                   // order_id (not applicable for user tokens)
-                    userId,                 // user_id
-                    "USER",                 // token_type
-                    token,                  // token_value
-                    true                    // is_enabled
+                    null,
+                    userId,
+                    "USER",
+                    token,
+                    true
             });
 
             return userId;
@@ -71,7 +72,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             throw e;
         }
     }
-
 
     @Override
     public Long update(User user) throws SQLException {
@@ -132,7 +132,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         String password = resultSet.getString("password");
         boolean account_not_locked = resultSet.getBoolean("account_not_locked");
 
-        // Fetch the roles associated with the user
         String roleSql = "SELECT r.role_name FROM roles r JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?";
         List<Role> roles = jdbcTemplate.query(roleSql, new Object[]{userId.id()}, (rs, rowNum) -> Role.valueOf(rs.getString("role_name")));
 
@@ -140,26 +139,39 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         return new User(userId, userName, email, password, roles, account_not_locked);
     }
 
-
+    @Transactional
     public String confirmUserByEmailConfirmationLocked(String token) throws SQLException {
-        String sql = "UPDATE user SET account_not_locked = TRUE WHERE id = (SELECT user_id FROM token WHERE token_value = ? AND is_enabled = true)";
-        String disableTokenSql = "UPDATE token SET is_enabled = false WHERE token_value = ?";
+        // Update user account to unlocked using the token
+        String updateUserSql = "UPDATE user SET account_not_locked = TRUE WHERE id = (SELECT user_id FROM token WHERE token_value = ? AND is_enabled = true AND token_type = 'USER')";
+
         try {
-            logger.debug("Executing SQL to confirm User account by email: {}", sql);
-            int rowsUpdated = jdbcTemplate.update(sql, token);
+            logger.debug("Executing SQL to confirm User account by email: {}", token);
+
+            // Update the user's account status using the token
+            int rowsUpdated = jdbcTemplate.update(updateUserSql, token);
             if (rowsUpdated == 0) {
-                throw new SQLException("No user found with the provided confirmation token.");
+                // 0 friedly respone nici o mila
+                throw new SQLException("No user found with the provided confirmation token or more probabily you already confirmed the user :).");
             }
-            jdbcTemplate.update(disableTokenSql, token);
+
+            logger.debug("User account unlocked using token: {}", token);
+
+
+            logger.debug("Token disabled for token_value: {}", token);
+
             return token;
+
         } catch (DataAccessException ex) {
             logger.error("Failed to confirm User account by email for token: {}", token, ex);
             throw ex;
         }
     }
 
+
+
+    // Poate fi stearsa
     @Override
-    public void disableTokenAfterConfirmation(String token) throws SQLException {
+    public void disableTokenAfterUserConfirmation(String token) throws SQLException {
         String sql = "UPDATE token SET is_enabled = false WHERE token_value = ?";
         try {
             logger.debug("Disabling token after user confirmation: {}", sql);
@@ -172,6 +184,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
 
+    //Trimitem rolurile in user_roles table
     @Override
     public void giveToUserRoles(Long userId, List<Long> roleIds) throws SQLException {
         String sql = "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)";

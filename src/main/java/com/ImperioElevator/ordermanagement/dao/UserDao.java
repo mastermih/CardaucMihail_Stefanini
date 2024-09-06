@@ -10,7 +10,7 @@ public interface UserDao extends Dao<User> {
 
     String confirmUserByEmailConfirmationLocked(String token) throws SQLException;
 
-    void disableTokenAfterConfirmation(String token) throws SQLException;
+    void disableTokenAfterUserConfirmation(String token) throws SQLException;
 
     void giveToUserRoles(Long userId, List<Long> roleIds) throws SQLException;
     Long getRoleIdFromRoleName (String roleName) throws SQLException;

@@ -116,18 +116,33 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public String updateOrderEmailConfirmStatus(String token) throws SQLException {
-        String sql = "UPDATE orders SET order_status = 'CONFIRMED' WHERE id = (SELECT order_id FROM token WHERE token_value = ?)";
+        String sql = "UPDATE orders SET order_status = 'CONFIRMED' WHERE id = (SELECT order_id FROM token WHERE token_value = ? AND token_type = 'ORDER' AND is_enabled = true)";
+        String disableTokenSql = "UPDATE token SET is_enabled = false WHERE token_value = ? AND token_type = 'ORDER'";
+
         try {
             logger.debug("Executing SQL to confirm Order status by email: {}", sql);
             logger.debug("TOKEN received for order confirmation: {}", token);
 
-            jdbcTemplate.update(sql, token);
+            // Attempt to update the order status
+            int rowsUpdated = jdbcTemplate.update(sql, token);
+
+            if (rowsUpdated == 0) {
+                // If no rows were updated, it means the token is invalid or already used
+                throw new SQLException("The order has already been confirmed or no valid confirmation token was found.");
+            }
+
+            // Disable the token after successful confirmation
+            jdbcTemplate.update(disableTokenSql, token);
+            logger.debug("Token disabled for token_value: {}", token);
+
             return token;
+
         } catch (DataAccessException ex) {
             logger.error("Failed to confirm Order status by email for token: {}", token, ex);
-            throw ex;
+            throw new SQLException("An error occurred while trying to confirm the order. Please try again.");
         }
     }
+
 
 
     @Override
