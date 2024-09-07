@@ -38,4 +38,14 @@ public class UserController {
         return emailService.updateUserEmailConfirmStatus(token);
     }
 
+    @PostMapping("createUser")
+    public Long addNewUser(@RequestBody User user)throws SQLException{
+        return userSevice.addNewUser(user);
+    }
+
+    @GetMapping("/uploadImage")
+    public String getUserImage(@RequestParam Long userId) throws SQLException{
+        return userSevice.getUserImage(userId);
+    }
+
 }

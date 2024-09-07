@@ -34,7 +34,8 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
 
     public Long insert(User user) throws SQLException {
-        String sql = "INSERT INTO user (username, email, password, account_not_locked) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)";
+
         String tokenSql = "INSERT INTO token (order_id, user_id, token_type, token_value, is_enabled) VALUES (?, ?, ?, ?, ?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -49,6 +50,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                 ps.setString(2, user.email().email());
                 ps.setString(3, user.password());
                 ps.setBoolean(4, user.accountNonLocked());
+                ps.setString(5, user.phoneNumber());
                 return ps;
             }, keyHolder);
 
@@ -57,7 +59,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
             // Insert the token into the token table
             logger.debug("Inserting token for userId: {}", userId);
-            jdbcTemplate.update(tokenSql, new Object[] {
+            jdbcTemplate.update(tokenSql, new Object[]{
                     null,
                     userId,
                     "USER",
@@ -130,13 +132,14 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         Name userName = new Name(resultSet.getString("username"));
         Email email = new Email(resultSet.getString("email"));
         String password = resultSet.getString("password");
+        String phoneNumber = resultSet.getString("phone_number");
         boolean account_not_locked = resultSet.getBoolean("account_not_locked");
 
         String roleSql = "SELECT r.role_name FROM roles r JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?";
         List<Role> roles = jdbcTemplate.query(roleSql, new Object[]{userId.id()}, (rs, rowNum) -> Role.valueOf(rs.getString("role_name")));
 
         // Return User object with multiple roles
-        return new User(userId, userName, email, password, roles, account_not_locked);
+        return new User(userId, userName, email, password, phoneNumber,roles, account_not_locked);
     }
 
     @Transactional
@@ -166,7 +169,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             throw ex;
         }
     }
-
 
 
     // Poate fi stearsa
@@ -200,7 +202,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
 
-
     @Override
     public Long getRoleIdFromRoleName(String roleName) throws SQLException {
         String sql = "SELECT id FROM roles WHERE role_name = ?";
@@ -224,6 +225,32 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             logger.error("Failed to fetch confirmation token for user ID: {}", userId, e);
             throw new SQLException("Token not found for user ID: " + userId);
         }
+    }
+
+    @Override
+    public Long addImageForUSer(Long userId, String imagePath) throws SQLException {
+        String sql = "UPDATE user SET image = ? WHERE id = ?";
+        try {
+            jdbcTemplate.update(sql, imagePath, userId);
+            logger.debug("Successfully added image path to user with id: " + userId);
+        } catch (DataAccessException e) {
+            logger.error("Failed to add image path for user with id: " + userId, e);
+            throw new SQLException("Failed to add image path for user", e);
+        }
+        return userId;
+    }
+
+    @Override
+    public String getUserImage(Long userId) throws SQLException {
+        String sql = "SELECT image FROM user WHERE id = ?";
+        try{
+            logger.debug("Geting the user image " + sql);
+            return jdbcTemplate.queryForObject(sql, new Object[]{userId}, String.class);
+        }catch (DataAccessException e){
+            logger.error("Failed to get the user image ", e,  sql);
+            throw e;
+        }
+
     }
 
 }

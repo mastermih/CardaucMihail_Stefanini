@@ -1,6 +1,7 @@
 package com.ImperioElevator.ordermanagement.dao;
 
 import com.ImperioElevator.ordermanagement.entity.User;
+import liquibase.sql.Sql;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,5 +16,6 @@ public interface UserDao extends Dao<User> {
     void giveToUserRoles(Long userId, List<Long> roleIds) throws SQLException;
     Long getRoleIdFromRoleName (String roleName) throws SQLException;
     String getTheConfirmationToken(Long id)  throws SQLException;
-
+    Long addImageForUSer (Long userId, String  imagePath) throws SQLException;
+    String getUserImage(Long userId) throws SQLException;
 }

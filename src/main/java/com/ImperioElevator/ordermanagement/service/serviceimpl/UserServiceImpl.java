@@ -10,6 +10,7 @@ import com.ImperioElevator.ordermanagement.service.UserSevice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -54,6 +55,15 @@ public class UserServiceImpl implements UserSevice {
         return userId;
     }
 
+    @Override
+    public Long addImageForUSer(Long userId, String  image) throws SQLException {
+        return userDao.addImageForUSer(userId, image);
+    }
+
+    @Override
+    public String getUserImage(Long userId) throws SQLException {
+        return userDao.getUserImage(userId);
+    }
 
 
     private EmailDetails constructEmailDetails(User user, String token) {
@@ -71,4 +81,7 @@ public class UserServiceImpl implements UserSevice {
         details.setOrderId(user.userId().id());
         return details;
     }
+
+
+
 }
