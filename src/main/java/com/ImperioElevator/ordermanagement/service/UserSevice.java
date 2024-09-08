@@ -11,4 +11,5 @@ public interface UserSevice {
     Long addNewUser (User user) throws SQLException;
     Long addImageForUSer (Long userId, String imagePath) throws SQLException;
     String getUserImage(Long userId)throws SQLException;
+    User getUserProfile(Long userId) throws SQLException;
 }

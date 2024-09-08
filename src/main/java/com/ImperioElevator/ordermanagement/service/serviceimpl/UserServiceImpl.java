@@ -65,6 +65,11 @@ public class UserServiceImpl implements UserSevice {
         return userDao.getUserImage(userId);
     }
 
+    @Override
+    public User getUserProfile(Long userId) throws SQLException {
+        return userDao.findById(userId);
+    }
+
 
     private EmailDetails constructEmailDetails(User user, String token) {
         // Construct email details based on the order information
@@ -81,6 +86,7 @@ public class UserServiceImpl implements UserSevice {
         details.setOrderId(user.userId().id());
         return details;
     }
+
 
 
 

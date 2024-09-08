@@ -7,6 +7,7 @@ import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
 import com.ImperioElevator.ordermanagement.service.serviceimpl.EmailServiceImpl;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
+import liquibase.sql.Sql;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,4 +49,8 @@ public class UserController {
         return userSevice.getUserImage(userId);
     }
 
+    @GetMapping("/UserProfile")
+    public User getUserProfile(@RequestParam Long userId) throws SQLException{
+        return userSevice.getUserProfile(userId);
+    }
 }
