@@ -271,7 +271,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         Status orderStatus = Status.valueOf(resultSet.getString("order_status"));
         return new Order(
                 new Id(orderId),
-                new User(new Id(userId), null, null, null, null, null,true),
+                new User(new Id(userId), null, null, null, null, null, null,true),
                 orderStatus,
                 new CreateDateTime(createdDateTime),
                 new UpdateDateTime(updatedDateTime),

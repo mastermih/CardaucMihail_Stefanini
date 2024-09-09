@@ -77,17 +77,17 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public Long update(User user) throws SQLException {
-        String sql = "UPDATE user SET username = ?, email = ?, password = ?, role = ? ,account_not_locked = ? WHERE id = ? ";
+        String sql = "UPDATE user SET username = ?, email = ?, password = ?, image = ?, phone_number = ? WHERE id = ? ";
 
         try {
             logger.debug("Execute the user update: {}", sql);
             jdbcTemplate.update(sql,
-                    user.userId().id(),
-                    user.name().name(),
-                    user.email().email(),
-                    user.password(),
-                    user.roles(),
-                    user.accountNonLocked());
+                    user.name().name(),          // username
+                    user.email().email(),        // email
+                    user.password(),             // password
+                    user.image(),                // image (path to the image)
+                    user.phoneNumber(),          // phone_number
+                    user.userId().id());         // userId, in WHERE clause
             logger.info("Successfully updated Product with id: {}", user.userId().id());
             return user.userId().id();
         } catch (DataAccessException e) {
@@ -133,13 +133,14 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         Email email = new Email(resultSet.getString("email"));
         String password = resultSet.getString("password");
         String phoneNumber = resultSet.getString("phone_number");
+        String image = resultSet.getString("image");
         boolean account_not_locked = resultSet.getBoolean("account_not_locked");
 
         String roleSql = "SELECT r.role_name FROM roles r JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?";
         List<Role> roles = jdbcTemplate.query(roleSql, new Object[]{userId.id()}, (rs, rowNum) -> Role.valueOf(rs.getString("role_name")));
 
         // Return User object with multiple roles
-        return new User(userId, userName, email, password, phoneNumber,roles, account_not_locked);
+        return new User(userId, userName, email, password, phoneNumber, image, roles, account_not_locked);
     }
 
     @Transactional

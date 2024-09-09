@@ -3,6 +3,7 @@ package com.ImperioElevator.ordermanagement.controller;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.EntityCreationResponse;
 import com.ImperioElevator.ordermanagement.entity.User;
+import com.ImperioElevator.ordermanagement.entity.UserCreationResponse;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
@@ -31,11 +32,10 @@ public class UserController {
         this.userSevice = userSevice;
         this.emailService = emailService;
     }
-    //ToDo un response normal
     @PostMapping("createUser/Superior")
-    public ResponseEntity<EntityCreationResponse> addNewUserSuperior(@RequestBody User user)throws SQLException{
+    public ResponseEntity<UserCreationResponse> addNewUserSuperior(@RequestBody User user)throws SQLException{
           Long userId = userSevice.addNewUser(user);
-          EntityCreationResponse response = new EntityCreationResponse(
+        UserCreationResponse response = new UserCreationResponse(
                   userId,
                   "User " + userId + " was added successfully"
           );
@@ -58,8 +58,12 @@ public class UserController {
         return userSevice.getUserImage(userId);
     }
 
-    @GetMapping("/UserProfile")
-    public User getUserProfile(@RequestParam Long userId) throws SQLException{
+    @GetMapping("/UserProfile/{userId}")
+    public User getUserProfile(@PathVariable Long userId) throws SQLException{
         return userSevice.getUserProfile(userId);
+    }
+    @PutMapping("/UserProfile")
+    public Long updateUser(@RequestBody User user) throws  SQLException{
+        return userSevice.updateUser(user);
     }
 }

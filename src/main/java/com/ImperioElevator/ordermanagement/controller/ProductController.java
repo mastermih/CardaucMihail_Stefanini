@@ -43,7 +43,7 @@ public class ProductController {
 
 
     @GetMapping("catalog/filter")
-    public Paginable<Product> filterProucts(@RequestParam(required = false) String category_type,
+    public Paginable<Product> filterProucts (@RequestParam(required = false) String category_type,
                                             @RequestParam(required = false) ProductName product_name,
                                             @RequestParam(required = false) ProductBrand product_brand,
                                             @RequestParam(required = false) Double minPrice,

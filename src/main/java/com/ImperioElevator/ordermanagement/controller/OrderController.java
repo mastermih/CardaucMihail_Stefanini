@@ -22,7 +22,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @RestController
-//ToDo fiecare controler trebu sa aiba cite un comentariu ce face
+//ToDo every controller must have an comment explication what is it meant for
 public class OrderController {
 
  private final OrdersService ordersService;

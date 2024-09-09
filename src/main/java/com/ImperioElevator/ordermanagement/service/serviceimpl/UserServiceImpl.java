@@ -70,6 +70,11 @@ public class UserServiceImpl implements UserSevice {
         return userDao.findById(userId);
     }
 
+    @Override
+    public Long updateUser(User user) throws SQLException {
+        return userDao.update(user);
+    }
+
 
     private EmailDetails constructEmailDetails(User user, String token) {
         // Construct email details based on the order information
