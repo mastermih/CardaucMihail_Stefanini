@@ -23,6 +23,12 @@
             <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="image" type="VARCHAR(255)">
+            </column>
+            <column name="account_not_locked" type="BOOLEAN">
+            </column>
+            <column name="phone_number" type="VARCHAR(255)">
+            </column>
         </createTable>
     </changeSet>
 

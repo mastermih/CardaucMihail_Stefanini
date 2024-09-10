@@ -1,4 +1,4 @@
-id,username,email,password
+id,username,email,password,account_not_locked,phone_number
 1,john_doe,john@example.com,pass1234
 2,jane_smith,jane@example.com,securepass
 3,bob_jones,bob@example.com,123password

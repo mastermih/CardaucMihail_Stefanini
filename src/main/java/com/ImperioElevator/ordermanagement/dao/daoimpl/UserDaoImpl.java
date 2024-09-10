@@ -77,17 +77,17 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public Long update(User user) throws SQLException {
-        String sql = "UPDATE user SET username = ?, email = ?, password = ?, image = ?, phone_number = ? WHERE id = ? ";
+        String sql = "UPDATE user SET username = ?, email = ?, image = ?, phone_number = ? WHERE id = ? ";
 
         try {
             logger.debug("Execute the user update: {}", sql);
             jdbcTemplate.update(sql,
-                    user.name().name(),          // username
-                    user.email().email(),        // email
-                    user.password(),             // password
-                    user.image(),                // image (path to the image)
-                    user.phoneNumber(),          // phone_number
-                    user.userId().id());         // userId, in WHERE clause
+                    user.name().name(),
+                    user.email().email(),
+                 //   user.password(),             // password have to be removed
+                    user.image(),
+                    user.phoneNumber(),
+                    user.userId().id());
             logger.info("Successfully updated Product with id: {}", user.userId().id());
             return user.userId().id();
         } catch (DataAccessException e) {
@@ -110,7 +110,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             throw e;
         }
     }
-
+    //ToDO remove password form the Select from password
     @Override
     public User findById(Long id) throws SQLException {
         String sql = "SELECT * FROM user WHERE id = ?";

@@ -2,9 +2,9 @@ package com.ImperioElevator.ordermanagement.dto;
 
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
-
 public class OrderWithProductsDTO {
         private Order order;
         private List<OrderProduct> orderProducts;

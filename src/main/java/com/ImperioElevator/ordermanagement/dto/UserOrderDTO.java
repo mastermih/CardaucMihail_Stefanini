@@ -4,9 +4,9 @@ import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.CreateDateTime;
 import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
-
 public class UserOrderDTO {
     private User userId;
     private CreateDateTime createdDate;

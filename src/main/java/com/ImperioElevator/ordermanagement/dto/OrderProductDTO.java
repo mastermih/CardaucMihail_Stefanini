@@ -4,6 +4,7 @@ package com.ImperioElevator.ordermanagement.dto;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Price;
 import com.ImperioElevator.ordermanagement.valueobjects.Quantity;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class OrderProductDTO {
     private Id prdoductId;

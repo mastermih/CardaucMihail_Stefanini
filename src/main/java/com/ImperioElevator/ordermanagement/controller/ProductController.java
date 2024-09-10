@@ -7,9 +7,6 @@ import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.service.ProductService;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
 import com.ImperioElevator.ordermanagement.valueobjects.Number;
-import liquibase.pro.packaged.P;
-import liquibase.pro.packaged.S;
-import liquibase.sql.Sql;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +28,7 @@ public class ProductController {
                                                     @RequestParam("categoryType") String categoryType) throws SQLException {
         return productService.fiendProductForMainPage(limit, categoryType);
     }
+
     @GetMapping("/product/{id}")
     public Product getFindProductById(@PathVariable("id") Long id) throws SQLException {
         return productService.findProductById(id);
@@ -41,19 +39,17 @@ public class ProductController {
         return productService.findProductByName(name);
     }
 
-
     @GetMapping("catalog/filter")
     public Paginable<Product> filterProucts (@RequestParam(required = false) String category_type,
-                                            @RequestParam(required = false) ProductName product_name,
-                                            @RequestParam(required = false) ProductBrand product_brand,
-                                            @RequestParam(required = false) Double minPrice,
-                                            @RequestParam(required = false) Double maxPrice,
-                                            @RequestParam(required = false) Double electricity_consumption,
-                                            @RequestParam Long page,
-                                            @RequestParam Long pageSize) throws SQLException {
+                                             @RequestParam(required = false) ProductName product_name,
+                                             @RequestParam(required = false) ProductBrand product_brand,
+                                             @RequestParam(required = false) Double minPrice,
+                                             @RequestParam(required = false) Double maxPrice,
+                                             @RequestParam(required = false) Double electricity_consumption,
+                                             @RequestParam Long page,
+                                             @RequestParam Long pageSize) throws SQLException {
 
         FilterComponents filterComponents = new FilterComponents(minPrice, maxPrice, category_type, product_brand, product_name, electricity_consumption);
         return productService.filterProducts(filterComponents, page, pageSize);
     }
-
 }

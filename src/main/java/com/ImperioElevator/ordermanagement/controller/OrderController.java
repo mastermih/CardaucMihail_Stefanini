@@ -23,6 +23,8 @@ import java.util.List;
 
 @RestController
 //ToDo every controller must have an comment explication what is it meant for
+//ToDo add comments for all methods in the controller Swagger form
+
 public class OrderController {
 
  private final OrdersService ordersService;

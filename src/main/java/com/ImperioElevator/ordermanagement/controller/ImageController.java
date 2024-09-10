@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 
 @RestController
-//@RequestMapping("/api")
+//ToDo add comments for all methods in the controller Swagger form
 public class ImageController {
 
 

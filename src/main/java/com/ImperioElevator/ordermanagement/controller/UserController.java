@@ -9,7 +9,8 @@ import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
 import com.ImperioElevator.ordermanagement.service.serviceimpl.EmailServiceImpl;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
-import liquibase.sql.Sql;
+import io.swagger.v3.oas.annotations.Operation;
+//import liquibase.sql.Sql;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 
 import java.sql.SQLException;
-
+//ToDo add comments for all methods in the controller Swagger form
 @RestController
 public class UserController {
     private final UserSevice userSevice;
@@ -58,6 +59,10 @@ public class UserController {
         return userSevice.getUserImage(userId);
     }
 
+    @Operation(
+            summary = "Get a specific user by ID",
+            description = "Fetch a user from the system by their unique identifier"
+    )
     @GetMapping("/UserProfile/{userId}")
     public User getUserProfile(@PathVariable Long userId) throws SQLException{
         return userSevice.getUserProfile(userId);
