@@ -7,6 +7,7 @@ import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,22 @@ public class UserServiceImpl implements UserSevice {
         this.emailService = emailService;
     }
 
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(9);
+
     @Override
     public Long addNewUser(User user) throws SQLException {
-        Long userId = userDao.insert(user);
+        String encryptedPassword = encoder.encode(user.password());
+        User encriptedUser = new User(
+                user.userId(),
+                user.name(),
+                user.email(),
+                encryptedPassword,  // Set the encrypted password here
+                user.phoneNumber(),
+                user.image(),
+                user.roles(),
+                user.accountNonLocked()
+        );
+        Long userId = userDao.insert(encriptedUser);
 
         // Fetch all role ids for users roles
         List<Long> roleIds = user.roles().stream()

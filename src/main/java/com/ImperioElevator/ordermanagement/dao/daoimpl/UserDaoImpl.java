@@ -110,7 +110,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             throw e;
         }
     }
-    //ToDO remove password form the Select from password
+    //ToDO remove password form the Select from user
     @Override
     public User findById(Long id) throws SQLException {
         String sql = "SELECT * FROM user WHERE id = ?";
@@ -154,7 +154,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             // Update the user's account status using the token
             int rowsUpdated = jdbcTemplate.update(updateUserSql, token);
             if (rowsUpdated == 0) {
-                // 0 friedly respone nici o mila
+                // 0 friendly response nici o mila
                 throw new SQLException("No user found with the provided confirmation token or more probabily you already confirmed the user :).");
             }
 
