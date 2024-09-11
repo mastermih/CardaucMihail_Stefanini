@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserSevice, UserDetailsService {
     public String verifyUser(LoginRequest user) {
         Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(user.email(), user.password()));
        if(authentication.isAuthenticated())
-           return generateToken();
+           return jwtService.generateToken(user.email());
        else {
            return "Failed";
        }

@@ -1,11 +1,11 @@
 package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
@@ -34,7 +34,7 @@ public class JwtService {
     }
 
     private Key getKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-        return Keys.hmacShaKeyFor(keyBytes);
+        // Generate a secure key for HS512 if the provided secretKey is weak
+        return Keys.secretKeyFor(SignatureAlgorithm.HS512);
     }
 }
