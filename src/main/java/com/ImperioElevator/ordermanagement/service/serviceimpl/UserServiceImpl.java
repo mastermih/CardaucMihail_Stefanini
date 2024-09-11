@@ -3,10 +3,22 @@ package com.ImperioElevator.ordermanagement.service.serviceimpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.EmailDetails;
+import com.ImperioElevator.ordermanagement.entity.LoginRequest;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
+import com.sun.security.auth.UserPrincipal;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.Authentication;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,17 +27,24 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.ImperioElevator.ordermanagement.entity.TokenGenerator.generateToken;
 
 @Service
-//ToDo add token confirmation in email
-public class UserServiceImpl implements UserSevice {
+public class UserServiceImpl implements UserSevice, UserDetailsService {
     public final UserDaoImpl userDao;
     public final EmailServiceImpl emailService;
     private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
+    private  final JwtService jwtService;
 
-    public UserServiceImpl(UserDaoImpl userDao, EmailServiceImpl emailService) {
+    @Autowired
+    @Lazy
+    AuthenticationManager authManager;
+    public UserServiceImpl(UserDaoImpl userDao, EmailServiceImpl emailService, JwtService jwtService) {
         this.userDao = userDao;
         this.emailService = emailService;
+        this.jwtService = jwtService;
     }
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(9);
@@ -37,7 +56,7 @@ public class UserServiceImpl implements UserSevice {
                 user.userId(),
                 user.name(),
                 user.email(),
-                encryptedPassword,  // Set the encrypted password here
+                encryptedPassword,  // Set the encrypted password
                 user.phoneNumber(),
                 user.image(),
                 user.roles(),
@@ -89,6 +108,16 @@ public class UserServiceImpl implements UserSevice {
         return userDao.update(user);
     }
 
+    @Override
+    public String verifyUser(LoginRequest user) {
+        Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(user.email(), user.password()));
+       if(authentication.isAuthenticated())
+           return generateToken();
+       else {
+           return "Failed";
+       }
+    }
+
 
     private EmailDetails constructEmailDetails(User user, String token) {
         // Construct email details based on the order information
@@ -107,6 +136,24 @@ public class UserServiceImpl implements UserSevice {
     }
 
 
+    @Override
+    public UserDetails loadUserByUsername(String email) {
+        User user = null;  // Ensure findByUsername is implemented in UserDaoImpl
+        try {
+            user = userDao.findByUserEmail(email);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
 
-
+        return new org.springframework.security.core.userdetails.User(
+                user.email().email(),
+                user.password(),
+                user.roles().stream()
+                        .map(role -> new SimpleGrantedAuthority(role.name()))
+                        .collect(Collectors.toList())
+        );
+    }
 }

@@ -20,6 +20,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -84,7 +85,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             jdbcTemplate.update(sql,
                     user.name().name(),
                     user.email().email(),
-                 //   user.password(),             // password have to be removed
+                    //   user.password(),             // password have to be removed
                     user.image(),
                     user.phoneNumber(),
                     user.userId().id());
@@ -110,6 +111,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             throw e;
         }
     }
+
     //ToDO remove password form the Select from user
     @Override
     public User findById(Long id) throws SQLException {
@@ -172,7 +174,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
 
-    // Poate fi stearsa
     @Override
     public void disableTokenAfterUserConfirmation(String token) throws SQLException {
         String sql = "UPDATE token SET is_enabled = false WHERE token_value = ?";
@@ -187,7 +188,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
 
-    //Trimitem rolurile in user_roles table
+    //Send roles in user_roles table
     @Override
     public void giveToUserRoles(Long userId, List<Long> roleIds) throws SQLException {
         String sql = "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)";
@@ -244,14 +245,28 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     @Override
     public String getUserImage(Long userId) throws SQLException {
         String sql = "SELECT image FROM user WHERE id = ?";
-        try{
+        try {
             logger.debug("Geting the user image " + sql);
             return jdbcTemplate.queryForObject(sql, new Object[]{userId}, String.class);
-        }catch (DataAccessException e){
-            logger.error("Failed to get the user image ", e,  sql);
+        } catch (DataAccessException e) {
+            logger.error("Failed to get the user image ", e, sql);
             throw e;
         }
 
     }
 
+    @Override
+    public User findByUserEmail(String email) throws SQLException {
+        String sql = "SELECT * FROM user WHERE email = ?";
+        try {
+            logger.debug("Executing SQL to find User by email: {}", sql);
+            return jdbcTemplate.queryForObject(sql, new Object[]{email}, (resultSet, i) -> mapResultSetToEntity(resultSet));
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No User found with email: {}", email, e);
+            return null;
+        } catch (DataAccessException ex) {
+            logger.error("Failed to find User with email: {}", email, ex);
+            throw ex;
+        }
+    }
 }

@@ -2,12 +2,14 @@ package com.ImperioElevator.ordermanagement.controller;
 
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.EntityCreationResponse;
+import com.ImperioElevator.ordermanagement.entity.LoginRequest;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.entity.UserCreationResponse;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
 import com.ImperioElevator.ordermanagement.service.serviceimpl.EmailServiceImpl;
+import com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import io.swagger.v3.oas.annotations.Operation;
 //import liquibase.sql.Sql;
@@ -70,5 +72,9 @@ public class UserController {
     @PutMapping("/UserProfile")
     public Long updateUser(@RequestBody User user) throws  SQLException{
         return userSevice.updateUser(user);
+    }
+    @PostMapping("/login")
+    public String login(@RequestBody LoginRequest user){
+        return userSevice.verifyUser(user);
     }
 }

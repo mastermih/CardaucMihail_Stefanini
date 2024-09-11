@@ -1,6 +1,7 @@
 package com.ImperioElevator.ordermanagement.dao;
 
 import com.ImperioElevator.ordermanagement.entity.User;
+import org.springframework.security.core.userdetails.UserDetails;
 //import liquibase.sql.Sql;
 
 import java.sql.SQLException;
@@ -18,4 +19,5 @@ public interface UserDao extends Dao<User> {
     String getTheConfirmationToken(Long id)  throws SQLException;
     Long addImageForUSer (Long userId, String  imagePath) throws SQLException;
     String getUserImage(Long userId) throws SQLException;
+    User findByUserEmail (String email) throws SQLException;
 }

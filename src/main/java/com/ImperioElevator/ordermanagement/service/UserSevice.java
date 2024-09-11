@@ -1,5 +1,6 @@
 package com.ImperioElevator.ordermanagement.service;
 
+import com.ImperioElevator.ordermanagement.entity.LoginRequest;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
 //import liquibase.sql.Sql;
@@ -13,4 +14,5 @@ public interface UserSevice {
     String getUserImage(Long userId)throws SQLException;
     User getUserProfile(Long userId) throws SQLException;
     Long updateUser(User user) throws SQLException;
+    String verifyUser(LoginRequest user);
 }
