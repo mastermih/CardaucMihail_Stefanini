@@ -2,6 +2,7 @@ package com.ImperioElevator.ordermanagement.controller;
 
 
 import com.ImperioElevator.ordermanagement.service.UserSevice;
+import org.apache.juli.logging.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ public class ImageController {
     public ImageController(UserSevice userSevice){
         this.userService = userSevice;
     }
+    private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
 
     // private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
     @PostMapping("/uploadImage")
@@ -35,6 +37,13 @@ public class ImageController {
             if (image.isEmpty() || !isImage(image)) {
                 return new ResponseEntity<>("Please upload a valid image file.", HttpStatus.BAD_REQUEST);
             }
+
+            String curentImagePath = userService.getUserImage(userId);
+
+            if(curentImagePath != null){
+                deleteExistingImage(curentImagePath);
+            }
+
 
             // Create a directory if it doesn't exist
             File uploadDir = new File(UPLOAD_DIRECTORY);
@@ -61,5 +70,24 @@ public class ImageController {
         // Check for valid image content types (jpeg, png, etc.)
         String contentType = file.getContentType();
         return contentType.equals("image/jpeg") || contentType.equals("image/png");
+    }
+
+    private void deleteExistingImage(String imagePath) throws IOException {
+        Path fullPath = null; //The problem was in the image path that is saved in the db
+        if (imagePath.contains("/")) {
+            String[] pathParts = imagePath.split("/");
+            String fileName = pathParts[pathParts.length - 1];
+            fullPath = Paths.get(UPLOAD_DIRECTORY, fileName).normalize();
+        } else {
+            logger.error("Something went wrong with image remove: ", fullPath);
+        }
+        File imageFile = fullPath.toFile();
+
+          if(imageFile.exists()){
+              boolean deleted = imageFile.delete();
+              if(!deleted){
+                  throw new IOException("Failed to delete the old image");
+              }
+          }
     }
 }

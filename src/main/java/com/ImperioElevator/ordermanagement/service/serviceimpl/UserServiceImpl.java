@@ -4,50 +4,43 @@ import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.EmailDetails;
 import com.ImperioElevator.ordermanagement.entity.LoginRequest;
-import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.User;
-import com.ImperioElevator.ordermanagement.enumobects.Role;
+import com.ImperioElevator.ordermanagement.security.JwtService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
-import com.sun.security.auth.UserPrincipal;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static com.ImperioElevator.ordermanagement.entity.TokenGenerator.generateToken;
 
 @Service
-public class UserServiceImpl implements UserSevice, UserDetailsService {
+public class UserServiceImpl implements UserSevice {
     public final UserDaoImpl userDao;
     public final EmailServiceImpl emailService;
     private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
     private  final JwtService jwtService;
+    private final BCryptPasswordEncoder encoder;
+
+
 
     @Autowired
     @Lazy
     AuthenticationManager authManager;
-    public UserServiceImpl(UserDaoImpl userDao, EmailServiceImpl emailService, JwtService jwtService) {
+    public UserServiceImpl(UserDaoImpl userDao, EmailServiceImpl emailService, JwtService jwtService,BCryptPasswordEncoder encoder) {
         this.userDao = userDao;
         this.emailService = emailService;
         this.jwtService = jwtService;
+        this.encoder = encoder;
     }
 
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(9);
 
     @Override
     public Long addNewUser(User user) throws SQLException {
@@ -109,14 +102,29 @@ public class UserServiceImpl implements UserSevice, UserDetailsService {
     }
 
     @Override
-    public String verifyUser(LoginRequest user) {
-        Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(user.email(), user.password()));
-       if(authentication.isAuthenticated())
-           return jwtService.generateToken(user.email());
-       else {
-           return "Failed";
-       }
+    public String verifyUser(LoginRequest loginRequest) {
+        // Authenticate the user using Spring Security
+        Authentication authentication = authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
+        );
+
+        // If authentication is successful, extract user details
+        if (authentication.isAuthenticated()) {
+            // Extract UserDetails from the Authentication object
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            // Extract roles from UserDetails (as a list of strings)
+            List<String> roles = userDetails.getAuthorities().stream()
+                    .map(grantedAuthority -> grantedAuthority.getAuthority())  // Extract the role name
+                    .toList();
+
+            // Generate JWT token with the email (username) and roles
+            return jwtService.generateToken(userDetails.getUsername(), roles);
+        } else {
+            return "Failed";
+        }
     }
+
 
 
     private EmailDetails constructEmailDetails(User user, String token) {
@@ -136,24 +144,24 @@ public class UserServiceImpl implements UserSevice, UserDetailsService {
     }
 
 
-    @Override
-    public UserDetails loadUserByUsername(String email) {
-        User user = null;  // Ensure findByUsername is implemented in UserDaoImpl
-        try {
-            user = userDao.findByUserEmail(email);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-
-        return new org.springframework.security.core.userdetails.User(
-                user.email().email(),
-                user.password(),
-                user.roles().stream()
-                        .map(role -> new SimpleGrantedAuthority(role.name()))
-                        .collect(Collectors.toList())
-        );
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String email) { // Have to change the name in loaUSerByEmail
+//        User user = null;
+//        try {
+//            user = userDao.findByUserEmail(email);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        if (user == null) {
+//            throw new UsernameNotFoundException("User not found");
+//        }
+//
+//        return new org.springframework.security.core.userdetails.User(
+//                user.email().email(),
+//                user.password(),
+//                user.roles().stream()
+//                        .map(role -> new SimpleGrantedAuthority(role.name()))
+//                        .collect(Collectors.toList())
+//        );
+//    }
 }
