@@ -4,6 +4,7 @@ import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.valueobjects.Email;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Name;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public record User(
         Id userId,
         Name name,
         Email email,
+       @JsonIgnore
         String password,
         String phoneNumber,
         String image,

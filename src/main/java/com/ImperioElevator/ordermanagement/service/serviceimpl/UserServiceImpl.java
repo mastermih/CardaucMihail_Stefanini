@@ -7,9 +7,7 @@ import com.ImperioElevator.ordermanagement.entity.LoginRequest;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.security.JwtService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,17 +26,15 @@ public class UserServiceImpl implements UserSevice {
     private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
     private  final JwtService jwtService;
     private final BCryptPasswordEncoder encoder;
+    private final AuthenticationManager authManager;
 
 
-
-    @Autowired
-    @Lazy
-    AuthenticationManager authManager;
-    public UserServiceImpl(UserDaoImpl userDao, EmailServiceImpl emailService, JwtService jwtService,BCryptPasswordEncoder encoder) {
+    public UserServiceImpl(UserDaoImpl userDao, EmailServiceImpl emailService, JwtService jwtService,BCryptPasswordEncoder encoder, AuthenticationManager authManager) {
         this.userDao = userDao;
         this.emailService = emailService;
         this.jwtService = jwtService;
         this.encoder = encoder;
+        this.authManager = authManager;
     }
 
 
@@ -103,23 +99,21 @@ public class UserServiceImpl implements UserSevice {
 
     @Override
     public String verifyUser(LoginRequest loginRequest) {
-        // Authenticate the user using Spring Security
+        // Authenticate the user with Security
         Authentication authentication = authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
         );
 
-        // If authentication is successful, extract user details
         if (authentication.isAuthenticated()) {
             // Extract UserDetails from the Authentication object
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-            // Extract roles from UserDetails (as a list of strings)
             List<String> roles = userDetails.getAuthorities().stream()
-                    .map(grantedAuthority -> grantedAuthority.getAuthority())  // Extract the role name
+                    .map(grantedAuthority -> grantedAuthority.getAuthority())
                     .toList();
+            System.out.println("Roles extracted: " + roles);  // Debugging print statement
 
-            // Generate JWT token with the email (username) and roles
-            return jwtService.generateToken(userDetails.getUsername(), roles);
+            return jwtService.generateToken(userDetails.getUsername(), roles, userDetails.isAccountNonLocked());
         } else {
             return "Failed";
         }
@@ -143,25 +137,4 @@ public class UserServiceImpl implements UserSevice {
         return details;
     }
 
-
-//    @Override
-//    public UserDetails loadUserByUsername(String email) { // Have to change the name in loaUSerByEmail
-//        User user = null;
-//        try {
-//            user = userDao.findByUserEmail(email);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        if (user == null) {
-//            throw new UsernameNotFoundException("User not found");
-//        }
-//
-//        return new org.springframework.security.core.userdetails.User(
-//                user.email().email(),
-//                user.password(),
-//                user.roles().stream()
-//                        .map(role -> new SimpleGrantedAuthority(role.name()))
-//                        .collect(Collectors.toList())
-//        );
-//    }
 }

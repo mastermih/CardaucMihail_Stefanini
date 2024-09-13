@@ -18,7 +18,6 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 
 @RestController
-//ToDo add comments for all methods in the controller Swagger form
 public class ImageController {
 
 
@@ -29,7 +28,6 @@ public class ImageController {
     }
     private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
 
-    // private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
     @PostMapping("/uploadImage")
     public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile image, @RequestParam("userId") Long userId) {
         try {
@@ -51,11 +49,11 @@ public class ImageController {
                 uploadDir.mkdirs();
             }
 
-            // Create a unique file name, e.g., userId + original file name
+            // Create a unique file name
             String fileName = userId + "_" + image.getOriginalFilename();
             Path filePath = Paths.get(UPLOAD_DIRECTORY, fileName);
 
-            // Save the image on the server
+            // Save the image on server
             Files.write(filePath, image.getBytes());
             String relativePath = "userProfileImages/" + fileName;
 
@@ -67,7 +65,7 @@ public class ImageController {
     }
 
     private boolean isImage(MultipartFile file) {
-        // Check for valid image content types (jpeg, png, etc.)
+        // Check for valid image content types (jpeg, png)
         String contentType = file.getContentType();
         return contentType.equals("image/jpeg") || contentType.equals("image/png");
     }
