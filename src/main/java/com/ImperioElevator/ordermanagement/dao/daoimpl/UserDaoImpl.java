@@ -112,7 +112,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         }
     }
 
-    //ToDO remove password form the Select from user
     @Override
     public User findById(Long id) throws SQLException {
         String sql = "SELECT * FROM user WHERE id = ?";

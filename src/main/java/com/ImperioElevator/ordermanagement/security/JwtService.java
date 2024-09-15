@@ -5,15 +5,15 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class JwtService {
@@ -28,7 +28,6 @@ public class JwtService {
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", roles);
         claims.put("account_not_locked", account_not_locked);
-        System.out.println("JWT Claims: " + claims);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -60,10 +59,8 @@ public class JwtService {
                 .getBody();
     }
 
-    public boolean validateToken(String token, UserDetails userDetails) {
-        final String userName = extractUserEmail(token);
-        final Boolean accountNotLocked = extractAccountNonLocked(token);
-        return (userName.equals(userDetails.getUsername()) && !isTokenExpired(token) && accountNotLocked);
+    public boolean validateToken(String token) {
+        return !isTokenExpired(token) && extractAccountNonLocked(token);
     }
 
     private boolean isTokenExpired(String token) {
@@ -81,5 +78,15 @@ public class JwtService {
         });
     }
 
-}
+    public List<GrantedAuthority> extractAuthorities(String token) {
+        Claims claims = extractAllClaims(token);
 
+        // Extract the roles as a List from the JWT claims
+        List<String> roles = claims.get("roles", List.class);  // Use List<String> instead of String
+
+        // Convert the roles to GrantedAuthority
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()))  // Ensure the role prefix is correct
+                .collect(Collectors.toList());
+    }
+}

@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserSevice {
         this.authManager = authManager;
     }
 
-
+//Encoding the user password useing BCryptPasswordEncoder
     @Override
     public Long addNewUser(User user) throws SQLException {
         String encryptedPassword = encoder.encode(user.password());

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,10 +17,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
- // TODO add wait list
+    // TODO add wait list
     @Autowired
     private JwtFilter jwtFilter;
 
@@ -34,13 +39,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())  // Enable CORS with default configuration
+                .csrf(AbstractHttpConfigurer::disable) // disable the csrf Token ->
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/UserProfile/116", "/MakeOrder").permitAll()
+                        .requestMatchers("/login", "/register", "/UserProfile/116", "/uploadImage", "/uploadImage", "createUser/Superior").permitAll()
+                        //        .anyRequest().permitAll()
+                      //  .requestMatchers("/catalog/**").hasRole("USER")  // Ensure role-based access here
+                        .requestMatchers(SWAGGER_WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);  // JWT filter before auth
+        //.exceptionHandling(exceptions -> exceptions
+            //    .authenticationEntryPoint(new CustomAuthenticationEntryPoint()) // Handle unauthorized access
+               // .accessDeniedHandler(new CustomAccessDeniedHandler()) // Handle forbidden access
+               // .cors(Customizer.withDefaults());
 
         return http.build();
     }
@@ -57,4 +70,11 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
+    private static final String[] SWAGGER_WHITELIST = {
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/swagger-resources/**",
+            "/swagger-resources"
+    };
 }
