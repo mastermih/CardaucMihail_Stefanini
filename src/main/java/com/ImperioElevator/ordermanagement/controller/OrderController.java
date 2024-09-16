@@ -62,6 +62,11 @@ public class OrderController {
  public List<Order> getLastCreatedDate(@RequestParam("limit") Number limit) throws SQLException {
   return ordersService.findLastCreatedOrders(limit);
  }
+ @GetMapping("/orders/UserLastCreated")
+ public List<Order> getLastCreatedDateUser(@RequestParam("limit") Number limit,
+                                           @RequestParam("id") Long id) throws SQLException {
+  return ordersService.findLastCreatedOrdersForUserRole(limit, id);
+ }
 
  //Confirm The Order + OrderProduct Price (Confirm Order) + Email
  @PutMapping("/MakeOrder/{id}")

@@ -28,6 +28,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     public OrderDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
     private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
 
     @Override
@@ -61,7 +62,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
             // Insert the token into the token table
             logger.debug("Inserting token for orderId: {}", orderId);
-            jdbcTemplate.update(tokenSql, new Object[] {
+            jdbcTemplate.update(tokenSql, new Object[]{
                     orderId,               // order_id
                     null,                  // user_id (not applicable for order tokens)
                     "ORDER",               // token_type
@@ -81,38 +82,38 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     @Override
     public Long update(Order order) throws SQLException {
         String sql = "UPDATE orders SET user_id = ?, updated_date = ?, order_status = ? WHERE id = ?";
-       try {
-           logger.debug("Update the Order: {}", sql);
-           jdbcTemplate.update(sql,
-                   order.userId().userId().id(),
-                   Timestamp.valueOf(order.updatedDate().updateDateTime()),
-                   order.orderStatus().toString(),
-                   order.orderId().id());
-           logger.info("Successfully updated Order with id: {}", order.orderId().id());
-           return order.orderId().id();
-       }catch (DataAccessException e){
-           logger.error("Failed to update Order with id: {}", order.orderId().id(), e);
-           throw e;
-       }
+        try {
+            logger.debug("Update the Order: {}", sql);
+            jdbcTemplate.update(sql,
+                    order.userId().userId().id(),
+                    Timestamp.valueOf(order.updatedDate().updateDateTime()),
+                    order.orderStatus().toString(),
+                    order.orderId().id());
+            logger.info("Successfully updated Order with id: {}", order.orderId().id());
+            return order.orderId().id();
+        } catch (DataAccessException e) {
+            logger.error("Failed to update Order with id: {}", order.orderId().id(), e);
+            throw e;
+        }
     }
 
     @Override
     public Long updateStatus(Order order) throws SQLException {
         String sql = "UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?";
-        try{
+        try {
             logger.debug("Executing SQL for order status update: {}", sql);
 
-        jdbcTemplate.update(sql,
-                order.orderStatus().toString(),
-                order.updatedDate() != null ? order.updatedDate().updateDateTime() : new java.sql.Timestamp(System.currentTimeMillis()),
-                order.orderId().id());
+            jdbcTemplate.update(sql,
+                    order.orderStatus().toString(),
+                    order.updatedDate() != null ? order.updatedDate().updateDateTime() : new java.sql.Timestamp(System.currentTimeMillis()),
+                    order.orderId().id());
             logger.info("Successfully updated Order status for id: {}", order.orderId().id());
             return order.orderId().id();
-    }  catch (DataAccessException ex) {
-        logger.error("Failed to update Order status for id: {}", order.orderId().id(), ex);
-        throw ex;
+        } catch (DataAccessException ex) {
+            logger.error("Failed to update Order status for id: {}", order.orderId().id(), ex);
+            throw ex;
+        }
     }
-}
 
     @Override
     public String updateOrderEmailConfirmStatus(String token) throws SQLException {
@@ -142,7 +143,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
             throw new SQLException("An error occurred while trying to confirm the order. Please try again.");
         }
     }
-
 
 
     @Override
@@ -223,7 +223,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
             int updatedRows = jdbcTemplate.update(sql);
             logger.info("Successfully expired {} unconfirmed orders", updatedRows);
             return updatedRows;
-        }catch (DataAccessException ex){
+        } catch (DataAccessException ex) {
             logger.error("Failed to expire unconfirmed orders", ex);
             throw ex;
         }
@@ -271,13 +271,14 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         Status orderStatus = Status.valueOf(resultSet.getString("order_status"));
         return new Order(
                 new Id(orderId),
-                new User(new Id(userId), null, null, null, null, null, null,true),
+                new User(new Id(userId), null, null, null, null, null, null, true),
                 orderStatus,
                 new CreateDateTime(createdDateTime),
                 new UpdateDateTime(updatedDateTime),
-              new ArrayList<>()
+                new ArrayList<>()
         );
     }
+
     // ResultSet to  OrderProduct entity
     private OrderProduct mapOrderProduct(ResultSet resultSet, int i) throws SQLException {
         Long parentProductId = resultSet.getLong("parent_product_id");
@@ -400,4 +401,21 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 
+    @Override
+    public List<Order> findLastCreatedOrdersForUserRole(Number limit, Long id) throws SQLException {
+        String sql = "SELECT * FROM orders WHERE user_id = ? ORDER BY id ASC LIMIT ?";
+        try{
+            logger.debug("Executing SQL to find last created Orders for User role: {}", sql);
+            List<Order> orders = new ArrayList<>();
+            jdbcTemplate.query(sql, new Object[]{id, limit}, resultSet -> {
+                orders.add(mapResultSetToEntity(resultSet));
+            });
+            logger.info("Successfully retrieved last created Orders for User role");
+            return orders;
+        }catch (DataAccessException ex){
+            logger.error("Failed to retrieve last created Orders for User role", ex);
+            throw ex;
+        }
+    }
 }
+

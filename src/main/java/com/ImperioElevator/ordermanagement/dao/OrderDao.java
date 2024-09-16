@@ -18,6 +18,9 @@ public interface OrderDao extends Dao<Order>{
 
     List<Order> findLastCreatedOrders(Number limit) throws SQLException;
 
+
+    List<Order> findLastCreatedOrdersForUserRole(Number limit, Long id) throws SQLException;
+
     Long updateStatus(Order order) throws SQLException;
 
     String updateOrderEmailConfirmStatus(String token) throws SQLException;

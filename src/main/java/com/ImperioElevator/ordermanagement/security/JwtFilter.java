@@ -49,14 +49,13 @@ public class JwtFilter extends OncePerRequestFilter {
            // UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
 
             if (jwtService.validateToken(token)) {
-                // Set authentication in security context
-                List<GrantedAuthority> authorities = jwtService.extractAuthorities(token); // You can define this method in jwtService
+                // Set authentication in security
+                List<GrantedAuthority> authorities = jwtService.extractAuthorities(token);
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         email, null, authorities);
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             } else {
-                // Optionally, handle the case where account_non_locked is false
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Account is locked.");
             }
         }

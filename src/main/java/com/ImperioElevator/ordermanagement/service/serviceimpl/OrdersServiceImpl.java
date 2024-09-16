@@ -75,6 +75,11 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
+    public List<Order> findLastCreatedOrdersForUserRole(Number limit, Long id) throws SQLException {
+        return orderDao.findLastCreatedOrdersForUserRole(limit, id);
+    }
+
+    @Override
     public Long createOrder(Order order) throws SQLException {
         return orderDao.insert(order);
     }

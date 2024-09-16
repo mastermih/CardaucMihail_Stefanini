@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/register", "/UserProfile/116", "/uploadImage", "/uploadImage", "createUser/Superior").permitAll()
                         //        .anyRequest().permitAll()
-                      //  .requestMatchers("/catalog/**").hasRole("USER")  // Ensure role-based access here
+                        .requestMatchers("/orders/**").hasRole("ADMIN")  // Ensure role-based access here
                         .requestMatchers(SWAGGER_WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 )

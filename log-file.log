@@ -1,75 +1,107 @@
-2024-09-15 00:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-15 00:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-15 00:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
-2024-09-15 00:13:52 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 23132 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 00:13:52 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 00:13:53 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-15 00:13:53 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-15 00:13:53 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-15 00:13:53 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-15 00:13:53 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-15 00:13:53 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1565 ms
-2024-09-15 00:13:54 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5c8d58ed, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6a567f7b, org.springframework.security.web.context.SecurityContextHolderFilter@543fe698, org.springframework.security.web.header.HeaderWriterFilter@752b69e3, org.springframework.security.web.authentication.logout.LogoutFilter@38ac8968, com.ImperioElevator.ordermanagement.security.JwtFilter@5d3ff859, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2ca3d826, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@51ac12ac, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@28be7fec, org.springframework.security.web.session.SessionManagementFilter@7c8874ef, org.springframework.security.web.access.ExceptionTranslationFilter@443a06ad, org.springframework.security.web.access.intercept.AuthorizationFilter@de77146]
-2024-09-15 00:13:54 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-15 00:13:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-15 00:13:54 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.092 seconds (process running for 3.56)
-2024-09-15 00:13:54 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-15 00:16:24 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-15 00:16:24 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-15 00:16:24 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2024-09-15 00:16:24 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:16:24 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:16:30 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 00:16:30 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 00:16:31 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 00:16:31 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 00:16:39 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:16:39 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:16:39 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 00:16:39 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 00:16:39 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 00:16:39 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 00:16:39 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 00:16:39 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 00:16:39 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
-2024-09-15 00:16:39 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
-2024-09-15 00:16:39 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
-2024-09-15 00:16:39 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
-2024-09-15 00:16:39 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 228
-2024-09-15 00:16:39 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 228
-2024-09-15 00:16:39 [http-nio-8080-exec-7] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
-2024-09-15 00:16:39 [http-nio-8080-exec-7] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
-2024-09-15 00:16:39 [http-nio-8080-exec-7] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 228
-2024-09-15 00:16:39 [http-nio-8080-exec-7] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 228
-2024-09-15 00:16:39 [http-nio-8080-exec-8] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-15 00:16:39 [http-nio-8080-exec-8] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
-2024-09-15 00:16:39 [http-nio-8080-exec-8] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
-2024-09-15 00:16:39 [http-nio-8080-exec-8] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 228
-2024-09-15 00:16:39 [http-nio-8080-exec-8] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 228
-2024-09-15 00:16:39 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 00:16:39 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 00:16:39 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the order token with query: SELECT token_value FROM token WHERE order_id = ? AND token_type = 'ORDER' AND is_enabled = true
-2024-09-15 00:16:39 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the order token with query: SELECT token_value FROM token WHERE order_id = ? AND token_type = 'ORDER' AND is_enabled = true
-2024-09-15 00:16:41 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
-2024-09-15 00:16:41 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
-2024-09-15 00:16:41 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 228
-2024-09-15 00:16:41 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 228
-2024-09-15 00:17:39 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:17:39 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:25:07 [http-nio-8080-exec-5] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
-io.jsonwebtoken.MalformedJwtException: JWT strings must contain exactly 2 period characters. Found: 0
-	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:275)
+2024-09-16 00:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-16 00:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-16 00:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-16 09:51:03 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-16 09:51:03 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-16 09:51:06 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
+2024-09-16 09:51:06 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
+2024-09-16 09:51:06 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
+2024-09-16 09:51:06 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
+2024-09-16 09:51:06 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 232
+2024-09-16 09:51:06 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 232
+2024-09-16 09:51:06 [http-nio-8080-exec-10] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-09-16 09:51:06 [http-nio-8080-exec-10] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-09-16 09:51:06 [http-nio-8080-exec-10] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 232
+2024-09-16 09:51:06 [http-nio-8080-exec-10] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 232
+2024-09-16 09:51:07 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-16 09:51:07 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
+2024-09-16 09:51:07 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 232
+2024-09-16 09:51:07 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 232
+2024-09-16 09:51:10 [http-nio-8080-exec-4] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
+2024-09-16 09:51:10 [http-nio-8080-exec-4] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-16 09:51:10 [http-nio-8080-exec-4] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
+2024-09-16 09:51:10 [http-nio-8080-exec-4] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 232
+2024-09-16 09:51:10 [http-nio-8080-exec-4] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 232
+2024-09-16 09:51:10 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-16 09:51:10 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
+2024-09-16 09:51:10 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the order token with query: SELECT token_value FROM token WHERE order_id = ? AND token_type = 'ORDER' AND is_enabled = true
+2024-09-16 09:51:10 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the order token with query: SELECT token_value FROM token WHERE order_id = ? AND token_type = 'ORDER' AND is_enabled = true
+2024-09-16 09:51:15 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-16 09:51:15 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
+2024-09-16 09:51:16 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 232
+2024-09-16 09:51:16 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 232
+2024-09-16 09:59:42 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
+2024-09-16 09:59:42 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
+2024-09-16 09:59:43 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-16 09:59:43 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-16 09:59:43 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-16 09:59:43 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-16 09:59:52 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
+2024-09-16 09:59:52 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
+2024-09-16 09:59:52 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
+2024-09-16 09:59:52 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
+2024-09-16 10:00:02 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
+2024-09-16 10:00:02 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
+2024-09-16 10:00:02 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
+2024-09-16 10:00:02 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
+2024-09-16 10:13:40 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 24788 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-16 10:13:40 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 10:13:42 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-16 10:13:42 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-16 10:13:42 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-16 10:13:42 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-16 10:13:42 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-16 10:13:42 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1963 ms
+2024-09-16 10:13:42 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@28be7fec, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@26f0141, org.springframework.security.web.context.SecurityContextHolderFilter@7c8874ef, org.springframework.security.web.header.HeaderWriterFilter@492521c4, org.springframework.web.filter.CorsFilter@34136bd1, org.springframework.security.web.authentication.logout.LogoutFilter@496cc217, com.ImperioElevator.ordermanagement.security.JwtFilter@53c99b09, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@77a0dd63, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5d194314, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6de7778f, org.springframework.security.web.session.SessionManagementFilter@24134cbc, org.springframework.security.web.access.ExceptionTranslationFilter@526f6427, org.springframework.security.web.access.intercept.AuthorizationFilter@5cfed0ba]
+2024-09-16 10:13:43 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-16 10:13:43 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16 10:13:43 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.805 seconds (process running for 4.32)
+2024-09-16 10:13:43 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-16 10:30:11 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 32044 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-16 10:30:11 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 10:30:12 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-16 10:30:12 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-16 10:30:12 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-16 10:30:12 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-16 10:30:13 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-16 10:30:13 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1781 ms
+2024-09-16 10:30:13 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7d30007d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@382d71c7, org.springframework.security.web.context.SecurityContextHolderFilter@33ec2c0c, org.springframework.security.web.header.HeaderWriterFilter@611d0763, org.springframework.web.filter.CorsFilter@2ca54da9, org.springframework.security.web.authentication.logout.LogoutFilter@5c3d4f05, com.ImperioElevator.ordermanagement.security.JwtFilter@2e463f4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3887c7d7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@492521c4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34a20f16, org.springframework.security.web.session.SessionManagementFilter@16cf8438, org.springframework.security.web.access.ExceptionTranslationFilter@3b088163, org.springframework.security.web.access.intercept.AuthorizationFilter@2e6d76ba]
+2024-09-16 10:30:13 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-16 10:30:13 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16 10:30:13 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.341 seconds (process running for 3.815)
+2024-09-16 10:30:13 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-16 10:31:21 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16 10:31:21 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-16 10:31:21 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-09-16 10:33:40 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
+2024-09-16 10:33:40 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
+2024-09-16 10:33:40 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-16 10:33:40 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-16 10:33:40 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-16 10:33:40 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-16 10:38:26 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+io.jsonwebtoken.io.DecodingException: Illegal base64url character: ' '
+	at io.jsonwebtoken.io.Base64.ctoi(Base64.java:221)
+	at io.jsonwebtoken.io.Base64.decodeFast(Base64.java:270)
+	at io.jsonwebtoken.io.Base64Decoder.decode(Base64Decoder.java:36)
+	at io.jsonwebtoken.io.Base64Decoder.decode(Base64Decoder.java:23)
+	at io.jsonwebtoken.io.ExceptionPropagatingDecoder.decode(ExceptionPropagatingDecoder.java:36)
+	at io.jsonwebtoken.impl.crypto.DefaultJwtSignatureValidator.isValid(DefaultJwtSignatureValidator.java:59)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:396)
 	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:529)
 	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:589)
 	at io.jsonwebtoken.impl.ImmutableJwtParser.parseClaimsJws(ImmutableJwtParser.java:173)
-	at com.ImperioElevator.ordermanagement.security.JwtService.extractAllClaims(JwtService.java:59)
-	at com.ImperioElevator.ordermanagement.security.JwtService.extractClaim(JwtService.java:51)
-	at com.ImperioElevator.ordermanagement.security.JwtService.extractUserEmail(JwtService.java:47)
-	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.ImperioElevator.ordermanagement.security.JwtService.extractAllClaims(JwtService.java:58)
+	at com.ImperioElevator.ordermanagement.security.JwtService.extractClaim(JwtService.java:50)
+	at com.ImperioElevator.ordermanagement.security.JwtService.extractUserEmail(JwtService.java:46)
+	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:44)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
 	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
 	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
@@ -118,631 +150,112 @@ io.jsonwebtoken.MalformedJwtException: JWT strings must contain exactly 2 period
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-2024-09-15 00:27:52 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:27:52 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:29:30 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 19684 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 00:29:30 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 00:29:32 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-15 00:29:32 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-15 00:29:32 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-15 00:29:32 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-15 00:29:32 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-15 00:29:32 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1804 ms
-2024-09-15 00:29:32 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@17ff8810, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6c951ada, org.springframework.security.web.context.SecurityContextHolderFilter@2a0b901c, org.springframework.security.web.header.HeaderWriterFilter@3e5beab5, org.springframework.security.web.authentication.logout.LogoutFilter@5fef0c19, com.ImperioElevator.ordermanagement.security.JwtFilter@7bcecef6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6544899b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@65da01f4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@67b61834, org.springframework.security.web.session.SessionManagementFilter@15605d83, org.springframework.security.web.access.ExceptionTranslationFilter@372f0a99, org.springframework.security.web.access.intercept.AuthorizationFilter@1a1c21b4]
-2024-09-15 00:29:33 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-15 00:29:33 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-15 00:29:33 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.554 seconds (process running for 4.054)
-2024-09-15 00:29:33 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-15 00:29:40 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-15 00:29:40 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-15 00:29:40 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-15 00:29:40 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:29:40 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:30:02 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:30:02 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:35:44 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:35:44 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:38:20 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:38:20 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:38:49 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:38:49 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:41:14 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:41:14 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:41:24 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:41:24 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:46:52 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:46:52 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:47:34 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:47:34 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:47:36 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 00:47:36 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 00:47:36 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 00:47:36 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 00:48:18 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 00:48:18 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-15 01:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-15 01:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
-2024-09-15 01:02:43 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:02:43 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:13:16 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 24132 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 01:13:16 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 01:13:18 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-15 01:13:18 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:13:18 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-15 01:13:18 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-15 01:13:18 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-15 01:13:18 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1532 ms
-2024-09-15 01:13:18 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@28be7fec, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@26f0141, org.springframework.security.web.context.SecurityContextHolderFilter@2ca3d826, org.springframework.security.web.header.HeaderWriterFilter@1fb2eec, org.springframework.security.web.authentication.logout.LogoutFilter@6c951ada, com.ImperioElevator.ordermanagement.security.JwtFilter@36ab3814, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76396509, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7b96de8d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34136bd1, org.springframework.security.web.session.SessionManagementFilter@77a0dd63, org.springframework.security.web.access.ExceptionTranslationFilter@752b69e3, org.springframework.security.web.access.intercept.AuthorizationFilter@5cfed0ba]
-2024-09-15 01:13:19 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:13:19 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-15 01:13:19 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.09 seconds (process running for 3.548)
-2024-09-15 01:13:19 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-15 01:13:29 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-15 01:13:29 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-15 01:13:29 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2024-09-15 01:13:29 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:13:29 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:13:52 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 32348 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 01:13:52 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 01:13:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-15 01:13:54 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:13:54 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-15 01:13:54 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-15 01:13:54 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-15 01:13:54 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1528 ms
-2024-09-15 01:13:54 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@28be7fec, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@26f0141, org.springframework.security.web.context.SecurityContextHolderFilter@2ca3d826, org.springframework.security.web.header.HeaderWriterFilter@1fb2eec, org.springframework.security.web.authentication.logout.LogoutFilter@6c951ada, com.ImperioElevator.ordermanagement.security.JwtFilter@b61edb9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76396509, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7b96de8d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34136bd1, org.springframework.security.web.session.SessionManagementFilter@77a0dd63, org.springframework.security.web.access.ExceptionTranslationFilter@752b69e3, org.springframework.security.web.access.intercept.AuthorizationFilter@5cfed0ba]
-2024-09-15 01:13:55 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:13:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-15 01:13:55 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 2.971 seconds (process running for 3.452)
-2024-09-15 01:13:55 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-15 01:19:39 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-15 01:19:39 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-15 01:19:39 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2024-09-15 01:20:01 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:20:01 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:30:41 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 28708 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 01:30:41 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 01:30:42 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name 'corsFilter' defined in class path resource [com/ImperioElevator/ordermanagement/security/SecurityConfig.class]: Cannot register bean definition [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=securityConfig; factoryMethodName=corsFilter; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [com/ImperioElevator/ordermanagement/security/SecurityConfig.class]] for bean 'corsFilter' since there is already [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=webConfig; factoryMethodName=corsFilter; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [com/ImperioElevator/ordermanagement/config/WebConfig.class]] bound.
-2024-09-15 01:30:42 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-09-15 01:30:42 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-The bean 'corsFilter', defined in class path resource [com/ImperioElevator/ordermanagement/security/SecurityConfig.class], could not be registered. A bean with that name has already been defined in class path resource [com/ImperioElevator/ordermanagement/config/WebConfig.class] and overriding is disabled.
-
-Action:
-
-Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
-
-2024-09-15 01:33:29 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 31716 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 01:33:29 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 01:33:30 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-15 01:33:30 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:33:30 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-15 01:33:30 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-15 01:33:30 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-15 01:33:30 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1670 ms
-2024-09-15 01:33:31 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6380e9e9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@350da119, org.springframework.security.web.context.SecurityContextHolderFilter@7b96de8d, org.springframework.security.web.header.HeaderWriterFilter@1bd8afc8, org.springframework.security.web.authentication.logout.LogoutFilter@11f23038, com.ImperioElevator.ordermanagement.security.JwtFilter@32bb0072, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4dc52559, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62cbc478, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6a09484c, org.springframework.security.web.session.SessionManagementFilter@637c840d, org.springframework.security.web.access.ExceptionTranslationFilter@6544899b, org.springframework.security.web.access.intercept.AuthorizationFilter@6de7778f]
-2024-09-15 01:33:31 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:33:31 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-15 01:33:31 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.257 seconds (process running for 3.767)
-2024-09-15 01:33:31 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-15 01:35:41 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-15 01:35:41 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-15 01:35:41 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-15 01:35:41 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:35:41 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:40:17 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 17196 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 01:40:17 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 01:40:18 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-15 01:40:18 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:40:18 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-15 01:40:18 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-15 01:40:18 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-15 01:40:18 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1540 ms
-2024-09-15 01:40:19 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7c453c34, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@16cb9989, org.springframework.security.web.context.SecurityContextHolderFilter@256bb5be, org.springframework.security.web.header.HeaderWriterFilter@7b96de8d, org.springframework.security.web.authentication.logout.LogoutFilter@34c7232c, com.ImperioElevator.ordermanagement.security.JwtFilter@54c622a7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e6d76ba, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@382d71c7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3dfd6220, org.springframework.security.web.session.SessionManagementFilter@7aa01bd9, org.springframework.security.web.access.ExceptionTranslationFilter@51ac12ac, org.springframework.security.web.access.intercept.AuthorizationFilter@5657967b]
-2024-09-15 01:40:19 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:40:19 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-15 01:40:19 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.079 seconds (process running for 3.604)
-2024-09-15 01:40:19 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-15 01:40:30 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-15 01:40:30 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-15 01:40:30 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-15 01:40:31 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:40:31 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:41:42 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 19440 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 01:41:42 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 01:41:43 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-15 01:41:43 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:41:43 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-15 01:41:43 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-15 01:41:43 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-15 01:41:43 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1659 ms
-2024-09-15 01:41:44 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@76396509, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@637c840d, org.springframework.security.web.context.SecurityContextHolderFilter@1f916219, org.springframework.security.web.header.HeaderWriterFilter@601d6622, org.springframework.security.web.authentication.logout.LogoutFilter@6da54910, com.ImperioElevator.ordermanagement.security.JwtFilter@b61edb9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3b088163, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1e226bcd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@51ac12ac, org.springframework.security.web.session.SessionManagementFilter@4f114b, org.springframework.security.web.access.ExceptionTranslationFilter@1cd2143b, org.springframework.security.web.access.intercept.AuthorizationFilter@6b2fdffc]
-2024-09-15 01:41:44 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:41:44 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-15 01:41:44 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.247 seconds (process running for 3.774)
-2024-09-15 01:41:44 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-15 01:41:50 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-15 01:41:50 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-15 01:41:50 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-15 01:41:51 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:41:51 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:41:59 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:41:59 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:42:13 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:42:13 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:42:19 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:42:19 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:42:42 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:42:42 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:42:47 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:42:47 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:43:03 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:43:03 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:50:39 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 14368 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 01:50:39 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 01:50:41 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-15 01:50:41 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:50:41 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-15 01:50:41 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-15 01:50:41 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-15 01:50:41 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1755 ms
-2024-09-15 01:50:42 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5cfed0ba, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c8d58ed, org.springframework.security.web.context.SecurityContextHolderFilter@77a0dd63, org.springframework.security.web.header.HeaderWriterFilter@6ddd1c51, org.springframework.security.web.authentication.logout.LogoutFilter@1cd2ff5b, com.ImperioElevator.ordermanagement.security.JwtFilter@5d3ff859, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6b2fdffc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@637c840d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6a567f7b, org.springframework.security.web.session.SessionManagementFilter@22f02996, org.springframework.security.web.access.ExceptionTranslationFilter@492521c4, org.springframework.security.web.access.intercept.AuthorizationFilter@11f23038]
-2024-09-15 01:50:42 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:50:42 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-15 01:50:42 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.473 seconds (process running for 4.02)
-2024-09-15 01:50:42 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-15 01:50:54 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-15 01:50:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-15 01:50:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-15 01:50:54 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:50:54 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:51:15 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:51:15 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:51:22 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:51:22 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:51:41 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:51:41 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:55:43 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 30464 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 01:55:43 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 01:55:44 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name 'corsFilter' defined in class path resource [com/ImperioElevator/ordermanagement/security/SecurityConfig.class]: Cannot register bean definition [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=securityConfig; factoryMethodName=corsFilter; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [com/ImperioElevator/ordermanagement/security/SecurityConfig.class]] for bean 'corsFilter' since there is already [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=webConfig; factoryMethodName=corsFilter; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [com/ImperioElevator/ordermanagement/config/WebConfig.class]] bound.
-2024-09-15 01:55:44 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-09-15 01:55:44 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-The bean 'corsFilter', defined in class path resource [com/ImperioElevator/ordermanagement/security/SecurityConfig.class], could not be registered. A bean with that name has already been defined in class path resource [com/ImperioElevator/ordermanagement/config/WebConfig.class] and overriding is disabled.
-
-Action:
-
-Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
-
-2024-09-15 01:59:07 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 31868 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 01:59:07 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 01:59:08 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-15 01:59:08 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:59:08 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-15 01:59:08 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-15 01:59:08 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-15 01:59:08 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1586 ms
-2024-09-15 01:59:09 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5c3d4f05, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@119290b9, org.springframework.security.web.context.SecurityContextHolderFilter@2a8dd942, org.springframework.security.web.header.HeaderWriterFilter@391d1e33, org.springframework.security.web.authentication.logout.LogoutFilter@77a0dd63, com.ImperioElevator.ordermanagement.security.JwtFilter@b61edb9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@35025a0a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f38f084, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@640d604, org.springframework.security.web.session.SessionManagementFilter@611d0763, org.springframework.security.web.access.ExceptionTranslationFilter@5b02a984, org.springframework.security.web.access.intercept.AuthorizationFilter@7b96de8d]
-2024-09-15 01:59:09 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-15 01:59:09 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-15 01:59:09 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.334 seconds (process running for 3.843)
-2024-09-15 01:59:09 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-15 01:59:23 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-15 01:59:23 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-15 01:59:23 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2024-09-15 01:59:23 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 01:59:23 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:21:12 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-15 11:21:12 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-15 11:21:12 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
-2024-09-15 11:27:19 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:27:19 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:31:39 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:31:39 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:32:42 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:32:42 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:33:00 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:33:00 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:33:14 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:33:14 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:34:08 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:34:08 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:34:25 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 11:34:25 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 11:34:25 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 11:34:25 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 11:34:29 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 11:34:29 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 11:34:29 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 11:34:29 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 11:35:43 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 11:35:43 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 11:35:43 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 11:35:43 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 11:40:30 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:40:30 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:41:02 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:41:02 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:41:45 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:41:45 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:43:52 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:43:52 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:46:01 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:46:01 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:46:25 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:46:25 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:56:19 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:56:19 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:56:25 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 11:56:25 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-15 12:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-15 12:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
-2024-09-15 12:04:44 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:04:44 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:04:48 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:04:48 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:06:22 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:06:22 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:06:30 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:06:30 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:07:44 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:07:44 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:14:46 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:14:46 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:16:45 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 21200 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 12:16:45 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 12:16:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-15 12:16:47 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-15 12:16:47 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-15 12:16:47 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-15 12:16:47 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-15 12:16:47 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1537 ms
-2024-09-15 12:16:47 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@26f0141, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34136bd1, org.springframework.security.web.context.SecurityContextHolderFilter@2ca3d826, org.springframework.security.web.header.HeaderWriterFilter@1fb2eec, org.springframework.web.filter.CorsFilter@59939293, org.springframework.security.web.authentication.logout.LogoutFilter@6c951ada, com.ImperioElevator.ordermanagement.security.JwtFilter@71cea1b8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76396509, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7b96de8d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6de7778f, org.springframework.security.web.session.SessionManagementFilter@77a0dd63, org.springframework.security.web.access.ExceptionTranslationFilter@752b69e3, org.springframework.security.web.access.intercept.AuthorizationFilter@5c8d58ed]
-2024-09-15 12:16:48 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-15 12:16:48 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-15 12:16:48 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.037 seconds (process running for 3.543)
-2024-09-15 12:16:48 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-15 12:17:08 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-15 12:17:08 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-15 12:17:08 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2024-09-15 12:17:08 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:17:08 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 12:17:11 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 12:17:11 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 12:17:11 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 12:17:11 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 12:17:11 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 12:17:11 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 12:17:11 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 12:17:11 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 13:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 3 unconfirmed orders
-2024-09-15 13:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 3 unconfirmed orders
-2024-09-15 13:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 3
-2024-09-15 13:38:05 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 13:38:05 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 13:38:06 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 13:38:06 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 13:38:06 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 13:38:06 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 13:38:06 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 13:38:06 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 13:38:06 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 13:38:06 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 13:38:55 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 13:38:55 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 13:38:55 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 13:38:55 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 13:39:23 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
-2024-09-15 13:39:23 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
-2024-09-15 13:39:23 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
-2024-09-15 13:39:23 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
-2024-09-15 13:39:23 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 229
-2024-09-15 13:39:23 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 229
-2024-09-15 13:39:23 [http-nio-8080-exec-8] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
-2024-09-15 13:39:23 [http-nio-8080-exec-8] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
-2024-09-15 13:39:23 [http-nio-8080-exec-8] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 229
-2024-09-15 13:39:23 [http-nio-8080-exec-8] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 229
-2024-09-15 13:39:25 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 13:39:25 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 13:39:25 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 229
-2024-09-15 13:39:25 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 229
-2024-09-15 13:39:25 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 13:39:25 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 13:39:26 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 229
-2024-09-15 13:39:26 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 229
-2024-09-15 13:39:49 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 13:39:49 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 13:39:49 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 13:39:49 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 13:39:49 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 13:39:49 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 13:39:49 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 13:39:49 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-15 14:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-15 14:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
-2024-09-15 14:04:36 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 20456 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-15 14:04:36 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-15 14:04:37 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-15 14:04:37 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-15 14:04:37 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-15 14:04:37 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-15 14:04:38 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-15 14:04:38 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1793 ms
-2024-09-15 14:04:38 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4dc52559, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c3d4f05, org.springframework.security.web.context.SecurityContextHolderFilter@67acfde9, org.springframework.security.web.header.HeaderWriterFilter@76216830, org.springframework.web.filter.CorsFilter@119290b9, org.springframework.security.web.authentication.logout.LogoutFilter@1bd8afc8, com.ImperioElevator.ordermanagement.security.JwtFilter@2e463f4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@75882261, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2a8dd942, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@640d604, org.springframework.security.web.session.SessionManagementFilter@257f30f7, org.springframework.security.web.access.ExceptionTranslationFilter@1118d539, org.springframework.security.web.access.intercept.AuthorizationFilter@463afa6e]
-2024-09-15 14:04:39 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-15 14:04:39 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-15 14:04:39 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.511 seconds (process running for 3.997)
-2024-09-15 14:04:39 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-15 14:04:41 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-15 14:04:41 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-15 14:04:41 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-15 14:04:53 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 14:04:53 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 14:04:54 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:04:54 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:04:54 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:04:54 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:04:54 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:04:54 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:04:54 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:04:54 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:05:08 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:05:08 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:05:08 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:05:08 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:05:08 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:05:08 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:05:08 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:05:08 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:05:09 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:05:09 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:05:09 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:05:09 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:07:50 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 14:07:50 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 14:07:50 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:07:50 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:07:50 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:07:50 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:07:50 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:07:50 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:07:50 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:07:50 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:08:21 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:08:21 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:08:21 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:08:21 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:33:03 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:33:03 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:33:03 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:33:03 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:33:03 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:33:03 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:33:03 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:33:03 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:33:04 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:33:04 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:33:04 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:33:04 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:36:52 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:36:52 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:36:52 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:36:52 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:02 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:02 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:02 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:02 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:16 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 14:37:16 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 14:37:16 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:16 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:16 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:16 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:16 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:16 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:16 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:16 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:21 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:37:21 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:37:22 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:37:22 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:37:24 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
-2024-09-15 14:37:24 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
-2024-09-15 14:37:24 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
-2024-09-15 14:37:24 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
-2024-09-15 14:37:24 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 230
-2024-09-15 14:37:24 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 230
-2024-09-15 14:37:24 [http-nio-8080-exec-7] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
-2024-09-15 14:37:24 [http-nio-8080-exec-7] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
-2024-09-15 14:37:24 [http-nio-8080-exec-7] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 230
-2024-09-15 14:37:24 [http-nio-8080-exec-7] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 230
-2024-09-15 14:37:25 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:37:25 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:37:25 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 230
-2024-09-15 14:37:25 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 230
-2024-09-15 14:37:25 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:37:25 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:37:25 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 230
-2024-09-15 14:37:25 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 230
-2024-09-15 14:37:29 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:29 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:29 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:29 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:29 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:29 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:29 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:29 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:31 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:31 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:37:31 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:37:31 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:26 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:41:26 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:41:26 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 230
-2024-09-15 14:41:26 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 230
-2024-09-15 14:41:26 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:41:26 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:41:26 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 230
-2024-09-15 14:41:26 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 230
-2024-09-15 14:41:30 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:30 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:30 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:30 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:31 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:31 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:31 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:31 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:31 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:31 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:31 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:31 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:32 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:32 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:32 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:32 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:34 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:34 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:36 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:36 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:36 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:36 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:36 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:36 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:36 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:36 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:37 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:37 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:37 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:37 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:39 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:39 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:44 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:44 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:44 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:44 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:44 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:44 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:41:44 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:44 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:41:50 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:50 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:50 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:41:50 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:42:09 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 14:42:09 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 14:42:09 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:42:09 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:42:09 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:42:09 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:42:09 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:42:09 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:42:09 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:42:09 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:49:29 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 14:49:29 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-15 14:49:29 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:49:29 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:49:29 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:49:29 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:49:32 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:49:32 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:49:36 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
-2024-09-15 14:49:36 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
-2024-09-15 14:49:36 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
-2024-09-15 14:49:36 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 0
-2024-09-15 14:49:36 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 231
-2024-09-15 14:49:36 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 231
-2024-09-15 14:49:36 [http-nio-8080-exec-7] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
-2024-09-15 14:49:36 [http-nio-8080-exec-7] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
-2024-09-15 14:49:36 [http-nio-8080-exec-7] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 231
-2024-09-15 14:49:36 [http-nio-8080-exec-7] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 231
-2024-09-15 14:49:38 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:49:38 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:49:38 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 231
-2024-09-15 14:49:38 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 231
-2024-09-15 14:49:42 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:49:42 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:49:42 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:49:42 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:49:44 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:49:44 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-15 14:49:44 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 231
-2024-09-15 14:49:44 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 231
-2024-09-15 14:49:45 [http-nio-8080-exec-3] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-15 14:49:45 [http-nio-8080-exec-3] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
-2024-09-15 14:49:45 [http-nio-8080-exec-3] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
-2024-09-15 14:49:45 [http-nio-8080-exec-3] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 231
-2024-09-15 14:49:45 [http-nio-8080-exec-3] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 231
-2024-09-15 14:49:45 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:49:45 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:49:45 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the order token with query: SELECT token_value FROM token WHERE order_id = ? AND token_type = 'ORDER' AND is_enabled = true
-2024-09-15 14:49:45 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the order token with query: SELECT token_value FROM token WHERE order_id = ? AND token_type = 'ORDER' AND is_enabled = true
-2024-09-15 14:49:47 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:49:47 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:49:47 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
-2024-09-15 14:49:47 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
-2024-09-15 14:49:47 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:49:47 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:49:47 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 231
-2024-09-15 14:49:47 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 231
-2024-09-15 14:54:42 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:54:42 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:54:42 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:54:42 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:55:02 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:55:02 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:55:02 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:55:02 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:55:08 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:55:08 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:55:08 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:55:08 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:55:15 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:55:15 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:55:15 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:55:15 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:55:20 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:55:20 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:55:23 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:55:23 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:55:23 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:55:23 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:58:18 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:58:18 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:58:18 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:58:18 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:58:22 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:58:22 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:58:22 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:58:22 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:58:28 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:58:28 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:58:28 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:58:28 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:58:29 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:58:29 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:58:46 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:58:46 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-15 14:58:51 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:58:51 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-15 14:58:51 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-15 14:58:51 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-16 10:44:11 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 30388 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-16 10:44:11 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 10:44:13 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-16 10:44:13 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-16 10:44:13 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-16 10:44:13 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-16 10:44:13 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-16 10:44:13 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1754 ms
+2024-09-16 10:44:14 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6c0b51da, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7558633, org.springframework.security.web.context.SecurityContextHolderFilter@640d604, org.springframework.security.web.header.HeaderWriterFilter@42c0a16e, org.springframework.web.filter.CorsFilter@5657967b, org.springframework.security.web.authentication.logout.LogoutFilter@6a567f7b, com.ImperioElevator.ordermanagement.security.JwtFilter@77c1e611, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5438fa43, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7e7740a5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@61394494, org.springframework.security.web.session.SessionManagementFilter@4dc52559, org.springframework.security.web.access.ExceptionTranslationFilter@22f02996, org.springframework.security.web.access.intercept.AuthorizationFilter@2589d787]
+2024-09-16 10:44:14 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-16 10:44:14 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16 10:44:14 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.355 seconds (process running for 3.902)
+2024-09-16 10:44:14 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-16 10:44:21 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16 10:44:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-16 10:44:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-16 10:44:21 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+io.jsonwebtoken.io.DecodingException: Illegal base64url character: ' '
+	at io.jsonwebtoken.io.Base64.ctoi(Base64.java:221)
+	at io.jsonwebtoken.io.Base64.decodeFast(Base64.java:270)
+	at io.jsonwebtoken.io.Base64Decoder.decode(Base64Decoder.java:36)
+	at io.jsonwebtoken.io.Base64Decoder.decode(Base64Decoder.java:23)
+	at io.jsonwebtoken.io.ExceptionPropagatingDecoder.decode(ExceptionPropagatingDecoder.java:36)
+	at io.jsonwebtoken.impl.crypto.DefaultJwtSignatureValidator.isValid(DefaultJwtSignatureValidator.java:59)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:396)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:529)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:589)
+	at io.jsonwebtoken.impl.ImmutableJwtParser.parseClaimsJws(ImmutableJwtParser.java:173)
+	at com.ImperioElevator.ordermanagement.security.JwtService.extractAllClaims(JwtService.java:58)
+	at com.ImperioElevator.ordermanagement.security.JwtService.extractClaim(JwtService.java:50)
+	at com.ImperioElevator.ordermanagement.security.JwtService.extractUserEmail(JwtService.java:46)
+	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:44)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-16 10:47:39 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 30008 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-16 10:47:39 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 10:47:41 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-16 10:47:41 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-16 10:47:41 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-16 10:47:41 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-16 10:47:41 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-16 10:47:41 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1680 ms
+2024-09-16 10:47:41 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2e6d76ba, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@22a6d75c, org.springframework.security.web.context.SecurityContextHolderFilter@16cf8438, org.springframework.security.web.header.HeaderWriterFilter@67acfde9, org.springframework.web.filter.CorsFilter@5a9840f3, org.springframework.security.web.authentication.logout.LogoutFilter@7b96de8d, com.ImperioElevator.ordermanagement.security.JwtFilter@71cea1b8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7c588adc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@b1b471, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d30007d, org.springframework.security.web.session.SessionManagementFilter@6f38f084, org.springframework.security.web.access.ExceptionTranslationFilter@3fde2209, org.springframework.security.web.access.intercept.AuthorizationFilter@615db358]
+2024-09-16 10:47:42 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-16 10:47:42 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16 10:47:42 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.32 seconds (process running for 3.83)
+2024-09-16 10:47:42 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-16 10:49:55 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16 10:49:55 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-16 10:49:55 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-09-16 10:49:55 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
+2024-09-16 10:49:55 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
+2024-09-16 10:50:00 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders for User role: SELECT * FROM orders WHERE user_id = ? ORDER BY id ASC LIMIT ?
+2024-09-16 10:50:00 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders for User role: SELECT * FROM orders WHERE user_id = ? ORDER BY id ASC LIMIT ?
+2024-09-16 10:50:00 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders for User role
+2024-09-16 10:50:00 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders for User role
