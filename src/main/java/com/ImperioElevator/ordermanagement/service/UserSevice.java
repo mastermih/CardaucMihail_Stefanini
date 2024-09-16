@@ -14,5 +14,5 @@ public interface UserSevice {
     String getUserImage(Long userId)throws SQLException;
     User getUserProfile(Long userId) throws SQLException;
     Long updateUser(User user) throws SQLException;
-    String verifyUser(LoginRequest user);
+    String verifyUser(LoginRequest user) throws SQLException;
 }

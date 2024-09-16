@@ -1,5 +1,6 @@
 package com.ImperioElevator.ordermanagement.security;
 
+import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -24,9 +25,10 @@ public class JwtService {
     @Value("${security.jwt.expiration-time}")
     private long expirationTime;
 
-    public String generateToken(String email, List<String> roles, Boolean account_not_locked) {
+    public String generateToken(String email, List<String> roles, Boolean account_not_locked, Long id) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", roles);
+        claims.put("id", id);
         claims.put("account_not_locked", account_not_locked);
 
         return Jwts.builder()
@@ -44,6 +46,9 @@ public class JwtService {
 
     public String extractUserEmail(String token) {
         return extractClaim(token, Claims::getSubject);
+    }
+    public Long extractUserId(String token){
+        return extractClaim(token, claims -> claims.get("id", Long.class));
     }
 
     private <T> T extractClaim(String token, Function<Claims, T> claimResolver) {

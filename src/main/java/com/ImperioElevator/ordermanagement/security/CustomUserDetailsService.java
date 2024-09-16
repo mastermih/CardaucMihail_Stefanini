@@ -19,7 +19,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     public CustomUserDetailsService(UserDaoImpl userDao) {
         this.userDao = userDao;
     }
-
     @Override
     public UserDetails loadUserByUsername(String email) {
         User user = null;
@@ -32,9 +31,10 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found 'email'");
         }
 
-        boolean accountNotLocked = user.accountNonLocked();
 
+        boolean accountNotLocked = user.accountNonLocked();
         return new org.springframework.security.core.userdetails.User(
+             //   user.userId().id(),                      // Custom User ID
                 user.email().email(),
                 user.password(),
                 true,                // Enabled (true if the user is enabled)

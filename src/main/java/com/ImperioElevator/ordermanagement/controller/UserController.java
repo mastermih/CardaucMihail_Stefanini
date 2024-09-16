@@ -74,7 +74,7 @@ public class UserController {
         return userSevice.updateUser(user);
     }
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest user){
+    public String login(@RequestBody LoginRequest user) throws SQLException {
         return userSevice.verifyUser(user);
     }
 }

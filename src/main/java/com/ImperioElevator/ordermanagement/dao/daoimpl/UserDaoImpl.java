@@ -268,4 +268,16 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             throw ex;
         }
     }
+
+    @Override
+    public Long findUserIdByEmail(String email) throws SQLException {
+        String sql = "SELECT id FROM user WHERE email = ?";
+        try{
+            logger.debug("Executing SQL to select UserID by email: {}", sql);
+            return jdbcTemplate.queryForObject(sql, new Object[]{email}, Long.class);
+        }catch (EmptyResultDataAccessException e){
+            logger.error("Failed to find UserId with email: {}", email, e);
+            throw e;
+        }
+    }
 }

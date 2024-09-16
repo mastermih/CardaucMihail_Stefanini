@@ -20,4 +20,5 @@ public interface UserDao extends Dao<User> {
     Long addImageForUSer (Long userId, String  imagePath) throws SQLException;
     String getUserImage(Long userId) throws SQLException;
     User findByUserEmail (String email) throws SQLException;
+    Long findUserIdByEmail(String email) throws SQLException;
 }

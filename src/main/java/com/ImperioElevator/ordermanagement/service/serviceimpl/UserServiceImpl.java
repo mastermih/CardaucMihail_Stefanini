@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserSevice {
     }
 
     @Override
-    public String verifyUser(LoginRequest loginRequest) {
+    public String verifyUser(LoginRequest loginRequest) throws SQLException {
         // Authenticate the user with Security
         Authentication authentication = authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
@@ -111,7 +111,10 @@ public class UserServiceImpl implements UserSevice {
             List<String> roles = userDetails.getAuthorities().stream()
                     .map(grantedAuthority -> grantedAuthority.getAuthority())
                     .toList();
-            return jwtService.generateToken(userDetails.getUsername(), roles, userDetails.isAccountNonLocked());
+
+            Long userId = userDao.findUserIdByEmail(userDetails.getUsername());
+
+            return jwtService.generateToken(userDetails.getUsername(), roles, userDetails.isAccountNonLocked(),  userId);
         } else {
             return "Failed";
         }
