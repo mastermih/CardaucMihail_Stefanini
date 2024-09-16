@@ -47,6 +47,19 @@ public class OrderController {
   return ordersService.findPaginableOrderByCreatedDate(startDateTime, endDateTime, numberOfOrders, page);
  }
 
+ @GetMapping("/userOrders/createDate")
+ public Paginable<Order> listUserOrdersByPeriod(@RequestParam Long id,
+                                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                            @RequestParam Long numberOfOrders,
+                                            @RequestParam Long page) throws SQLException {
+  LocalDateTime startDateTime = startDate.atStartOfDay();
+  LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
+  return ordersService.findPaginableUserOrderByCreatedDate(id,startDateTime, endDateTime, numberOfOrders, page);
+ }
+
+
+
  @GetMapping("/orders/status-createDate")
  public Paginable<Order> listOrdersByPeriodStatus(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
@@ -58,11 +71,12 @@ public class OrderController {
   return ordersService.findPaginableOrderByCreatedDateAndStatus(startDateTime, endDateTime, status, numberOfOrders, page);
  }
 
+
  @GetMapping("/orders/lastCreated")
  public List<Order> getLastCreatedDate(@RequestParam("limit") Number limit) throws SQLException {
   return ordersService.findLastCreatedOrders(limit);
  }
- @GetMapping("/orders/UserLastCreated")
+ @GetMapping("/userOrders/UserLastCreated")
  public List<Order> getLastCreatedDateUser(@RequestParam("limit") Number limit,
                                            @RequestParam("id") Long id) throws SQLException {
   return ordersService.findLastCreatedOrdersForUserRole(limit, id);

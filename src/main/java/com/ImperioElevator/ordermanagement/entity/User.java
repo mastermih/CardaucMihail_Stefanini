@@ -13,7 +13,7 @@ public record User(
         Name name,
         Email email,
        @JsonIgnore
-        String password,
+        String password,//ToDo check the password on Ui and Back add the validation and doucble password insertions //in service layers in con controler add the validation//
         String phoneNumber,
         String image,
         List<Role> roles,

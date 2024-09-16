@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODo add tge asigne a role for the order
 @Component
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
@@ -325,6 +326,30 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
             throw ex;
         }
     }
+//ToDO Paginable do not forget
+    @Override
+    public Paginable<Order> findPaginableUserOrderByCreatedDate(Long id,LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {
+        String countSQL = "SELECT COUNT(*) FROM orders WHERE user_id = ? AND created_date BETWEEN ? AND ?";
+        String sql = "SELECT * FROM orders WHERE user_id = ? AND created_date BETWEEN ? AND ? LIMIT ? OFFSET ?";
+        try{
+            logger.debug("Executing SQL to fiend paginable orders by created date", sql);
+
+            List<Order> orders = new ArrayList<>();
+            Long offset = (page - 1) * numberOfOrders;
+            Long totalItems = jdbcTemplate.queryForObject(countSQL, new Object[]{id,Timestamp.valueOf(startDate), Timestamp.valueOf(endDate)}, Long.class);
+            jdbcTemplate.query(sql, new Object[]{id,Timestamp.valueOf(startDate), Timestamp.valueOf(endDate), numberOfOrders, offset}, resultSet -> {
+                orders.add(mapResultSetToEntity(resultSet));
+            });
+            Long totalPages = (long) Math.ceil((double) totalItems / numberOfOrders);
+            logger.info("Successfully retrieved paginable Orders by created date");
+
+            return new Paginable<>(orders, page, totalPages);
+        } catch (DataAccessException ex) {
+            logger.error("Failed to retrieve paginable Orders by created date", ex);
+            throw ex;
+        }
+    }
+
 
     @Override
     public Paginable<Order> findPaginableOrderByUpdatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {

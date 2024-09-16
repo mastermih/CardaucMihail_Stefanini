@@ -12,6 +12,8 @@ import java.util.List;
 public interface OrderDao extends Dao<Order>{
     Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime startDate,LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
 
+    Paginable<Order> findPaginableUserOrderByCreatedDate(Long id, LocalDateTime startDate,LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
+
     Paginable<Order> findPaginableOrderByUpdatedDate(LocalDateTime startDate,LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
 
     Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate,LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException;

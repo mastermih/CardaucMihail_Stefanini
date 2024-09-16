@@ -25,6 +25,7 @@ import org.springframework.web.filter.CorsFilter;
 @EnableWebSecurity
 public class SecurityConfig {
     // TODO add wait list
+    //ToDo add the confirmation user may be and for order page unblock
     @Autowired
     private JwtFilter jwtFilter;
 

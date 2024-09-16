@@ -59,7 +59,6 @@ public class JwtFilter extends OncePerRequestFilter {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Account is locked.");
             }
         }
-
         filterChain.doFilter(request, response);
     }
 }
