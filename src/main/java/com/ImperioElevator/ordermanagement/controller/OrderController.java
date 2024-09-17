@@ -155,4 +155,12 @@ public class OrderController {
   );
   return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
  }
+
+
+ //Assigning User(Management) to a User Order
+ @PutMapping("orders/assignation")
+ public Long assigneeOperatorToOrder (@RequestParam String role,  //Body or param ? Now it works fine
+                                      @RequestParam Long id) throws SQLException {
+  return ordersService.assigneeOperatorToOrder(role, id);
+ }
 }

@@ -32,5 +32,7 @@ public interface OrderDao extends Dao<Order>{
     Order getOrderWithExtraProducts(Long orderId);
 
     Integer deleteUnconfirmedOrderByEmail()throws SQLException;
-    String getTheConfirmationToken(Long id)  throws SQLException;
+    String getTheConfirmationToken(Long id) throws SQLException;
+
+    Long assigneeOperatorToOrder(String role,Long id) throws SQLException;
 }

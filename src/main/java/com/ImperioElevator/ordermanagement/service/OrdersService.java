@@ -23,5 +23,6 @@ public interface OrdersService {
     Long updateOrderStatus(Order order) throws SQLException;
     Order fiendOrderById(Long id) throws SQLException;
     Order getOrderWithExtraProducts(Long orderId) throws SQLException;
+    Long assigneeOperatorToOrder(String role, Long id) throws SQLException;
 
 }

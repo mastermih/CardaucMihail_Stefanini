@@ -242,6 +242,19 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 
+    @Override
+    public Long assigneeOperatorToOrder(String role,Long id) throws SQLException {
+        String sql = "UPDATE orders SET assigned_operator = ? WHERE id = ? AND order_status = 'CONFIRMED'";
+        try{
+            logger.debug("Assigning the order to an Operator: " + sql);
+            jdbcTemplate.update(sql, role, id);
+            return id;
+        }catch (DataAccessException e){
+            logger.error("Failed to Assigning the order to an Operator: " + sql);
+            throw e;
+        }
+    }
+
 
     @Override
     public Long deleteById(Long id) throws SQLException {

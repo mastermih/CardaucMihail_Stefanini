@@ -168,5 +168,10 @@ public class OrdersServiceImpl implements OrdersService {
         return orderDao.getOrderWithExtraProducts(orderId);
     }
 
+    @Override
+    public Long assigneeOperatorToOrder(String role,Long id) throws SQLException {
+        return orderDao.assigneeOperatorToOrder(role, id);
+    }
+
 
 }
