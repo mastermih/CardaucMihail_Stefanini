@@ -127,18 +127,5 @@ public class CategoryDaoImplTest {
         assertEquals("NONONONONO", foundCategory.name().name());
         categoryDao.deleteById(new Id(generatedId).id());
     }
-//Trebu de sters
-    @Test
-    public void testSterger() {
-        System.out.println(checkPassword("tolik", "$2a$09$z0CEV1.OLM/vgJcR8VGageQCHtMEHQjjZy1zYnTX4t0JNXcP.VJF"));  // Should return true
-      //  System.out.println(checkPassword("tolik", "$2a$09$7S1jzVsjxu5JCJFHwlvO2OgLXpFlZHncSb6f0cWf9i4GXHFpjgRxm"));  // Should return true
-
-    }
-
-    public boolean checkPassword(String rawPassword, String encodedPassword) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(9);
-        return encoder.matches(rawPassword, encodedPassword);
-    }
-
 
 }

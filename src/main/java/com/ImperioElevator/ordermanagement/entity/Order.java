@@ -1,5 +1,6 @@
 package com.ImperioElevator.ordermanagement.entity;
 
+import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.CreateDateTime;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
@@ -15,6 +16,7 @@ public record Order(
         @JsonProperty("orderStatus") Status orderStatus,
         @JsonProperty("createdDate") CreateDateTime createdDate,
         @JsonProperty("updatedDate") UpdateDateTime updatedDate,
+        @JsonProperty("assignedOperator") Role operator,
         @JsonProperty("orderProducts") List<OrderProduct> orderProducts
 ) {
     @JsonCreator

@@ -91,7 +91,7 @@ public class JwtService {
 
         // Convert  roles to GrantedAuthority
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()))  // ROLE_  may be useless
+                .map(role -> new SimpleGrantedAuthority(role.toUpperCase()))  // ROLE_  may be useless
                 .collect(Collectors.toList());
     }
 }

@@ -3,6 +3,7 @@ package com.ImperioElevator.ordermanagement.dao.daoimpl;
 import com.ImperioElevator.ordermanagement.dao.OrderDao;
 import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
+import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
 import org.slf4j.Logger;
@@ -284,6 +285,11 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         Long userId = resultSet.getLong("user_id");
         LocalDateTime createdDateTime = resultSet.getTimestamp("created_date").toLocalDateTime();
         LocalDateTime updatedDateTime = resultSet.getTimestamp("updated_date").toLocalDateTime();
+
+        String operatorString = resultSet.getString("assigned_operator");
+
+
+        Role operator = operatorString != null ? Role.valueOf(operatorString) : null;
         Status orderStatus = Status.valueOf(resultSet.getString("order_status"));
         return new Order(
                 new Id(orderId),
@@ -291,6 +297,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 orderStatus,
                 new CreateDateTime(createdDateTime),
                 new UpdateDateTime(updatedDateTime),
+                operator,
                 new ArrayList<>()
         );
     }

@@ -6,6 +6,7 @@ import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
 import com.ImperioElevator.ordermanagement.entity.Product;
 import com.ImperioElevator.ordermanagement.entity.User;
+import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
 import org.junit.jupiter.api.Test;
@@ -38,6 +39,7 @@ public class OrderProductDaoImplTest {
                 Status.NEW,
                 new CreateDateTime(localDate.atStartOfDay()),
                 new UpdateDateTime(localDate.atStartOfDay()),
+                Role.USER,
                 new ArrayList<>()
         );
 
@@ -72,6 +74,7 @@ public class OrderProductDaoImplTest {
                 Status.NEW,
                 new CreateDateTime(localDate.atStartOfDay()),
                 new UpdateDateTime(localDate.atStartOfDay()),
+                Role.USER,
                 new ArrayList<>()
         );
 
@@ -116,6 +119,7 @@ public class OrderProductDaoImplTest {
                 Status.NEW,
                 new CreateDateTime(localDate.atStartOfDay()),
                 new UpdateDateTime(localDate.atStartOfDay()),
+                Role.USER,
                 new ArrayList<>()
         );
 
@@ -150,6 +154,7 @@ public class OrderProductDaoImplTest {
                 Status.NEW,
                 new CreateDateTime(localDate.atStartOfDay()),
                 new UpdateDateTime(localDate.atStartOfDay()),
+                Role.USER,
                 new ArrayList<>()
         );
 

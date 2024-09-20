@@ -43,8 +43,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(WHITELIST).permitAll()
                      //   .requestMatchers("createUser/Superior").hasRole("ADMIN")
-                        .requestMatchers("/orders/assignation").hasRole("ADMIN")
-                        .requestMatchers("/orders/**").hasAnyRole("ADMIN","MANAGER","SALESMAN")
+
+                        .requestMatchers("/orders/assignation").hasAuthority("ADMIN")
+
+                        .requestMatchers("/orders/**").hasAnyAuthority("ADMIN", "MANAGER", "SALESMAN")
+
                         .requestMatchers(SWAGGER_WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -79,7 +82,7 @@ public class SecurityConfig {
     };
     private static final String[] WHITELIST = {
             "/login",
-            "createUser/Superior",
+            "/createUser/Superior",
             "/register",
             "/uploadImage",
             "/userProfileImages/**",
