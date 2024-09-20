@@ -65,14 +65,24 @@ public class UserController {
             summary = "Get a specific user by ID",
             description = "Fetch a user from the system by their unique identifier"
     )
-    @GetMapping("/UserProfile/{userId}")
-    public User getUserProfile(@PathVariable Long userId) throws SQLException{
+
+    // THe original one for geting the Profile of user by id  // May be i can use this one but with no id as path variable
+    @GetMapping("/UserProfile")
+    public User getUserProfile(@RequestParam Long userId) throws SQLException{
         return userSevice.getUserProfile(userId);
     }
+
+//    @GetMapping("/UserProfile/{token}")
+//    public User getUserProfileByToken(@PathVariable String token) throws SQLException {
+//        return userSevice.fiendUserByToken(token);
+//    }
+
+
     @PutMapping("/UserProfile")
     public Long updateUser(@RequestBody User user) throws  SQLException{
         return userSevice.updateUser(user);
     }
+
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest user) throws SQLException {
         return userSevice.verifyUser(user);

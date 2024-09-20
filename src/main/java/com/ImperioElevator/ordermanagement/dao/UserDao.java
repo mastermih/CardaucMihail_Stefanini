@@ -21,4 +21,5 @@ public interface UserDao extends Dao<User> {
     String getUserImage(Long userId) throws SQLException;
     User findByUserEmail (String email) throws SQLException;
     Long findUserIdByEmail(String email) throws SQLException;
+    User fiendUserByToken(String token) throws SQLException; //For accessing the Profile with out seeing the id
 }

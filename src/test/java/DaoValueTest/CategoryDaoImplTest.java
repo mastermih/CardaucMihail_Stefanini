@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -19,8 +20,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-// Feiecare classa incepa dechide un testContext nou idk daca asta e bine
+//ToDO Pina luni 23 Sept vor fi testele gata
 @SpringBootTest(classes = OrderManagementApplication.class)
 @ActiveProfiles("test")
 
@@ -127,4 +127,18 @@ public class CategoryDaoImplTest {
         assertEquals("NONONONONO", foundCategory.name().name());
         categoryDao.deleteById(new Id(generatedId).id());
     }
+//Trebu de sters
+    @Test
+    public void testSterger() {
+        System.out.println(checkPassword("tolik", "$2a$09$z0CEV1.OLM/vgJcR8VGageQCHtMEHQjjZy1zYnTX4t0JNXcP.VJF"));  // Should return true
+      //  System.out.println(checkPassword("tolik", "$2a$09$7S1jzVsjxu5JCJFHwlvO2OgLXpFlZHncSb6f0cWf9i4GXHFpjgRxm"));  // Should return true
+
+    }
+
+    public boolean checkPassword(String rawPassword, String encodedPassword) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(9);
+        return encoder.matches(rawPassword, encodedPassword);
+    }
+
+
 }

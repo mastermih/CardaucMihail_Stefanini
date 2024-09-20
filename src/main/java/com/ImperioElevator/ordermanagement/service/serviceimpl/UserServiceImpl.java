@@ -11,9 +11,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -40,7 +40,9 @@ public class UserServiceImpl implements UserSevice {
 //Encoding the user password useing BCryptPasswordEncoder
     @Override
     public Long addNewUser(User user) throws SQLException {
+        System.out.println("Raw password: " + user.password());  // Debug print
         String encryptedPassword = encoder.encode(user.password());
+        System.out.println("Encoded password: " + encryptedPassword);  // Debug print
         User encriptedUser = new User(
                 user.userId(),
                 user.name(),
@@ -52,7 +54,6 @@ public class UserServiceImpl implements UserSevice {
                 user.accountNonLocked()
         );
         Long userId = userDao.insert(encriptedUser);
-
         // Fetch all role ids for users roles
         List<Long> roleIds = user.roles().stream()
                 .map(role -> {
@@ -73,7 +74,8 @@ public class UserServiceImpl implements UserSevice {
         EmailDetails emailDetails = constructEmailDetails(user, token);
         String emailResult = emailService.sendConfirmationMail(emailDetails, userId);
         System.out.println("Email Result: " + emailResult);
-
+        System.out.println("This one ma MAN   " +  encriptedUser);
+        System.out.println("This one ma MAN   " +  encryptedPassword);
         return userId;
     }
 
@@ -85,6 +87,13 @@ public class UserServiceImpl implements UserSevice {
     @Override
     public String getUserImage(Long userId) throws SQLException {
         return userDao.getUserImage(userId);
+    }
+
+
+    // This is for user Profile selection by token
+    @Override
+    public User fiendUserByToken(String token) throws SQLException {
+        return userDao.fiendUserByToken(token);
     }
 
     @Override
@@ -119,8 +128,6 @@ public class UserServiceImpl implements UserSevice {
             return "Failed";
         }
     }
-
-
 
     private EmailDetails constructEmailDetails(User user, String token) {
         // Construct email details based on the order information

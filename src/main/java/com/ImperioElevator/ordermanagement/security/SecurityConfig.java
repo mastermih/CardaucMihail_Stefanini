@@ -24,8 +24,6 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    // TODO add wait list
-    //ToDo add the confirmation user may be and for order page unblock
     @Autowired
     private JwtFilter jwtFilter;
 
@@ -40,12 +38,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(Customizer.withDefaults())  // Enable CORS with default configuration
-                .csrf(AbstractHttpConfigurer::disable) // disable the csrf Token ->
+                .cors(Customizer.withDefaults())
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/UserProfile/116", "/uploadImage", "/uploadImage", "createUser/Superior").permitAll()
-                        //        .anyRequest().permitAll()
-                        .requestMatchers("/orders/**").hasRole("ADMIN")  // Ensure role-based access here
+                        .requestMatchers(WHITELIST).permitAll()
+                     //   .requestMatchers("createUser/Superior").hasRole("ADMIN")
+                        .requestMatchers("/orders/assignation").hasRole("ADMIN")
+                        .requestMatchers("/orders/**").hasAnyRole("ADMIN","MANAGER","SALESMAN")
                         .requestMatchers(SWAGGER_WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -77,5 +76,15 @@ public class SecurityConfig {
             "/v3/api-docs/**",
             "/swagger-resources/**",
             "/swagger-resources"
+    };
+    private static final String[] WHITELIST = {
+            "/login",
+            "createUser/Superior",
+            "/register",
+            "/uploadImage",
+            "/userProfileImages/**",
+            "/catalog/**",
+            "/product/**",
+            "/sendMail/confirm/user/*"
     };
 }

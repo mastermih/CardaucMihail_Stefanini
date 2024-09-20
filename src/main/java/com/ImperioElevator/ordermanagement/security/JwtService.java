@@ -82,16 +82,16 @@ public class JwtService {
             return claim != null ? (Boolean) claim : true;  // Default to true if claim is missing
         });
     }
-
+// I can use here the extract claim insted of extractAllClaims but I will let it like that for the moment
     public List<GrantedAuthority> extractAuthorities(String token) {
         Claims claims = extractAllClaims(token);
 
         // Extract the roles as a List from the JWT claims
-        List<String> roles = claims.get("roles", List.class);  // Use List<String> instead of String
+        List<String> roles = claims.get("roles", List.class);
 
-        // Convert the roles to GrantedAuthority
+        // Convert  roles to GrantedAuthority
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()))  // Ensure the role prefix is correct
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()))  // ROLE_  may be useless
                 .collect(Collectors.toList());
     }
 }

@@ -1,5 +1,6 @@
 package com.ImperioElevator.ordermanagement.entity;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
@@ -16,21 +17,20 @@ public class SwaggerConfig {
         return GroupedOpenApi.builder()
                 .group("public-apis")  // Group name for APIs
                 .pathsToMatch("/**")  // Define the path patterns to include all APIs
-                .packagesToExclude("com.yourpackage.model")  // Exclude specific packages
                 .build();
     }
 
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Imerior").version("API version: 1.0"))
-                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"));
-//                .components(new Components()  // I have no Spring security by the moment
-//                        .addSecuritySchemes("bearerAuth",
-//                                new SecurityScheme()
-//                                        .type(SecurityScheme.Type.HTTP)
-//                                        .scheme("bearer")
-//                                        .bearerFormat("JWT")));
+                .info(new Info().title("Imerior").version("1.0"))  // Fix the versioning
+                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
+                .components(
+                        new Components()
+                                .addSecuritySchemes("bearerAuth",
+                                        new SecurityScheme()
+                                                .type(SecurityScheme.Type.HTTP)
+                                                .scheme("bearer")
+                                                .bearerFormat("JWT")));
     }
 }
-

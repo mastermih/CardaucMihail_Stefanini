@@ -111,6 +111,19 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             throw e;
         }
     }
+    //For geting the profile page with out the id us the user
+    @Override
+    public User fiendUserByToken(String token) throws SQLException {
+        String sql = "SELECT * FROM user WHERE id = (SELECT user_id FROM token WHERE token_value = ?)";
+        try{
+            logger.debug("Geting the id of the user based on the UserToken ", sql);
+            return jdbcTemplate.queryForObject(sql, new Object[]{token}, (resultSet, i) -> mapResultSetToEntity(resultSet));
+        }catch (DataAccessException e){
+            logger.error("Failed to get the id of the user based on the UserToken");
+            throw e;
+        }
+
+    }
 
     @Override
     public User findById(Long id) throws SQLException {
@@ -156,7 +169,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             int rowsUpdated = jdbcTemplate.update(updateUserSql, token);
             if (rowsUpdated == 0) {
                 // 0 friendly response nici o mila
-                throw new SQLException("No user found with the provided confirmation token or more probabily you already confirmed the user :).");
+                throw new SQLException("No user found with the provided confirmation token or more probabily you already confirmed the user :)");
             }
 
             logger.debug("User account unlocked using token: {}", token);
@@ -280,4 +293,5 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             throw e;
         }
     }
+
 }

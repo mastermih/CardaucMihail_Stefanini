@@ -34,7 +34,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         boolean accountNotLocked = user.accountNonLocked();
         return new org.springframework.security.core.userdetails.User(
-             //   user.userId().id(),                      // Custom User ID
                 user.email().email(),
                 user.password(),
                 true,                // Enabled (true if the user is enabled)

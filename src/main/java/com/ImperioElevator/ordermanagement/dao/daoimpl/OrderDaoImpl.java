@@ -34,6 +34,8 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Long insert(Order order) throws SQLException {
+        logger.debug("Order received with userId: " + order.userId().userId().id());
+
         String orderSql = "INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)";
         String tokenSql = "INSERT INTO token (order_id, user_id, token_type, token_value, is_enabled) VALUES (?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
