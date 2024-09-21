@@ -21,8 +21,6 @@
             <column name="order_status" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="assigned_operator" type="VARCHAR(42)">
-            </column>
         </createTable>
     </changeSet>
 

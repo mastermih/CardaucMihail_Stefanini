@@ -211,7 +211,7 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
         // Create and return a new OrderProduct object
         return new OrderProduct(
                 new Id(null),
-                new Order(new Id(orderId), null, null, null, null, null, null),
+                new Order(new Id(orderId), null, null, null, null, null),
                 new Quantity(quantity),
                 new Price(priceOrder),
                 new Id(parentId),

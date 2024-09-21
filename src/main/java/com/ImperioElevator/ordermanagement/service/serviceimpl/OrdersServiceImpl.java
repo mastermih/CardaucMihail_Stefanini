@@ -37,7 +37,7 @@ public class OrdersServiceImpl implements OrdersService {
     public Long createOrderWithProducts(Order order, List<OrderProduct> orderProducts) throws SQLException {
         // Create the Order and get the generated orderId
         Long orderId = orderDao.insert(order);
-        order = new Order(new Id(orderId), order.userId(), order.orderStatus(), order.createdDate(), order.updatedDate(), order.operator(), orderProducts);
+        order = new Order(new Id(orderId), order.userId(), order.orderStatus(), order.createdDate(), order.updatedDate(), orderProducts);
 
 
         //  Create OrderProduct entities linked to  order
@@ -169,8 +169,18 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public Long assigneeOperatorToOrder(String role,Long id) throws SQLException {
-        return orderDao.assigneeOperatorToOrder(role, id);
+    public Long assigneeOperatorToOrder(Long id, String role) throws SQLException {
+        return orderDao.assigneeOperatorToOrder(id, role);
+    }
+
+    @Override
+    public List<String> getOperatorNameToOrder(String role) throws SQLException {
+        return orderDao.getOperatorNameToOrder(role);
+    }
+
+    @Override
+    public String setOperatorNameToOrder(String userName,  Long id) throws SQLException {
+        return orderDao.setOperatorNameToOrder(userName, id);
     }
 
 

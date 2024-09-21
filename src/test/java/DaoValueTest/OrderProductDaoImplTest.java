@@ -39,7 +39,6 @@ public class OrderProductDaoImplTest {
                 Status.NEW,
                 new CreateDateTime(localDate.atStartOfDay()),
                 new UpdateDateTime(localDate.atStartOfDay()),
-                Role.USER,
                 new ArrayList<>()
         );
 
@@ -74,7 +73,6 @@ public class OrderProductDaoImplTest {
                 Status.NEW,
                 new CreateDateTime(localDate.atStartOfDay()),
                 new UpdateDateTime(localDate.atStartOfDay()),
-                Role.USER,
                 new ArrayList<>()
         );
 
@@ -119,7 +117,6 @@ public class OrderProductDaoImplTest {
                 Status.NEW,
                 new CreateDateTime(localDate.atStartOfDay()),
                 new UpdateDateTime(localDate.atStartOfDay()),
-                Role.USER,
                 new ArrayList<>()
         );
 
@@ -154,7 +151,6 @@ public class OrderProductDaoImplTest {
                 Status.NEW,
                 new CreateDateTime(localDate.atStartOfDay()),
                 new UpdateDateTime(localDate.atStartOfDay()),
-                Role.USER,
                 new ArrayList<>()
         );
 

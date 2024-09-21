@@ -16,7 +16,6 @@ public record Order(
         @JsonProperty("orderStatus") Status orderStatus,
         @JsonProperty("createdDate") CreateDateTime createdDate,
         @JsonProperty("updatedDate") UpdateDateTime updatedDate,
-        @JsonProperty("assignedOperator") Role operator,
         @JsonProperty("orderProducts") List<OrderProduct> orderProducts
 ) {
     @JsonCreator

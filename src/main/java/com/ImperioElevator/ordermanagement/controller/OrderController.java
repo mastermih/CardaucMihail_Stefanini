@@ -158,9 +158,20 @@ public class OrderController {
 
 
  //Assigning User(Management) to a User Order
+ @PostMapping("orders/assignation")
+ public Long assigneeOperatorToOrder (@RequestParam Long id,  //Body or param ? Now it works fine
+                                      @RequestParam String role) throws SQLException {
+  return ordersService.assigneeOperatorToOrder(id, role);
+ }
+
+ @GetMapping("orders/assignation")
+ public List<String> getOperatorNameToOrder (@RequestParam String role) throws SQLException {
+  return ordersService.getOperatorNameToOrder(role);
+ }
+
  @PutMapping("orders/assignation")
- public Long assigneeOperatorToOrder (@RequestParam String role,  //Body or param ? Now it works fine
-                                      @RequestParam Long id) throws SQLException {
-  return ordersService.assigneeOperatorToOrder(role, id);
+ public String setOperatorNameToOrder(@RequestParam String userName,
+                                      @RequestParam Long id) throws SQLException{
+  return ordersService.setOperatorNameToOrder(userName, id);
  }
 }

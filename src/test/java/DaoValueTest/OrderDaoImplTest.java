@@ -51,7 +51,6 @@ public class OrderDaoImplTest {
                 Status.NEW,
                 new CreateDateTime(localDateTime),
                 new UpdateDateTime(localDateTime),
-                Role.USER ,
                 new ArrayList<>()
 
         );
@@ -67,11 +66,11 @@ public class OrderDaoImplTest {
         LocalDate localDate = LocalDate.of(2024, 7, 1);
         LocalDateTime localDateTime = localDate.atStartOfDay();
         User user = new User(new Id(1L), null, null, null, null, null,null, true);
-        Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime), Role.USER , new ArrayList<>());
+        Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) , new ArrayList<>());
         Long generatedId = orderDao.insert(order);
         Order foundOrder = orderDao.findById(generatedId);
 
-        foundOrder = new Order(new Id(generatedId), new User(new Id(2L), null, null,null,null, null, null, true), foundOrder.orderStatus(), foundOrder.createdDate(), foundOrder.updatedDate(),Role.USER ,  new ArrayList<>());
+        foundOrder = new Order(new Id(generatedId), new User(new Id(2L), null, null,null,null, null, null, true), foundOrder.orderStatus(), foundOrder.createdDate(), foundOrder.updatedDate() ,  new ArrayList<>());
         orderDao.update(foundOrder);
 
         Order updatedOrder = orderDao.findById(generatedId);
@@ -84,7 +83,7 @@ public class OrderDaoImplTest {
         LocalDate localDate = LocalDate.of(2024, 7, 1);
         LocalDateTime localDateTime = localDate.atStartOfDay();
         User user = new User(new Id(1L), null, null,null, null, null, null, true);
-        Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime), Role.USER , new ArrayList<>());
+        Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) , new ArrayList<>());
         Long generatedId = orderDao.insert(order);
 
         orderDao.deleteById(generatedId);
@@ -98,7 +97,7 @@ public class OrderDaoImplTest {
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i < 10; i++) {
             User user = new User(new Id(2L), null, null,null, null, null,null, true);
-            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime),Role.USER ,  new ArrayList<>());
+            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
 
@@ -116,7 +115,7 @@ public class OrderDaoImplTest {
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i <= 10; i++) {
             User user = new User(new Id(2L), null, null,null, null, null,null, true);
-            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime),Role.USER ,  new ArrayList<>());
+            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
         Paginable<Order> response = orderDao.findPaginableOrderByUpdatedDate(localDateTime, localDateTime, 5L, 1L);
@@ -133,7 +132,7 @@ public class OrderDaoImplTest {
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i <= 10; i++) {
             User user = new User(new Id(2L), null, null, null,null,null, null, true);
-            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime),Role.USER ,  new ArrayList<>());
+            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
         Paginable<Order> response = orderDao.findPaginableOrderByCreatedDateAndStatus(localDateTime, localDateTime, Status.CLOSED, 5L, 2L);
@@ -151,7 +150,7 @@ public class OrderDaoImplTest {
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i <= 10; i++) {
             User user = new User(new Id(2L), null, null,null, null,null, null, true);
-            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime),Role.USER ,  new ArrayList<>());
+            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
         Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 6L, 2L);
@@ -168,7 +167,7 @@ public class OrderDaoImplTest {
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i <= 10; i++) {
             User user = new User(new Id(2L), null, null,null,null, null, null, true);
-            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime),Role.USER ,  new ArrayList<>());
+            Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
         Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 3L, 3L);
@@ -191,7 +190,7 @@ public class OrderDaoImplTest {
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i <= 10; i++) {
             User user = new User(new Id(2L), null, null, null,null,null, null, true);
-            Order order = new Order(null, user, Status.IN_PROGRESS, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime),Role.USER ,  new ArrayList<>());
+            Order order = new Order(null, user, Status.IN_PROGRESS, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime),  new ArrayList<>());
             orderDao.insert(order);
         }
         Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 20L, 1L);
