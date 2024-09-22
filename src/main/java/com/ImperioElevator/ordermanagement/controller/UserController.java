@@ -28,9 +28,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.util.stream.Collectors;
-
 //ToDo add comments for all methods in the controller Swagger form
 @RestController
 public class UserController {
@@ -59,33 +56,24 @@ public class UserController {
 
 
     @PostMapping("createUser")
-    public ResponseEntity<?> addNewUser(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result) throws SQLException {
-        // Check for validation errors first
-        if (result.hasErrors()) {
-            List<String> errors = result.getAllErrors().stream()
-                    .map(error -> error.getDefaultMessage())
-                    .collect(Collectors.toList());
-            return ResponseEntity.badRequest().body(errors);
-        }
-
-        try {
-            // Pass the user and verifyPassword to the service layer for further validation and processing
-            Long userId = userSevice.createUserUnauthorized(userRegistrationDTO.getUser(), userRegistrationDTO.getVerifyPassword());
-
-            // Return success response
-            UserCreationResponse response = new UserCreationResponse(
+    public ResponseEntity<UserCreationResponse> addNewUser(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result)throws SQLException{
+        Long userId = userSevice.addNewUser(userRegistrationDTO.getUser());
+        if(result.hasErrors()){
+            UserCreationResponse badResponse = new UserCreationResponse(
                     userId,
-                    "User " + userId + " was added successfully"
+                    "User " + userId + " was not added successfully"
             );
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
-
-        } catch (IllegalArgumentException ex) {
-            // Catch the password mismatch exception and return a bad request response
-            return ResponseEntity.badRequest().body(ex.getMessage());
+            return new ResponseEntity<>(badResponse, HttpStatus.BAD_REQUEST);
         }
+        UserCreationResponse response = new UserCreationResponse(
+                userId,
+                "User " + userId + " was added success"
+        );
+        User user = userRegistrationDTO.getUser();
+        String verifyPassword = userRegistrationDTO.getVerifyPassword();
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-
-
 
     @GetMapping("/uploadImage")
     public String getUserImage(@RequestParam Long userId) throws SQLException{

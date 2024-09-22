@@ -12,9 +12,9 @@ import java.util.List;
 public record User(
         Id userId,
         @NotNull
-        @Size(min = 2, max = 10, message = "Not less then 2 and not more then 10")
+      //  @Size(min = 2, max = 10, message = "Not less then 2 and not more then 10")
         Name name,
-        @jakarta.validation.constraints.Email(message = "Email should be valid")
+        //@jakarta.validation.constraints.Email(message = "Email should be valid")
         Email email,
       // @JsonIgnore // because of this user can not be registrated
         @Size(min = 5, max = 30, message = " The password number of characters is invalid")
