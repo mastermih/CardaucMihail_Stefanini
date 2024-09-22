@@ -1,6 +1,7 @@
 package com.ImperioElevator.ordermanagement.controller;
 
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
+import com.ImperioElevator.ordermanagement.dto.UserRegistrationDTO;
 import com.ImperioElevator.ordermanagement.entity.EntityCreationResponse;
 import com.ImperioElevator.ordermanagement.entity.LoginRequest;
 import com.ImperioElevator.ordermanagement.entity.User;
@@ -51,9 +52,16 @@ public class UserController {
         return emailService.updateUserEmailConfirmStatus(token);
     }
 
+//    @PostMapping("createUser")
+//    public Long addNewUser(@RequestBody User user)throws SQLException{
+//        return userSevice.addNewUser(user);
+//    }
+
     @PostMapping("createUser")
-    public Long addNewUser(@RequestBody User user)throws SQLException{
-        return userSevice.addNewUser(user);
+    public Long addNewUser(@RequestBody UserRegistrationDTO userRegistrationDTO)throws SQLException{
+        User user = userRegistrationDTO.getUser();
+        String verifyPassword = userRegistrationDTO.getVerifyPassword();
+        return userSevice.createUserUnauthorized(user, verifyPassword);
     }
 
     @GetMapping("/uploadImage")

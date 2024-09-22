@@ -47,7 +47,7 @@ public class OrderDaoImplTest {
         LocalDateTime localDateTime = LocalDateTime.of(2024, 7, 1, 0, 0);
         Order order = new Order(
                 null,
-                new User(new Id(1L), null, null, null, null,null,null,true),
+                new User(new Id(1L), null, null, null, null, null,null,null,true),
                 Status.NEW,
                 new CreateDateTime(localDateTime),
                 new UpdateDateTime(localDateTime),
@@ -65,12 +65,12 @@ public class OrderDaoImplTest {
     public void testUpdate() throws SQLException {
         LocalDate localDate = LocalDate.of(2024, 7, 1);
         LocalDateTime localDateTime = localDate.atStartOfDay();
-        User user = new User(new Id(1L), null, null, null, null, null,null, true);
+        User user = new User(new Id(1L), null, null, null, null, null ,null,null, true);
         Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) , new ArrayList<>());
         Long generatedId = orderDao.insert(order);
         Order foundOrder = orderDao.findById(generatedId);
 
-        foundOrder = new Order(new Id(generatedId), new User(new Id(2L), null, null,null,null, null, null, true), foundOrder.orderStatus(), foundOrder.createdDate(), foundOrder.updatedDate() ,  new ArrayList<>());
+        foundOrder = new Order(new Id(generatedId), new User(new Id(2L), null,null, null,null,null, null, null, true), foundOrder.orderStatus(), foundOrder.createdDate(), foundOrder.updatedDate() ,  new ArrayList<>());
         orderDao.update(foundOrder);
 
         Order updatedOrder = orderDao.findById(generatedId);
@@ -82,7 +82,7 @@ public class OrderDaoImplTest {
     public void testDeleteById() throws SQLException {
         LocalDate localDate = LocalDate.of(2024, 7, 1);
         LocalDateTime localDateTime = localDate.atStartOfDay();
-        User user = new User(new Id(1L), null, null,null, null, null, null, true);
+        User user = new User(new Id(1L), null, null,null, null, null,null, null, true);
         Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) , new ArrayList<>());
         Long generatedId = orderDao.insert(order);
 
@@ -96,7 +96,7 @@ public class OrderDaoImplTest {
         LocalDate localDate = LocalDate.of(2024, 7, 1);
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i < 10; i++) {
-            User user = new User(new Id(2L), null, null,null, null, null,null, true);
+            User user = new User(new Id(2L), null, null,null, null,null, null,null, true);
             Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
@@ -114,7 +114,7 @@ public class OrderDaoImplTest {
         LocalDate localDate = LocalDate.of(2024, 7, 1);
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i <= 10; i++) {
-            User user = new User(new Id(2L), null, null,null, null, null,null, true);
+            User user = new User(new Id(2L), null, null,null, null, null,null,null, true);
             Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
@@ -131,7 +131,7 @@ public class OrderDaoImplTest {
         LocalDate localDate = LocalDate.of(2024, 7, 1);
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i <= 10; i++) {
-            User user = new User(new Id(2L), null, null, null,null,null, null, true);
+            User user = new User(new Id(2L), null, null, null,null,null,null, null, true);
             Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
@@ -149,7 +149,7 @@ public class OrderDaoImplTest {
         LocalDate localDate = LocalDate.of(2024, 7, 1);
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i <= 10; i++) {
-            User user = new User(new Id(2L), null, null,null, null,null, null, true);
+            User user = new User(new Id(2L), null, null,null, null,null,null, null, true);
             Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
@@ -166,7 +166,7 @@ public class OrderDaoImplTest {
         LocalDate localDate = LocalDate.of(2024, 7, 1);
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i <= 10; i++) {
-            User user = new User(new Id(2L), null, null,null,null, null, null, true);
+            User user = new User(new Id(2L), null, null,null,null, null, null, null, true);
             Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
@@ -189,7 +189,7 @@ public class OrderDaoImplTest {
         LocalDate localDate = LocalDate.of(2024, 7, 1);
         LocalDateTime localDateTime = localDate.atStartOfDay();
         for (int i = 0; i <= 10; i++) {
-            User user = new User(new Id(2L), null, null, null,null,null, null, true);
+            User user = new User(new Id(2L), null, null, null,null,null,null, null, true);
             Order order = new Order(null, user, Status.IN_PROGRESS, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime),  new ArrayList<>());
             orderDao.insert(order);
         }

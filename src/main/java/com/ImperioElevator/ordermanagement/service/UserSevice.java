@@ -16,4 +16,5 @@ public interface UserSevice {
     Long updateUser(User user) throws SQLException;
     String verifyUser(LoginRequest user) throws SQLException;
     User fiendUserByToken(String token) throws  SQLException; // This is for userPrfole selection
+    Long createUserUnauthorized(User user, String verifyPassword) throws SQLException;
 }

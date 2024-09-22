@@ -77,6 +77,50 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
+    public Long createUserUnauthorized(User user) {
+        String sql = "INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)";
+
+        String tokenSql = "INSERT INTO token (order_id, user_id, token_type, token_value, is_enabled) VALUES (?, ?, ?, ?, ?)";
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        String token = TokenGenerator.generateToken();
+
+        try {
+            logger.debug("Executing creation of the user: {}", sql);
+
+            jdbcTemplate.update(connection -> {
+                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, user.name().name());
+                ps.setString(2, user.email().email());
+                ps.setString(3, user.password());
+                ps.setBoolean(4, user.accountNonLocked());
+                ps.setString(5, user.phoneNumber());
+                return ps;
+            }, keyHolder);
+
+            Long userId = keyHolder.getKey().longValue();
+            logger.info("Successfully inserted User with userId: {}", userId);
+
+            // Insert the token into the token table
+            logger.debug("Inserting token for userId: {}", userId);
+            jdbcTemplate.update(tokenSql, new Object[]{
+                    null,
+                    userId,
+                    "USER",
+                    token,
+                    true
+            });
+
+            return userId;
+
+        } catch (DataAccessException e) {
+            logger.error("Error while creating the user: {}", e.getMessage());
+            throw e;
+        }
+    }
+
+
+    @Override
     public Long update(User user) throws SQLException {
         String sql = "UPDATE user SET username = ?, email = ?, image = ?, phone_number = ? WHERE id = ? ";
 

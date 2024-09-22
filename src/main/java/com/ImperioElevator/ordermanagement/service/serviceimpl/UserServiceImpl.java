@@ -41,7 +41,11 @@ public class UserServiceImpl implements UserSevice {
     @Override
     public Long addNewUser(User user) throws SQLException {
         System.out.println("Raw password: " + user.password());  // Debug print
+//       if(!user.password().equals(user.verifyPassword())){
+//            throw new IllegalArgumentException("Passwords do not match");
+//        }
         String encryptedPassword = encoder.encode(user.password());
+     //   String encryptedVerifyPassword = encoder.encode(user.verifyPassword());
         System.out.println("Encoded password: " + encryptedPassword);  // Debug print
         User encriptedUser = new User(
                 user.userId(),
@@ -72,13 +76,47 @@ public class UserServiceImpl implements UserSevice {
         // Generate confirmation token and send the email
         String token = userDao.getTheConfirmationToken(userId);
         EmailDetails emailDetails = constructEmailDetails(user, token);
-        String emailResult = emailService.sendConfirmationMail(emailDetails, userId);
-        System.out.println("Email Result: " + emailResult);
-        System.out.println("This one ma MAN   " +  encriptedUser);
-        System.out.println("This one ma MAN   " +  encryptedPassword);
+        emailService.sendConfirmationMail(emailDetails, userId);
         return userId;
     }
+    @Override
+    public Long createUserUnauthorized(User user, String verifyPassword) throws SQLException {
+       if(!user.password().equals(verifyPassword)){
+            throw new IllegalArgumentException("Passwords do not match");
+        }
+        String encryptedPassword = encoder.encode(user.password());
+        User encriptedUser = new User(
+                user.userId(),
+                user.name(),
+                user.email(),
+                encryptedPassword,  // Set the encrypted password
+                user.phoneNumber(),
+                user.image(),
+                user.roles(),
+                user.accountNonLocked()
+        );
+        Long userId = userDao.createUserUnauthorized(encriptedUser);
+        // Fetch all role ids for users roles
+        List<Long> roleIds = user.roles().stream()
+                .map(role -> {
+                    try {
+                        return userDao.getRoleIdFromRoleName("USER");
+                    } catch (SQLException e) {
+                        logger.error("Error fetching role ID for role: {}", role.name(), e);
+                        throw new RuntimeException(e);
+                    }
+                })
+                .toList();  // Collect role ids
 
+        // Assign multiple roles to the user
+        userDao.giveToUserRoles(userId, roleIds);
+
+        // Generate confirmation token and send the email
+        String token = userDao.getTheConfirmationToken(userId);
+        EmailDetails emailDetails = constructEmailDetails(user, token);
+        emailService.sendConfirmationMail(emailDetails, userId);
+        return userId;
+    }
     @Override
     public Long addImageForUSer(Long userId, String  image) throws SQLException {
         return userDao.addImageForUSer(userId, image);

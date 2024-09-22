@@ -83,6 +83,7 @@ public class SecurityConfig {
     private static final String[] WHITELIST = {
             "/login",
             "/createUser/Superior",
+            "/createUser",
             "/register",
             "/uploadImage",
             "/userProfileImages/**",

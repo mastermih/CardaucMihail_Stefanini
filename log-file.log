@@ -1,499 +1,79 @@
-2024-09-21 11:36:02 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
-2024-09-21 11:36:02 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
-2024-09-21 11:36:03 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
-2024-09-21 11:36:03 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
-2024-09-21 11:43:50 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 11:43:50 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 11:43:53 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 11:43:53 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 11:43:53 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 11:43:53 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 11:44:08 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 11:44:08 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 11:44:08 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 11:44:08 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 11:44:08 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
-2024-09-21 11:44:08 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
-2024-09-21 11:44:08 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
-2024-09-21 11:44:08 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
-2024-09-21 11:44:19 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator: UPDATE orders SET assigned_operator = ? WHERE id = ? AND order_status = 'CONFIRMED'
-2024-09-21 11:44:19 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator: UPDATE orders SET assigned_operator = ? WHERE id = ? AND order_status = 'CONFIRMED'
-2024-09-21 11:48:07 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 1 unconfirmed orders
-2024-09-21 11:48:07 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 1 unconfirmed orders
-2024-09-21 11:48:07 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 1
-2024-09-21 12:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-21 12:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-21 12:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
-2024-09-21 12:17:47 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator: UPDATE orders SET assigned_operator = ? WHERE id = ? AND order_status = 'CONFIRMED'
-2024-09-21 12:17:47 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator: UPDATE orders SET assigned_operator = ? WHERE id = ? AND order_status = 'CONFIRMED'
-2024-09-21 12:17:52 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator: UPDATE orders SET assigned_operator = ? WHERE id = ? AND order_status = 'CONFIRMED'
-2024-09-21 12:17:52 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator: UPDATE orders SET assigned_operator = ? WHERE id = ? AND order_status = 'CONFIRMED'
-2024-09-21 12:36:23 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 16768 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 12:36:23 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 12:36:24 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 12:36:24 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 12:36:24 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 12:36:24 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 12:36:25 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 12:36:25 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1548 ms
-2024-09-21 12:36:25 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@16d431b4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6c0b51da, org.springframework.security.web.context.SecurityContextHolderFilter@119290b9, org.springframework.security.web.header.HeaderWriterFilter@7c8874ef, org.springframework.web.filter.CorsFilter@7558633, org.springframework.security.web.authentication.logout.LogoutFilter@5c8d58ed, com.ImperioElevator.ordermanagement.security.JwtFilter@29be997f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@62cbc478, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6d0e45a5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5657967b, org.springframework.security.web.session.SessionManagementFilter@7ccd611e, org.springframework.security.web.access.ExceptionTranslationFilter@65da01f4, org.springframework.security.web.access.intercept.AuthorizationFilter@285a4fe3]
-2024-09-21 12:36:25 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 12:36:25 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 12:36:25 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.096 seconds (process running for 3.597)
-2024-09-21 12:36:25 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 12:37:46 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-21 12:37:46 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-21 12:37:46 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2024-09-21 12:37:46 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 12:37:46 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 12:37:47 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 12:37:47 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 12:37:51 [http-nio-8080-exec-4] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-21 12:37:51 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:37:51 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:37:51 [http-nio-8080-exec-4] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:37:51 [http-nio-8080-exec-4] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:37:51 [http-nio-8080-exec-4] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.UncategorizedSQLException: PreparedStatementCallback; uncategorized SQLException for SQL [INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)]; SQL state [HY000]; error code [1366]; Incorrect integer value: 'MANAGER' for column 'order_id' at row 1] with root cause
-java.sql.SQLException: Incorrect integer value: 'MANAGER' for column 'order_id' at row 1
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1061)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1009)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1320)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:994)
-	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:973)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:656)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:968)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1023)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1033)
-	at com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl.assigneeOperatorToOrder(OrderDaoImpl.java:252)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl.assigneeOperatorToOrder(OrdersServiceImpl.java:173)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl$$SpringCGLIB$$0.assigneeOperatorToOrder(<generated>)
-	at com.ImperioElevator.ordermanagement.controller.OrderController.assigneeOperatorToOrder(OrderController.java:164)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
-	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:61)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-2024-09-21 12:40:20 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:40:20 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:40:20 [http-nio-8080-exec-6] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:40:20 [http-nio-8080-exec-6] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:40:20 [http-nio-8080-exec-6] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.UncategorizedSQLException: PreparedStatementCallback; uncategorized SQLException for SQL [INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)]; SQL state [HY000]; error code [1366]; Incorrect integer value: 'MANAGER' for column 'order_id' at row 1] with root cause
-java.sql.SQLException: Incorrect integer value: 'MANAGER' for column 'order_id' at row 1
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1061)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1009)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1320)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:994)
-	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:973)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:656)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:968)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1023)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1033)
-	at com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl.assigneeOperatorToOrder(OrderDaoImpl.java:252)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl.assigneeOperatorToOrder(OrdersServiceImpl.java:173)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl$$SpringCGLIB$$0.assigneeOperatorToOrder(<generated>)
-	at com.ImperioElevator.ordermanagement.controller.OrderController.assigneeOperatorToOrder(OrderController.java:164)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
-	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:61)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-2024-09-21 12:41:19 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 41624 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 12:41:19 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 12:41:20 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 12:41:20 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 12:41:20 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 12:41:20 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 12:41:20 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 12:41:20 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1516 ms
-2024-09-21 12:41:21 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5fef0c19, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2e6d76ba, org.springframework.security.web.context.SecurityContextHolderFilter@372f0a99, org.springframework.security.web.header.HeaderWriterFilter@1f916219, org.springframework.web.filter.CorsFilter@22a6d75c, org.springframework.security.web.authentication.logout.LogoutFilter@463afa6e, com.ImperioElevator.ordermanagement.security.JwtFilter@168b4cb0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3e5beab5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3887c7d7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5a9840f3, org.springframework.security.web.session.SessionManagementFilter@48cd319d, org.springframework.security.web.access.ExceptionTranslationFilter@257f30f7, org.springframework.security.web.access.intercept.AuthorizationFilter@7e61e25c]
-2024-09-21 12:41:21 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 12:41:21 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 12:41:21 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 2.999 seconds (process running for 3.502)
-2024-09-21 12:41:21 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 12:41:37 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-21 12:41:37 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-21 12:41:37 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-21 12:41:37 [http-nio-8080-exec-2] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-21 12:41:37 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:41:37 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:41:38 [http-nio-8080-exec-2] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:41:38 [http-nio-8080-exec-2] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:41:38 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.UncategorizedSQLException: PreparedStatementCallback; uncategorized SQLException for SQL [INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)]; SQL state [HY000]; error code [1364]; Field 'user_id' doesn't have a default value] with root cause
-java.sql.SQLException: Field 'user_id' doesn't have a default value
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1061)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1009)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1320)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:994)
-	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:973)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:656)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:968)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1023)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1033)
-	at com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl.assigneeOperatorToOrder(OrderDaoImpl.java:252)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl.assigneeOperatorToOrder(OrdersServiceImpl.java:173)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl$$SpringCGLIB$$0.assigneeOperatorToOrder(<generated>)
-	at com.ImperioElevator.ordermanagement.controller.OrderController.assigneeOperatorToOrder(OrderController.java:164)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
-	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:61)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-2024-09-21 12:41:41 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 12:41:41 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 12:41:42 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 12:41:42 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 12:42:17 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 11100 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 12:42:17 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 12:42:19 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 12:42:19 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 12:42:19 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 12:42:19 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 12:42:19 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 12:42:19 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1848 ms
-2024-09-21 12:42:20 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@578a5ce8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7c453c34, org.springframework.security.web.context.SecurityContextHolderFilter@515ab3f2, org.springframework.security.web.header.HeaderWriterFilter@2ca3d826, org.springframework.web.filter.CorsFilter@16cb9989, org.springframework.security.web.authentication.logout.LogoutFilter@6de7778f, com.ImperioElevator.ordermanagement.security.JwtFilter@168b4cb0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7e7740a5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@256bb5be, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3dfd6220, org.springframework.security.web.session.SessionManagementFilter@62cbc478, org.springframework.security.web.access.ExceptionTranslationFilter@543fe698, org.springframework.security.web.access.intercept.AuthorizationFilter@7558633]
-2024-09-21 12:42:20 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 12:42:20 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 12:42:20 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.541 seconds (process running for 4.037)
-2024-09-21 12:42:20 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 12:42:23 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-21 12:42:23 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-21 12:42:23 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-21 12:42:23 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 12:42:23 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 12:42:24 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 12:42:24 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 12:42:31 [http-nio-8080-exec-3] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-21 12:42:31 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:42:31 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:42:31 [http-nio-8080-exec-3] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:42:31 [http-nio-8080-exec-3] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:42:31 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.UncategorizedSQLException: PreparedStatementCallback; uncategorized SQLException for SQL [INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)]; SQL state [HY000]; error code [1364]; Field 'user_id' doesn't have a default value] with root cause
-java.sql.SQLException: Field 'user_id' doesn't have a default value
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1061)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1009)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1320)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:994)
-	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:973)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:656)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:968)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1023)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1033)
-	at com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl.assigneeOperatorToOrder(OrderDaoImpl.java:252)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl.assigneeOperatorToOrder(OrdersServiceImpl.java:173)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl$$SpringCGLIB$$0.assigneeOperatorToOrder(<generated>)
-	at com.ImperioElevator.ordermanagement.controller.OrderController.assigneeOperatorToOrder(OrderController.java:164)
+2024-09-22 00:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-22 00:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-22 00:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-22 00:02:21 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 2160 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-22 00:02:21 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-22 00:02:22 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-22 00:02:22 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-22 00:02:22 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-22 00:02:22 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-22 00:02:22 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-22 00:02:22 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1464 ms
+2024-09-22 00:02:23 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@22a6d75c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a9840f3, org.springframework.security.web.context.SecurityContextHolderFilter@3e5beab5, org.springframework.security.web.header.HeaderWriterFilter@3b088163, org.springframework.web.filter.CorsFilter@7d30007d, org.springframework.security.web.authentication.logout.LogoutFilter@7ccd611e, com.ImperioElevator.ordermanagement.security.JwtFilter@3e05586b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@33ec2c0c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@526f6427, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@382d71c7, org.springframework.security.web.session.SessionManagementFilter@4ef18604, org.springframework.security.web.access.ExceptionTranslationFilter@1f916219, org.springframework.security.web.access.intercept.AuthorizationFilter@256bb5be]
+2024-09-22 00:02:23 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-22 00:02:23 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-22 00:02:23 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 2.886 seconds (process running for 3.309)
+2024-09-22 00:02:23 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-22 00:02:54 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-22 00:02:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-22 00:02:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-22 00:02:54 [http-nio-8080-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `com.ImperioElevator.ordermanagement.enumobects.Role` from Object value (token `JsonToken.START_OBJECT`)]
+2024-09-22 13:55:42 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 13:55:42 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 13:55:43 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 176
+2024-09-22 13:55:43 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 176
+2024-09-22 13:55:43 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 176
+2024-09-22 13:55:43 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 176
+2024-09-22 13:55:43 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 176
+2024-09-22 13:55:43 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 176
+2024-09-22 13:55:43 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 13:55:43 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 13:55:48 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 13:55:48 [http-nio-8080-exec-6] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 13:55:48 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 13:55:48 [http-nio-8080-exec-6] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 13:56:50 [http-nio-8080-exec-8] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `com.ImperioElevator.ordermanagement.enumobects.Role` from Object value (token `JsonToken.START_OBJECT`)]
+2024-09-22 13:57:58 [http-nio-8080-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public java.lang.Long com.ImperioElevator.ordermanagement.controller.UserController.addNewUser(com.ImperioElevator.ordermanagement.entity.User,java.lang.String) throws java.sql.SQLException]
+2024-09-22 14:17:08 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 1 unconfirmed orders
+2024-09-22 14:17:08 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 1 unconfirmed orders
+2024-09-22 14:17:08 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 1
+2024-09-22 14:27:34 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 22756 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-22 14:27:34 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-22 14:27:35 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-22 14:27:35 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-22 14:27:35 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-22 14:27:35 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-22 14:27:36 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-22 14:27:36 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1773 ms
+2024-09-22 14:27:36 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@61394494, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@578a5ce8, org.springframework.security.web.context.SecurityContextHolderFilter@512abf25, org.springframework.security.web.header.HeaderWriterFilter@6b2fdffc, org.springframework.web.filter.CorsFilter@7c453c34, org.springframework.security.web.authentication.logout.LogoutFilter@34136bd1, com.ImperioElevator.ordermanagement.security.JwtFilter@35b17c06, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6d0e45a5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@615db358, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@16cb9989, org.springframework.security.web.session.SessionManagementFilter@640d604, org.springframework.security.web.access.ExceptionTranslationFilter@77a0dd63, org.springframework.security.web.access.intercept.AuthorizationFilter@6c0b51da]
+2024-09-22 14:27:37 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-22 14:27:37 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-22 14:27:37 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.598 seconds (process running for 4.17)
+2024-09-22 14:27:37 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-22 14:27:38 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-22 14:27:38 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-22 14:27:38 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-22 14:27:39 [http-nio-8080-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public java.lang.Long com.ImperioElevator.ordermanagement.controller.UserController.addNewUser(com.ImperioElevator.ordermanagement.entity.User,java.lang.String) throws java.sql.SQLException]
+2024-09-22 14:30:10 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 23824 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-22 14:30:10 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-22 14:30:12 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-22 14:30:12 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-22 14:30:12 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-22 14:30:12 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-22 14:30:12 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-22 14:30:12 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1610 ms
+2024-09-22 14:30:13 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5a9840f3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7d30007d, org.springframework.security.web.context.SecurityContextHolderFilter@7c588adc, org.springframework.security.web.header.HeaderWriterFilter@75882261, org.springframework.web.filter.CorsFilter@382d71c7, org.springframework.security.web.authentication.logout.LogoutFilter@4dc52559, com.ImperioElevator.ordermanagement.security.JwtFilter@3e05586b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5968800d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4f1afe8f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2ca54da9, org.springframework.security.web.session.SessionManagementFilter@372f0a99, org.springframework.security.web.access.ExceptionTranslationFilter@67acfde9, org.springframework.security.web.access.intercept.AuthorizationFilter@5fef0c19]
+2024-09-22 14:30:13 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-22 14:30:13 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-22 14:30:13 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.216 seconds (process running for 3.704)
+2024-09-22 14:30:13 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-22 14:30:19 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-22 14:30:19 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-22 14:30:19 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-22 14:30:19 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "com.ImperioElevator.ordermanagement.entity.User.password()" because "user" is null] with root cause
+java.lang.NullPointerException: Cannot invoke "com.ImperioElevator.ordermanagement.entity.User.password()" because "user" is null
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.createUserUnauthorized(UserServiceImpl.java:87)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUser(UserController.java:64)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -591,34 +171,20 @@ java.sql.SQLException: Field 'user_id' doesn't have a default value
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-2024-09-21 12:50:59 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:50:59 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:50:59 [http-nio-8080-exec-4] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:50:59 [http-nio-8080-exec-4] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:50:59 [http-nio-8080-exec-4] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.UncategorizedSQLException: PreparedStatementCallback; uncategorized SQLException for SQL [INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)]; SQL state [HY000]; error code [1364]; Field 'user_id' doesn't have a default value] with root cause
-java.sql.SQLException: Field 'user_id' doesn't have a default value
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1061)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1009)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1320)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:994)
-	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:973)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:656)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:968)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1023)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1033)
-	at com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl.assigneeOperatorToOrder(OrderDaoImpl.java:252)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl.assigneeOperatorToOrder(OrdersServiceImpl.java:173)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl$$SpringCGLIB$$0.assigneeOperatorToOrder(<generated>)
-	at com.ImperioElevator.ordermanagement.controller.OrderController.assigneeOperatorToOrder(OrderController.java:164)
+2024-09-22 14:36:58 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 14:36:58 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 14:36:58 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 177
+2024-09-22 14:36:58 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 177
+2024-09-22 14:36:58 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 177
+2024-09-22 14:36:58 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 177
+2024-09-22 14:36:58 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 177
+2024-09-22 14:36:58 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 177
+2024-09-22 14:36:58 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 14:36:58 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 14:37:13 [http-nio-8080-exec-6] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Passwords do not match] with root cause
+java.lang.IllegalArgumentException: Passwords do not match
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.createUserUnauthorized(UserServiceImpl.java:89)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUser(UserController.java:64)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -716,38 +282,53 @@ java.sql.SQLException: Field 'user_id' doesn't have a default value
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-2024-09-21 12:51:09 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 12:51:09 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 12:51:09 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 12:51:09 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 12:51:14 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:51:14 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:51:14 [http-nio-8080-exec-5] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:51:14 [http-nio-8080-exec-5] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assigning the order to an Operator: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:51:14 [http-nio-8080-exec-5] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.UncategorizedSQLException: PreparedStatementCallback; uncategorized SQLException for SQL [INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)]; SQL state [HY000]; error code [1364]; Field 'user_id' doesn't have a default value] with root cause
-java.sql.SQLException: Field 'user_id' doesn't have a default value
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1061)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1009)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1320)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:994)
-	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:973)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:656)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:968)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1023)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1033)
-	at com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl.assigneeOperatorToOrder(OrderDaoImpl.java:252)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl.assigneeOperatorToOrder(OrdersServiceImpl.java:173)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl$$SpringCGLIB$$0.assigneeOperatorToOrder(<generated>)
-	at com.ImperioElevator.ordermanagement.controller.OrderController.assigneeOperatorToOrder(OrderController.java:164)
+2024-09-22 14:37:21 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 14:37:21 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 14:37:21 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 178
+2024-09-22 14:37:21 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 178
+2024-09-22 14:37:21 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 178
+2024-09-22 14:37:21 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 178
+2024-09-22 14:37:21 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 178
+2024-09-22 14:37:21 [http-nio-8080-exec-7] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 178
+2024-09-22 14:37:21 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 14:37:21 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 14:55:01 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 36788 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-22 14:55:01 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-22 14:55:02 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-22 14:55:02 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-22 14:55:02 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-22 14:55:02 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-22 14:55:02 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-22 14:55:02 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1592 ms
+2024-09-22 14:55:03 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7d30007d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@382d71c7, org.springframework.security.web.context.SecurityContextHolderFilter@33ec2c0c, org.springframework.security.web.header.HeaderWriterFilter@611d0763, org.springframework.web.filter.CorsFilter@2ca54da9, org.springframework.security.web.authentication.logout.LogoutFilter@5c3d4f05, com.ImperioElevator.ordermanagement.security.JwtFilter@7f9e8421, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3887c7d7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@492521c4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34a20f16, org.springframework.security.web.session.SessionManagementFilter@16cf8438, org.springframework.security.web.access.ExceptionTranslationFilter@3b088163, org.springframework.security.web.access.intercept.AuthorizationFilter@2e6d76ba]
+2024-09-22 14:55:03 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-22 14:55:03 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-22 14:55:03 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.174 seconds (process running for 3.625)
+2024-09-22 14:55:03 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-22 14:55:04 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-22 14:55:04 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-22 14:55:04 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-22 14:55:05 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 14:55:05 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 14:55:05 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 179
+2024-09-22 14:55:05 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 179
+2024-09-22 14:55:05 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 179
+2024-09-22 14:55:05 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 179
+2024-09-22 14:55:05 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 179
+2024-09-22 14:55:05 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 179
+2024-09-22 14:55:05 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 14:55:05 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 15:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-22 15:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-22 15:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-22 15:05:25 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 15:05:25 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 15:05:25 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 15:05:25 [http-nio-8080-exec-4] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 15:07:30 [http-nio-8080-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Passwords do not match] with root cause
+java.lang.IllegalArgumentException: Passwords do not match
+	at com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl.createUserUnauthorized(UserServiceImpl.java:85)
+	at com.ImperioElevator.ordermanagement.controller.UserController.addNewUser(UserController.java:64)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -845,626 +426,17 @@ java.sql.SQLException: Field 'user_id' doesn't have a default value
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-2024-09-21 12:51:33 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 12:51:33 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator role: INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)
-2024-09-21 13:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-21 13:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-21 13:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
-2024-09-21 13:31:55 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 13456 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 13:31:55 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 13:31:57 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 13:31:57 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 13:31:57 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 13:31:57 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 13:31:57 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 13:31:57 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1619 ms
-2024-09-21 13:31:57 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@350da119, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6a09484c, org.springframework.security.web.context.SecurityContextHolderFilter@76396509, org.springframework.security.web.header.HeaderWriterFilter@2a0b901c, org.springframework.web.filter.CorsFilter@34c7232c, org.springframework.security.web.authentication.logout.LogoutFilter@3b0d3a63, com.ImperioElevator.ordermanagement.security.JwtFilter@17dad32f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@51ac12ac, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4dc52559, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@50ec4bfc, org.springframework.security.web.session.SessionManagementFilter@6b2fdffc, org.springframework.security.web.access.ExceptionTranslationFilter@1fb2eec, org.springframework.security.web.access.intercept.AuthorizationFilter@367d34c0]
-2024-09-21 13:31:58 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 13:31:58 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 13:31:58 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.135 seconds (process running for 3.583)
-2024-09-21 13:31:58 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 13:32:10 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-21 13:32:10 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-21 13:32:10 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2024-09-21 13:32:10 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
-2024-09-21 13:32:10 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find last created Orders: SELECT * FROM orders ORDER BY id ASC LIMIT ?
-2024-09-21 13:32:10 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
-2024-09-21 13:32:10 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved last created Orders
-2024-09-21 13:32:14 [http-nio-8080-exec-5] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.UserController
-2024-09-21 13:32:14 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 13:32:14 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 13:32:17 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-21 13:32:17 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
-2024-09-21 13:32:17 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-21 13:32:17 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
-2024-09-21 13:32:17 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 13:32:17 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 13:32:18 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-21 13:32:18 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-21 13:32:19 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 13:32:19 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 13:32:19 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Order received with userId: 150
-2024-09-21 13:32:19 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Order received with userId: 150
-2024-09-21 13:32:19 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
-2024-09-21 13:32:19 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the Order: INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)
-2024-09-21 13:32:19 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 150
-2024-09-21 13:32:19 [http-nio-8080-exec-8] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted Order for userId: 150
-2024-09-21 13:32:19 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 254
-2024-09-21 13:32:19 [http-nio-8080-exec-8] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for orderId: 254
-2024-09-21 13:32:19 [http-nio-8080-exec-8] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
-2024-09-21 13:32:19 [http-nio-8080-exec-8] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL for order product insert: INSERT INTO order_product (order_id, product_name, quantity, price_product, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?)
-2024-09-21 13:32:19 [http-nio-8080-exec-8] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 254
-2024-09-21 13:32:19 [http-nio-8080-exec-8] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully inserted OrderProduct with orderId: 254
-2024-09-21 13:32:21 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 13:32:21 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 13:32:21 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-21 13:32:21 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to get Order and its products: SELECT     o.id,     o.user_id,     o.order_status,     o.created_date,     o.updated_date FROM     orders o WHERE     o.id = ?, SELECT     op.order_id,     op.quantity,     op.price_product,     op.product_id,     op.parent_product_id,     p.product_name,     p.category_type,     p.image_path FROM     order_product op JOIN     product p ON     op.product_id = p.id WHERE     op.order_id = ?
-2024-09-21 13:32:21 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 254
-2024-09-21 13:32:21 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Order with products for id: 254
-2024-09-21 13:32:24 [http-nio-8080-exec-5] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-21 13:32:24 [http-nio-8080-exec-5] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
-2024-09-21 13:32:24 [http-nio-8080-exec-5] DEBUG c.I.o.d.daoimpl.OrderProductDaoImpl - Executing SQL to find OrderProducts by orderId: SELECT * FROM order_product WHERE order_id = ?
-2024-09-21 13:32:24 [http-nio-8080-exec-5] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 254
-2024-09-21 13:32:24 [http-nio-8080-exec-5] INFO  c.I.o.d.daoimpl.OrderProductDaoImpl - Successfully retrieved OrderProducts for orderId: 254
-2024-09-21 13:32:24 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-21 13:32:24 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Product by id: SELECT * FROM product WHERE id = ?
-2024-09-21 13:32:24 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the order token with query: SELECT token_value FROM token WHERE order_id = ? AND token_type = 'ORDER' AND is_enabled = true
-2024-09-21 13:32:24 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the order token with query: SELECT token_value FROM token WHERE order_id = ? AND token_type = 'ORDER' AND is_enabled = true
-2024-09-21 13:32:30 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
-2024-09-21 13:32:30 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL for order status update: UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?
-2024-09-21 13:32:30 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 254
-2024-09-21 13:32:30 [http-nio-8080-exec-5] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully updated Order status for id: 254
-2024-09-21 13:32:30 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 13:32:30 [http-nio-8080-exec-7] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by id: SELECT * FROM user WHERE id = ?
-2024-09-21 13:46:14 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 36556 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 13:46:14 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 13:46:15 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 13:46:15 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 13:46:15 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 13:46:15 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 13:46:15 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 13:46:15 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1677 ms
-2024-09-21 13:46:16 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@382d71c7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2ca54da9, org.springframework.security.web.context.SecurityContextHolderFilter@5968800d, org.springframework.security.web.header.HeaderWriterFilter@615efd1c, org.springframework.web.filter.CorsFilter@34a20f16, org.springframework.security.web.authentication.logout.LogoutFilter@119290b9, com.ImperioElevator.ordermanagement.security.JwtFilter@168b4cb0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@b1b471, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@443a06ad, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@496cc217, org.springframework.security.web.session.SessionManagementFilter@3e5beab5, org.springframework.security.web.access.ExceptionTranslationFilter@75882261, org.springframework.security.web.access.intercept.AuthorizationFilter@22a6d75c]
-2024-09-21 13:46:16 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 13:46:16 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 13:46:17 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.465 seconds (process running for 3.964)
-2024-09-21 13:46:17 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 13:46:31 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-21 13:46:31 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-21 13:46:31 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2024-09-21 13:46:31 [http-nio-8080-exec-1] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-21 13:46:31 [http-nio-8080-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'role' for method parameter type String is not present]
-2024-09-21 13:47:17 [http-nio-8080-exec-3] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'role' for method parameter type String is not present]
-2024-09-21 13:47:55 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator name: SELECT username FROM user u JOIN user_roles ur on u.id = ur.user_id JOIN roles r ON ur.role_id = r.id WHERE r.role_name = ?
-2024-09-21 13:47:55 [http-nio-8080-exec-4] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator name: SELECT username FROM user u JOIN user_roles ur on u.id = ur.user_id JOIN roles r ON ur.role_id = r.id WHERE r.role_name = ?
-2024-09-21 13:47:56 [http-nio-8080-exec-4] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to assignr the order to an Operator name org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 5
-2024-09-21 13:47:56 [http-nio-8080-exec-4] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to assignr the order to an Operator name org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 5
-2024-09-21 13:47:56 [http-nio-8080-exec-4] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 5] with root cause
-org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 5
-	at org.springframework.dao.support.DataAccessUtils.nullableSingleResult(DataAccessUtils.java:100)
-	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:888)
-	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:909)
-	at com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl.getOperatorNameToOrder(OrderDaoImpl.java:265)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl.getOperatorNameToOrder(OrdersServiceImpl.java:178)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl$$SpringCGLIB$$0.getOperatorNameToOrder(<generated>)
-	at com.ImperioElevator.ordermanagement.controller.OrderController.getOperatorNameToOrder(OrderController.java:169)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:61)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-2024-09-21 13:55:58 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 22616 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 13:55:58 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 13:56:00 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 13:56:00 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 13:56:00 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 13:56:00 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 13:56:00 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 13:56:00 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1653 ms
-2024-09-21 13:56:01 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7e7740a5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7aa01bd9, org.springframework.security.web.context.SecurityContextHolderFilter@38732364, org.springframework.security.web.header.HeaderWriterFilter@3c54ddec, org.springframework.web.filter.CorsFilter@7e61e25c, org.springframework.security.web.authentication.logout.LogoutFilter@2ca3d826, com.ImperioElevator.ordermanagement.security.JwtFilter@4eea94a4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@48cd319d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@16cf8438, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@615db358, org.springframework.security.web.session.SessionManagementFilter@2a8dd942, org.springframework.security.web.access.ExceptionTranslationFilter@66f16742, org.springframework.security.web.access.intercept.AuthorizationFilter@512abf25]
-2024-09-21 13:56:01 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 13:56:01 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 13:56:01 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.443 seconds (process running for 3.894)
-2024-09-21 13:56:01 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 13:56:07 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-21 13:56:07 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-21 13:56:07 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-21 13:56:07 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 13:56:07 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 13:56:08 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 13:56:08 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 13:56:13 [http-nio-8080-exec-3] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-21 13:56:13 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator name: SELECT username FROM user u JOIN user_roles ur on u.id = ur.user_id JOIN roles r ON ur.role_id = r.id WHERE r.role_name = ?
-2024-09-21 13:56:13 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assigning the order to an Operator name: SELECT username FROM user u JOIN user_roles ur on u.id = ur.user_id JOIN roles r ON ur.role_id = r.id WHERE r.role_name = ?
-2024-09-21 14:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-21 14:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
-2024-09-21 14:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
-2024-09-21 14:25:55 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 17024 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 14:25:55 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 14:25:57 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 14:25:57 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:25:57 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 14:25:57 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 14:25:57 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 14:25:57 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1606 ms
-2024-09-21 14:25:58 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@50ec4bfc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@8b13d91, org.springframework.security.web.context.SecurityContextHolderFilter@463afa6e, org.springframework.security.web.header.HeaderWriterFilter@6da54910, org.springframework.web.filter.CorsFilter@285a4fe3, org.springframework.security.web.authentication.logout.LogoutFilter@437ed416, com.ImperioElevator.ordermanagement.security.JwtFilter@65f40689, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7ccd611e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@640d604, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2589d787, org.springframework.security.web.session.SessionManagementFilter@76396509, org.springframework.security.web.access.ExceptionTranslationFilter@3d104c9b, org.springframework.security.web.access.intercept.AuthorizationFilter@350da119]
-2024-09-21 14:25:58 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:25:58 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 14:25:58 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.192 seconds (process running for 3.926)
-2024-09-21 14:25:58 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 14:29:02 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 28148 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 14:29:02 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 14:29:04 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 14:29:04 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:29:04 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 14:29:04 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 14:29:04 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 14:29:04 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2086 ms
-2024-09-21 14:29:05 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7b96de8d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7ccd611e, org.springframework.security.web.context.SecurityContextHolderFilter@3fde2209, org.springframework.security.web.header.HeaderWriterFilter@1118d539, org.springframework.web.filter.CorsFilter@4dc52559, org.springframework.security.web.authentication.logout.LogoutFilter@6544899b, com.ImperioElevator.ordermanagement.security.JwtFilter@60aec68a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67acfde9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@615efd1c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5c3d4f05, org.springframework.security.web.session.SessionManagementFilter@6d69a0d3, org.springframework.security.web.access.ExceptionTranslationFilter@492be039, org.springframework.security.web.access.intercept.AuthorizationFilter@637c840d]
-2024-09-21 14:29:06 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:29:06 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 14:29:06 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.962 seconds (process running for 4.592)
-2024-09-21 14:29:06 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 14:33:00 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-21 14:33:00 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-21 14:33:00 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2024-09-21 14:33:00 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 14:33:00 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 14:33:01 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 14:33:01 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 14:33:06 [http-nio-8080-exec-3] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-21 14:33:06 [http-nio-8080-exec-3] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'id' for method parameter type Long is not present]
-2024-09-21 14:33:42 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 11488 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 14:33:42 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 14:33:43 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 14:33:43 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:33:43 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 14:33:43 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 14:33:43 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 14:33:43 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1804 ms
-2024-09-21 14:33:44 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4ce25e47, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6380e9e9, org.springframework.security.web.context.SecurityContextHolderFilter@2ca3d826, org.springframework.security.web.header.HeaderWriterFilter@1fb2eec, org.springframework.web.filter.CorsFilter@350da119, org.springframework.security.web.authentication.logout.LogoutFilter@6c951ada, com.ImperioElevator.ordermanagement.security.JwtFilter@79696332, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76396509, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7b96de8d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6a09484c, org.springframework.security.web.session.SessionManagementFilter@77a0dd63, org.springframework.security.web.access.ExceptionTranslationFilter@752b69e3, org.springframework.security.web.access.intercept.AuthorizationFilter@34136bd1]
-2024-09-21 14:33:44 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:33:44 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 14:33:44 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.71 seconds (process running for 4.299)
-2024-09-21 14:33:44 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 14:33:54 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-21 14:33:54 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-21 14:33:54 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-21 14:33:54 [http-nio-8080-exec-2] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-21 14:33:54 [http-nio-8080-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'role' for method parameter type String is not present]
-2024-09-21 14:33:57 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 14:33:57 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 14:33:58 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 14:33:58 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 14:34:03 [http-nio-8080-exec-4] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'role' for method parameter type String is not present]
-2024-09-21 14:34:26 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assign operator to the order UPDATE order_operators SET userId = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?
-2024-09-21 14:34:26 [http-nio-8080-exec-5] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assign operator to the order UPDATE order_operators SET userId = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?
-2024-09-21 14:34:26 [http-nio-8080-exec-5] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assign the user to the order org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [UPDATE order_operators SET userId = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?]
-2024-09-21 14:34:26 [http-nio-8080-exec-5] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assign the user to the order org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [UPDATE order_operators SET userId = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?]
-2024-09-21 14:34:26 [http-nio-8080-exec-5] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [UPDATE order_operators SET userId = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?]] with root cause
-java.sql.SQLSyntaxErrorException: Unknown column 'userId' in 'field list'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1061)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1009)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1320)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:994)
-	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:973)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:656)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:968)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1023)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1033)
-	at com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl.setOperatorNameToOrder(OrderDaoImpl.java:278)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl.setOperatorNameToOrder(OrdersServiceImpl.java:183)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl$$SpringCGLIB$$0.setOperatorNameToOrder(<generated>)
-	at com.ImperioElevator.ordermanagement.controller.OrderController.setOperatorNameToOrder(OrderController.java:175)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
-	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:61)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-2024-09-21 14:36:14 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 852 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 14:36:14 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 14:36:15 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 14:36:15 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:36:15 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 14:36:15 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 14:36:16 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 14:36:16 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1545 ms
-2024-09-21 14:36:16 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3dfd6220, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3815146b, org.springframework.security.web.context.SecurityContextHolderFilter@7aa01bd9, org.springframework.security.web.header.HeaderWriterFilter@637c840d, org.springframework.web.filter.CorsFilter@6de43bc1, org.springframework.security.web.authentication.logout.LogoutFilter@6380e9e9, com.ImperioElevator.ordermanagement.security.JwtFilter@168b4cb0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@615db358, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22a6d75c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@27a9f025, org.springframework.security.web.session.SessionManagementFilter@515ab3f2, org.springframework.security.web.access.ExceptionTranslationFilter@5d194314, org.springframework.security.web.access.intercept.AuthorizationFilter@578a5ce8]
-2024-09-21 14:36:16 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:36:16 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 14:36:16 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.037 seconds (process running for 3.497)
-2024-09-21 14:36:16 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 14:36:32 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-21 14:36:32 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-21 14:36:32 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2024-09-21 14:36:32 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 14:36:32 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 14:36:32 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 14:36:32 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 14:36:37 [http-nio-8080-exec-3] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-21 14:36:37 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assign operator to the order UPDATE order_operators SET userid = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?
-2024-09-21 14:36:37 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assign operator to the order UPDATE order_operators SET userid = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?
-2024-09-21 14:36:37 [http-nio-8080-exec-3] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assign the user to the order org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [UPDATE order_operators SET userid = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?]
-2024-09-21 14:36:37 [http-nio-8080-exec-3] ERROR c.I.o.dao.daoimpl.ProductDaoImpl - Failed to Assign the user to the order org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [UPDATE order_operators SET userid = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?]
-2024-09-21 14:36:37 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [UPDATE order_operators SET userid = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?]] with root cause
-java.sql.SQLSyntaxErrorException: Unknown column 'userid' in 'field list'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1061)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1009)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1320)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:994)
-	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:973)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:656)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:968)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1023)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1033)
-	at com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl.setOperatorNameToOrder(OrderDaoImpl.java:278)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl.setOperatorNameToOrder(OrdersServiceImpl.java:183)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
-	at com.ImperioElevator.ordermanagement.service.serviceimpl.OrdersServiceImpl$$SpringCGLIB$$0.setOperatorNameToOrder(<generated>)
-	at com.ImperioElevator.ordermanagement.controller.OrderController.setOperatorNameToOrder(OrderController.java:175)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
-	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:61)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-2024-09-21 14:37:45 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 11956 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 14:37:45 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 14:37:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 14:37:47 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:37:47 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 14:37:47 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 14:37:47 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 14:37:47 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1756 ms
-2024-09-21 14:37:48 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@50ec4bfc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@8b13d91, org.springframework.security.web.context.SecurityContextHolderFilter@463afa6e, org.springframework.security.web.header.HeaderWriterFilter@6da54910, org.springframework.web.filter.CorsFilter@285a4fe3, org.springframework.security.web.authentication.logout.LogoutFilter@437ed416, com.ImperioElevator.ordermanagement.security.JwtFilter@79696332, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7ccd611e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@640d604, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2589d787, org.springframework.security.web.session.SessionManagementFilter@76396509, org.springframework.security.web.access.ExceptionTranslationFilter@3d104c9b, org.springframework.security.web.access.intercept.AuthorizationFilter@350da119]
-2024-09-21 14:37:48 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:37:48 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 14:37:48 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.216 seconds (process running for 3.658)
-2024-09-21 14:37:48 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 14:38:54 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-21 14:38:54 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-21 14:38:54 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-21 14:38:55 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 14:38:55 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find User by email: SELECT * FROM user WHERE email = ?
-2024-09-21 14:38:55 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 14:38:55 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to select UserID by email: SELECT id FROM user WHERE email = ?
-2024-09-21 14:38:57 [http-nio-8080-exec-3] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.ImperioElevator.ordermanagement.controller.OrderController
-2024-09-21 14:38:57 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assign operator to the order UPDATE order_operators SET user_id = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?
-2024-09-21 14:38:57 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Assign operator to the order UPDATE order_operators SET user_id = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?
-2024-09-21 14:55:19 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 21536 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 14:55:19 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 14:55:21 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 14:55:21 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:55:21 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 14:55:21 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 14:55:21 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 14:55:21 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1870 ms
-2024-09-21 14:55:22 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6de7778f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@367d34c0, org.springframework.security.web.context.SecurityContextHolderFilter@543fe698, org.springframework.security.web.header.HeaderWriterFilter@752b69e3, org.springframework.web.filter.CorsFilter@4ce25e47, org.springframework.security.web.authentication.logout.LogoutFilter@38ac8968, com.ImperioElevator.ordermanagement.security.JwtFilter@60aec68a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2ca3d826, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@51ac12ac, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6380e9e9, org.springframework.security.web.session.SessionManagementFilter@7c8874ef, org.springframework.security.web.access.ExceptionTranslationFilter@443a06ad, org.springframework.security.web.access.intercept.AuthorizationFilter@28be7fec]
-2024-09-21 14:55:22 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:55:22 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 14:55:22 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.777 seconds (process running for 4.434)
-2024-09-21 14:55:22 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 14:55:58 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 9616 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 14:55:58 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 14:56:01 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 14:56:01 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:56:01 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 14:56:01 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 14:56:02 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 14:56:02 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3335 ms
-2024-09-21 14:56:03 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@703fa45, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e905f2c, org.springframework.security.web.context.SecurityContextHolderFilter@252ec02e, org.springframework.security.web.header.HeaderWriterFilter@1595d2b2, org.springframework.web.filter.CorsFilter@fddd7ae, org.springframework.security.web.authentication.logout.LogoutFilter@6314df3c, com.ImperioElevator.ordermanagement.security.JwtFilter@a146b11, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@74f280bd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@8641b7d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f6cce7f, org.springframework.security.web.session.SessionManagementFilter@41aebbb4, org.springframework.security.web.access.ExceptionTranslationFilter@12abcd1e, org.springframework.security.web.access.intercept.AuthorizationFilter@53314f76]
-2024-09-21 14:56:04 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:56:04 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 14:56:04 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 6.449 seconds (process running for 8.084)
-2024-09-21 14:56:04 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
-2024-09-21 14:56:15 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 32852 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
-2024-09-21 14:56:15 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-21 14:56:18 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2024-09-21 14:56:18 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:56:18 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-21 14:56:18 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
-2024-09-21 14:56:19 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-21 14:56:19 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3327 ms
-2024-09-21 14:56:20 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3b0d3a63, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@50598a1a, org.springframework.security.web.context.SecurityContextHolderFilter@1fb2eec, org.springframework.security.web.header.HeaderWriterFilter@372f0a99, org.springframework.web.filter.CorsFilter@14de1901, org.springframework.security.web.authentication.logout.LogoutFilter@615db358, com.ImperioElevator.ordermanagement.security.JwtFilter@5be052ca, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a0b901c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1bd8afc8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@437ed416, org.springframework.security.web.session.SessionManagementFilter@6ddd1c51, org.springframework.security.web.access.ExceptionTranslationFilter@6f38f084, org.springframework.security.web.access.intercept.AuthorizationFilter@17ff8810]
-2024-09-21 14:56:20 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-21 14:56:20 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2024-09-21 14:56:20 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 6.303 seconds (process running for 7.31)
-2024-09-21 14:56:20 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-22 15:07:36 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 15:07:36 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 15:07:36 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 180
+2024-09-22 15:07:36 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 180
+2024-09-22 15:07:36 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 180
+2024-09-22 15:07:36 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 180
+2024-09-22 15:07:36 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 180
+2024-09-22 15:07:36 [http-nio-8080-exec-9] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 180
+2024-09-22 15:07:36 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 15:07:36 [http-nio-8080-exec-9] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 15:07:41 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 15:07:41 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 15:07:41 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 15:07:41 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator

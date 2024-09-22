@@ -4,10 +4,9 @@ import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.valueobjects.Email;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Name;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
+
 public record User(
         Id userId,
         Name name,
@@ -19,8 +18,8 @@ public record User(
         List<Role> roles,
         boolean accountNonLocked
 ) {
-    public User(Long id) {
-        this(new Id(id), new Name(""), new Email(""), "", "", "",List.of(Role.USER), true);
+    public User(Id id1, Long id, Object o, Object object, Object o1, Object object1, Object o2, Object object2, boolean b) {
+        this(new Id(id), new Name(""), new Email(""), "","", "",List.of(Role.USER), true);
     }
 
     public User(Id userId, Name name, Email email, String password, String phoneNumber, String image, List<Role> roles, boolean accountNonLocked) {
