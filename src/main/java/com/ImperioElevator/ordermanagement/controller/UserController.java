@@ -14,10 +14,12 @@ import com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import io.swagger.v3.oas.annotations.Operation;
 //import liquibase.sql.Sql;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +28,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 //ToDo add comments for all methods in the controller Swagger form
 @RestController
 public class UserController {
@@ -52,17 +57,35 @@ public class UserController {
         return emailService.updateUserEmailConfirmStatus(token);
     }
 
-//    @PostMapping("createUser")
-//    public Long addNewUser(@RequestBody User user)throws SQLException{
-//        return userSevice.addNewUser(user);
-//    }
 
     @PostMapping("createUser")
-    public Long addNewUser(@RequestBody UserRegistrationDTO userRegistrationDTO)throws SQLException{
-        User user = userRegistrationDTO.getUser();
-        String verifyPassword = userRegistrationDTO.getVerifyPassword();
-        return userSevice.createUserUnauthorized(user, verifyPassword);
+    public ResponseEntity<?> addNewUser(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result) throws SQLException {
+        // Check for validation errors first
+        if (result.hasErrors()) {
+            List<String> errors = result.getAllErrors().stream()
+                    .map(error -> error.getDefaultMessage())
+                    .collect(Collectors.toList());
+            return ResponseEntity.badRequest().body(errors);
+        }
+
+        try {
+            // Pass the user and verifyPassword to the service layer for further validation and processing
+            Long userId = userSevice.createUserUnauthorized(userRegistrationDTO.getUser(), userRegistrationDTO.getVerifyPassword());
+
+            // Return success response
+            UserCreationResponse response = new UserCreationResponse(
+                    userId,
+                    "User " + userId + " was added successfully"
+            );
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+
+        } catch (IllegalArgumentException ex) {
+            // Catch the password mismatch exception and return a bad request response
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
     }
+
+
 
     @GetMapping("/uploadImage")
     public String getUserImage(@RequestParam Long userId) throws SQLException{

@@ -440,3 +440,529 @@ java.lang.IllegalArgumentException: Passwords do not match
 2024-09-22 15:07:41 [http-nio-8080-exec-10] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
 2024-09-22 15:07:41 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
 2024-09-22 15:07:41 [http-nio-8080-exec-10] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 15:44:34 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-22 15:44:34 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 15528 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-22 15:44:34 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-22 15:44:35 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-22 15:44:35 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-22 15:44:35 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-22 15:44:35 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-22 15:44:36 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-22 15:44:36 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2156 ms
+2024-09-22 15:44:37 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6cbb7a7d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@cdb3c85, org.springframework.security.web.context.SecurityContextHolderFilter@50598a1a, org.springframework.security.web.header.HeaderWriterFilter@2e6d76ba, org.springframework.web.filter.CorsFilter@37606fee, org.springframework.security.web.authentication.logout.LogoutFilter@27a9f025, com.ImperioElevator.ordermanagement.security.JwtFilter@de81be1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@437ed416, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5cfed0ba, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@33d28f0a, org.springframework.security.web.session.SessionManagementFilter@6c951ada, org.springframework.security.web.access.ExceptionTranslationFilter@256bb5be, org.springframework.security.web.access.intercept.AuthorizationFilter@2fd9fb34]
+2024-09-22 15:44:37 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-22 15:44:37 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-22 15:44:37 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 4.225 seconds (process running for 4.862)
+2024-09-22 15:44:37 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-22 16:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-22 16:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-22 16:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-22 16:23:44 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-22 16:23:44 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-22 16:23:44 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-22 16:23:44 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 16:23:44 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 16:23:44 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 181
+2024-09-22 16:23:44 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 181
+2024-09-22 16:23:44 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 181
+2024-09-22 16:23:44 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 181
+2024-09-22 16:23:45 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 181
+2024-09-22 16:23:45 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 181
+2024-09-22 16:23:45 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 16:23:45 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 16:23:50 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 16:23:50 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 16:23:50 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 16:23:50 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 16:56:31 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-22 16:56:32 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 5400 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-22 16:56:32 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-22 16:56:33 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-22 16:56:33 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-22 16:56:33 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-22 16:56:33 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-22 16:56:34 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-22 16:56:34 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1816 ms
+2024-09-22 16:56:34 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@69a40b3c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@251c90f, org.springframework.security.web.context.SecurityContextHolderFilter@61359e87, org.springframework.security.web.header.HeaderWriterFilter@2589d787, org.springframework.web.filter.CorsFilter@6629643d, org.springframework.security.web.authentication.logout.LogoutFilter@37c7766e, com.ImperioElevator.ordermanagement.security.JwtFilter@3b332962, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@45037e16, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@d2708a7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2dd178f3, org.springframework.security.web.session.SessionManagementFilter@6de43bc1, org.springframework.security.web.access.ExceptionTranslationFilter@8b13d91, org.springframework.security.web.access.intercept.AuthorizationFilter@681061d6]
+2024-09-22 16:56:34 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-22 16:56:34 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-22 16:56:35 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.975 seconds (process running for 4.6)
+2024-09-22 16:56:35 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-22 16:57:58 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-22 16:57:58 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-22 16:57:58 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-09-22 16:57:58 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 16:57:58 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 16:57:59 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 182
+2024-09-22 16:57:59 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 182
+2024-09-22 16:57:59 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 182
+2024-09-22 16:57:59 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 182
+2024-09-22 16:57:59 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 182
+2024-09-22 16:57:59 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 182
+2024-09-22 16:57:59 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 16:57:59 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 16:58:04 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 16:58:04 [http-nio-8080-exec-3] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 16:58:04 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 16:58:04 [http-nio-8080-exec-3] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 16:59:16 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-22 16:59:16 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 35344 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-22 16:59:16 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-22 16:59:18 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-22 16:59:18 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-22 16:59:18 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-22 16:59:18 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-22 16:59:18 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-22 16:59:18 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1676 ms
+2024-09-22 16:59:19 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3815146b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6de43bc1, org.springframework.security.web.context.SecurityContextHolderFilter@7e61e25c, org.springframework.security.web.header.HeaderWriterFilter@51ac12ac, org.springframework.web.filter.CorsFilter@27a9f025, org.springframework.security.web.authentication.logout.LogoutFilter@350da119, com.ImperioElevator.ordermanagement.security.JwtFilter@59939293, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@256bb5be, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a9840f3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@71936a92, org.springframework.security.web.session.SessionManagementFilter@6d0e45a5, org.springframework.security.web.access.ExceptionTranslationFilter@76396509, org.springframework.security.web.access.intercept.AuthorizationFilter@7c453c34]
+2024-09-22 16:59:19 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-22 16:59:19 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-22 16:59:19 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.265 seconds (process running for 3.766)
+2024-09-22 16:59:19 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-22 17:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-22 17:00:00 [scheduling-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully expired 0 unconfirmed orders
+2024-09-22 17:00:00 [scheduling-1] INFO  c.I.o.entity.OrderCleanupService - Expired Orders: 0
+2024-09-22 17:00:14 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-22 17:00:14 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-22 17:00:14 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-22 17:00:14 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 17:00:14 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 17:00:14 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 183
+2024-09-22 17:00:14 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 183
+2024-09-22 17:00:14 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 183
+2024-09-22 17:00:14 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 183
+2024-09-22 17:00:15 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 183
+2024-09-22 17:00:15 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 183
+2024-09-22 17:00:15 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 17:00:15 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 17:00:20 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 17:00:20 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 17:00:20 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 17:00:20 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 17:10:52 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-22 17:10:52 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 33372 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-22 17:10:52 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-22 17:10:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-22 17:10:54 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-22 17:10:54 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-22 17:10:54 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-22 17:10:54 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-22 17:10:54 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1608 ms
+2024-09-22 17:10:55 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@30abf79c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@49a38b1, org.springframework.security.web.context.SecurityContextHolderFilter@3dfd6220, org.springframework.security.web.header.HeaderWriterFilter@6a09484c, org.springframework.web.filter.CorsFilter@681061d6, org.springframework.security.web.authentication.logout.LogoutFilter@74f280bd, com.ImperioElevator.ordermanagement.security.JwtFilter@26837057, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6de43bc1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2dc39b53, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@53d6e959, org.springframework.security.web.session.SessionManagementFilter@578a5ce8, org.springframework.security.web.access.ExceptionTranslationFilter@6380e9e9, org.springframework.security.web.access.intercept.AuthorizationFilter@3e6ec74]
+2024-09-22 17:10:55 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-22 17:10:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-22 17:10:55 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.144 seconds (process running for 3.649)
+2024-09-22 17:10:55 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-22 17:11:36 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-22 17:11:36 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-22 17:11:36 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-22 17:11:36 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 17:11:36 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 17:11:36 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 184
+2024-09-22 17:11:36 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 184
+2024-09-22 17:11:36 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 184
+2024-09-22 17:11:36 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 184
+2024-09-22 17:11:36 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 184
+2024-09-22 17:11:36 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 184
+2024-09-22 17:11:36 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 17:11:36 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 17:11:42 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 17:11:42 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 17:11:42 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 17:11:42 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 17:18:20 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-22 17:18:20 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 36832 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-22 17:18:20 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-22 17:18:22 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-22 17:18:22 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-22 17:18:22 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-22 17:18:22 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-22 17:18:22 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-22 17:18:22 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1547 ms
+2024-09-22 17:18:22 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2dfa02c1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6314df3c, org.springframework.security.web.context.SecurityContextHolderFilter@14b4340c, org.springframework.security.web.header.HeaderWriterFilter@3dfd6220, org.springframework.web.filter.CorsFilter@5785e813, org.springframework.security.web.authentication.logout.LogoutFilter@2bd8f7db, com.ImperioElevator.ordermanagement.security.JwtFilter@de81be1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2fd9fb34, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@cdb3c85, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@10b8b900, org.springframework.security.web.session.SessionManagementFilter@508ad266, org.springframework.security.web.access.ExceptionTranslationFilter@7c453c34, org.springframework.security.web.access.intercept.AuthorizationFilter@63e5b8aa]
+2024-09-22 17:18:23 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-22 17:18:23 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-22 17:18:23 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.031 seconds (process running for 3.556)
+2024-09-22 17:18:23 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-22 17:19:01 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-22 17:19:01 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-22 17:19:01 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-22 17:19:02 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 17:19:02 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing creation of the user: INSERT INTO user (username, email, password, account_not_locked, phone_number) VALUES (?, ?, ?, ?, ?)
+2024-09-22 17:19:02 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 185
+2024-09-22 17:19:02 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully inserted User with userId: 185
+2024-09-22 17:19:02 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 185
+2024-09-22 17:19:02 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Inserting token for userId: 185
+2024-09-22 17:19:02 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 185
+2024-09-22 17:19:02 [http-nio-8080-exec-1] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully assigned role_id: 1 to userId: 185
+2024-09-22 17:19:02 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 17:19:02 [http-nio-8080-exec-1] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Selecting the user token with query: SELECT token_value FROM token WHERE user_id = ? AND token_type = 'USER' AND is_enabled = TRUE
+2024-09-22 17:19:07 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 17:19:07 [http-nio-8080-exec-2] DEBUG c.I.o.dao.daoimpl.ProductDaoImpl - Executing SQL to find Products for main page: SELECT * FROM product WHERE category_type = ? ORDER BY category_type ASC LIMIT ?
+2024-09-22 17:19:07 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 17:19:07 [http-nio-8080-exec-2] INFO  c.I.o.dao.daoimpl.ProductDaoImpl - Successfully retrieved Products for main page with categoryType: Elevator
+2024-09-22 17:28:11 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-22 17:28:11 [main] INFO  c.I.o.OrderManagementApplication - Starting OrderManagementApplication using Java 17.0.11 with PID 41180 (C:\Users\MCARDAUC\Desktop\order-management\target\classes started by mcardauc in C:\Users\MCARDAUC\Desktop\order-management)
+2024-09-22 17:28:11 [main] INFO  c.I.o.OrderManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-22 17:28:13 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-09-22 17:28:13 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-22 17:28:13 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-22 17:28:13 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.11]
+2024-09-22 17:28:13 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-22 17:28:13 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1767 ms
+2024-09-22 17:28:14 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@27a9f025, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@71936a92, org.springframework.security.web.context.SecurityContextHolderFilter@256bb5be, org.springframework.security.web.header.HeaderWriterFilter@7b96de8d, org.springframework.web.filter.CorsFilter@61359e87, org.springframework.security.web.authentication.logout.LogoutFilter@34c7232c, com.ImperioElevator.ordermanagement.security.JwtFilter@59939293, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e6d76ba, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@382d71c7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2dc39b53, org.springframework.security.web.session.SessionManagementFilter@7aa01bd9, org.springframework.security.web.access.ExceptionTranslationFilter@51ac12ac, org.springframework.security.web.access.intercept.AuthorizationFilter@3dfd6220]
+2024-09-22 17:28:14 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-22 17:28:14 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-22 17:28:14 [main] INFO  c.I.o.OrderManagementApplication - Started OrderManagementApplication in 3.501 seconds (process running for 4.058)
+2024-09-22 17:28:14 [main] INFO  c.I.o.OrderManagementApplication - Application started successfully
+2024-09-22 17:28:21 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-22 17:28:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-22 17:28:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-22 17:28:21 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.Email' validating type 'com.ImperioElevator.ordermanagement.valueobjects.Email'. Check configuration for 'user.email'] with root cause
+jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.Email' validating type 'com.ImperioElevator.ordermanagement.valueobjects.Email'. Check configuration for 'user.email'
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getInitializedConstraintValidator(ConstraintTree.java:162)
+	at org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree.validateConstraints(SimpleConstraintTree.java:58)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateConstraints(ConstraintTree.java:75)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.doValidateConstraint(MetaConstraint.java:130)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.validateConstraint(MetaConstraint.java:123)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateMetaConstraint(ValidatorImpl.java:555)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForSingleDefaultGroupElement(ValidatorImpl.java:518)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForDefaultGroup(ValidatorImpl.java:488)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForCurrentGroup(ValidatorImpl.java:450)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:400)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateCascadedAnnotatedObjectForCurrentGroup(ValidatorImpl.java:629)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateCascadedConstraints(ValidatorImpl.java:590)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:409)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validate(ValidatorImpl.java:172)
+	at org.springframework.validation.beanvalidation.SpringValidatorAdapter.validate(SpringValidatorAdapter.java:104)
+	at org.springframework.boot.autoconfigure.validation.ValidatorAdapter.validate(ValidatorAdapter.java:66)
+	at org.springframework.validation.DataBinder.validate(DataBinder.java:932)
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.validateIfApplicable(AbstractMessageConverterMethodArgumentResolver.java:248)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:142)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:61)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-22 17:28:30 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.Email' validating type 'com.ImperioElevator.ordermanagement.valueobjects.Email'. Check configuration for 'user.email'] with root cause
+jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.Email' validating type 'com.ImperioElevator.ordermanagement.valueobjects.Email'. Check configuration for 'user.email'
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getInitializedConstraintValidator(ConstraintTree.java:162)
+	at org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree.validateConstraints(SimpleConstraintTree.java:58)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateConstraints(ConstraintTree.java:75)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.doValidateConstraint(MetaConstraint.java:130)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.validateConstraint(MetaConstraint.java:123)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateMetaConstraint(ValidatorImpl.java:555)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForSingleDefaultGroupElement(ValidatorImpl.java:518)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForDefaultGroup(ValidatorImpl.java:488)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForCurrentGroup(ValidatorImpl.java:450)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:400)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateCascadedAnnotatedObjectForCurrentGroup(ValidatorImpl.java:629)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateCascadedConstraints(ValidatorImpl.java:590)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:409)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validate(ValidatorImpl.java:172)
+	at org.springframework.validation.beanvalidation.SpringValidatorAdapter.validate(SpringValidatorAdapter.java:104)
+	at org.springframework.boot.autoconfigure.validation.ValidatorAdapter.validate(ValidatorAdapter.java:66)
+	at org.springframework.validation.DataBinder.validate(DataBinder.java:932)
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.validateIfApplicable(AbstractMessageConverterMethodArgumentResolver.java:248)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:142)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:61)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-09-22 17:28:52 [http-nio-8080-exec-4] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.Email' validating type 'com.ImperioElevator.ordermanagement.valueobjects.Email'. Check configuration for 'user.email'] with root cause
+jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.Email' validating type 'com.ImperioElevator.ordermanagement.valueobjects.Email'. Check configuration for 'user.email'
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getInitializedConstraintValidator(ConstraintTree.java:162)
+	at org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree.validateConstraints(SimpleConstraintTree.java:58)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateConstraints(ConstraintTree.java:75)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.doValidateConstraint(MetaConstraint.java:130)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.validateConstraint(MetaConstraint.java:123)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateMetaConstraint(ValidatorImpl.java:555)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForSingleDefaultGroupElement(ValidatorImpl.java:518)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForDefaultGroup(ValidatorImpl.java:488)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForCurrentGroup(ValidatorImpl.java:450)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:400)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateCascadedAnnotatedObjectForCurrentGroup(ValidatorImpl.java:629)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateCascadedConstraints(ValidatorImpl.java:590)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:409)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validate(ValidatorImpl.java:172)
+	at org.springframework.validation.beanvalidation.SpringValidatorAdapter.validate(SpringValidatorAdapter.java:104)
+	at org.springframework.boot.autoconfigure.validation.ValidatorAdapter.validate(ValidatorAdapter.java:66)
+	at org.springframework.validation.DataBinder.validate(DataBinder.java:932)
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.validateIfApplicable(AbstractMessageConverterMethodArgumentResolver.java:248)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:142)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.ImperioElevator.ordermanagement.security.JwtFilter.doFilterInternal(JwtFilter.java:61)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
