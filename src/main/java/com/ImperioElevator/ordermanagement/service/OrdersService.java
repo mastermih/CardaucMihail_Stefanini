@@ -3,6 +3,7 @@ package com.ImperioElevator.ordermanagement.service;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
+import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,4 +27,5 @@ public interface OrdersService {
     Long assigneeOperatorToOrder(Long id, String role) throws SQLException;
     List<String> getOperatorNameToOrder(String role) throws SQLException;
     String setOperatorNameToOrder(String userName,  Long id) throws SQLException;
+    List<User> finedOperatorByName (String name) throws SQLException;
 }

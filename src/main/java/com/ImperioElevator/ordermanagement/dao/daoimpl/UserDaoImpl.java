@@ -119,7 +119,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         }
     }
 
-
     @Override
     public Long update(User user) throws SQLException {
         String sql = "UPDATE user SET username = ?, email = ?, image = ?, phone_number = ? WHERE id = ? ";

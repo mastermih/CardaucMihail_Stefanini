@@ -103,7 +103,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest user) throws SQLException {
+    public String login(@RequestBody @Valid LoginRequest user, BindingResult bindingResult) throws SQLException {
+        if(bindingResult.hasErrors()){
+            return "Error Login, invalid data";
+        }
         return userSevice.verifyUser(user);
     }
 }

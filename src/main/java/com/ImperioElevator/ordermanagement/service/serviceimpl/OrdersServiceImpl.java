@@ -183,5 +183,10 @@ public class OrdersServiceImpl implements OrdersService {
         return orderDao.setOperatorNameToOrder(userName, id);
     }
 
+    @Override
+    public List<User> finedOperatorByName(String name) throws SQLException {
+        return orderDao.finedOperatorByName(name);
+    }
+
 
 }

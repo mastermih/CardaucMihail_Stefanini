@@ -6,6 +6,7 @@ import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.valueobjects.*;
+import javafx.scene.Group;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -283,6 +284,22 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 
+    @Override
+    public List<User> finedOperatorByName(String name) throws SQLException {
+        String sql = "SELECT u.name FROM user u " +
+                "JOIN user_roles r ON user_id = r.user_id" +
+                "JOIN roles r ON ur.role_id = r.id" +
+                "WHERE r.role_name != 'USER'" +
+                "AND u.name LIKE ?";
+        String searchQuery = "%" + name + "%";
+        try{
+            logger.debug("Executing SQL to find Operator by name: {}", sql);
+            return jdbcTemplate.query(sql, new Object[]{searchQuery}, (result, i) -> mapResultSetToEntity(result).userId());
+        }catch (DataAccessException e){
+            logger.error("Failed to find Operator by name " + e);
+            throw e;
+        }
+    }
 
     @Override
     public Long deleteById(Long id) throws SQLException {
@@ -446,9 +463,13 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 
+
     @Override
     public List<Order> findLastCreatedOrders(Number limit) throws SQLException {
-        String sql = "SELECT * FROM orders ORDER BY id ASC LIMIT ?";
+        String sql = "SELECT o.*, MIN(oo.user_id) AS user_id, MIN(oo.assigned_role) AS assigned_role FROM orders o " +
+                "LEFT JOIN order_operators oo ON o.id = oo.order_id " +
+                "GROUP BY o.id " +
+                "ORDER BY o.id DESC LIMIT ?";
         try {
             logger.debug("Executing SQL to find last created Orders: {}", sql);
 

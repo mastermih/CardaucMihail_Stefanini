@@ -3,6 +3,7 @@ package com.ImperioElevator.ordermanagement.dao;
 
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
+import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 
 import java.sql.SQLException;
@@ -38,4 +39,6 @@ public interface OrderDao extends Dao<Order>{
 
     List<String> getOperatorNameToOrder(String role) throws SQLException;
     String setOperatorNameToOrder(String userName,  Long id) throws SQLException;
+    List<User> finedOperatorByName(String name)throws SQLException;
+
 }
