@@ -164,8 +164,7 @@ public class OrderController {
  //Assigning User(Management) to a User Order
  @PostMapping("orders/assignation")
  public String assigneeOperatorToOrder(@RequestParam Long id,
-                                       @RequestParam Long userId,
                                        @RequestParam String name) throws SQLException{
-  return ordersService.assigneeOperatorToOrder(id, userId, name);
+  return ordersService.assigneeOperatorToOrder(id, name);
  }
 }

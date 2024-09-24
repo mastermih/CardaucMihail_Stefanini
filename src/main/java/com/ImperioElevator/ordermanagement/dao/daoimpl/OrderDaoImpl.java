@@ -246,12 +246,18 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
-    public String assigneeOperatorToOrder(Long id, Long userId, String name) throws SQLException {
+    public String assigneeOperatorToOrder(Long id, String name) throws SQLException {
+        String getUserIdSql = "SELECT id FROM user WHERE username = ?";
+
         String getRole =  "SELECT r.role_name FROM roles r " +
                            "JOIN user_roles ur ON r.id = ur.role_id " +
-                            "WHERE user_id = ?";
+                            "WHERE user_id = ? LIMIT 1";
         String sql = "INSERT INTO order_operators (order_id,user_id,assigned_role) VALUES (?,?,?)";
         try{
+            Long userId = jdbcTemplate.queryForObject(getUserIdSql, new Object[]{name}, Long.class);
+            if (userId == null) {
+                throw new SQLException("User not found with name: " + name);
+            }
             String role = jdbcTemplate.queryForObject(getRole, new Object[]{userId}, String.class);
             logger.debug("Assigning the order to an Operator role: " + sql);
             jdbcTemplate.update(sql, id, userId, role);

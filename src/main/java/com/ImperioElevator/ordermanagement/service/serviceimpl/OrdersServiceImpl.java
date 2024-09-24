@@ -169,8 +169,8 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public String assigneeOperatorToOrder(Long id,Long userId, String name) throws SQLException {
-        return orderDao.assigneeOperatorToOrder(id, userId, name);
+    public String assigneeOperatorToOrder(Long id, String name) throws SQLException {
+        return orderDao.assigneeOperatorToOrder(id, name);
     }
 
     @Override
