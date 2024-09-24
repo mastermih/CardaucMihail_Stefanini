@@ -169,22 +169,12 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public Long assigneeOperatorToOrder(Long id, String role) throws SQLException {
-        return orderDao.assigneeOperatorToOrder(id, role);
+    public String assigneeOperatorToOrder(Long id,Long userId, String name) throws SQLException {
+        return orderDao.assigneeOperatorToOrder(id, userId, name);
     }
 
     @Override
-    public List<String> getOperatorNameToOrder(String role) throws SQLException {
-        return orderDao.getOperatorNameToOrder(role);
-    }
-
-    @Override
-    public String setOperatorNameToOrder(String userName,  Long id) throws SQLException {
-        return orderDao.setOperatorNameToOrder(userName, id);
-    }
-
-    @Override
-    public List<User> finedOperatorByName(String name) throws SQLException {
+    public List<String> finedOperatorByName(String name) throws SQLException {
         return orderDao.finedOperatorByName(name);
     }
 

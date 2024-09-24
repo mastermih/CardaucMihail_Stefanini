@@ -156,22 +156,16 @@ public class OrderController {
   return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
  }
 
+ @GetMapping("orders/assignation")
+ public List<String> getOperatorNameToOrder (@RequestParam String name) throws SQLException {
+  return ordersService.finedOperatorByName(name);
+ }
 
  //Assigning User(Management) to a User Order
  @PostMapping("orders/assignation")
- public Long assigneeOperatorToOrder (@RequestParam Long id,  //Body or param ? Now it works fine
-                                      @RequestParam String role) throws SQLException {
-  return ordersService.assigneeOperatorToOrder(id, role);
- }
-
- @GetMapping("orders/assignation")
- public List<String> getOperatorNameToOrder (@RequestParam String role) throws SQLException {
-  return ordersService.getOperatorNameToOrder(role);
- }
-
- @PutMapping("orders/assignation")
- public String setOperatorNameToOrder(@RequestParam String userName,
-                                      @RequestParam Long id) throws SQLException{
-  return ordersService.setOperatorNameToOrder(userName, id);
+ public String assigneeOperatorToOrder(@RequestParam Long id,
+                                       @RequestParam Long userId,
+                                       @RequestParam String name) throws SQLException{
+  return ordersService.assigneeOperatorToOrder(id, userId, name);
  }
 }

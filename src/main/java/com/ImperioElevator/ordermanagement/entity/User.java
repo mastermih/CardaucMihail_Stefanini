@@ -16,9 +16,9 @@ public record User(
         Name name,
         //@jakarta.validation.constraints.Email(message = "Email should be valid")
         Email email,
-      // @JsonIgnore // because of this user can not be registrated
+      // @JsonIgnore // because of this user can not be registered
       //  @Size(min = 5, max = 30, message = " The password number of characters is invalid")
-        String password,//ToDo check the password on Ui and Back add the validation and doucble password insertions //in service layers in con controler add the validation//
+        String password,
      //   @Size(min = 5, max = 15, message = "The phone, number of characters is invalid")
         String phoneNumber,
         String image,

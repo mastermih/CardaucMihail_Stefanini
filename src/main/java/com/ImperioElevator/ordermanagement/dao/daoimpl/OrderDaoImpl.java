@@ -246,55 +246,34 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
-    public Long assigneeOperatorToOrder(Long id, String role) throws SQLException {
-        String sql = "INSERT INTO order_operators (order_id,assigned_role) VALUES (?,?)";
+    public String assigneeOperatorToOrder(Long id, Long userId, String name) throws SQLException {
+        String getRole =  "SELECT r.role_name FROM roles r " +
+                           "JOIN user_roles ur ON r.id = ur.role_id " +
+                            "WHERE user_id = ?";
+        String sql = "INSERT INTO order_operators (order_id,user_id,assigned_role) VALUES (?,?,?)";
         try{
+            String role = jdbcTemplate.queryForObject(getRole, new Object[]{userId}, String.class);
             logger.debug("Assigning the order to an Operator role: " + sql);
-            jdbcTemplate.update(sql, id, role);
-            return id;
+            jdbcTemplate.update(sql, id, userId, role);
+            String assignedRoles = String.join(",", role);
+            return assignedRoles;
         }catch (DataAccessException e){
-            logger.error("Failed to Assigning the order to an Operator: " + sql);
+            logger.error("Failed to Assigning the Operator to an order: " + sql);
             throw e;
         }
     }
 
     @Override
-    public List<String> getOperatorNameToOrder(String role) throws SQLException {
-        String sql = "SELECT username FROM user u JOIN user_roles ur on u.id = ur.user_id JOIN roles r ON ur.role_id = r.id WHERE r.role_name = ?";
-        try{
-            logger.debug("Get the operators names: " +  sql);
-             List<String> userNames = jdbcTemplate.queryForList(sql, new Object[]{role}, String.class);
-            return userNames;
-        }catch (DataAccessException e){
-            logger.error("Failed to gee the operators names " + e);
-            throw e;
-        }
-    }
-
-    @Override
-    public String setOperatorNameToOrder(String userName, Long id) throws SQLException {
-        String sql = "UPDATE order_operators SET user_id = (SELECT id FROM user WHERE username = ?) WHERE order_id = ?";
-        try {
-            logger.debug("Assign operator to the order " + sql);
-            jdbcTemplate.update(sql, userName, id);
-            return userName;
-        }catch (DataAccessException e){
-            logger.error("Failed to Assign the user to the order " + e);
-            throw e;
-        }
-    }
-
-    @Override
-    public List<User> finedOperatorByName(String name) throws SQLException {
-        String sql = "SELECT u.name FROM user u " +
-                "JOIN user_roles r ON user_id = r.user_id" +
-                "JOIN roles r ON ur.role_id = r.id" +
-                "WHERE r.role_name != 'USER'" +
-                "AND u.name LIKE ?";
+    public List<String> finedOperatorByName(String name) throws SQLException {
+        String sql = "SELECT u.username FROM user u " +
+                "JOIN user_roles ur ON u.id = ur.user_id " +
+                "JOIN roles r ON ur.role_id = r.id " +
+                "WHERE r.role_name != 'USER' " +
+                "AND u.username LIKE ?";
         String searchQuery = "%" + name + "%";
         try{
             logger.debug("Executing SQL to find Operator by name: {}", sql);
-            return jdbcTemplate.query(sql, new Object[]{searchQuery}, (result, i) -> mapResultSetToEntity(result).userId());
+            return jdbcTemplate.query(sql, new Object[]{searchQuery}, (result, i) ->  result.getString("username"));
         }catch (DataAccessException e){
             logger.error("Failed to find Operator by name " + e);
             throw e;
@@ -330,7 +309,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         Status orderStatus = Status.valueOf(resultSet.getString("order_status"));
         return new Order(
                 new Id(orderId),
-                new User(new Id(userId), null, null, null, null, null,null, null, true),
+                new User(new Id(userId), null, null, null, null,null, null, true),
                 orderStatus,
                 new CreateDateTime(createdDateTime),
                 new UpdateDateTime(updatedDateTime),
