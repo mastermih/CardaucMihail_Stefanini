@@ -1,6 +1,7 @@
 package com.ImperioElevator.ordermanagement.controller;
 
 import com.ImperioElevator.ordermanagement.dto.OrderWithProductsDTO;
+import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.EmailService;
@@ -73,7 +74,7 @@ public class OrderController {
 
 
  @GetMapping("/orders/lastCreated")
- public List<Order> getLastCreatedDate(@RequestParam("limit") Number limit) throws SQLException {
+ public List<OrdersFoundLastCreatedDTO> getLastCreatedDate(@RequestParam("limit") Number limit) throws SQLException {
   return ordersService.findLastCreatedOrders(limit);
  }
  @GetMapping("/userOrders/UserLastCreated")

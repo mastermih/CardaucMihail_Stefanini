@@ -1,6 +1,8 @@
 package com.ImperioElevator.ordermanagement.dao;
 
 
+//import com.ImperioElevator.ordermanagement.dto.OrdersFinedLastCreatedDTO;
+import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.User;
@@ -19,7 +21,7 @@ public interface OrderDao extends Dao<Order>{
 
     Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate,LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException;
 
-    List<Order> findLastCreatedOrders(Number limit) throws SQLException;
+    List<OrdersFoundLastCreatedDTO> findLastCreatedOrders(Number limit) throws SQLException;
 
 
     List<Order> findLastCreatedOrdersForUserRole(Number limit, Long id) throws SQLException;
@@ -37,5 +39,5 @@ public interface OrderDao extends Dao<Order>{
 
     String assigneeOperatorToOrder(Long id, String name) throws SQLException;
     List<String> finedOperatorByName(String name)throws SQLException;
-
+    String getOperatorAssignedToOrder (Long id) throws SQLException;
 }

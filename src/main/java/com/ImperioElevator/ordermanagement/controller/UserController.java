@@ -58,6 +58,14 @@ public class UserController {
     @PostMapping("createUser")
     public ResponseEntity<UserCreationResponse> addNewUser(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result)throws SQLException{
         Long userId = userSevice.addNewUser(userRegistrationDTO.getUser());
+
+        User user = userRegistrationDTO.getUser();
+        String verifyPassword = userRegistrationDTO.getVerifyPassword();
+
+        if(!user.password().equals(verifyPassword)){
+            throw new IllegalArgumentException("Passwords do not match");
+        }
+
         if(result.hasErrors()){
             UserCreationResponse badResponse = new UserCreationResponse(
                     userId,
@@ -69,8 +77,6 @@ public class UserController {
                 userId,
                 "User " + userId + " was added success"
         );
-        User user = userRegistrationDTO.getUser();
-        String verifyPassword = userRegistrationDTO.getVerifyPassword();
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

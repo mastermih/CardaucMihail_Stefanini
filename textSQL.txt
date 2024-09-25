@@ -18,3 +18,48 @@ SELECT
 
 
 SELECT r.role_name FROM roles r JOIN user_roles ur ON ur.role_id WHERE user_id = 150
+
+SELECT o.*, u.username FROM user u
+                LEFT JOIN order_operators oo ON o.id = oo.order_id
+                GROUP BY o.id
+                ORDER BY o.id DESC LIMIT 5;
+
+     SELECT o.*, u.username
+     FROM orders o
+     LEFT JOIN order_operators oo ON o.id = oo.order_id
+     LEFT JOIN user u ON oo.user_id = u.id
+     GROUP BY o.id, u.username
+     ORDER BY o.id DESC
+     LIMIT 5;
+
+
+SELECT u.username FROM user u
+                JOIN order_operators oo ON u.id = oo.user_id
+                WHERE oo.order_id = 269
+
+
+                SELECT o.*, u.username, oo.user_id AS operator_user_id
+                FROM orders o
+                LEFT JOIN order_operators oo ON o.id = oo.order_id
+                LEFT JOIN user u ON oo.user_id = u.id
+                GROUP BY o.id, u.username
+                ORDER BY o.id DESC
+                LIMIT 5;
+
+
+"SELECT o.*, u.username FROM orders o " +
+                "LEFT JOIN order_operators oo ON o.id = oo.order_id " +
+                "LEFT JOIN user u ON o.user_id = u.id " +
+                "GROUP BY  o.id, u.username " +
+                "ORDER BY o.id DESC " +
+                 "LIMIT ?";
+
+
+                 SELECT o.*, u1.username AS creator_username, u2.username AS operator_username
+                 FROM orders o
+                 LEFT JOIN order_operators oo ON o.id = oo.order_id
+                 LEFT JOIN user u1 ON o.user_id = u1.id  -- Join to get the creator's username
+                 LEFT JOIN user u2 ON oo.user_id = u2.id  -- Join to get the operator's username
+                 GROUP BY o.id, u1.username, u2.username
+                 ORDER BY o.id DESC
+                 LIMIT 5;

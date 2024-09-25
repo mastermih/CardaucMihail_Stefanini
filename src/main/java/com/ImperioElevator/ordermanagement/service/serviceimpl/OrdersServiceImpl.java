@@ -3,6 +3,7 @@ package com.ImperioElevator.ordermanagement.service.serviceimpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
+import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
@@ -75,7 +76,7 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public List<Order> findLastCreatedOrders(Number limit) throws SQLException {
+    public List<OrdersFoundLastCreatedDTO> findLastCreatedOrders(Number limit) throws SQLException {
         return orderDao.findLastCreatedOrders(limit);
     }
 

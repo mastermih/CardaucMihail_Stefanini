@@ -81,9 +81,9 @@ public class UserServiceImpl implements UserSevice {
     }
     @Override
     public Long createUserUnauthorized(User user, String verifyPassword) throws SQLException {
-       if(!user.password().equals(verifyPassword)){
-            throw new IllegalArgumentException("Passwords do not match");
-        }
+//       if(!user.password().equals(verifyPassword)){
+//            throw new IllegalArgumentException("Passwords do not match");
+//        }
         String encryptedPassword = encoder.encode(user.password());
         User encriptedUser = new User(
                 user.userId(),

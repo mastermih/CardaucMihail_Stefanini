@@ -1,6 +1,8 @@
 package com.ImperioElevator.ordermanagement.dao.daoimpl;
 
 import com.ImperioElevator.ordermanagement.dao.OrderDao;
+//import com.ImperioElevator.ordermanagement.dto.OrdersFinedLastCreatedDTO;
+import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
@@ -280,6 +282,14 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
+    public String getOperatorAssignedToOrder(Long id) throws SQLException {
+        String sql = "SELECT u.username FROM user u " +
+                "JOIN order_operators oo ON u.id = oo.user_id " +
+                "WHERE oo.order_id = ?";
+        return null;
+    }
+
+    @Override
     public Long deleteById(Long id) throws SQLException {
         String sql = "DELETE FROM orders WHERE id = ?";
         logger.debug("Deleted Order by id: {}", sql);
@@ -316,13 +326,15 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         );
     }
 
+
+
     // ResultSet to  OrderProduct entity
     private OrderProduct mapOrderProduct(ResultSet resultSet, int i) throws SQLException {
         Long parentProductId = resultSet.getLong("parent_product_id");
 
         return new OrderProduct(
                 new Id(resultSet.getLong("product_id")),
-                null,  //cyc depend
+                null,
                 new Quantity(resultSet.getInt("quantity")),
                 new Price(resultSet.getDouble("price_product")),
                 new Id(parentProductId),
@@ -336,6 +348,34 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 )
         );
     }
+
+    private OrdersFoundLastCreatedDTO mapResultSetToEntityDTO(ResultSet resultSet) throws SQLException {
+        // Map the Order entity
+        Long orderId = resultSet.getLong("id");
+        LocalDateTime createdDateTime = resultSet.getTimestamp("created_date").toLocalDateTime();
+        LocalDateTime updatedDateTime = resultSet.getTimestamp("updated_date").toLocalDateTime();
+        Status orderStatus = Status.valueOf(resultSet.getString("order_status"));
+
+        Order order = new Order(
+                new Id(orderId),
+                null,
+                orderStatus,
+                new CreateDateTime(createdDateTime),
+                new UpdateDateTime(updatedDateTime),
+                new ArrayList<>()
+        );
+
+        // Map the operator's username and userId
+        String operatorUsername = resultSet.getString("operator_username");
+        Long operatorUserId = resultSet.getLong("operator_user_id");
+        String creatorUsername = resultSet.getString("creator_username");
+
+        // Return the DTO
+        return new OrdersFoundLastCreatedDTO(order, operatorUsername, operatorUserId, creatorUsername);
+    }
+
+
+
 
     @Override
     public Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {
@@ -441,19 +481,23 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 
-
+//ToDo add the select also for operator name It may request an additional method
     @Override
-    public List<Order> findLastCreatedOrders(Number limit) throws SQLException {
-        String sql = "SELECT o.*, MIN(oo.user_id) AS user_id, MIN(oo.assigned_role) AS assigned_role FROM orders o " +
+    public List<OrdersFoundLastCreatedDTO> findLastCreatedOrders(Number limit) throws SQLException {
+        String sql = "SELECT o.*, u1.username AS creator_username, u2.username AS operator_username, u2.id AS operator_user_id " +
+                "FROM orders o " +
                 "LEFT JOIN order_operators oo ON o.id = oo.order_id " +
-                "GROUP BY o.id " +
-                "ORDER BY o.id DESC LIMIT ?";
+                "LEFT JOIN user u1 ON o.user_id = u1.id " +
+                "LEFT JOIN user u2 ON oo.user_id = u2.id " +
+                "GROUP BY o.id, u2.id, u1.username, u2.username " +
+                "ORDER BY o.id DESC " +
+                "LIMIT ?";
         try {
             logger.debug("Executing SQL to find last created Orders: {}", sql);
 
-            List<Order> orders = new ArrayList<>();
+            List<OrdersFoundLastCreatedDTO> orders = new ArrayList<>();
             jdbcTemplate.query(sql, new Object[]{limit}, resultSet -> {
-                orders.add(mapResultSetToEntity(resultSet));
+                orders.add(mapResultSetToEntityDTO(resultSet));
             });
 
             logger.info("Successfully retrieved last created Orders");

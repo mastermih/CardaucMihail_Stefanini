@@ -13,9 +13,6 @@
             <column name="user_id" type="BIGINT">
                 <constraints nullable="true"/>
             </column>
-
-            <column name="assigned_role" type="VARCHAR(50)">
-            </column>
         </createTable>
     </changeSet>
 

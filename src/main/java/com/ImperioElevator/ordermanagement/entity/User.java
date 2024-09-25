@@ -11,15 +11,15 @@ import java.util.List;
 //ToDo fix the usr validation for name and Email
 public record User(
         Id userId,
-      //  @NotNull
-      //  @Size(min = 2, max = 10, message = "Not less then 2 and not more then 10")
+        @NotNull
+        @Size(min = 2, max = 10, message = "Not less then 2 and not more then 10")
         Name name,
         //@jakarta.validation.constraints.Email(message = "Email should be valid")
         Email email,
-      // @JsonIgnore // because of this user can not be registered
-      //  @Size(min = 5, max = 30, message = " The password number of characters is invalid")
+       //@JsonIgnore // because of this user can not be registered
+        @Size(min = 5, max = 30, message = " The password number of characters is invalid")
         String password,
-     //   @Size(min = 5, max = 15, message = "The phone, number of characters is invalid")
+        @Size(min = 5, max = 15, message = "The phone, number of characters is invalid")
         String phoneNumber,
         String image,
         List<Role> roles,

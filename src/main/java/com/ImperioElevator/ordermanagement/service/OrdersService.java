@@ -1,5 +1,6 @@
 package com.ImperioElevator.ordermanagement.service;
 
+import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
@@ -18,7 +19,7 @@ public interface OrdersService {
     Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
     Paginable<Order> findPaginableUserOrderByCreatedDate(Long id, LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
     Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate, LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException;
-    List<Order> findLastCreatedOrders(Number limit)throws SQLException;
+    List<OrdersFoundLastCreatedDTO> findLastCreatedOrders(Number limit)throws SQLException;
     List<Order> findLastCreatedOrdersForUserRole(Number limit, Long id)throws SQLException;
     Long createOrder(Order order) throws SQLException;
     Long updateOrderStatus(Order order) throws SQLException;
