@@ -179,5 +179,9 @@ public class OrdersServiceImpl implements OrdersService {
         return orderDao.finedOperatorByName(name);
     }
 
+    @Override
+    public  List<String>  getOperatorAssignedToOrder(Long orderId) throws SQLException {
+        return orderDao.getOperatorAssignedToOrder(orderId);
+    }
 
 }

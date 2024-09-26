@@ -240,7 +240,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         String sql = "SELECT token_value FROM token WHERE order_id = ? AND token_type = 'ORDER' AND is_enabled = true";
         try {
             logger.debug("Selecting the order token with query: " + sql);
-            return jdbcTemplate.queryForObject(sql, new Object[]{orderId}, String.class);  // Query for a single object
+            return jdbcTemplate.queryForObject(sql, new Object[]{orderId}, String.class);
         } catch (DataAccessException e) {
             logger.error("Failed to fetch confirmation token for order ID: {}", orderId, e);
             throw new SQLException("Token not found for order ID: " + orderId);
@@ -282,11 +282,18 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
-    public String getOperatorAssignedToOrder(Long id) throws SQLException {
+    public List<String> getOperatorAssignedToOrder(Long orderId) throws SQLException {
         String sql = "SELECT u.username FROM user u " +
                 "JOIN order_operators oo ON u.id = oo.user_id " +
-                "WHERE oo.order_id = ?";
-        return null;
+                "WHERE oo.order_id = ? " +
+                "GROUP BY u.username";
+        try{
+            logger.debug("Geting the operator name('s) for order " + sql);
+          return  jdbcTemplate.query(sql, new Object[]{orderId}, (result, i) -> result.getString("username"));
+        }catch (DataAccessException e ){
+            logger.error("Failed to get the operator id, or there is no operator for this order " + e);
+            throw e;
+        }
     }
 
     @Override
@@ -328,7 +335,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
 
 
-    // ResultSet to  OrderProduct entity
     private OrderProduct mapOrderProduct(ResultSet resultSet, int i) throws SQLException {
         Long parentProductId = resultSet.getLong("parent_product_id");
 
@@ -350,7 +356,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     private OrdersFoundLastCreatedDTO mapResultSetToEntityDTO(ResultSet resultSet) throws SQLException {
-        // Map the Order entity
         Long orderId = resultSet.getLong("id");
         LocalDateTime createdDateTime = resultSet.getTimestamp("created_date").toLocalDateTime();
         LocalDateTime updatedDateTime = resultSet.getTimestamp("updated_date").toLocalDateTime();
@@ -481,7 +486,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 
-//ToDo add the select also for operator name It may request an additional method
     @Override
     public List<OrdersFoundLastCreatedDTO> findLastCreatedOrders(Number limit) throws SQLException {
         String sql = "SELECT o.*, u1.username AS creator_username, u2.username AS operator_username, u2.id AS operator_user_id " +

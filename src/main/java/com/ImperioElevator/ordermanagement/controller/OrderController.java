@@ -168,4 +168,9 @@ public class OrderController {
                                        @RequestParam String name) throws SQLException{
   return ordersService.assigneeOperatorToOrder(id, name);
  }
+
+ @GetMapping("DetailedOrder")
+ public List<String> getOperatorAssignedToOrder(@RequestParam Long orderId) throws SQLException{
+    return ordersService.getOperatorAssignedToOrder(orderId);
+ }
 }

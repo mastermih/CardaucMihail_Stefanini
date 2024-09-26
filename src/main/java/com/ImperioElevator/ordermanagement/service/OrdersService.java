@@ -27,4 +27,5 @@ public interface OrdersService {
     Order getOrderWithExtraProducts(Long orderId) throws SQLException;
     String assigneeOperatorToOrder(Long id, String name) throws SQLException;
     List<String> finedOperatorByName (String name) throws SQLException;
+    List<String> getOperatorAssignedToOrder (Long orderId) throws SQLException;
 }
