@@ -40,13 +40,7 @@ public class UserServiceImpl implements UserSevice {
 //Encoding the user password useing BCryptPasswordEncoder
     @Override
     public Long addNewUser(User user) throws SQLException {
-        System.out.println("Raw password: " + user.password());  // Debug print
-//       if(!user.password().equals(user.verifyPassword())){
-//            throw new IllegalArgumentException("Passwords do not match");
-//        }
         String encryptedPassword = encoder.encode(user.password());
-     //   String encryptedVerifyPassword = encoder.encode(user.verifyPassword());
-        System.out.println("Encoded password: " + encryptedPassword);  // Debug print
         User encriptedUser = new User(
                 user.userId(),
                 user.name(),

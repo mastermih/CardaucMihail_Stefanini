@@ -29,7 +29,7 @@ public class EmailServiceImpl implements EmailService {
         this.orderDao = orderDao;
         this.userDao = userDao;
     }
-
+//TODO delete this method because this was a test
     public String sendSimpleMail(EmailDetails details) {
         try {
 

@@ -372,11 +372,11 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
         // Map the operator's username and userId
         String operatorUsername = resultSet.getString("operator_username");
-        Long operatorUserId = resultSet.getLong("operator_user_id");
+        //Long operatorUserId = resultSet.getLong("operator_user_id");
         String creatorUsername = resultSet.getString("creator_username");
 
         // Return the DTO
-        return new OrdersFoundLastCreatedDTO(order, operatorUsername, operatorUserId, creatorUsername);
+        return new OrdersFoundLastCreatedDTO(order, operatorUsername, creatorUsername);
     }
 
 
@@ -488,12 +488,12 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public List<OrdersFoundLastCreatedDTO> findLastCreatedOrders(Number limit) throws SQLException {
-        String sql = "SELECT o.*, u1.username AS creator_username, u2.username AS operator_username, u2.id AS operator_user_id " +
+        String sql = "SELECT o.*, u1.username AS creator_username, GROUP_CONCAT(DISTINCT u2.username SEPARATOR ', ') AS operator_username " +
                 "FROM orders o " +
                 "LEFT JOIN order_operators oo ON o.id = oo.order_id " +
                 "LEFT JOIN user u1 ON o.user_id = u1.id " +
                 "LEFT JOIN user u2 ON oo.user_id = u2.id " +
-                "GROUP BY o.id, u2.id, u1.username, u2.username " +
+                "GROUP BY o.id, u1.username " +
                 "ORDER BY o.id DESC " +
                 "LIMIT ?";
         try {

@@ -5,13 +5,13 @@ import com.ImperioElevator.ordermanagement.entity.Order;
 public class OrdersFoundLastCreatedDTO {
     private Order order;
     private String userName;
-    private Long operatorUserId;
+  //  private Long operatorUserId;
     private String creatorUsername;
 
-    public OrdersFoundLastCreatedDTO(Order order, String userName, Long operatorUserId, String creatorUsername) {
+    public OrdersFoundLastCreatedDTO(Order order, String userName, String creatorUsername) {
         this.order = order;
         this.userName = userName;
-        this.operatorUserId = operatorUserId;
+       // this.operatorUserId = operatorUserId;
         this.creatorUsername = creatorUsername;
     }
 
@@ -31,13 +31,13 @@ public class OrdersFoundLastCreatedDTO {
         this.userName = userName;
     }
 
-    public Long getOperatorUserId() {
-        return operatorUserId;
-    }
-
-    public void setOperatorUserId(Long operatorUserId) {
-        this.operatorUserId = operatorUserId;
-    }
+//    public Long getOperatorUserId() {
+//        return operatorUserId;
+//    }
+//
+//    public void setOperatorUserId(Long operatorUserId) {
+//        this.operatorUserId = operatorUserId;
+//    }
 
     public String getCreatorUsername() {
         return creatorUsername;
