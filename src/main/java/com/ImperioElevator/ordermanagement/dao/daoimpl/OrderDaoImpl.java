@@ -297,6 +297,19 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
+    public Long deleteOperatorAssignedToOrderByOperatorId(Long orderId, Long operatorId) throws SQLException {
+        String sql = "DELETE FROM order_operators WHERE order_id = ? AND user_id = ?";
+        try{
+            logger.debug("Deleting the operator from the order " + sql);
+            jdbcTemplate.update(sql,orderId, operatorId);
+            return operatorId;
+        }catch (DataAccessException e){
+            logger.error("Failed to delete the operator from the order");
+            throw e;
+        }
+    }
+
+    @Override
     public Long deleteById(Long id) throws SQLException {
         String sql = "DELETE FROM orders WHERE id = ?";
         logger.debug("Deleted Order by id: {}", sql);
@@ -372,11 +385,11 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
         // Map the operator's username and userId
         String operatorUsername = resultSet.getString("operator_username");
-        //Long operatorUserId = resultSet.getLong("operator_user_id");
+        String operatorUserId = resultSet.getString("operator_user_id");
         String creatorUsername = resultSet.getString("creator_username");
 
         // Return the DTO
-        return new OrdersFoundLastCreatedDTO(order, operatorUsername, creatorUsername);
+        return new OrdersFoundLastCreatedDTO(order, operatorUsername, operatorUserId, creatorUsername);
     }
 
 
@@ -488,7 +501,9 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public List<OrdersFoundLastCreatedDTO> findLastCreatedOrders(Number limit) throws SQLException {
-        String sql = "SELECT o.*, u1.username AS creator_username, GROUP_CONCAT(DISTINCT u2.username SEPARATOR ', ') AS operator_username " +
+        String sql = "SELECT o.*, u1.username AS creator_username, " +
+                "GROUP_CONCAT(DISTINCT u2.username SEPARATOR ', ') AS operator_username, " +
+                "GROUP_CONCAT(DISTINCT u2.id SEPARATOR ', ') AS operator_user_id " +
                 "FROM orders o " +
                 "LEFT JOIN order_operators oo ON o.id = oo.order_id " +
                 "LEFT JOIN user u1 ON o.user_id = u1.id " +

@@ -1,5 +1,6 @@
 package com.ImperioElevator.ordermanagement.entity;
 
+//ToDo move it to th DTO package
 public class EntityCreationResponse {
     private Long orderId;
     private String message;

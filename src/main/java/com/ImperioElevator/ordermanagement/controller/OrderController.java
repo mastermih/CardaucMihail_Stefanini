@@ -7,7 +7,6 @@ import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import com.ImperioElevator.ordermanagement.service.OrderProductService;
-import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -165,13 +164,24 @@ public class OrderController {
  //Assigning User(Management) to a User Order
  //ToDO add a normal response
  @PostMapping("orders/assignation")
- public String assigneeOperatorToOrder(@RequestParam Long id,
-                                       @RequestParam String name) throws SQLException{
-  return ordersService.assigneeOperatorToOrder(id, name);
+ public ResponseEntity<EntityCreationResponse> assigneeOperatorToOrder(@RequestParam Long id,
+                                                                             @RequestParam String name) throws SQLException{
+  ordersService.assigneeOperatorToOrder(id, name);
+  EntityCreationResponse entityCreationResponse = new EntityCreationResponse(
+          id,
+          "Operator " + name + " with id " + id + " assigned to the order"
+  );
+  return new ResponseEntity<>(entityCreationResponse, HttpStatus.OK);
  }
 
  @GetMapping("DetailedOrder")
  public List<String> getOperatorAssignedToOrder(@RequestParam Long orderId) throws SQLException{
     return ordersService.getOperatorAssignedToOrder(orderId);
+ }
+
+ @DeleteMapping("orders/removeOperator")
+ public Long deleteOperatorAssignedToOrderByOperatorId (@RequestParam Long orderId,
+                                                        @RequestParam Long operatorId) throws SQLException{
+  return ordersService.deleteOperatorAssignedToOrderByOperatorId(orderId, operatorId);
  }
 }

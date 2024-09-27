@@ -184,4 +184,9 @@ public class OrdersServiceImpl implements OrdersService {
         return orderDao.getOperatorAssignedToOrder(orderId);
     }
 
+    @Override
+    public Long deleteOperatorAssignedToOrderByOperatorId(Long orderId, Long operatorId) throws SQLException {
+        return orderDao.deleteOperatorAssignedToOrderByOperatorId(orderId, operatorId);
+    }
+
 }
