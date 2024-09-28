@@ -41,4 +41,5 @@ public interface OrderDao extends Dao<Order>{
     List<String> finedOperatorByName(String name)throws SQLException;
     List<String> getOperatorAssignedToOrder (Long orderId) throws SQLException;
     Long deleteOperatorAssignedToOrderByOperatorId (Long orderId, Long operator_id) throws SQLException;
+    List<Long> deleteAllOperatorsAssignedToOrderByOperatorId (Long orderId, List<Long> operatorIds) throws SQLException;
 }

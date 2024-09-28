@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
@@ -26,11 +28,14 @@ import java.util.List;
 
 @Component
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
 
     private final JdbcTemplate jdbcTemplate;
 
-    public OrderDaoImpl(JdbcTemplate jdbcTemplate) {
+    public OrderDaoImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
@@ -305,6 +310,22 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
             return operatorId;
         }catch (DataAccessException e){
             logger.error("Failed to delete the operator from the order");
+            throw e;
+        }
+    }
+
+    @Override
+    public List<Long> deleteAllOperatorsAssignedToOrderByOperatorId(Long orderId, List<Long> operatorIds) throws SQLException {
+        String sql = "DELETE FROM order_operators WHERE order_id = :orderId AND user_id IN (:operatorIds)";
+        try {
+            logger.debug("Deleting the operators from the order " + sql);
+            MapSqlParameterSource params = new MapSqlParameterSource();
+            params.addValue("orderId", orderId);
+            params.addValue("operatorIds", operatorIds);
+            namedParameterJdbcTemplate.update(sql, params);
+            return operatorIds;
+        } catch (DataAccessException e) {
+            logger.error("Failed to delete the operator from the order", e);
             throw e;
         }
     }
