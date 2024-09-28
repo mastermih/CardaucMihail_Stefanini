@@ -190,8 +190,13 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public List<Long> deleteAllOperatorsAssignedToOrderByOperatorId(Long orderId, List<Long> operatorIds) throws SQLException {
-        return orderDao.deleteAllOperatorsAssignedToOrderByOperatorId(orderId, operatorIds);
+    public Long deleteAllOperatorsAssignedToOrderByOperatorId(Long orderId) throws SQLException {
+        return orderDao.deleteAllOperatorsAssignedToOrderByOperatorId(orderId);
+    }
+
+    @Override
+    public Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException {
+        return orderDao.assineOrderToMe(orderId, operatorId);
     }
 
 }

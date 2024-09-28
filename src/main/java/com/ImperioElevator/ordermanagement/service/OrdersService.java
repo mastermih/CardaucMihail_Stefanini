@@ -29,5 +29,6 @@ public interface OrdersService {
     List<String> finedOperatorByName (String name) throws SQLException;
     List<String> getOperatorAssignedToOrder (Long orderId) throws SQLException;
     Long deleteOperatorAssignedToOrderByOperatorId (Long orderId, Long operatorId) throws SQLException;
-    List<Long>deleteAllOperatorsAssignedToOrderByOperatorId(Long orderId, List<Long> operatorIds)throws SQLException;
+    Long deleteAllOperatorsAssignedToOrderByOperatorId(Long orderId)throws SQLException;
+    Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException;
 }

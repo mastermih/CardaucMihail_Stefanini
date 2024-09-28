@@ -186,8 +186,12 @@ public class OrderController {
  }
 
  @DeleteMapping("orders/removeAllOperators")
- public List<Long> deleteAllOperatorsAssignedToOrderByOperatorId (@RequestParam Long orderId,
-                                                          @RequestParam List<Long> operatorIds) throws SQLException{
-  return ordersService.deleteAllOperatorsAssignedToOrderByOperatorId(orderId, operatorIds);
+ public Long deleteAllOperatorsAssignedToOrderByOperatorId (@RequestParam Long orderId)throws SQLException{
+  return ordersService.deleteAllOperatorsAssignedToOrderByOperatorId(orderId);
+ }
+
+ @PostMapping("orders/assineOrderToMe")
+ public Long assineOrderToMe(@RequestParam Long orderId, @RequestParam Long operatorId) throws SQLException {
+ return ordersService.assineOrderToMe(orderId, operatorId);
  }
 }

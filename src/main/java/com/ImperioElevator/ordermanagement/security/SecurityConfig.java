@@ -44,7 +44,7 @@ public class SecurityConfig {
                         .requestMatchers(WHITELIST).permitAll()
                      //   .requestMatchers("createUser/Superior").hasRole("ADMIN")
 
-                        .requestMatchers("/orders/assignation").hasAuthority("ADMIN")
+                        .requestMatchers("/orders/assignation", "orders/removeOperator", "orders/removeAllOperators").hasAuthority("ADMIN")
 
                         .requestMatchers("/orders/**").hasAnyAuthority("ADMIN", "MANAGER", "SALESMAN")
 

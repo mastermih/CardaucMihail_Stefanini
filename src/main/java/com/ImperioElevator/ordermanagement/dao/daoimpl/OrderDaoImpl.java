@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SqlInOutParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -314,18 +315,46 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 
+    //Over Complicated method for deleting all the operators from the order
+//    @Override
+//    public List<Long> deleteAllOperatorsAssignedToOrderByOperatorId(Long orderId, List<Long> operatorIds) throws SQLException {
+//        String sql = "DELETE FROM order_operators WHERE order_id = :orderId AND user_id IN (:operatorIds)";
+//        try {
+//            logger.debug("Deleting the operators from the order " + sql);
+//            MapSqlParameterSource params = new MapSqlParameterSource();
+//            params.addValue("orderId", orderId);
+//            params.addValue("operatorIds", operatorIds);
+//            namedParameterJdbcTemplate.update(sql, params);
+//            return operatorIds;
+//        } catch (DataAccessException e) {
+//            logger.error("Failed to delete the operator from the order", e);
+//            throw e;
+//        }
+//    }
+
+    // The simplified method of removing all the operators form the order
     @Override
-    public List<Long> deleteAllOperatorsAssignedToOrderByOperatorId(Long orderId, List<Long> operatorIds) throws SQLException {
-        String sql = "DELETE FROM order_operators WHERE order_id = :orderId AND user_id IN (:operatorIds)";
+    public Long deleteAllOperatorsAssignedToOrderByOperatorId(Long orderId) throws SQLException {
+        String sql = "DELETE FROM order_operators WHERE order_id = ?";
         try {
             logger.debug("Deleting the operators from the order " + sql);
-            MapSqlParameterSource params = new MapSqlParameterSource();
-            params.addValue("orderId", orderId);
-            params.addValue("operatorIds", operatorIds);
-            namedParameterJdbcTemplate.update(sql, params);
-            return operatorIds;
+            jdbcTemplate.update(sql, orderId);
+            return orderId;
         } catch (DataAccessException e) {
             logger.error("Failed to delete the operator from the order", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException {
+        String sql = "INSERT INTO order_operators (order_id, user_id) VALUES (?, ?)";
+        try{
+            logger.debug("Add actual user (Me) as order operator " + sql);
+            jdbcTemplate.update(sql ,orderId, operatorId);
+            return operatorId;
+        }catch (DataAccessException e){
+            logger.error("Failed to add the actual user (Me) as operator to order " + e);
             throw e;
         }
     }
