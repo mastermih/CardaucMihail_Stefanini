@@ -10,5 +10,8 @@
   <include file="4-changeset-order-table.xml" relativeToChangelogFile="true"/>
   <include file="5-changeset-orderProduct-table.xml" relativeToChangelogFile="true"/>
   <include file="6-changeset-token-table.xml" relativeToChangelogFile="true"/>
+  <include file="7-changeset-orderOperators-table.xml" relativeToChangelogFile="true"/>
+  <include file="8-changeset-roles-table.xml" relativeToChangelogFile="true"/>
+  <include file="9-changeset-user_roles-table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

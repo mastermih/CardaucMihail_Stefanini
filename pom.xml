@@ -114,6 +114,11 @@
 			<version>3.3.3</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>${liquibase.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -159,7 +164,7 @@
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>${liquibase.version}</version>
 				<configuration>
-					<changeLogFile>db/changelog/db.changelog-master.xml</changeLogFile> <!-- This path is relative to src/main/resources -->
+					<changeLogFile>db/changelog/changelog-master.xml</changeLogFile>
 					<url>jdbc:mysql://localhost:3306/test</url>
 					<username>root</username>
 					<password>sql</password>

@@ -13,7 +13,7 @@ public record User(
         Id userId,
         @NotNull
                 //Size is not working user creation fail
-       // @Size(min = 2, max = 10, message = "Not less then 2 and not more then 10")
+       // @Size(min = 2, max = 20, message = "Not less then 2 and not more then 20")
         Name name,
         //@jakarta.validation.constraints.Email(message = "Email should be valid")
         Email email,

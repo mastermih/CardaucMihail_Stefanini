@@ -1,4 +1,5 @@
-id,username,email,password,account_not_locked,phone_number
-1,john_doe,john@example.com,pass1234
-2,jane_smith,jane@example.com,securepass
-3,bob_jones,bob@example.com,123password
+id,username,email,password,image,account_not_locked,phone_number
+1,Model Isimov,model@gmail.com,$2a$09$E14ujmwgAH.zhlgbuKbEj.CczCQ.Bn2U6YN1dgdOSGrimEravUa4W, ,1,6866786788
+2,Talian Miloman,tolik@gmail.com,$2a$09$E14ujmwgAH.zhlgbuKbEj.CczCQ.Bn2U6YN1dgdOSGrimEravUa4W, ,1,6866786788
+3,Alisa Murunova,alisa@gmail.com,$2a$09$E14ujmwgAH.zhlgbuKbEj.CczCQ.Bn2U6YN1dgdOSGrimEravUa4W, ,1,6866786788
+4,Nicu Gonta,nicu@gmail.com,$2a$09$E14ujmwgAH.zhlgbuKbEj.CczCQ.Bn2U6YN1dgdOSGrimEravUa4W, ,1,6866786788

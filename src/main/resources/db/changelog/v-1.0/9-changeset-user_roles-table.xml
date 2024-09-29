@@ -1,0 +1,45 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- ChangeSet for creating the user_roles table -->
+    <changeSet id="9" author="Mihai">
+        <createTable tableName="user_roles">
+            <column name="user_id" type="BIGINT">
+            </column>
+            <column name="role_id" type="BIGINT">
+            </column>
+        </createTable>
+
+        <!-- Adding foreign key for user_id referencing user table -->
+        <addForeignKeyConstraint baseTableName="user_roles"
+                                 baseColumnNames="user_id"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_user_roles_user"/>
+
+        <!-- Adding foreign key for role_id referencing roles table -->
+        <addForeignKeyConstraint baseTableName="user_roles"
+                                 baseColumnNames="role_id"
+                                 referencedTableName="roles"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_user_roles_roles"/>
+    </changeSet>
+
+    <!-- Data loading for MySQL -->
+    <changeSet id="9.1" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="mysql"/>
+        </preConditions>
+        <loadData tableName="user_roles" file="db/data/mysql/user_roles-data.csv"/>
+    </changeSet>
+
+    <!-- Data loading for HSQLDB -->
+    <changeSet id="9.2" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="hsqldb"/>
+        </preConditions>
+        <loadData tableName="user_roles" file="db/data/hsqldb/user_roles-data.csv"/>
+    </changeSet>
+</databaseChangeLog>

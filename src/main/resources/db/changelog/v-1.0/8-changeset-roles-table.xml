@@ -1,34 +1,38 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
-    <!-- ChangeSet for creating the token table -->
-    <changeSet id="7" author="Mihai">
-        <createTable tableName="order_operators">
-            <column name="order_id" type="BIGINT" defaultValueComputed="NULL">
-                <constraints nullable="true"/>
+    <!-- ChangeSet for creating the roles table -->
+    <changeSet id="8" author="Mihai">
+        <createTable tableName="roles">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" />
             </column>
-            <column name="user_id" type="BIGINT">
-                <constraints nullable="true"/>
+            <column name="role_name" type="VARCHAR(50)">
             </column>
         </createTable>
+
+        <!-- Create an index on the id column -->
+        <createIndex indexName="idx_roles_id" tableName="roles">
+            <column name="id" />
+        </createIndex>
     </changeSet>
 
     <!-- Data loading for MySQL -->
-    <changeSet id="7.1" author="Mihai">
+    <changeSet id="8.1" author="Mihai">
         <preConditions onFail="MARK_RAN">
             <dbms type="mysql"/>
         </preConditions>
-        <loadData tableName="order_operators" file="db/data/mysql/order_operators.csv"/>
+        <loadData tableName="roles" file="db/data/mysql/roles-data.csv"/>
     </changeSet>
 
     <!-- Data loading for HSQLDB -->
-    <changeSet id="7.2" author="Mihai">
+    <changeSet id="8.2" author="Mihai">
         <preConditions onFail="MARK_RAN">
             <dbms type="hsqldb"/>
         </preConditions>
-        <loadData tableName="order_operators" file="db/data/hsqldb/order_operators.csv"/>
+        <loadData tableName="roles" file="db/data/hsqldb/roles-data.csv"/>
     </changeSet>
+
 </databaseChangeLog>
