@@ -16,9 +16,9 @@ public interface OrdersService {
 
     Long createOrderWithProducts(Order order, List<OrderProduct> orderProducts) throws SQLException;
 
-    Paginable<Order> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
+    Paginable<OrdersFoundLastCreatedDTO> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
     Paginable<Order> findPaginableUserOrderByCreatedDate(Long id, LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
-    Paginable<Order> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate, LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException;
+    Paginable<OrdersFoundLastCreatedDTO> findPaginableOrderByCreatedDateAndStatus(LocalDateTime startDate, LocalDateTime endDate, Status status, Long numberOfOrders, Long page) throws SQLException;
     List<OrdersFoundLastCreatedDTO> findLastCreatedOrders(Number limit)throws SQLException;
     List<Order> findLastCreatedOrdersForUserRole(Number limit, Long id)throws SQLException;
     Long createOrder(Order order) throws SQLException;

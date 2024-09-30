@@ -2,6 +2,7 @@ package DaoValueTest;
 
 import com.ImperioElevator.ordermanagement.OrderManagementApplication;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
+import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.User;
@@ -101,11 +102,11 @@ public class OrderDaoImplTest {
             orderDao.insert(order);
         }
 
-        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 5L, 2L);
-        List<Order> orders = response.getItems();
+        Paginable<OrdersFoundLastCreatedDTO> response = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 5L, 2L);
+        List<OrdersFoundLastCreatedDTO> orders = response.getItems();
         assertEquals(5, orders.size());
-        for (Order order : orders) {
-            assertEquals(localDateTime, order.createdDate().createDateTime());
+        for (OrdersFoundLastCreatedDTO orderDTO : orders) {
+            assertEquals(localDateTime, orderDTO.getOrder().createdDate().createDateTime());
         }
     }
 
@@ -135,12 +136,12 @@ public class OrderDaoImplTest {
             Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
-        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDateAndStatus(localDateTime, localDateTime, Status.CLOSED, 5L, 2L);
-        List<Order> orders = response.getItems();
+        Paginable<OrdersFoundLastCreatedDTO> response = orderDao.findPaginableOrderByCreatedDateAndStatus(localDateTime, localDateTime, Status.CLOSED, 5L, 2L);
+        List<OrdersFoundLastCreatedDTO> orders = response.getItems();
         assertEquals(5, orders.size());
-        for (Order order : orders) {
-            assertEquals(localDateTime, order.createdDate().createDateTime());
-            assertEquals(Status.CLOSED, order.orderStatus());
+        for (OrdersFoundLastCreatedDTO orderDTO : orders) {
+            assertEquals(localDateTime, orderDTO.getOrder().createdDate());
+            assertEquals(Status.CLOSED, orderDTO.getOrder().updatedDate());
         }
     }
 
@@ -153,11 +154,11 @@ public class OrderDaoImplTest {
             Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
-        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 6L, 2L);
-        List<Order> orders = response.getItems();
+        Paginable<OrdersFoundLastCreatedDTO> response = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 6L, 2L);
+        List<OrdersFoundLastCreatedDTO> orders = response.getItems();
         assertEquals(5, orders.size());
-        for (Order order : orders) {
-            assertEquals(localDateTime, order.createdDate().createDateTime());
+        for (OrdersFoundLastCreatedDTO orderDTO : orders) {
+            assertEquals(localDateTime, orderDTO.getOrder().createdDate().createDateTime());
         }
     }
 
@@ -170,17 +171,17 @@ public class OrderDaoImplTest {
             Order order = new Order(null, user, Status.CLOSED, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime) ,  new ArrayList<>());
             orderDao.insert(order);
         }
-        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 3L, 3L);
-        Paginable<Order> response2 = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 3L, 4L);
-        List<Order> orders = response.getItems();
-        List<Order> orders2 = response2.getItems();
+        Paginable<OrdersFoundLastCreatedDTO> response = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 3L, 3L);
+        Paginable<OrdersFoundLastCreatedDTO> response2 = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 3L, 4L);
+        List<OrdersFoundLastCreatedDTO> orders = response.getItems();
+        List<OrdersFoundLastCreatedDTO> orders2 = response2.getItems();
         assertEquals(3, orders.size());
         assertEquals(2, orders2.size());
-        for (Order order : orders) {
-            assertEquals(localDateTime, order.createdDate().createDateTime());
+        for (OrdersFoundLastCreatedDTO orderDTO : orders) {
+            assertEquals(localDateTime, orderDTO.getOrder().createdDate().createDateTime());
         }
-        for (Order order2 : orders2) {
-            assertEquals(localDateTime, order2.createdDate().createDateTime());
+        for (OrdersFoundLastCreatedDTO orderDTO2 : orders2) {
+            assertEquals(localDateTime, orderDTO2.getOrder().createdDate().createDateTime());
         }
     }
 
@@ -193,8 +194,8 @@ public class OrderDaoImplTest {
             Order order = new Order(null, user, Status.IN_PROGRESS, new CreateDateTime(localDateTime), new UpdateDateTime(localDateTime),  new ArrayList<>());
             orderDao.insert(order);
         }
-        Paginable<Order> response = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 20L, 1L);
-        List<Order> orders = response.getItems();
+        Paginable<OrdersFoundLastCreatedDTO> response = orderDao.findPaginableOrderByCreatedDate(localDateTime, localDateTime, 20L, 1L);
+        List<OrdersFoundLastCreatedDTO> orders = response.getItems();
         assertEquals(11, orders.size(), "The number of orders is 11 as the requested page exceeds the total number of pages.");
     }
 

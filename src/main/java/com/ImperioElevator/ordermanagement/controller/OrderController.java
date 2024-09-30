@@ -38,7 +38,7 @@ public class OrderController {
  private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
  @GetMapping("/orders/createDate")
- public Paginable<Order> listOrdersByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+ public Paginable<OrdersFoundLastCreatedDTO> listOrdersByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
                                             @RequestParam Long numberOfOrders,
                                             @RequestParam Long page) throws SQLException {
@@ -61,7 +61,7 @@ public class OrderController {
 
 
  @GetMapping("/orders/status-createDate")
- public Paginable<Order> listOrdersByPeriodStatus(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+ public Paginable<OrdersFoundLastCreatedDTO> listOrdersByPeriodStatus(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
                                                   @RequestParam Status status,
                                                   @RequestParam Long numberOfOrders,
@@ -162,7 +162,6 @@ public class OrderController {
  }
 
  //Assigning User(Management) to a User Order
- //ToDO add a normal response
  @PostMapping("orders/assignation")
  public ResponseEntity<EntityCreationResponse> assigneeOperatorToOrder(@RequestParam Long id,
                                                                              @RequestParam String name) throws SQLException{

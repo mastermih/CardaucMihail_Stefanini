@@ -9,7 +9,7 @@ id,category_id,product_brand,product_name,electricity_consumption,product_descri
 8,1,HONE,Layer Elevator,220.2,Compact,90.1,200.1,80.1,43534,/images/TornadoS.jpg,Elevator
 9,1,ZONE,Bixolon Elevator,220.2,Compact,90.1,200.1,80.1,5345,/images/TornadoS.jpg,Elevator
 10,2,KONE,Home Elevator,220.2,Compact,90.1,200.1,80.1,6345,/images/Uragan500.jpg,Elevator
-11,6,WAAA,AlarmUAUA,520.10,Wasdasdasdsdsdsadasdasd,90.10,151.16,64.20,544.00,/images/AlarmUAUA.jpg,EmergencySystem
+11,6,WAAA,AlarmUAUA,520.10,Wasdasdasdsdsdsadasdasd,90.10,151.16,64.20,544.00,/images/AlarmUAUA.jpg,EmergensySystem
 12,4,GROVE,AirChinaEl,53.44,Compact,90.10,200.10,80.10,121.00,/images/AirChinaEl.jpg,AirSystem
 13,4,SIGMA,AirElevat,63.32,Compact,90.10,200.10,80.10,121.00,/images/AirElevat.jpg,AirSystem
 14,4,SIGMA,AirStrIlYf,53.43,Compact,90.10,200.10,80.10,121.00,/images/AirStrIlYf.jpg,AirSystem
