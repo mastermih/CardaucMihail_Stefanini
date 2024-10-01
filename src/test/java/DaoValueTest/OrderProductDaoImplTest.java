@@ -1,114 +1,177 @@
 package DaoValueTest;
 
-import daoimplementation.OrderDaoImpl;
-import daoimplementation.OrderProductDaoImpl;
-import entity.Order;
-import entity.OrderProduct;
-import entity.Product;
-import jdbc.DatabaseConnectionDemo;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import com.ImperioElevator.ordermanagement.OrderManagementApplication;
+import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
+import com.ImperioElevator.ordermanagement.entity.Order;
+import com.ImperioElevator.ordermanagement.entity.OrderProduct;
+import com.ImperioElevator.ordermanagement.entity.Product;
+import com.ImperioElevator.ordermanagement.entity.User;
+import com.ImperioElevator.ordermanagement.enumobects.Role;
+import com.ImperioElevator.ordermanagement.enumobects.Status;
+import com.ImperioElevator.ordermanagement.valueobjects.*;
 import org.junit.jupiter.api.Test;
-import valueobjects.Id;
-import valueobjects.Price;
-import valueobjects.Quantity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
-
-import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//Ele lucreaza dar depind de Order asa ca de asta pot cadea
-//Problema nu este rezolvata inca
+@SpringBootTest(classes = OrderManagementApplication.class)
+@ActiveProfiles("test")
 public class OrderProductDaoImplTest {
-    private static Connection connection;
-    private static OrderProductDaoImpl orderProductDao;
 
-    @BeforeAll
-    public static void setUp() {
-        connection = DatabaseConnectionDemo.open();
-        orderProductDao = new OrderProductDaoImpl(connection);
-    }
+    @Autowired
+    private OrderProductDaoImpl orderProductDao;
 
-    @AfterAll
-    public static void tearDown() throws SQLException {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
-        }
-    }
     @Test
-    public void testInser() throws SQLException {
-        OrderProduct orderProduct = new OrderProduct(
-                new Order(new Id(1), null, null, null, null),
-                new Product(new Id(1), null, null, null,null,null,null,null, null, null),
-                new Quantity(1),
-                new Price(323)
+    void testInsert() throws SQLException {
+        LocalDate localDate = LocalDate.of(2024, 7, 1);
+
+        Order order = new Order(
+                new Id(1L),
+                null,
+                Status.NEW,
+                new CreateDateTime(localDate.atStartOfDay()),
+                new UpdateDateTime(localDate.atStartOfDay()),
+                new ArrayList<>()
         );
-        long orderId = orderProduct.getOrderId().getOrderId().getId();
-        long productId = orderProduct.getProductId().getProductId().getId();
+
+        Product product = new Product(
+                new Id(1L), null, null, null, null, null, null, null, null, null, null, null
+        );
+
+        OrderProduct orderProduct = new OrderProduct(
+                        new Id(1L),
+                        order,
+                new Quantity(3),
+                new Price(323),
+                new Id(null),
+                product
+                );
+
         orderProductDao.insert(orderProduct);
-        assertNotNull(orderProduct);
-        orderProductDao.deleteById(orderId, productId);
+        OrderProduct foundOrderProduct = orderProductDao.findByIdAndName(order.orderId().id(), product.productName().productName());
+        assertNotNull(foundOrderProduct);
+
+        orderProductDao.deleteByIdAndName(order.orderId().id(), product.productName().productName());
     }
 
     @Test
     public void testUpdate() throws SQLException {
-        OrderProduct orderProduct = new OrderProduct(
-                new Order(new Id(1), null, null, null, null),
-                new Product(new Id(1), null, null, null,null,null,null,null, null, null),
-                new Quantity(1),
-                new Price(323)
+        LocalDate localDate = LocalDate.of(2024, 7, 1);
+        //Date sqlDate = Date.valueOf(localDate);
+
+        Order order = new Order(
+                new Id(1L),
+                null,
+                Status.NEW,
+                new CreateDateTime(localDate.atStartOfDay()),
+                new UpdateDateTime(localDate.atStartOfDay()),
+                new ArrayList<>()
         );
 
-        long orderId = orderProduct.getOrderId().getOrderId().getId();
-        long productId = orderProduct.getProductId().getProductId().getId();
-        orderProductDao.insert(orderProduct);
-        orderProduct.setQuantity(new Quantity(2));
-        orderProduct.setPriceOrder(new Price(500));
+        Product product = new Product(
+                new Id(1L), null, null, null, null, null, null, null, null, null, null, null
+        );
 
-        orderProductDao.update(orderProduct);
-        assertEquals(2, orderProduct.getQuantity().getQuantity());
-        assertEquals(500, orderProduct.getPriceOrder().getPrice(), orderProduct.getPriceOrder().getPrice());
-        //asertinurile lipsesc
-        orderProductDao.deleteById(orderId, productId);
+        OrderProduct orderProduct = new OrderProduct(
+                        new Id(1L),
+                        order,
+                new Quantity(3),
+                new Price(323),
+                new Id(2L),
+                product
+                );
+
+        Long orderId = orderProduct.orderId().id();
+        String productName = orderProduct.product().productName().productName();
+        orderProductDao.insert(orderProduct);
+        //orderProduct.quantity(new Quantity(2));
+        //orderProduct.priceOrder(new Price(500));
+        OrderProduct foundOrder = new OrderProduct(new Id(1L), order, new Quantity(42), new Price(42L), new Id(42L), product);
+        orderProductDao.update(foundOrder);
+
+       // orderProductDao.update(foundOrder);
+        OrderProduct foundOrderProduct = orderProductDao.findByIdAndName(orderId, productName);
+        assertNotNull(foundOrderProduct);
+        assertNotEquals(orderProduct.quantity().quantity(), foundOrderProduct.quantity().quantity());
+        assertNotEquals(orderProduct.priceOrder().price(), foundOrderProduct.priceOrder().price());
+
+        orderProductDao.deleteByIdAndName(orderId, productName);
     }
 
     @Test
-    public void testDelete() throws SQLException {
-        OrderProduct orderProduct = new OrderProduct(
-                new Order(new Id(1), null, null, null, null),
-                new Product(new Id(1), null, null, null,null,null,null,null, null, null),
-                new Quantity(1),
-                new Price(323)
+    public void testDeleteById() throws SQLException {
+        LocalDate localDate = LocalDate.of(2024, 7, 1);
+        //Date sqlDate = Date.valueOf(localDate);
+
+        Order order = new Order(
+                new Id(1L),
+                null,
+                Status.NEW,
+                new CreateDateTime(localDate.atStartOfDay()),
+                new UpdateDateTime(localDate.atStartOfDay()),
+                new ArrayList<>()
         );
 
-        long orderId = orderProduct.getOrderId().getOrderId().getId();
-        long productId = orderProduct.getProductId().getProductId().getId();
-        orderProductDao.insert(orderProduct);
-        orderProductDao.deleteById(orderId, productId);
-        OrderProduct orderProductFiend = orderProductDao.findById(orderId);
-        assertNull(orderProductFiend);
+        Product product = new Product(
+                new Id(1L), null, null, null, null, null, null, null, null, null, null, null
+        );
 
+        OrderProduct orderProduct = new OrderProduct(
+                        new Id(1L),
+                        order,
+                new Quantity(3),
+                new Price(323),
+                new Id(null),
+                product
+                );
+        Long orderId = orderProduct.orderId().id();
+        String productName = orderProduct.product().productName().productName();
+        orderProductDao.insert(orderProduct);
+        orderProductDao.deleteByIdAndName(orderId, productName);
+        OrderProduct foundOrderProduct = orderProductDao.findByIdAndName(orderId, productName);
+        assertNull(foundOrderProduct);
     }
 
     @Test
     public void testFindById() throws SQLException {
-        OrderProduct orderProduct = new OrderProduct(
-                new Order(new Id(1), null, null, null, null),
-                new Product(new Id(1), null, null, null,null,null,null,null, null, null),
-                new Quantity(1),
-                new Price(323)
+        LocalDate localDate = LocalDate.of(2024, 7, 1);
+        //Date sqlDate = Date.valueOf(localDate);
+
+        Order order = new Order(
+                new Id(1L),
+                null,
+                Status.NEW,
+                new CreateDateTime(localDate.atStartOfDay()),
+                new UpdateDateTime(localDate.atStartOfDay()),
+                new ArrayList<>()
         );
 
-        long orderId = orderProduct.getOrderId().getOrderId().getId();
-        long productId = orderProduct.getProductId().getProductId().getId();
+        Product product = new Product(
+                new Id(1L), null, null, null, null, null, null, null, null, null, null, null
+        );
+
+        OrderProduct orderProduct = new OrderProduct(
+                        new Id(1L),
+                        order,
+                new Quantity(3),
+                new Price(323),
+                new Id(null),
+                product
+                );
+        Long orderId = orderProduct.orderId().id();
+        String productName = orderProduct.product().productName().productName();
         orderProductDao.insert(orderProduct);
-        OrderProduct foundOrderProduct = orderProductDao.findById(orderId, productId);
+        OrderProduct foundOrderProduct = orderProductDao.findByIdAndName(orderId, productName);
         assertNotNull(foundOrderProduct);
 
-        //asertinurile lipsesc
-        orderProductDao.deleteById(orderId, productId);
+        orderProductDao.deleteByIdAndName(orderId, productName);
     }
-
 }

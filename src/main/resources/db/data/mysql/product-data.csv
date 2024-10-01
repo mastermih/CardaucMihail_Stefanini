@@ -1,0 +1,15 @@
+id,category_id,product_brand,product_name,electricity_consumption,product_description,product_width,product_height,product_depth,price,image_path,category_type
+1,1,Otis,Passenger Elevator,300.5,Highspeed,120.1,240.1,100.1,5000,/images/Uragan500.jpg,Elevator
+2,1,Schindler,Freight Elevator,450.7,Heavyduty,150.1,300.1,120.1,7500,/images/TornadoS.jpg,Elevator
+3,2,KONE,Home Elevator,220.2,Compact,90.1,200.1,80.1,23440,/images/Uragan500.jpg,Elevator
+4,2,KONE,Hospital Elevator,220.2,Compact,90.1,200.1,80.1,5344,/images/Uragan500.jpg,Elevator
+5,1,KONE,Car Elevator,220.2,Compact,90.1,200.1,80.1,454,/images/Uragan500.jpg,Elevator
+6,2,KONE,Home Elevator,220.2,Compact,90.1,200.1,80.1,2344,/images/TornadoS.jpg,Elevator
+7,1,SONE,IDK Elevator,220.2,Compact,90.1,200.1,80.1,544,/images/TornadoS.jpg,Elevator
+8,1,HONE,Layer Elevator,220.2,Compact,90.1,200.1,80.1,43534,/images/TornadoS.jpg,Elevator
+9,1,ZONE,Bixolon Elevator,220.2,Compact,90.1,200.1,80.1,5345,/images/TornadoS.jpg,Elevator
+10,2,KONE,Home Elevator,220.2,Compact,90.1,200.1,80.1,6345,/images/Uragan500.jpg,Elevator
+11,6,WAAA,AlarmUAUA,520.10,Wasdasdasdsdsdsadasdasd,90.10,151.16,64.20,544.00,/images/AlarmUAUA.jpg,EmergensySystem
+12,4,GROVE,AirChinaEl,53.44,Compact,90.10,200.10,80.10,121.00,/images/AirChinaEl.jpg,AirSystem
+13,4,SIGMA,AirElevat,63.32,Compact,90.10,200.10,80.10,121.00,/images/AirElevat.jpg,AirSystem
+14,4,SIGMA,AirStrIlYf,53.43,Compact,90.10,200.10,80.10,121.00,/images/AirStrIlYf.jpg,AirSystem

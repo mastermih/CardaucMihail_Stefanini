@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- ChangeSet for creating the token table -->
+    <changeSet id="6" author="Mihai">
+        <createTable tableName="token">
+            <column name="id" type="BIGINT AUTO_INCREMENT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT">
+                <constraints nullable="true"/> <!-- order_id is nullable if used only for users -->
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="true"/> <!-- user_id is nullable if used only for orders -->
+            </column>
+            <column name="token_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token_value" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/> <!-- token_value should be unique -->
+            </column>
+            <column name="is_enabled" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Data loading for MySQL -->
+    <changeSet id="6.1" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="mysql"/>
+        </preConditions>
+        <loadData tableName="token" file="db/data/mysql/token-data.csv"/>
+    </changeSet>
+
+    <!-- Data loading for HSQLDB -->
+    <changeSet id="6.2" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="hsqldb"/>
+        </preConditions>
+        <loadData tableName="token" file="db/data/hsqldb/token-data.csv"/>
+    </changeSet>
+</databaseChangeLog>

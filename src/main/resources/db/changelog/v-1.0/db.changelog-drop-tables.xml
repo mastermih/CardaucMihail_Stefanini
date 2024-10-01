@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- Drop foreign key constraints -->
+    <changeSet id="drop-order-product-foreign-key-1" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="fk_order_product_order"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="order_product" constraintName="fk_order_product_order"/>
+    </changeSet>
+
+    <changeSet id="drop-order-product-foreign-key-2" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="fk_order_product_product"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="order_product" constraintName="fk_order_product_product"/>
+    </changeSet>
+
+    <changeSet id="drop-product-category-foreign-key" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="product_ibfk_1"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="product" constraintName="product_ibfk_1"/>
+    </changeSet>
+
+    <!-- Drop tables -->
+    <changeSet id="drop-order-table" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="orders"/>
+        </preConditions>
+        <dropTable tableName="orders"/>
+    </changeSet>
+
+    <changeSet id="drop-product-table" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="product"/>
+        </preConditions>
+        <dropTable tableName="product"/>
+    </changeSet>
+
+    <changeSet id="drop-user-table" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="user"/>
+        </preConditions>
+        <dropTable tableName="user"/>
+    </changeSet>
+
+    <!-- Drop category table last -->
+    <changeSet id="drop-category-table" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="category"/>
+        </preConditions>
+        <dropTable tableName="category"/>
+    </changeSet>
+
+</databaseChangeLog>

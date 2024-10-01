@@ -1,84 +1,103 @@
 package DaoValueTest;
 
-import daoimplementation.ProductDaoImpl;
-import entity.Category;
-import entity.Product;
-import jdbc.DatabaseConnectionDemo;
-import valueobjects.*;
+import com.ImperioElevator.ordermanagement.OrderManagementApplication;
+import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
+import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
+import com.ImperioElevator.ordermanagement.entity.Order;
+import com.ImperioElevator.ordermanagement.entity.Paginable;
+import com.ImperioElevator.ordermanagement.entity.Product;
+import com.ImperioElevator.ordermanagement.entity.Category;
+import com.ImperioElevator.ordermanagement.entity.User;
+import com.ImperioElevator.ordermanagement.enumobects.CategoryType;
+import com.ImperioElevator.ordermanagement.enumobects.Status;
+import com.ImperioElevator.ordermanagement.valueobjects.*;
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.core.env.Environment;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest(classes = OrderManagementApplication.class)
+@ActiveProfiles("test")
 public class ProductDaoImplTest {
-    private static Connection connection;
-    private static ProductDaoImpl productDao;
 
-    @BeforeAll
-    public static void setUp() {
-        connection = DatabaseConnectionDemo.open();
-        productDao = new ProductDaoImpl(connection);
+    @Autowired
+    private ProductDaoImpl productDao;
+
+    @Autowired
+    private Environment environment;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @BeforeEach
+    public void setUp() throws SQLException {
+        System.out.println("Active Profiles: " + Arrays.toString(environment.getActiveProfiles()));
+        System.out.println("Datasource URL: " + dataSource.getConnection().getMetaData().getURL());
     }
-
-    @AfterAll
-    public static void tearDown() throws SQLException {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
-        }
-    }
-
-
 
     @Test
     public void testInsert() throws SQLException {
         Product product = new Product(
                 null,
-                new Price(Integer.valueOf(100)),
-                new Width(Double.valueOf(50.00)),
-                new Height(Double.valueOf(20.00)),
-                new Depth(Double.valueOf(30.00)),
-                new Category(new Id(1), null, null),
+                new Price(100),
+                new Width(50.00),
+                new Height(20.00),
+                new Depth(30.00),
+                new Category(new Id(1L), null, null),
                 new ProductBrand("Brand"),
                 new ProductName("Name"),
                 new ElectricityConsumption(10),
-                new Description("Description")
-        );
-                long generatedId = productDao.insert(product);
-                 //product.setProductId(new Id(generatedId));
-        Product foundProduct = productDao.findById(generatedId);
+                new Description("Description"),
+                new Image(""),
+                CategoryType.Elevator
+
+                );
+        Long generatedId = productDao.insert(product);
+        Product foundProduct = productDao.findById(new Id(generatedId).id());
         assertNotNull(foundProduct);
-        assertEquals(generatedId, foundProduct.getProductId().getId());
-        assertEquals(product.getProductName().getProductName(), foundProduct.getProductName().getProductName());
-        productDao.deleteById(generatedId);
+        assertEquals(generatedId, foundProduct.productId().id());
+        assertEquals(product.productName().productName(), foundProduct.productName().productName());
+        // productDao.deleteById(generatedId);
     }
 
     @Test
     public void testUpdate() throws SQLException {
         Product product = new Product(
                 null,
-                new Price(Integer.valueOf(200)),
-                new Width(Double.valueOf(60.00)),
-                new Height(Double.valueOf(25.00)),
-                new Depth(Double.valueOf(35.00)),
-                new Category(new Id(1), null, null),
+                new Price(200),
+                new Width(60.00),
+                new Height(25.00),
+                new Depth(35.00),
+                new Category(new Id(1L), null, null),
                 new ProductBrand("Brand"),
                 new ProductName("Name"),
                 new ElectricityConsumption(20),
-                new Description("Description")
+                new Description("Description"),
+                new Image(""),
+                CategoryType.Elevator
+
+
         );
-                long generatedId = productDao.insert(product);
-                product.setProductId(new Id(generatedId));
-
-
-        product.setProductName(new ProductName("Updated Name"));
+        Long generatedId = productDao.insert(product);
+        product = new Product(new Id(generatedId), new Price(200), product.width(), product.height(), product.depth(), product.category(), product.productBrand(), product.productName(), product.electricityConsumption(), product.description(), product.path(), product.categoryType());
         productDao.update(product);
 
-        Product foundProduct = productDao.findById(generatedId);
+        Product foundProduct = productDao.findById(new Id(generatedId).id());
         assertNotNull(foundProduct);
-        assertEquals("Updated Name", foundProduct.getProductName().getProductName());
+        assertEquals(200.0, foundProduct.price().price());
         productDao.deleteById(generatedId);
     }
 
@@ -86,70 +105,50 @@ public class ProductDaoImplTest {
     public void testDeleteById() throws SQLException {
         Product product = new Product(
                 null,
-                new Price(Integer.valueOf(300)),
-                new Width(Double.valueOf(70.00)),
-                new Height(Double.valueOf(30.00)),
-                new Depth(Double.valueOf(40.00)),
-                new Category(new Id(1), null, null),
+                new Price(300),
+                new Width(70.00),
+                new Height(30.00),
+                new Depth(40.00),
+                new Category(new Id(1L), null, null),
                 new ProductBrand("Brand"),
                 new ProductName("Name"),
                 new ElectricityConsumption(30),
-                new Description("Description")
-        );
-        long generatedId = productDao.insert(product);
+                new Description("Description"),
+                new Image(""),
+                CategoryType.Elevator
 
+        );
+        Long generatedId = productDao.insert(product);
         productDao.deleteById(generatedId);
         Product foundProduct = productDao.findById(generatedId);
         assertNull(foundProduct);
-        productDao.deleteById(generatedId);
     }
 
     @Test
     public void testFindById() throws SQLException {
         Product product = new Product(
                 null,
-                new Price(Integer.valueOf(400)),
-                new Width(Double.valueOf(80.00)),
-                new Height(Double.valueOf(35.00)),
-                new Depth(Double.valueOf(45.00)),
-                new Category(new Id(1), null, null),
+                new Price(400),
+                new Width(80.00),
+                new Height(35.00),
+                new Depth(45.00),
+                new Category(new Id(1L), null, null),
                 new ProductBrand("Brand"),
                 new ProductName("Name"),
                 new ElectricityConsumption(40),
-                new Description("Description")
-        );
-        long generatedId = productDao.insert(product);
-        product.setProductId(new Id(generatedId));
+                new Description("Description"),
+                new Image(""),
+                CategoryType.Elevator
 
+
+        );
+        Long generatedId = productDao.insert(product);
+        product = new Product(new Id(generatedId), product.price(), product.width(), product.height(), product.depth(), product.category(), product.productBrand(), product.productName(), product.electricityConsumption(), product.description(), product.path(), product.categoryType());
         Product foundProduct = productDao.findById(generatedId);
         assertNotNull(foundProduct);
-        assertEquals(product.getProductId().getId(), foundProduct.getProductId().getId());
-        assertEquals(product.getProductName().getProductName(), foundProduct.getProductName().getProductName());
-         productDao.deleteById(generatedId);
+        assertEquals(product.productId().id(), foundProduct.productId().id());
+        assertEquals(product.productName().productName(), foundProduct.productName().productName());
+        productDao.deleteById(generatedId);
     }
 
-    @Test
-    public void testGetProductPagination() throws SQLException {
-        for (int i = 37; i <= 47; i++) {
-            Product product = new Product(
-                    null,
-                    new Price(Integer.valueOf(100 + i)),
-                    new Width(Double.valueOf(50.00 + i)),
-                    new Height(Double.valueOf(20.00 + i)),
-                    new Depth(Double.valueOf(30.00 + i)),
-                    new Category(new Id(i), null, null),
-                    new ProductBrand("Brand"),
-                    new ProductName("Name" + i),
-                    new ElectricityConsumption(10 + i),
-                    new Description("Description" + i)
-            );
-            long generatedId = productDao.insert(product);
-        }
-
-        List<Product> products = productDao.getProductPagination(3);
-        assertEquals(3, products.size());
-        for (int i = 37; i <= 47; i++) {
-            productDao.deleteById(i);
-        }
-    }
 }

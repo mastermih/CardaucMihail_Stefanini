@@ -1,48 +1,59 @@
 package DaoValueTest;
 
-import daoimplementation.CategoryDaoImpl;
-import entity.Category;
-import jdbc.DatabaseConnectionDemo;
-import org.junit.jupiter.api.*;
-import valueobjects.Id;
-import valueobjects.Name;
+import com.ImperioElevator.ordermanagement.OrderManagementApplication;
+import com.ImperioElevator.ordermanagement.dao.daoimpl.CategoryDaoImpl;
+import com.ImperioElevator.ordermanagement.entity.Category;
+import com.ImperioElevator.ordermanagement.valueobjects.Id;
+import com.ImperioElevator.ordermanagement.valueobjects.Name;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
+@SpringBootTest(classes = OrderManagementApplication.class)
+@ActiveProfiles("test")
 
-public class CategoryDaoImplTest  {
-    private static Connection connection;
-    private static CategoryDaoImpl categoryDao;
+public class CategoryDaoImplTest {
+    private static final Logger logger = LoggerFactory.getLogger(CategoryDaoImplTest.class);
 
-    @BeforeAll
-    public static void setUp() {
-        connection = DatabaseConnectionDemo.open();
-        categoryDao = new CategoryDaoImpl(connection);
-    }
+    @Autowired
+    private CategoryDaoImpl categoryDao;
 
-    @AfterAll
-    public static void tearDown() throws SQLException {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
+    @Autowired
+    private DataSource dataSource;
+
+    @BeforeEach
+    public void setUp() throws SQLException {
+        try (Connection connection = dataSource.getConnection()) {
+            logger.info("Database URL: {}", connection.getMetaData().getURL());
+            logger.info("Database User: {}", connection.getMetaData().getUserName());
         }
     }
-    //No parent_id
+
     @Test
-    public void testInsert() throws SQLException
-    {
+    public void testInsert() throws SQLException {
         Category category = new Category(
-           null,
-           new Name("HzBrat"),
-           null
+                null,
+                new Name("HzBrat"),
+                null
         );
-        long generatedId = categoryDao.insert(category);
-        Category foundCategory = categoryDao.findById(generatedId);
+        Long generatedId = categoryDao.insert(category);
+        Category foundCategory = categoryDao.findById(new Id(generatedId).id());
         assertNotNull(foundCategory);
-        assertEquals(generatedId, foundCategory.getId().getId());
-        categoryDao.deleteById(generatedId);
+        assertEquals(generatedId, foundCategory.id().id());
+        //categoryDao.deleteById(new Id(generatedId).getId());
     }
+
     @Test
     public void testInsertWithParent() throws SQLException {
         Category parentCategory = new Category(
@@ -50,25 +61,24 @@ public class CategoryDaoImplTest  {
                 new Name("Lucreza"),
                 null
         );
-        long generatedIdParent = categoryDao.insert(parentCategory);
-        parentCategory.setId(new Id(generatedIdParent));
+        Long generatedIdParent = categoryDao.insert(parentCategory);
+        parentCategory = new Category(new Id(generatedIdParent), parentCategory.name(), null);
 
         Category category = new Category(
                 null,
                 new Name("Da Lucreaza"),
-                parentCategory  // Correctly set the parent category
+                parentCategory
         );
-        long generatedIdChild = categoryDao.insert(category);
-        category.setId(new Id(generatedIdChild));
+        Long generatedIdChild = categoryDao.insert(category);
+        category = new Category(new Id(generatedIdChild), category.name(), parentCategory);
 
-        Category foundCategory = categoryDao.findById(generatedIdChild);
+        Category foundCategory = categoryDao.findById(new Id(generatedIdChild).id());
         assertNotNull(foundCategory);
-        assertNotNull(foundCategory.getParentId());
-        assertEquals(parentCategory.getId().getId(), foundCategory.getParentId().getId().getId());
+        assertNotNull(foundCategory.parentId());
+        assertEquals(parentCategory.id().id(), foundCategory.parentId().id().id());
 
-        // Clean up
-        categoryDao.deleteById(generatedIdChild);
-        categoryDao.deleteById(generatedIdParent);
+        categoryDao.deleteById(new Id(generatedIdChild).id());
+        categoryDao.deleteById(new Id(generatedIdParent).id());
     }
 
     @Test
@@ -78,40 +88,43 @@ public class CategoryDaoImplTest  {
                 new Name("EHUUUU"),
                 null
         );
-        long generatedId = categoryDao.insert(category);
-        categoryDao.deleteById(generatedId);
+        Long generatedId = categoryDao.insert(category);
+        categoryDao.deleteById(new Id(generatedId).id());
+        Category foundCategory = categoryDao.findById(new Id(generatedId).id());
+        assertNull(foundCategory);
     }
+
     @Test
-    public void testFiendById()throws SQLException
-    {
+    public void testFindById() throws SQLException {
         Category category = new Category(
                 null,
                 new Name("Pabedaaaaa"),
                 null
         );
-        long generatedId = categoryDao.insert(category);
-        category.setId(new Id(generatedId));
-        Category newCategory  = categoryDao.findById(generatedId);
-        assertNotNull(category);
-        assertEquals(category.getId().getId(), newCategory.getId().getId());
-        assertEquals(category.getName().getName(), newCategory.getName().getName());
-        categoryDao.deleteById(generatedId);
+        Long generatedId = categoryDao.insert(category);
+        category = new Category(new Id(generatedId), category.name(), null);
+        Category foundCategory = categoryDao.findById(new Id(generatedId).id());
+        assertNotNull(foundCategory);
+        assertEquals(category.id().id(), foundCategory.id().id());
+        assertEquals(category.name().name(), foundCategory.name().name());
+        categoryDao.deleteById(new Id(generatedId).id());
     }
+
     @Test
-    public void testUpdate() throws SQLException
-    {
+    public void testUpdate() throws SQLException {
         Category category = new Category(
                 null,
                 new Name("GoGoGOGO"),
                 null
         );
-        long generatedId = categoryDao.insert(category);
-        category.setId(new Id(generatedId));
-        category.setName(new Name("NONONONONO"));
+        Long generatedId = categoryDao.insert(category);
+        category = new Category(new Id(generatedId), new Name("NONONONONO"), null);
+        category.name().name();
         categoryDao.update(category);
-        Category fiendCategory = categoryDao.findById(generatedId);
-        assertNotNull(fiendCategory);
-        assertEquals("NONONONONO", fiendCategory.getName().getName());
-        categoryDao.deleteById(generatedId);
+        Category foundCategory = categoryDao.findById(new Id(generatedId).id());
+        assertNotNull(foundCategory);
+        assertEquals("NONONONONO", foundCategory.name().name());
+        categoryDao.deleteById(new Id(generatedId).id());
     }
+
 }

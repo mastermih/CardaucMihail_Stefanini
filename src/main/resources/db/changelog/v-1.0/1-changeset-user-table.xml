@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- ChangeSet for creating the user table -->
+    <changeSet id="1" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="VARCHAR(255)">
+            </column>
+            <column name="account_not_locked" type="BOOLEAN">
+            </column>
+            <column name="phone_number" type="VARCHAR(255)">
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <!-- Data loading for MySQL -->
+    <changeSet id="1.1" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="mysql"/>
+        </preConditions>
+        <loadData tableName="user" file="db/data/mysql/user-data.csv"/>
+    </changeSet>
+
+    <!-- Data loading for HSQLDB -->
+    <changeSet id="1.2" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="hsqldb"/>
+        </preConditions>
+        <loadData tableName="user" file="db/data/hsqldb/user-data.csv"/>
+    </changeSet>
+</databaseChangeLog>
