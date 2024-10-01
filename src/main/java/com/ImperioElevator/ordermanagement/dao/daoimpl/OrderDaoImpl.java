@@ -315,7 +315,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 
-    //Over Complicated method for deleting all the operators from the order
+    //OverComplicated method for deleting all the operators from the order
 //    @Override
 //    public List<Long> deleteAllOperatorsAssignedToOrderByOperatorId(Long orderId, List<Long> operatorIds) throws SQLException {
 //        String sql = "DELETE FROM order_operators WHERE order_id = :orderId AND user_id IN (:operatorIds)";
@@ -442,9 +442,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         return new OrdersFoundLastCreatedDTO(order, operatorUsername, operatorUserId, creatorUsername);
     }
 
-
-
-
     @Override
     public Paginable<OrdersFoundLastCreatedDTO> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {
         String countSql = "SELECT COUNT(*) FROM orders WHERE created_date BETWEEN ? AND ?";
@@ -454,7 +451,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 "FROM orders o " +
                 "LEFT JOIN order_operators oo ON o.id = oo.order_id " +
                 "LEFT JOIN user u1 ON o.user_id = u1.id " +
-                "LEFT JOIN user u2 ON o.user_id = u2.id " +
+                "LEFT JOIN user u2 ON oo.user_id = u2.id " +
                 "WHERE o.created_date BETWEEN ? AND ? " +
                 "GROUP BY o.id, u1.username " +
                 "LIMIT ? OFFSET ?";
@@ -502,7 +499,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
             throw ex;
         }
     }
-
 
     @Override
     public Paginable<Order> findPaginableOrderByUpdatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {
