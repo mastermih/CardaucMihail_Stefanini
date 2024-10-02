@@ -4,6 +4,7 @@ import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.valueobjects.Email;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Name;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -11,23 +12,30 @@ import java.util.List;
 //ToDo fix the usr validation for name and Email
 public record User(
         Id userId,
-        @NotNull
-                //Size is not working user creation fail
-       // @Size(min = 2, max = 20, message = "Not less then 2 and not more then 20")
+        @Valid
         Name name,
-        //@jakarta.validation.constraints.Email(message = "Email should be valid")
+        @Valid
         Email email,
-       //@JsonIgnore // because of this user can not be registered
-     //   @Size(min = 5, max = 30, message = " The password number of characters is invalid")
+        //@JsonIgnore // because of this user can not be registered
+       @Size(min = 5, max = 30, message = " The password number of characters is invalid")
         String password,
-    //    @Size(min = 5, max = 15, message = "The phone, number of characters is invalid")
+       @Size(min = 5, max = 15, message = "The phone, number of characters is invalid")
         String phoneNumber,
         String image,
         List<Role> roles,
         boolean accountNonLocked
 ) {
-    public User(Id id1, Long id, Object o, Object object, Object o1, Object object1, Object o2, Object object2, boolean b) {
-        this(new Id(id), new Name(""), new Email(""), "","", "",List.of(Role.USER), true);
+    public User(Id userId, Long id, Name name, String email, String password, String phoneNumber, String image, List<Role> roles, boolean accountNonLocked) {
+        this(
+                new Id(id),
+                name,
+                new Email(email),
+                password,
+                phoneNumber,
+                image,
+                roles != null ? roles : List.of(Role.USER), // Default role
+                accountNonLocked
+        );
     }
 
     public User(Id userId, Name name, Email email, String password, String phoneNumber, String image, List<Role> roles, boolean accountNonLocked) {

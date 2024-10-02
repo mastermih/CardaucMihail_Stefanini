@@ -6,9 +6,9 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 
 public record LoginRequest (
-      //  @Email
+        @Email
         String email,
-       // @Size(min = 3, max = 15, message = "The phone, number of characters is invalid")
+        @Size(min = 3, max = 15, message = "The phone, number of characters is invalid")
         String password
 ){
 

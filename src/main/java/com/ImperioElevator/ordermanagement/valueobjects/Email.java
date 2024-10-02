@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.regex.Pattern;
 
 public record Email(
+        @jakarta.validation.constraints.Email
         @JsonProperty("email") String email
 )
 {
