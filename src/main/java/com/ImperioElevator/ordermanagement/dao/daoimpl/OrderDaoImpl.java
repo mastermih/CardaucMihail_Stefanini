@@ -29,7 +29,7 @@ import java.util.List;
 
 @Component
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate; //This s
 
 
     private final JdbcTemplate jdbcTemplate;

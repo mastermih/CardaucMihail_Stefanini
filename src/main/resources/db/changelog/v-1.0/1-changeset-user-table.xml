@@ -24,7 +24,9 @@
             <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+<!--            Be carefully the value of the image have to support the null value-->
             <column name="image" type="VARCHAR(255)">
+                <constraints nullable="true"/>
             </column>
             <column name="account_not_locked" type="BOOLEAN">
             </column>
