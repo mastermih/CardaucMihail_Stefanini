@@ -5,6 +5,7 @@ import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.EmailDetails;
 import com.ImperioElevator.ordermanagement.entity.LoginRequest;
 import com.ImperioElevator.ordermanagement.entity.User;
+import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
 import com.ImperioElevator.ordermanagement.security.JwtService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
 import org.springframework.security.core.Authentication;
@@ -140,25 +141,28 @@ public class UserServiceImpl implements UserSevice {
 
     @Override
     public String verifyUser(LoginRequest loginRequest) throws SQLException {
-        // Authenticate the user with Security
-        Authentication authentication = authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
-        );
+        try {
+            Authentication authentication = authManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
+            );
 
-        if (authentication.isAuthenticated()) {
-            // Extract UserDetails from the Authentication object
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            if (authentication.isAuthenticated()) {
+                // Extract UserDetails from the Authentication object
+                UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-            List<String> roles = userDetails.getAuthorities().stream()
-                    .map(grantedAuthority -> grantedAuthority.getAuthority())
-                    .toList();
+                List<String> roles = userDetails.getAuthorities().stream()
+                        .map(grantedAuthority -> grantedAuthority.getAuthority())
+                        .toList();
 
-            Long userId = userDao.findUserIdByEmail(userDetails.getUsername());
+                Long userId = userDao.findUserIdByEmail(userDetails.getUsername());
 
-            return jwtService.generateToken(userDetails.getUsername(), roles, userDetails.isAccountNonLocked(),  userId);
-        } else {
-            return "Failed";
+                return jwtService.generateToken(userDetails.getUsername(), roles, userDetails.isAccountNonLocked(), userId);
+            }
+        } catch (Exception e) {
+            // Here I can throw only the email but just wanted to test also with the message
+            throw new LoginUserNotFoundException(loginRequest.email() + " Invalid login credentials");
         }
+        return "";
     }
 
     private EmailDetails constructEmailDetails(User user, String token) {

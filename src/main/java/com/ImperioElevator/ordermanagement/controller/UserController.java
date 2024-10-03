@@ -7,6 +7,7 @@ import com.ImperioElevator.ordermanagement.entity.LoginRequest;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.entity.UserCreationResponse;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
+import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
 import com.ImperioElevator.ordermanagement.service.serviceimpl.EmailServiceImpl;
@@ -110,7 +111,7 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@RequestBody @Valid LoginRequest user, BindingResult bindingResult) throws SQLException {
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "Error Login, invalid data";
         }
         return userSevice.verifyUser(user);
