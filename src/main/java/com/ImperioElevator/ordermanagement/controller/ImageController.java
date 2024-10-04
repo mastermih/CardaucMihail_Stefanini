@@ -27,7 +27,6 @@ public class ImageController {
         this.userService = userSevice;
     }
     private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
-
     @PostMapping("/uploadImage")
     public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile image, @RequestParam("userId") Long userId) {
         try {

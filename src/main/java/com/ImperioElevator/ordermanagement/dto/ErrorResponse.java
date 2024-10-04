@@ -1,4 +1,4 @@
-package com.ImperioElevator.ordermanagement.exception;
+package com.ImperioElevator.ordermanagement.dto;
 
 public class ErrorResponse {
     private int statusCode;

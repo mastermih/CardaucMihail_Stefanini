@@ -9,6 +9,7 @@ import com.ImperioElevator.ordermanagement.entity.UserCreationResponse;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.exception.DoublePasswordVerificationException;
 import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
+import com.ImperioElevator.ordermanagement.exception.UserRegistrationInvalidCredentialsException;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
 import com.ImperioElevator.ordermanagement.service.serviceimpl.EmailServiceImpl;
@@ -65,13 +66,9 @@ public class UserController {
             throw new DoublePasswordVerificationException("Passwords do not match");
         }
 
-//        if (result.hasErrors()) {
-//            UserCreationResponse badResponse = new UserCreationResponse(
-//                    null,
-//                    "User could not be added due to validation errors"
-//            );
-//            return new ResponseEntity<>(badResponse, HttpStatus.BAD_REQUEST);
-//        }
+        if (result.hasErrors()) {
+         throw new UserRegistrationInvalidCredentialsException("XAXAXAXAXAXA  XD lost it lil bro ");
+        }
         Long userId = userSevice.addNewUser(userRegistrationDTO.getUser());
 
         UserCreationResponse response = new UserCreationResponse(

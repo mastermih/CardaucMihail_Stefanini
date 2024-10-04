@@ -32,7 +32,6 @@ public class UserServiceImpl implements UserSevice {
     private final BCryptPasswordEncoder encoder;
     private final AuthenticationManager authManager;
 
-
     public UserServiceImpl(UserDaoImpl userDao, EmailServiceImpl emailService, JwtService jwtService,BCryptPasswordEncoder encoder, AuthenticationManager authManager) {
         this.userDao = userDao;
         this.emailService = emailService;
@@ -146,7 +145,6 @@ public class UserServiceImpl implements UserSevice {
             Authentication authentication = authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
             );
-
             if (authentication.isAuthenticated()) {
                 // Extract UserDetails from the Authentication object
                 UserDetails userDetails = (UserDetails) authentication.getPrincipal();

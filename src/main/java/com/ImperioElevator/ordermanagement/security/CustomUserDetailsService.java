@@ -33,7 +33,6 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new LoginUserNotFoundException("User not found 'email'");
         }
         boolean accountNotLocked = user.accountNonLocked();
-        //ToDo add the password error for the back //Use single responsibility
         if(!accountNotLocked){
             throw new DoublePasswordVerificationException("Your account is locked (Or your password is wrong). Please confirm your registration via email.");
         }

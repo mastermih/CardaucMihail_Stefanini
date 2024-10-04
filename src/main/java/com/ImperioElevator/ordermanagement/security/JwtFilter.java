@@ -45,7 +45,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
         // Validate token and set security context
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-           // UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
 
             if (jwtService.validateToken(token)) {
                 // Set authentication in security

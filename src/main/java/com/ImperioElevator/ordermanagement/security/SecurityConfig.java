@@ -2,6 +2,7 @@ package com.ImperioElevator.ordermanagement.security;
 
 import com.ImperioElevator.ordermanagement.security.JwtFilter;
 import com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,16 +16,18 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import javax.naming.AuthenticationException;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
- //ToDO add a normal error response for no auth and for the authority error
     @Autowired
     private JwtFilter jwtFilter;
 
@@ -43,7 +46,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(WHITELIST).permitAll()
-                     //   .requestMatchers("createUser/Superior").hasRole("ADMIN")
+                        .requestMatchers("createUser/Superior").hasRole("ADMIN")
 
                         .requestMatchers("/orders/assignation", "orders/removeOperator", "orders/removeAllOperators").hasAuthority("ADMIN")
 
@@ -53,11 +56,17 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);  // JWT filter before auth
-        //.exceptionHandling(exceptions -> exceptions
-            //    .authenticationEntryPoint(new CustomAuthenticationEntryPoint()) // Handle unauthorized access
-               // .accessDeniedHandler(new CustomAccessDeniedHandler()) // Handle forbidden access
-               // .cors(Customizer.withDefaults());
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)  // JWT filter before auth
+                .exceptionHandling(exceptions -> exceptions
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.getWriter().write("Unauthorized access XD: " + authException.getMessage());
+                        })
+                        .accessDeniedHandler((request, response, authException) -> {
+                            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                            response.getWriter().write("Access denied: " + authException.getMessage());
+                        })
+                );
 
         return http.build();
     }
