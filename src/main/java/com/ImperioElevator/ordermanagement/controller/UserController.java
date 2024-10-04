@@ -7,6 +7,7 @@ import com.ImperioElevator.ordermanagement.entity.LoginRequest;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.entity.UserCreationResponse;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
+import com.ImperioElevator.ordermanagement.exception.DoublePasswordVerificationException;
 import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
@@ -47,7 +48,6 @@ public class UserController {
                   "User " + userId + " was added successfully"
           );
         return new ResponseEntity<>(response, HttpStatus.CREATED);
-
     }
 
     @PostMapping("/sendMail/confirm/user/{token}")
@@ -58,22 +58,22 @@ public class UserController {
 
     @PostMapping("createUser")
     public ResponseEntity<UserCreationResponse> addNewUser(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result)throws SQLException{
-        Long userId = userSevice.addNewUser(userRegistrationDTO.getUser());
-
         User user = userRegistrationDTO.getUser();
         String verifyPassword = userRegistrationDTO.getVerifyPassword();
 
         if(!user.password().equals(verifyPassword)){
-            throw new IllegalArgumentException("Passwords do not match");
+            throw new DoublePasswordVerificationException("Passwords do not match");
         }
 
-        if(result.hasErrors()){
-            UserCreationResponse badResponse = new UserCreationResponse(
-                    userId,
-                    "User " + userId + " was not added successfully"
-            );
-            return new ResponseEntity<>(badResponse, HttpStatus.BAD_REQUEST);
-        }
+//        if (result.hasErrors()) {
+//            UserCreationResponse badResponse = new UserCreationResponse(
+//                    null,
+//                    "User could not be added due to validation errors"
+//            );
+//            return new ResponseEntity<>(badResponse, HttpStatus.BAD_REQUEST);
+//        }
+        Long userId = userSevice.addNewUser(userRegistrationDTO.getUser());
+
         UserCreationResponse response = new UserCreationResponse(
                 userId,
                 "User " + userId + " was added success"

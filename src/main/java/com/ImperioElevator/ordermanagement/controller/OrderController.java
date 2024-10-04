@@ -58,8 +58,6 @@ public class OrderController {
   return ordersService.findPaginableUserOrderByCreatedDate(id,startDateTime, endDateTime, numberOfOrders, page);
  }
 
-
-
  @GetMapping("/orders/status-createDate")
  public Paginable<OrdersFoundLastCreatedDTO> listOrdersByPeriodStatus(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
@@ -88,7 +86,7 @@ public class OrderController {
   return ordersService.updateOrderStatus(order);
  }
 
- // The confirmaton that user send (From email link)
+ // The confirmation that user send (From email link)
  @PostMapping("/sendMail/confirm/{token}")
  public String sendConfirmationOrderEmailStatus(@PathVariable("token") String token) throws SQLException {
   logger.debug("Received token: {}", token);

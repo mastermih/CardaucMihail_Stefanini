@@ -24,6 +24,7 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+ //ToDO add a normal error response for no auth and for the authority error
     @Autowired
     private JwtFilter jwtFilter;
 

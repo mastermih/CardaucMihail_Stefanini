@@ -2,6 +2,8 @@ package com.ImperioElevator.ordermanagement.security;
 
 import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.User;
+import com.ImperioElevator.ordermanagement.exception.DoublePasswordVerificationException;
+import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,11 +30,13 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new RuntimeException(e);
         }
         if (user == null) {
-            throw new UsernameNotFoundException("User not found 'email'");
+            throw new LoginUserNotFoundException("User not found 'email'");
         }
-
-
         boolean accountNotLocked = user.accountNonLocked();
+        //ToDo add the password error for the back //Use single responsibility
+        if(!accountNotLocked){
+            throw new DoublePasswordVerificationException("Your account is locked (Or your password is wrong). Please confirm your registration via email.");
+        }
         return new org.springframework.security.core.userdetails.User(
                 user.email().email(),
                 user.password(),

@@ -5,9 +5,12 @@ import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.EmailDetails;
 import com.ImperioElevator.ordermanagement.entity.LoginRequest;
 import com.ImperioElevator.ordermanagement.entity.User;
+import com.ImperioElevator.ordermanagement.exception.AccountLockedException;
+import com.ImperioElevator.ordermanagement.exception.DoublePasswordVerificationException;
 import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
 import com.ImperioElevator.ordermanagement.security.JwtService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -76,9 +79,6 @@ public class UserServiceImpl implements UserSevice {
     }
     @Override
     public Long createUserUnauthorized(User user, String verifyPassword) throws SQLException {
-//       if(!user.password().equals(verifyPassword)){
-//            throw new IllegalArgumentException("Passwords do not match");
-//        }
         String encryptedPassword = encoder.encode(user.password());
         User encriptedUser = new User(
                 user.userId(),
@@ -141,6 +141,7 @@ public class UserServiceImpl implements UserSevice {
 
     @Override
     public String verifyUser(LoginRequest loginRequest) throws SQLException {
+        Long userId = null;
         try {
             Authentication authentication = authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
@@ -154,11 +155,13 @@ public class UserServiceImpl implements UserSevice {
                         .map(grantedAuthority -> grantedAuthority.getAuthority())
                         .toList();
 
-                Long userId = userDao.findUserIdByEmail(userDetails.getUsername());
+                userId = userDao.findUserIdByEmail(userDetails.getUsername());
 
                 return jwtService.generateToken(userDetails.getUsername(), roles, userDetails.isAccountNonLocked(), userId);
             }
-        } catch (Exception e) {
+        } catch (AccountLockedException aEx) {
+            throw new AccountLockedException(userId);
+        } catch (LoginUserNotFoundException e) {
             // Here I can throw only the email but just wanted to test also with the message
             throw new LoginUserNotFoundException(loginRequest.email() + " Invalid login credentials");
         }
