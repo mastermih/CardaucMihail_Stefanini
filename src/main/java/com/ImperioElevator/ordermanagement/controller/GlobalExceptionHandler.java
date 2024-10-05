@@ -1,10 +1,7 @@
 package com.ImperioElevator.ordermanagement.controller;
 
-import com.ImperioElevator.ordermanagement.exception.AccountLockedException;
-import com.ImperioElevator.ordermanagement.exception.DoublePasswordVerificationException;
+import com.ImperioElevator.ordermanagement.exception.*;
 import com.ImperioElevator.ordermanagement.dto.ErrorResponse;
-import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
-import com.ImperioElevator.ordermanagement.exception.UserRegistrationInvalidCredentialsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -55,5 +52,14 @@ public class GlobalExceptionHandler {
                     ex.getMessage()
             );
                     return ResponseEntity.status(HttpStatus.FORBIDDEN.value()).body(errorResponse);
+        }
+
+        @ExceptionHandler(ThisUserAlreadyExistException.class)
+    public ResponseEntity<ErrorResponse> handleThisUserAlreadyExistException (RuntimeException ex){
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.FORBIDDEN.value(),
+                ex.getMessage()
+        );
+        return ResponseEntity.status(HttpStatus.FORBIDDEN.value()).body(errorResponse);
         }
     }

@@ -120,6 +120,19 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
+    public Boolean registrationThatUserCredentialsAlreadyExists(String name, String email) {
+        String sql = "SELECT COUNT(*) FROM user WHERE username = ? OR email = ?";
+        try{
+            logger.debug("Checking if the user name or email already exists");
+            Integer result =  jdbcTemplate.queryForObject(sql, new Object[]{name, email}, Integer.class);
+            return result != null && result > 0;
+        }catch (DataAccessException e){
+            logger.error("Failed to check if user with that name or email already exist " + e);
+            throw e;
+        }
+    }
+
+    @Override
     public Long update(User user) throws SQLException {
         String sql = "UPDATE user SET username = ?, email = ?, image = ?, phone_number = ? WHERE id = ? ";
 

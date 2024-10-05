@@ -23,4 +23,5 @@ public interface UserDao extends Dao<User> {
     Long findUserIdByEmail(String email) throws SQLException;
     User fiendUserByToken(String token) throws SQLException; //For accessing the Profile with out seeing the id
     Long createUserUnauthorized(User user);
+    Boolean registrationThatUserCredentialsAlreadyExists(String name, String email);
 }

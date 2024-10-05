@@ -8,6 +8,7 @@ import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.exception.AccountLockedException;
 import com.ImperioElevator.ordermanagement.exception.DoublePasswordVerificationException;
 import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
+import com.ImperioElevator.ordermanagement.exception.ThisUserAlreadyExistException;
 import com.ImperioElevator.ordermanagement.security.JwtService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
 import org.springframework.dao.DataAccessException;
@@ -54,6 +55,12 @@ public class UserServiceImpl implements UserSevice {
                 user.roles(),
                 user.accountNonLocked()
         );
+        String name = user.name().name();
+        String email = user.email().email();
+        boolean exists = userDao.registrationThatUserCredentialsAlreadyExists(name, email);
+        if(exists){
+            throw new ThisUserAlreadyExistException("User with this email or user name already exists " + email + " " + name);
+        }
         Long userId = userDao.insert(encriptedUser);
         // Fetch all role ids for users roles
         List<Long> roleIds = user.roles().stream()
@@ -76,6 +83,7 @@ public class UserServiceImpl implements UserSevice {
         emailService.sendConfirmationMail(emailDetails, userId);
         return userId;
     }
+    //ToDo ths method have wrong name and have to be fixed (not only the name)
     @Override
     public Long createUserUnauthorized(User user, String verifyPassword) throws SQLException {
         String encryptedPassword = encoder.encode(user.password());
@@ -89,6 +97,15 @@ public class UserServiceImpl implements UserSevice {
                 user.roles(),
                 user.accountNonLocked()
         );
+        String name = user.name().name();
+        String email = user.email().email();
+
+         boolean exists = userDao.registrationThatUserCredentialsAlreadyExists(name, email);
+        System.out.println("Checking if user exists: " + exists);
+        logger.info("User exists check for {} with email {}: {}", name, email, exists);
+        if(exists){
+            throw new ThisUserAlreadyExistException("User with this email or user name already exists " + email + " " + name);
+        }
         Long userId = userDao.createUserUnauthorized(encriptedUser);
         // Fetch all role ids for users roles
         List<Long> roleIds = user.roles().stream()
@@ -111,6 +128,12 @@ public class UserServiceImpl implements UserSevice {
         emailService.sendConfirmationMail(emailDetails, userId);
         return userId;
     }
+
+//    @Override
+//    public Boolean registrationThatUserCredentialsAlreadyExists(String name, String email) throws SQLException {
+//        return userDao.registrationThatUserCredentialsAlreadyExists(name, email);
+//    }
+
     @Override
     public Long addImageForUSer(Long userId, String  image) throws SQLException {
         return userDao.addImageForUSer(userId, image);
