@@ -129,11 +129,6 @@ public class UserServiceImpl implements UserSevice {
         return userId;
     }
 
-//    @Override
-//    public Boolean registrationThatUserCredentialsAlreadyExists(String name, String email) throws SQLException {
-//        return userDao.registrationThatUserCredentialsAlreadyExists(name, email);
-//    }
-
     @Override
     public Long addImageForUSer(Long userId, String  image) throws SQLException {
         return userDao.addImageForUSer(userId, image);

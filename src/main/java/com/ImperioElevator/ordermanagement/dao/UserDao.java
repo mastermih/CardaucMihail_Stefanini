@@ -1,5 +1,6 @@
 package com.ImperioElevator.ordermanagement.dao;
 
+import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 //import liquibase.sql.Sql;
@@ -24,4 +25,7 @@ public interface UserDao extends Dao<User> {
     User fiendUserByToken(String token) throws SQLException; //For accessing the Profile with out seeing the id
     Long createUserUnauthorized(User user);
     Boolean registrationThatUserCredentialsAlreadyExists(String name, String email);
+    Paginable<User> fiendAllPaginableUsers();
+    //ToDo add the restof the requests
+    //Paginable<User> fiendAllPaginableUsersManagemnt();
 }

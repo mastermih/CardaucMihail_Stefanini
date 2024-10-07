@@ -99,6 +99,7 @@ public class SecurityConfig {
             "/userProfileImages/**",
             "/catalog/**",
             "/product/**",
-            "/sendMail/confirm/user/*"
+            "/sendMail/confirm/user/*",
+            "/ws/**"
     };
 }

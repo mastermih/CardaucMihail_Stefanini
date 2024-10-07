@@ -7,6 +7,7 @@ import java.sql.Statement;  // Make sure this import is included
 import java.util.List;
 
 import com.ImperioElevator.ordermanagement.dao.UserDao;
+import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.TokenGenerator;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
@@ -130,6 +131,12 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             logger.error("Failed to check if user with that name or email already exist " + e);
             throw e;
         }
+    }
+
+    @Override
+    public Paginable<User> fiendAllPaginableUsers() {
+        String sql = "";
+        return null;
     }
 
     @Override

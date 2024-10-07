@@ -5,6 +5,7 @@ import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.*;
+import com.ImperioElevator.ordermanagement.enumobects.NotificationStatus;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import com.ImperioElevator.ordermanagement.service.OrderProductService;
@@ -24,13 +25,14 @@ public class OrdersServiceImpl implements OrdersService {
     private final OrderProductDaoImpl orderProductDaoImpl;
     private final ProductDaoImpl productDao;
     private final EmailServiceImpl emailService;
-
-    public OrdersServiceImpl(OrderDaoImpl orderDao, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, EmailServiceImpl emailService) {
+    private final NotificationServiceImpl notificationService;
+    public OrdersServiceImpl(OrderDaoImpl orderDao, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, EmailServiceImpl emailService, NotificationServiceImpl notificationService) {
         this.orderDao = orderDao;
         this.orderProductService = orderProductService;
         this.orderProductDaoImpl = orderProductDaoImpl;
         this.productDao = productDao;
         this.emailService = emailService;
+        this.notificationService = notificationService;
     }
 
     @Override
@@ -52,13 +54,22 @@ public class OrdersServiceImpl implements OrdersService {
                     orderProduct.parentProductId(),
                     orderProduct.product()
             );
-
+            //ToDO Ne notification have to be safe when the order is created add it in the return or insert idk
+            Notification notification = new Notification();
+            notification.setNotificationStatus(NotificationStatus.CUSTOMERCREATEORDER);
+            notification.setUser(order.userId().userId().id());
+            notification.setMessage("New order has been created by the customer with ID " + order.userId().userId().id());
+            notification.setRead(false);
+            notificationService.sendNotification(
+                    //add the user id of the management team admin salesmen and manager
+                    order.userId().userId().id(),
+                    notification
+            );
             orderProductDaoImpl.insert(updatedOrderProduct);
         }
 
         return orderId;
     }
-
 
     @Override
     public  Paginable<OrdersFoundLastCreatedDTO> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {
