@@ -55,11 +55,17 @@ public class OrdersServiceImpl implements OrdersService {
                     orderProduct.product()
             );
             //ToDO Ne notification have to be safe when the order is created add it in the return or insert idk
+            //One of the problem is that if something fails here you will not know that happened
             Notification notification = new Notification();
             notification.setNotificationStatus(NotificationStatus.CUSTOMERCREATEORDER);
             notification.setUser(order.userId().userId().id());
             notification.setMessage("New order has been created by the customer with ID " + order.userId().userId().id());
             notification.setRead(false);
+
+            // Save the notification to the database
+            notificationService.insert(notification);
+
+            // This one is through the web soket
             notificationService.sendNotification(
                     //add the user id of the management team admin salesmen and manager
                     order.userId().userId().id(),

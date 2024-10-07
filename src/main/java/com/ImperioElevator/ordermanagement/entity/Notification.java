@@ -1,29 +1,35 @@
 package com.ImperioElevator.ordermanagement.entity;
 
 import com.ImperioElevator.ordermanagement.enumobects.NotificationStatus;
+import com.ImperioElevator.ordermanagement.valueobjects.CreateDateTime;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Notification {
-    private Integer notificationId;
+    private Long notificationId;
     private String message;
     private boolean isRead;
     private NotificationStatus notificationStatus;
     private Long user;
+    private LocalDateTime createdDate;
 
     public Notification(){}
 
-    public Notification(Integer notificationId, String message, boolean isRead, NotificationStatus notificationStatus, Long user) {
+    public Notification(Long notificationId, String message, boolean isRead, NotificationStatus notificationStatus, Long user, LocalDateTime createdDate) {
         this.notificationId = notificationId;
         this.message = message;
         this.isRead = isRead;
         this.notificationStatus = notificationStatus;
         this.user = user;
+        this.createdDate = createdDate;
     }
 
-    public Integer getNotificationId() {
+    public Long getNotificationId() {
         return notificationId;
     }
 
-    public void setNotificationId(Integer notificationId) {
+    public void setNotificationId(Long notificationId) {
         this.notificationId = notificationId;
     }
 
@@ -57,5 +63,13 @@ public class Notification {
 
     public void setUser(Long user) {
         this.user = user;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 }
