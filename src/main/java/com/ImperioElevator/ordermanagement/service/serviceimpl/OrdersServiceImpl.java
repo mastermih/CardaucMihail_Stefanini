@@ -3,6 +3,7 @@ package com.ImperioElevator.ordermanagement.service.serviceimpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
+import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.NotificationStatus;
@@ -26,13 +27,15 @@ public class OrdersServiceImpl implements OrdersService {
     private final ProductDaoImpl productDao;
     private final EmailServiceImpl emailService;
     private final NotificationServiceImpl notificationService;
-    public OrdersServiceImpl(OrderDaoImpl orderDao, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, EmailServiceImpl emailService, NotificationServiceImpl notificationService) {
+    private final UserDaoImpl userDao;
+    public OrdersServiceImpl(OrderDaoImpl orderDao, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, EmailServiceImpl emailService, NotificationServiceImpl notificationService,UserDaoImpl userDao) {
         this.orderDao = orderDao;
         this.orderProductService = orderProductService;
         this.orderProductDaoImpl = orderProductDaoImpl;
         this.productDao = productDao;
         this.emailService = emailService;
         this.notificationService = notificationService;
+        this.userDao = userDao;
     }
 
     @Override
@@ -61,16 +64,14 @@ public class OrdersServiceImpl implements OrdersService {
             notification.setUser(order.userId().userId().id());
             notification.setMessage("New order has been created by the customer with ID " + order.userId().userId().id());
             notification.setRead(false);
-
             // Save the notification to the database
             notificationService.insert(notification);
 
             // This one is through the web soket
-            notificationService.sendNotification(
-                    //add the user id of the management team admin salesmen and manager
-                    order.userId().userId().id(),
-                    notification
-            );
+            List<User> userManagement = userDao.getManagementUsers();
+                    for(User user : userManagement){
+                        notificationService.sendNotification(user.userId().id(), notification);
+            }
             orderProductDaoImpl.insert(updatedOrderProduct);
         }
 

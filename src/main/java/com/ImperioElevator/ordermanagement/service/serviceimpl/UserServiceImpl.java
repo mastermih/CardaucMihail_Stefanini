@@ -129,6 +129,11 @@ public class UserServiceImpl implements UserSevice {
         return userId;
     }
 
+//    @Override
+//    public List<User> getManagementUsers() throws SQLException {
+//        return userDao.getManagementUsers();
+//    }
+
     @Override
     public Long addImageForUSer(Long userId, String  image) throws SQLException {
         return userDao.addImageForUSer(userId, image);

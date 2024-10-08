@@ -28,7 +28,7 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
 
     @Override
     public Long insert(Notification entity) throws SQLException {
-        String sql = "INSERT INTO notifications (user_id, message, is_read, created_date) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO notifications (user_id, message, is_read, created_date, notification_status) VALUES (?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         LocalDateTime currentDateTime = LocalDateTime.now();
 
@@ -40,6 +40,7 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
                 ps.setString(2, entity.getMessage());
                 ps.setBoolean(3, entity.isRead());
                 ps.setTimestamp(4, Timestamp.valueOf(currentDateTime));
+                ps.setString(5, String.valueOf(entity.getNotificationStatus()));
                 return ps;
             }, keyHolder);
     }catch (DataAccessException e){
@@ -47,5 +48,11 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
             throw e;
         }
         return entity.getNotificationId();
+    }
+
+    @Override
+    public Notification findById(Long id) throws SQLException {
+        String sql = "SELECT user_id, message, is_read FROM notifications WHERE user_id";
+        return super.findById(id);
     }
 }

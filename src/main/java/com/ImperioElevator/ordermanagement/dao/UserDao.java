@@ -25,6 +25,7 @@ public interface UserDao extends Dao<User> {
     User fiendUserByToken(String token) throws SQLException; //For accessing the Profile with out seeing the id
     Long createUserUnauthorized(User user);
     Boolean registrationThatUserCredentialsAlreadyExists(String name, String email);
+   List<User> getManagementUsers() throws SQLException;
     Paginable<User> fiendAllPaginableUsers();
     //ToDo add the restof the requests
     //Paginable<User> fiendAllPaginableUsersManagemnt();

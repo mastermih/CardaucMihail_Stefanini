@@ -63,3 +63,9 @@ SELECT u.username FROM user u
                  GROUP BY o.id, u1.username, u2.username
                  ORDER BY o.id DESC
                  LIMIT 5;
+
+
+SELECT u.* FROM user u
+                JOIN user_roles ON u.id = user_id
+                JOIN roles ON user_id = id
+                WHERE role_name = IN ('ADMIN','MANAGER','SALESMAN');

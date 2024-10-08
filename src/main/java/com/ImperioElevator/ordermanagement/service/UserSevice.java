@@ -7,6 +7,7 @@ import com.ImperioElevator.ordermanagement.enumobects.Role;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface UserSevice {
     Long addNewUser (User user) throws SQLException;
@@ -17,5 +18,6 @@ public interface UserSevice {
     String verifyUser(LoginRequest user) throws SQLException;
     User fiendUserByToken(String token) throws  SQLException; // This is for userProfile selection
     Long createUserUnauthorized(User user, String verifyPassword) throws SQLException;
+   // List<User> getManagementUsers() throws SQLException;
 //Boolean registrationThatUserCredentialsAlreadyExists (String name, String email) throws SQLException;
 }

@@ -132,7 +132,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             throw e;
         }
     }
-
+//ToDO finish the get user functionality for the admin
     @Override
     public Paginable<User> fiendAllPaginableUsers() {
         String sql = "";
@@ -200,6 +200,21 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         } catch (DataAccessException ex) {
             logger.error("Failed to find Product with id: {}", id, ex);
             throw ex;
+        }
+    }
+
+    @Override
+    public List<User> getManagementUsers() throws SQLException {
+        String sql = "SELECT u.* FROM user u " +
+                "JOIN user_roles ur ON u.id = ur.user_id " +
+                "JOIN roles r ON ur.role_id = r.id " +
+                "WHERE r.role_name IN ('ADMIN','MANAGER','SALESMAN')";
+        try{
+            logger.debug("Get management users from the db " + sql);
+            return jdbcTemplate.query(sql, (resultSet, i) -> mapResultSetToEntity(resultSet));
+        }catch (DataAccessException e){
+            logger.error("Failed to get the management users " + e);
+            throw e;
         }
     }
 
