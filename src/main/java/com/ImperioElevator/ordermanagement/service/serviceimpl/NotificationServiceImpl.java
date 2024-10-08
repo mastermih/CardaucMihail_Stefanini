@@ -10,6 +10,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 public class NotificationServiceImpl implements NotificationService {
@@ -24,7 +25,6 @@ public class NotificationServiceImpl implements NotificationService {
     }
     public void sendNotification(Long userId, Notification notification){
         logger.debug("Sending WS notifications to user {} with payload {}",  userId, notification);
-        //ToDO add the user role of who  have to get this notification
         messagingTemplate.convertAndSendToUser(String.valueOf(userId),
                 "/notification",
                 notification);
@@ -33,5 +33,10 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public Long insert(Notification entity) throws SQLException {
         return notificationDao.insert(entity);
+    }
+
+    @Override
+    public List<Notification> getNotificationsOfCustomerCreateOrder() throws SQLException {
+        return notificationDao.getNotificationsOfCustomerCreateOrder();
     }
 }

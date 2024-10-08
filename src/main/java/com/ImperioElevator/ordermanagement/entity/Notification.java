@@ -1,28 +1,22 @@
 package com.ImperioElevator.ordermanagement.entity;
 
-import com.ImperioElevator.ordermanagement.enumobects.NotificationStatus;
-import com.ImperioElevator.ordermanagement.valueobjects.CreateDateTime;
-
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
+//ToDO realtion many to many with user
 public class Notification {
     private Long notificationId;
     private String message;
-    private boolean isRead;
-    private NotificationStatus notificationStatus;
-    private Long user;
     private LocalDateTime createdDate;
+    private List<UserNotification> userNotifications;
 
     public Notification(){}
 
-    public Notification(Long notificationId, String message, boolean isRead, NotificationStatus notificationStatus, Long user, LocalDateTime createdDate) {
+    public Notification(Long notificationId, String message, LocalDateTime createdDate, List<UserNotification> userNotifications) {
         this.notificationId = notificationId;
         this.message = message;
-        this.isRead = isRead;
-        this.notificationStatus = notificationStatus;
-        this.user = user;
         this.createdDate = createdDate;
+        this.userNotifications = userNotifications;
     }
 
     public Long getNotificationId() {
@@ -41,35 +35,19 @@ public class Notification {
         this.message = message;
     }
 
-    public boolean isRead() {
-        return isRead;
-    }
-
-    public void setRead(boolean read) {
-        isRead = read;
-    }
-
-    public NotificationStatus getNotificationStatus() {
-        return notificationStatus;
-    }
-
-    public void setNotificationStatus(NotificationStatus notificationStatus) {
-        this.notificationStatus = notificationStatus;
-    }
-
-    public Long getUser() {
-        return user;
-    }
-
-    public void setUser(Long user) {
-        this.user = user;
-    }
-
     public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public List<UserNotification> getUserNotifications() {
+        return userNotifications;
+    }
+
+    public void setUserNotifications(List<UserNotification> userNotifications) {
+        this.userNotifications = userNotifications;
     }
 }

@@ -6,7 +6,6 @@ import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.*;
-import com.ImperioElevator.ordermanagement.enumobects.NotificationStatus;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import com.ImperioElevator.ordermanagement.service.OrderProductService;
@@ -60,10 +59,7 @@ public class OrdersServiceImpl implements OrdersService {
             //ToDO Ne notification have to be safe when the order is created add it in the return or insert idk
             //One of the problem is that if something fails here you will not know that happened
             Notification notification = new Notification();
-            notification.setNotificationStatus(NotificationStatus.CUSTOMERCREATEORDER);
-            notification.setUser(order.userId().userId().id());
             notification.setMessage("New order has been created by the customer with ID " + order.userId().userId().id());
-            notification.setRead(false);
             // Save the notification to the database
             notificationService.insert(notification);
 

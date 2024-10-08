@@ -101,5 +101,6 @@ public class SecurityConfig {
             "/product/**",
             "/sendMail/confirm/user/*",
             "/ws/**"
+            //"/ws/notifications"
     };
 }
