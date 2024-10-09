@@ -57,16 +57,20 @@ public class OrdersServiceImpl implements OrdersService {
                     orderProduct.product()
             );
             //ToDO Ne notification have to be safe when the order is created add it in the return or insert idk
-            //One of the problem is that if something fails here you will not know that happened
+            //One of the problem is that if something fails here you will not know that happened you will get 401 user UNAUTHORIZED so you know
             Notification notification = new Notification();
             notification.setMessage("New order has been created by the customer with ID " + order.userId().userId().id());
             // Save the notification to the database
-            notificationService.insert(notification);
-
-            // This one is through the web soket
+            Long notificationId = notificationService.insert(notification);
             List<User> userManagement = userDao.getManagementUsers();
-                    for(User user : userManagement){
-                        notificationService.sendNotification(user.userId().id(), notification);
+            for (User user : userManagement) {
+                // Create a UserNotification entry for each management user
+                UserNotification userNotification = new UserNotification();
+                userNotification.setNotificationId(notificationId);
+                userNotification.setUserId(user.userId().id());
+                userNotification.setRead(Boolean.FALSE);
+
+                notificationService.insertUserNotificationCustomerCreateOrder(userNotification);
             }
             orderProductDaoImpl.insert(updatedOrderProduct);
         }

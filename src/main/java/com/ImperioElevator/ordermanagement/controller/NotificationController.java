@@ -25,7 +25,7 @@ public class NotificationController {
         return notificationService.insert(entity);
     }
     @GetMapping("ws/notifications")
-    public List<Notification> getNotificationsOfCustomerCreateOrder() throws SQLException {
-        return notificationService.getNotificationsOfCustomerCreateOrder();
+    public List<Notification> getNotificationsOfCustomerCreateOrder(@RequestParam Long userId) throws SQLException {
+        return notificationService.getNotificationsOfCustomerCreateOrder(userId);
     }
 }

@@ -1,10 +1,7 @@
 package com.ImperioElevator.ordermanagement.dao.daoimpl;
 
 import com.ImperioElevator.ordermanagement.dao.OrderProductDao;
-import com.ImperioElevator.ordermanagement.entity.Order;
-import com.ImperioElevator.ordermanagement.entity.OrderProduct;
-import com.ImperioElevator.ordermanagement.entity.Paginable;
-import com.ImperioElevator.ordermanagement.entity.Product;
+import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Price;
 import com.ImperioElevator.ordermanagement.valueobjects.ProductName;
@@ -15,7 +12,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.sql.*;

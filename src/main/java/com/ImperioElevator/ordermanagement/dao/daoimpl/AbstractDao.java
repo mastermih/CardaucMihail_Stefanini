@@ -30,4 +30,3 @@ public abstract class AbstractDao<T> implements Dao<T> {
 
     }
 }
-

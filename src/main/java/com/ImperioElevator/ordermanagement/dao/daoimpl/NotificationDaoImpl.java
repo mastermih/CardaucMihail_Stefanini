@@ -29,7 +29,7 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
         KeyHolder keyHolder = new GeneratedKeyHolder();
         LocalDateTime currentDateTime = LocalDateTime.now();
 
-        try{
+        try {
             logger.debug("Inserting the notification in db " + entity);
             jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -37,11 +37,17 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
                 ps.setTimestamp(2, Timestamp.valueOf(currentDateTime));
                 return ps;
             }, keyHolder);
-    }catch (DataAccessException e){
+
+            // Retrieve the generated key for (notificationId)
+            if (keyHolder.getKey() != null) {
+                return keyHolder.getKey().longValue();
+            } else {
+                throw new SQLException("Failed to retrieve the generated notification ID.");
+            }
+        } catch (DataAccessException e) {
             logger.error("Failed to insert the notification in th db " + e);
             throw e;
         }
-        return entity.getNotificationId();
     }
 
     @Override
@@ -51,13 +57,16 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
     }
 
     @Override
-    public List<Notification> getNotificationsOfCustomerCreateOrder() throws SQLException {
-        String sql = "SELECT message FROM notifications WHERE notification_status = 'CUSTOMERCREATEORDER' and is_read = 'FALSE'";
+    public List<Notification> getNotificationsOfCustomerCreateOrder(Long userId) throws SQLException {
+       // String sql = "SELECT message FROM user_notifications WHERE user_id = ? and is_read = 'FALSE'";
+        String sql = "SELECT n.message FROM notifications n "+
+                "JOIN user_notifications un ON n.id = un.notification_id "+
+                "WHERE un.user_id = ? AND un.is_read = FALSE";
         try{
-            logger.debug("Get the notification of the 'CUSTOMERCREATEORDER' from db " + sql);
-            return jdbcTemplate.query(sql, (resultSet, i) -> mapResultSetToEntity(resultSet));
+            logger.debug("Get the notification of the customer create order from db " + sql);
+            return jdbcTemplate.query(sql, new Object[]{userId}, (resultSet, i) -> mapResultSetToEntity(resultSet));
         }catch (DataAccessException e) {
-            logger.error("Failed to get the 'CUSTOMERCREATEORDER' notification from db " + e);
+            logger.error("Failed to get the customer create order notification from db " + e);
         throw e;
         }
     }

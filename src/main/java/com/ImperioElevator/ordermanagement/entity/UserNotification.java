@@ -5,6 +5,8 @@ public class UserNotification {
     private Long notificationId;
     private Boolean isRead;
 
+    public UserNotification(){}
+
     public UserNotification(Long userId, Long notificationId, Boolean isRead) {
         this.userId = userId;
         this.notificationId = notificationId;
