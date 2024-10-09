@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface NotificationDao extends Dao<Notification> {
 
-    List<Notification> getNotificationsOfCustomerCreateOrder(Long userId)throws SQLException;
+    List<Notification> getNotifications(Long userId)throws SQLException;
 }

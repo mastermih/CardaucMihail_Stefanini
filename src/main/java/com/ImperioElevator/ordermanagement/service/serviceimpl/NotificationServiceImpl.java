@@ -34,8 +34,8 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public List<Notification> getNotificationsOfCustomerCreateOrder(Long userId) throws SQLException {
-        return notificationDao.getNotificationsOfCustomerCreateOrder(userId);
+    public List<Notification> getNotifications(Long userId) throws SQLException {
+        return notificationDao.getNotifications(userId);
     }
 
     @Override

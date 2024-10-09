@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface NotificationService {
         Long insert(Notification entity) throws SQLException;
-        List<Notification> getNotificationsOfCustomerCreateOrder(Long userId) throws SQLException;
+        List<Notification> getNotifications(Long userId) throws SQLException;
         Long insertUserNotification(UserNotification userNotification)throws SQLException;
 
 }

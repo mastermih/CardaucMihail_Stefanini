@@ -86,7 +86,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 
-
+    //ToDo do not forget to chose only one from here this one or the one under this method
     @Override
     public Long update(Order order) throws SQLException {
         String sql = "UPDATE orders SET user_id = ?, updated_date = ?, order_status = ? WHERE id = ?";
@@ -104,7 +104,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
             throw e;
         }
     }
-
+//Because this method was made long time ago it was made wrong so I have to make another one
     @Override
     public Long updateStatus(Order order) throws SQLException {
         String sql = "UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?";
@@ -119,6 +119,24 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
             return order.orderId().id();
         } catch (DataAccessException ex) {
             logger.error("Failed to update Order status for id: {}", order.orderId().id(), ex);
+            throw ex;
+        }
+    }
+
+    @Override
+    public Long updateOrderStatus(Long order, String status) throws SQLException {
+        String sql = "UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?";
+        try {
+            logger.debug("Executing SQL for order status update: {}", sql);
+
+            jdbcTemplate.update(sql,
+                    status,
+                    new java.sql.Timestamp(System.currentTimeMillis()),
+                    order);
+            logger.info("Successfully updated Order status for id: {}", order);
+            return order;
+        } catch (DataAccessException ex) {
+            logger.error("Failed to update Order status for id: {}", order, ex);
             throw ex;
         }
     }

@@ -33,8 +33,8 @@ public class NotificationController {
         return new ResponseEntity<>(entityCreationResponse, HttpStatus.CREATED);
     }
     @GetMapping("ws/notifications")//Combine the response list with a message
-    public List<Notification> getNotificationsOfCustomerCreateOrder(@RequestParam Long userId) throws SQLException {
-        return notificationService.getNotificationsOfCustomerCreateOrder(userId);
+    public List<Notification> getNotifications(@RequestParam Long userId) throws SQLException {
+        return notificationService.getNotifications(userId);
     }
 //    @GetMapping("ws/notifications") //
 //    public ResponseEntity<EntityCreationResponse> getNotificationsOfCustomerCreateOrder(@RequestParam Long userId) throws SQLException {

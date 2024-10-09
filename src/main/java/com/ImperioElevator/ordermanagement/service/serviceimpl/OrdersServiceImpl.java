@@ -10,10 +10,12 @@ import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import com.ImperioElevator.ordermanagement.service.OrderProductService;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
+import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -190,14 +192,23 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public String assigneeOperatorToOrder(Long id, String name) throws SQLException {
         Notification notification = new Notification();
-        notification.setMessage("New order has been created by the customer with name " + name);
+        notification.setMessage("New order has been assigned to the operator with name " + name);
         Long notificationId =  notificationService.insert(notification);
+
         Long userId = userDao.findUserIdByName(name);
+
         UserNotification userNotification = new UserNotification();
+
         userNotification.setUserId(userId);
         userNotification.setNotificationId(notificationId);
         userNotification.setRead(Boolean.FALSE);
+
         notificationService.insertUserNotification(userNotification);
+
+        orderDao.updateOrderStatus(
+                id,
+                String.valueOf(Status.IN_PROGRESS)
+        );
         return orderDao.assigneeOperatorToOrder(id, name);
     }
 
@@ -221,8 +232,35 @@ public class OrdersServiceImpl implements OrdersService {
         return orderDao.deleteAllOperatorsAssignedToOrderByOperatorId(orderId);
     }
 
+    //ToDo do not forget to chose only one from here
     @Override
     public Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException {
+//        orderDao.updateOrderStatus(
+//                orderId,
+//                String.valueOf(Status.IN_PROGRESS)
+//        );
+                Order order = orderDao.findById(orderId);
+                Order updatedOrder = new Order(
+                order.orderId(),
+                order.userId(),
+                Status.IN_PROGRESS,
+                order.createdDate(),
+                new UpdateDateTime(LocalDateTime.now()),
+                order.orderProducts()
+        );
+                Long userId = updatedOrder.userId().userId().id();
+                orderDao.updateStatus(updatedOrder);
+                Notification notification = new Notification();
+                notification.setMessage("The status of your order with Id " + orderId + " was updated to " + updatedOrder.orderStatus());
+
+                Long notificationId = notificationService.insert(notification);
+
+                UserNotification userNotification = new UserNotification();
+
+                userNotification.setNotificationId(notificationId);
+                userNotification.setUserId(userId);
+                userNotification.setRead(Boolean.FALSE);
+                notificationService.insertUserNotification(userNotification);
         return orderDao.assineOrderToMe(orderId, operatorId);
     }
 

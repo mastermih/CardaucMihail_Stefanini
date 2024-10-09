@@ -11,6 +11,7 @@ import com.ImperioElevator.ordermanagement.enumobects.Status;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.DelayQueue;
 
 public interface OrderDao extends Dao<Order>{
     Paginable<OrdersFoundLastCreatedDTO> findPaginableOrderByCreatedDate(LocalDateTime startDate,LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException;
@@ -25,6 +26,9 @@ public interface OrderDao extends Dao<Order>{
 
 
     List<Order> findLastCreatedOrdersForUserRole(Number limit, Long id) throws SQLException;
+
+    //This one is because of my old mistake
+    Long updateOrderStatus(Long order, String status) throws SQLException;
 
     Long updateStatus(Order order) throws SQLException;
 
