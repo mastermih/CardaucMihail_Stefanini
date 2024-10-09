@@ -39,7 +39,7 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public Long insertUserNotificationCustomerCreateOrder(UserNotification userNotification) throws SQLException {
-        return userNotificationDao.insertUSerNotification(userNotification);
+    public Long insertUserNotification(UserNotification userNotification) throws SQLException {
+        return userNotificationDao.insertUserNotification(userNotification);
     }
 }

@@ -21,7 +21,7 @@ public class UserNotificationDaoImpl extends AbstractDao<UserNotification> imple
     }
 
     @Override
-    public Long insertUSerNotification(UserNotification entity) throws SQLException {
+    public Long insertUserNotification(UserNotification entity) throws SQLException {
         String sql = "INSERT INTO user_notifications (user_id, notification_id, is_read) VALUES(?,?,?)";
         try{
             logger.debug("Inserting in user_notification values related to the notification " + sql);

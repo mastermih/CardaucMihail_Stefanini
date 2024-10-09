@@ -1,8 +1,11 @@
 package com.ImperioElevator.ordermanagement.controller;
 
 import com.ImperioElevator.ordermanagement.dao.daoimpl.NotificationDaoImpl;
+import com.ImperioElevator.ordermanagement.entity.EntityCreationResponse;
 import com.ImperioElevator.ordermanagement.entity.Notification;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,12 +23,26 @@ public class NotificationController {
         this.notificationService = notificationService;
     }
 //ToDo add response Entity
-    @PostMapping("ws/notifications")
-    public Long insert (@RequestParam Notification entity) throws SQLException {
-        return notificationService.insert(entity);
+    @PostMapping("ws/notifications")//Maybe this is not a good approach
+    public ResponseEntity<EntityCreationResponse> insert (@RequestParam Notification entity) throws SQLException {
+        Long notificationId = notificationService.insert(entity);
+        EntityCreationResponse entityCreationResponse = new EntityCreationResponse(
+                notificationId,
+                "Notification with id " + notificationId + " was created successfully"
+        );
+        return new ResponseEntity<>(entityCreationResponse, HttpStatus.CREATED);
     }
-    @GetMapping("ws/notifications")
+    @GetMapping("ws/notifications")//Combine the response list with a message
     public List<Notification> getNotificationsOfCustomerCreateOrder(@RequestParam Long userId) throws SQLException {
         return notificationService.getNotificationsOfCustomerCreateOrder(userId);
     }
+//    @GetMapping("ws/notifications") //
+//    public ResponseEntity<EntityCreationResponse> getNotificationsOfCustomerCreateOrder(@RequestParam Long userId) throws SQLException {
+//        notificationService.getNotificationsOfCustomerCreateOrder(userId);
+//        EntityCreationResponse entityCreationResponse = new EntityCreationResponse(
+//                userId,
+//                "The notifications for user with id " + userId + "where successfully retrieved"
+//        );
+//        return new ResponseEntity<>(entityCreationResponse, HttpStatus.FOUND);
+//    }
 }

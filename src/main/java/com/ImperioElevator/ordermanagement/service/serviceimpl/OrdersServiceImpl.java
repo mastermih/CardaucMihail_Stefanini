@@ -70,7 +70,7 @@ public class OrdersServiceImpl implements OrdersService {
                 userNotification.setUserId(user.userId().id());
                 userNotification.setRead(Boolean.FALSE);
 
-                notificationService.insertUserNotificationCustomerCreateOrder(userNotification);
+                notificationService.insertUserNotification(userNotification);
             }
             orderProductDaoImpl.insert(updatedOrderProduct);
         }
@@ -110,11 +110,11 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
-        // Step 1 Retrieve order products associated with the order
+        // Retrieve order products associated with the order
         List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
         boolean priceChanged = false;
 
-        // Step 2 Check if the prices of any of the products have changed
+        // Check if the prices of any of the products have changed
         for (OrderProduct orderProduct : orderProducts) {
             Product product = productDao.findById(orderProduct.product().productId().id());
             if (product == null) {
@@ -124,7 +124,7 @@ public class OrdersServiceImpl implements OrdersService {
             if (!product.price().equals(orderProduct.priceOrder())) {
                 priceChanged = true;
 
-                // Step 3 Update the product price in the orderProduct
+                // Update the product price in the orderProduct
                 orderProduct = new OrderProduct(
                         orderProduct.orderId(),
                         order,
@@ -139,25 +139,25 @@ public class OrdersServiceImpl implements OrdersService {
             }
         }
 
-        // Step 4 Send confirmation email with token if necessary
+        //  Send confirmation email with token if necessary
         if (!priceChanged) {
             System.out.println("No price changes detected for order " + order.orderId().id());
         } else {
             System.out.println("Prices were updated for the order " + order.orderId().id());
         }
 
-        // Step 5 Retrieve the token for the order
+        // Retrieve the token for the order
         String token = orderDao.getTheConfirmationToken(order.orderId().id());
         if (token == null || token.isEmpty()) {
             throw new SQLException("No confirmation token found for order ID: " + order.orderId().id());
         }
 
-        // Step 6 Construct and send confirmation email
+        //  Construct and send confirmation email
         EmailDetails emailDetails = constructEmailDetails(order, token);
         String emailResult = emailService.sendConfirmationMail(emailDetails, order.orderId().id());
         System.out.println("Email Result: " + emailResult);
 
-        // Step 7 Update the order status CONFIRMED
+        //  Update the order status CONFIRMED
         return orderDao.updateStatus(order);
     }
 
@@ -189,6 +189,15 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public String assigneeOperatorToOrder(Long id, String name) throws SQLException {
+        Notification notification = new Notification();
+        notification.setMessage("New order has been created by the customer with name " + name);
+        Long notificationId =  notificationService.insert(notification);
+        Long userId = userDao.findUserIdByName(name);
+        UserNotification userNotification = new UserNotification();
+        userNotification.setUserId(userId);
+        userNotification.setNotificationId(notificationId);
+        userNotification.setRead(Boolean.FALSE);
+        notificationService.insertUserNotification(userNotification);
         return orderDao.assigneeOperatorToOrder(id, name);
     }
 

@@ -371,4 +371,16 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         }
     }
 
+    @Override
+    public Long findUserIdByName(String name) throws SQLException {
+       String sql = "SELECT id FROM user WHERE username = ?";
+       try {
+           logger.debug("Get the user id based on the username " + sql);
+           return jdbcTemplate.queryForObject(sql, new Object[]{name}, Long.class);
+       }catch (DataAccessException e){
+           logger.error("Failed to get the user id based on the username " + e);
+           throw e;
+       }
+    }
+
 }

@@ -22,6 +22,8 @@ public interface UserDao extends Dao<User> {
     String getUserImage(Long userId) throws SQLException;
     User findByUserEmail (String email) throws SQLException;
     Long findUserIdByEmail(String email) throws SQLException;
+    Long findUserIdByName(String name) throws SQLException;//For notification of the user when manager assign an order to sale_manager this manager should be notified
+
     User fiendUserByToken(String token) throws SQLException; //For accessing the Profile with out seeing the id
     Long createUserUnauthorized(User user);
     Boolean registrationThatUserCredentialsAlreadyExists(String name, String email);
