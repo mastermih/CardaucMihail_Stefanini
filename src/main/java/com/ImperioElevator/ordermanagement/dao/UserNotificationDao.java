@@ -6,4 +6,5 @@ import java.sql.SQLException;
 
 public interface UserNotificationDao extends Dao<UserNotification> {
     Long insertUserNotification(UserNotification entity) throws SQLException;
+    Long notificationIsRead(Long userId) throws SQLException;
 }

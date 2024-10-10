@@ -35,4 +35,17 @@ public class UserNotificationDaoImpl extends AbstractDao<UserNotification> imple
             throw ex;
         }
         }
+
+    @Override
+    public Long notificationIsRead(Long userId) throws SQLException {
+        String sql = "UPDATE user_notifications SET is_read = 1 WHERE user_id = ?";
+        try {
+             logger.debug("Set the notifications on read " + sql);
+              jdbcTemplate.update(sql, userId);
+              return userId;
+        }catch (DataAccessException e){
+            logger.error("Failed to add the is read to the user notifications " + e);
+            throw e;
+        }
+    }
 }

@@ -10,5 +10,5 @@ public interface NotificationService {
         Long insert(Notification entity) throws SQLException;
         List<Notification> getNotifications(Long userId) throws SQLException;
         Long insertUserNotification(UserNotification userNotification)throws SQLException;
-
+        Long notificationIsRead(Long userId) throws SQLException;
 }

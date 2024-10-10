@@ -36,13 +36,13 @@ public class NotificationController {
     public List<Notification> getNotifications(@RequestParam Long userId) throws SQLException {
         return notificationService.getNotifications(userId);
     }
-//    @GetMapping("ws/notifications") //
-//    public ResponseEntity<EntityCreationResponse> getNotificationsOfCustomerCreateOrder(@RequestParam Long userId) throws SQLException {
-//        notificationService.getNotificationsOfCustomerCreateOrder(userId);
-//        EntityCreationResponse entityCreationResponse = new EntityCreationResponse(
-//                userId,
-//                "The notifications for user with id " + userId + "where successfully retrieved"
-//        );
-//        return new ResponseEntity<>(entityCreationResponse, HttpStatus.FOUND);
-//    }
+    @PostMapping("ws/notifications/read")
+    public ResponseEntity<EntityCreationResponse> notificationIsRead (@RequestParam Long userId) throws SQLException{
+        notificationService.notificationIsRead(userId);
+        EntityCreationResponse entityCreationResponse =  new EntityCreationResponse(
+                userId,
+                "The notifications of the user with id " + userId + " where read"
+        );
+        return new ResponseEntity<>(entityCreationResponse, HttpStatus.OK);
+    }
 }
