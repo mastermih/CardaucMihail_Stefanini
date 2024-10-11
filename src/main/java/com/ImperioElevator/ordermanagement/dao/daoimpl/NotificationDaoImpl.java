@@ -50,6 +50,7 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
         }
     }
 
+    //toDO it seams to be extra here
     @Override
     public Notification findById(Long id) throws SQLException {
         String sql = "SELECT user_id, message, is_read FROM notifications WHERE user_id";
@@ -58,9 +59,9 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
 
     @Override
     public List<Notification> getNotifications(Long userId) throws SQLException {
-        String sql = "SELECT n.message FROM notifications n "+
+        String sql = "SELECT n.id, n.message, n.created_date FROM notifications n "+
                 "JOIN user_notifications un ON n.id = un.notification_id "+
-                "WHERE un.user_id = ?";
+                "WHERE un.user_id = ? AND un.is_disabled = 0";
         try{
             logger.debug("Get the notification of the customer create order from db " + sql);
             return jdbcTemplate.query(sql, new Object[]{userId}, (resultSet, i) -> mapResultSetToEntity(resultSet));
@@ -74,7 +75,9 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
     @Override
     public Notification mapResultSetToEntity(ResultSet resultSet) throws SQLException {
         Notification notification = new Notification();
+        notification.setNotificationId(resultSet.getLong("id"));
         notification.setMessage(resultSet.getString("message"));
+        notification.setCreatedDate(resultSet.getTimestamp("created_date").toLocalDateTime());
         return notification;
     }
 

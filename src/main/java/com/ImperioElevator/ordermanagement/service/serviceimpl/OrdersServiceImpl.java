@@ -205,10 +205,16 @@ public class OrdersServiceImpl implements OrdersService {
 
         notificationService.insertUserNotification(userNotification);
 
-        orderDao.updateOrderStatus(
-                id,
-                String.valueOf(Status.IN_PROGRESS)
+        Order order = orderDao.findById(id);//id is the oder id
+        Order updatedOrder = new Order(
+                order.orderId(),
+                order.userId(),
+                Status.IN_PROGRESS,
+                order.createdDate(),
+                new UpdateDateTime(LocalDateTime.now()),
+                order.orderProducts()
         );
+        orderDao.updateStatus(updatedOrder);
         return orderDao.assigneeOperatorToOrder(id, name);
     }
 
@@ -232,13 +238,8 @@ public class OrdersServiceImpl implements OrdersService {
         return orderDao.deleteAllOperatorsAssignedToOrderByOperatorId(orderId);
     }
 
-    //ToDo do not forget to chose only one from here
     @Override
     public Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException {
-//        orderDao.updateOrderStatus(
-//                orderId,
-//                String.valueOf(Status.IN_PROGRESS)
-//        );
                 Order order = orderDao.findById(orderId);
                 Order updatedOrder = new Order(
                 order.orderId(),

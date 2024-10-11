@@ -3,7 +3,6 @@ package com.ImperioElevator.ordermanagement.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
-//ToDO realtion many to many with user
 public class Notification {
     private Long notificationId;
     private String message;

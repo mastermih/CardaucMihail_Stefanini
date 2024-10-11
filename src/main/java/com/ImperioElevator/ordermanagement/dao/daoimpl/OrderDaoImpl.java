@@ -124,24 +124,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
-    public Long updateOrderStatus(Long order, String status) throws SQLException {
-        String sql = "UPDATE orders SET order_status = ?, updated_date = ? WHERE id = ?";
-        try {
-            logger.debug("Executing SQL for order status update: {}", sql);
-
-            jdbcTemplate.update(sql,
-                    status,
-                    new java.sql.Timestamp(System.currentTimeMillis()),
-                    order);
-            logger.info("Successfully updated Order status for id: {}", order);
-            return order;
-        } catch (DataAccessException ex) {
-            logger.error("Failed to update Order status for id: {}", order, ex);
-            throw ex;
-        }
-    }
-
-    @Override
     public String updateOrderEmailConfirmStatus(String token) throws SQLException {
         String sql = "UPDATE orders SET order_status = 'CONFIRMED' WHERE id = (SELECT order_id FROM token WHERE token_value = ? AND token_type = 'ORDER' AND is_enabled = true)";
         String disableTokenSql = "UPDATE token SET is_enabled = false WHERE token_value = ? AND token_type = 'ORDER'";

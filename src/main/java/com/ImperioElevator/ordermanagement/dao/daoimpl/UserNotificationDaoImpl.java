@@ -22,13 +22,14 @@ public class UserNotificationDaoImpl extends AbstractDao<UserNotification> imple
 
     @Override
     public Long insertUserNotification(UserNotification entity) throws SQLException {
-        String sql = "INSERT INTO user_notifications (user_id, notification_id, is_read) VALUES(?,?,?)";
+        String sql = "INSERT INTO user_notifications (user_id, notification_id, is_read, is_disabled) VALUES(?,?,?,?)";
         try{
             logger.debug("Inserting in user_notification values related to the notification " + sql);
             jdbcTemplate.update(sql,
                     entity.getUserId(),
                     entity.getNotificationId(),
-                    entity.getRead());
+                    entity.getRead(),
+                    entity.getDisabled());
         return entity.getNotificationId();
         }catch (DataAccessException ex){
             logger.error("Failed to insert in user_notification values related to the notification " + ex);
@@ -45,6 +46,19 @@ public class UserNotificationDaoImpl extends AbstractDao<UserNotification> imple
               return userId;
         }catch (DataAccessException e){
             logger.error("Failed to add the is read to the user notifications " + e);
+            throw e;
+        }
+    }
+
+    @Override
+    public Long notificationIsDisabled(Long notificationId, Long userId) throws SQLException {
+        String sql = "UPDATE user_notifications SET is_disabled = 1 WHERE notification_id = ? AND user_id = ?";
+        try{
+            logger.debug("Set the notification is disabled " + sql);
+            jdbcTemplate.update(sql, notificationId, userId);
+            return notificationId;
+        }catch (DataAccessException e){
+            logger.error("Failed to disable the notification " + e);
             throw e;
         }
     }

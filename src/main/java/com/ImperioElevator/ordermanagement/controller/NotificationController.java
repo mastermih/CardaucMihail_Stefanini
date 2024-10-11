@@ -22,7 +22,8 @@ public class NotificationController {
     public NotificationController(NotificationService notificationService) {
         this.notificationService = notificationService;
     }
-//ToDo add response Entity
+
+    //ToDo do not forget to take this out
     @PostMapping("ws/notifications")//Maybe this is not a good approach
     public ResponseEntity<EntityCreationResponse> insert (@RequestParam Notification entity) throws SQLException {
         Long notificationId = notificationService.insert(entity);
@@ -32,16 +33,28 @@ public class NotificationController {
         );
         return new ResponseEntity<>(entityCreationResponse, HttpStatus.CREATED);
     }
+
     @GetMapping("ws/notifications")//Combine the response list with a message
     public List<Notification> getNotifications(@RequestParam Long userId) throws SQLException {
         return notificationService.getNotifications(userId);
     }
+
     @PostMapping("ws/notifications/read")
     public ResponseEntity<EntityCreationResponse> notificationIsRead (@RequestParam Long userId) throws SQLException{
         notificationService.notificationIsRead(userId);
         EntityCreationResponse entityCreationResponse =  new EntityCreationResponse(
                 userId,
                 "The notifications of the user with id " + userId + " where read"
+        );
+        return new ResponseEntity<>(entityCreationResponse, HttpStatus.OK);
+    }
+    @PostMapping("ws/notifications/disable")
+    public ResponseEntity<EntityCreationResponse> notificationIsDisabled(@RequestParam Long notificationId,
+                                        @RequestParam Long userId)throws SQLException{
+        notificationService.notificationIsDisabled(notificationId, userId);
+        EntityCreationResponse entityCreationResponse = new EntityCreationResponse(
+                userId,
+                "The notification with the id " + notificationId + " was removed successfully form the notification list"
         );
         return new ResponseEntity<>(entityCreationResponse, HttpStatus.OK);
     }

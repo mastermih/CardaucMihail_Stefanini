@@ -24,11 +24,7 @@ public interface OrderDao extends Dao<Order>{
 
     List<OrdersFoundLastCreatedDTO> findLastCreatedOrders(Number limit) throws SQLException;
 
-
     List<Order> findLastCreatedOrdersForUserRole(Number limit, Long id) throws SQLException;
-
-    //This one is because of my old mistake
-    Long updateOrderStatus(Long order, String status) throws SQLException;
 
     Long updateStatus(Order order) throws SQLException;
 

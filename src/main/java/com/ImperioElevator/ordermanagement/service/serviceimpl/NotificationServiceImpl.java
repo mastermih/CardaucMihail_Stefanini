@@ -47,4 +47,9 @@ public class NotificationServiceImpl implements NotificationService {
     public Long notificationIsRead(Long userId) throws SQLException {
         return userNotificationDao.notificationIsRead(userId);
     }
+
+    @Override
+    public Long notificationIsDisabled(Long notificationId, Long userId) throws SQLException {
+        return userNotificationDao.notificationIsDisabled(notificationId,userId);
+    }
 }

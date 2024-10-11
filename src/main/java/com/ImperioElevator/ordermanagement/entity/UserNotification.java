@@ -4,13 +4,15 @@ public class UserNotification {
     private Long userId;
     private Long notificationId;
     private Boolean isRead;
+    private Boolean isDisabled;
 
     public UserNotification(){}
 
-    public UserNotification(Long userId, Long notificationId, Boolean isRead) {
+    public UserNotification(Long userId, Long notificationId, Boolean isRead, Boolean isDisabled) {
         this.userId = userId;
         this.notificationId = notificationId;
         this.isRead = isRead;
+        this.isDisabled = isDisabled;
     }
 
     public Long getUserId() {
@@ -35,5 +37,13 @@ public class UserNotification {
 
     public void setRead(Boolean read) {
         isRead = read;
+    }
+
+    public Boolean getDisabled() {
+        return isDisabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+        isDisabled = disabled;
     }
 }
