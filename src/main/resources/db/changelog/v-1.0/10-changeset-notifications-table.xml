@@ -1,0 +1,37 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- ChangeSet for creating the user_roles table -->
+    <changeSet id="10" author="Mihai">
+        <createTable tableName="notifications">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="message" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <!-- Data loading for MySQL -->
+    <changeSet id="10.1" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="mysql"/>
+        </preConditions>
+        <loadData tableName="user_roles" file="db/data/mysql/notifications-data.csv"/>
+    </changeSet>
+
+    <!-- Data loading for HSQLDB -->
+    <changeSet id="10.2" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="hsqldb"/>
+        </preConditions>
+        <loadData tableName="user_roles" file="db/data/hsqldb/notifications-data.csv"/>
+    </changeSet>
+</databaseChangeLog>

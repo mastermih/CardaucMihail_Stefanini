@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserSevice {
         emailService.sendConfirmationMail(emailDetails, userId);
         return userId;
     }
-    //ToDo ths method have wrong name and have to be fixed (not only the name)
+    //ToDo ths method have wrong name and have to be fixed
     @Override
     public Long createUserUnauthorized(User user, String verifyPassword) throws SQLException {
         String encryptedPassword = encoder.encode(user.password());
@@ -129,10 +129,10 @@ public class UserServiceImpl implements UserSevice {
         return userId;
     }
 
-//    @Override
-//    public List<User> getManagementUsers() throws SQLException {
-//        return userDao.getManagementUsers();
-//    }
+    @Override
+    public List<User> findAllUsers() throws SQLException {
+        return userDao.findAllUsers();
+    }
 
     @Override
     public Long addImageForUSer(Long userId, String  image) throws SQLException {
@@ -177,7 +177,6 @@ public class UserServiceImpl implements UserSevice {
                         .toList();
 
                 userId = userDao.findUserIdByEmail(userDetails.getUsername());
-
                 return jwtService.generateToken(userDetails.getUsername(), roles, userDetails.isAccountNonLocked(), userId);
             }
         } catch (AccountLockedException aEx) {

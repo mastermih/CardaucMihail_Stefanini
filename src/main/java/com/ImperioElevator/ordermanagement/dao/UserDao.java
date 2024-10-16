@@ -1,8 +1,6 @@
 package com.ImperioElevator.ordermanagement.dao;
 
-import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.User;
-import org.springframework.security.core.userdetails.UserDetails;
 //import liquibase.sql.Sql;
 
 import java.sql.SQLException;
@@ -28,7 +26,7 @@ public interface UserDao extends Dao<User> {
     Long createUserUnauthorized(User user);
     Boolean registrationThatUserCredentialsAlreadyExists(String name, String email);
    List<User> getManagementUsers() throws SQLException;
-    Paginable<User> fiendAllPaginableUsers();
+    List<User> findAllUsers();
     //ToDo add the restof the requests
     //Paginable<User> fiendAllPaginableUsersManagemnt();
 }

@@ -7,7 +7,6 @@ import java.sql.Statement;  // Make sure this import is included
 import java.util.List;
 
 import com.ImperioElevator.ordermanagement.dao.UserDao;
-import com.ImperioElevator.ordermanagement.entity.Paginable;
 import com.ImperioElevator.ordermanagement.entity.TokenGenerator;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.enumobects.Role;
@@ -16,6 +15,7 @@ import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.Name;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -133,9 +133,15 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 //ToDO finish the get user functionality for the admin
     @Override
-    public Paginable<User> fiendAllPaginableUsers() {
-        String sql = "";
-        return null;
+    public List<User> findAllUsers() {
+        String sql = "SELECT * FROM user";
+        try {
+            logger.debug("Get all users for admin role user " + sql);
+            return jdbcTemplate.query(sql, new Object[]{}, (result, i) -> mapResultSetToEntity(result));
+        }catch (DataAccessException e){
+            logger.error("Failed to get all users fom db " + e);
+            throw e;
+        }
     }
 
     @Override

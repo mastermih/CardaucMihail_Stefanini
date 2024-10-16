@@ -1,0 +1,55 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- ChangeSet for creating the user_roles table -->
+    <changeSet id="11" author="Mihai">
+        <createTable tableName="user_notifications">
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="notification_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_read" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_disabled" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="user_notifications"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_user_notifications_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE" />
+
+        <!-- Add foreign key constraint between user_notifications and notifications -->
+        <addForeignKeyConstraint baseTableName="user_notifications"
+                                 baseColumnNames="notification_id"
+                                 constraintName="fk_user_notifications_notifications"
+                                 referencedTableName="notifications"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE" />
+    </changeSet>
+
+
+    <!-- Data loading for MySQL -->
+    <changeSet id="11.1" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="mysql"/>
+        </preConditions>
+        <loadData tableName="user_roles" file="db/data/mysql/notifications-data.csv"/>
+    </changeSet>
+
+    <!-- Data loading for HSQLDB -->
+    <changeSet id="11.2" author="Mihai">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="hsqldb"/>
+        </preConditions>
+        <loadData tableName="user_roles" file="db/data/hsqldb/notifications-data.csv"/>
+    </changeSet>
+</databaseChangeLog>

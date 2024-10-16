@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 
 import java.sql.SQLException;
+import java.util.List;
+
 //ToDo add comments for all methods in the controller Swagger form
 @RestController
 public class UserController {
@@ -113,7 +115,10 @@ public class UserController {
         }
         return userSevice.verifyUser(user);
     }
-
+    @GetMapping("/ViewUsers/allUsers")
+    public List<User> ViewUsers()throws SQLException{
+        return userSevice.findAllUsers();
+    }
 //    @GetMapping("/GetManagementUsers")
 //    public List<Uuser>
 }

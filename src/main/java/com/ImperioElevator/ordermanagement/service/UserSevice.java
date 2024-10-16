@@ -18,6 +18,5 @@ public interface UserSevice {
     String verifyUser(LoginRequest user) throws SQLException;
     User fiendUserByToken(String token) throws  SQLException; // This is for userProfile selection
     Long createUserUnauthorized(User user, String verifyPassword) throws SQLException;
-   // List<User> getManagementUsers() throws SQLException;
-//Boolean registrationThatUserCredentialsAlreadyExists (String name, String email) throws SQLException;
+    List<User>findAllUsers()throws SQLException;
 }
