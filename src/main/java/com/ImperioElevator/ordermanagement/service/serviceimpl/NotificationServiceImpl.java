@@ -7,6 +7,7 @@ import com.ImperioElevator.ordermanagement.dao.daoimpl.UserNotificationDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.Notification;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.entity.UserNotification;
+import com.ImperioElevator.ordermanagement.exception.NotificationException;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,26 +32,49 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public Long insert(Notification entity) throws SQLException {
-        return notificationDao.insert(entity);
+        //try {
+            return notificationDao.insert(entity);
+        //}catch (Exception e){
+         //   throw new NotificationException("The notification service failed :( ");
+       // }
     }
 
     @Override
-    public List<Notification> getNotifications(Long userId) throws SQLException {
-        return notificationDao.getNotifications(userId);
+    public List<Notification> getNotifications(Long userId) {
+        List<Notification> notifications = new ArrayList<>();
+        try {
+            notifications = notificationDao.getNotifications(userId);
+        } catch (Exception e) {
+            return notifications;
+        }
+        return notifications;
     }
 
     @Override
     public Long insertUserNotification(UserNotification userNotification) throws SQLException {
-        return userNotificationDao.insertUserNotification(userNotification);
-    }
+    //  try {
+          userNotification.setDisabled(false);
+          return userNotificationDao.insertUserNotification(userNotification);
+    //  }catch (Exception e){
+    //      throw new NotificationException("The notification service failed :( ");
+   //   }
+      }
 
     @Override
     public Long notificationIsRead(Long userId) throws SQLException {
-        return userNotificationDao.notificationIsRead(userId);
+      //  try {
+            return userNotificationDao.notificationIsRead(userId);
+     //   }catch (Exception e){
+      //      throw new NotificationException("The notification service failed :( ");
+       // }
     }
 
     @Override
     public Long notificationIsDisabled(Long notificationId, Long userId) throws SQLException {
-        return userNotificationDao.notificationIsDisabled(notificationId,userId);
-    }
+    //    try {
+            return userNotificationDao.notificationIsDisabled(notificationId, userId);
+       // }catch (Exception e){
+       //     throw new NotificationException("The notification service failed :( ");
+     //   }
+        }
 }

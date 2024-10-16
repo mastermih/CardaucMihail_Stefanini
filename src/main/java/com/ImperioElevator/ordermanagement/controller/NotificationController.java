@@ -23,19 +23,9 @@ public class NotificationController {
         this.notificationService = notificationService;
     }
 
-    //ToDo do not forget to take this out
-    @PostMapping("ws/notifications")//Maybe this is not a good approach
-    public ResponseEntity<EntityCreationResponse> insert (@RequestParam Notification entity) throws SQLException {
-        Long notificationId = notificationService.insert(entity);
-        EntityCreationResponse entityCreationResponse = new EntityCreationResponse(
-                notificationId,
-                "Notification with id " + notificationId + " was created successfully"
-        );
-        return new ResponseEntity<>(entityCreationResponse, HttpStatus.CREATED);
-    }
 
-    @GetMapping("ws/notifications")//Combine the response list with a message
-    public List<Notification> getNotifications(@RequestParam Long userId) throws SQLException {
+    @GetMapping("ws/notifications")
+    public List<Notification> getNotifications(@RequestParam Long userId) {
         return notificationService.getNotifications(userId);
     }
 

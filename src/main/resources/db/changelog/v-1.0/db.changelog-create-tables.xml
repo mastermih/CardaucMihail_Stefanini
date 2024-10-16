@@ -13,5 +13,7 @@
   <include file="7-changeset-orderOperators-table.xml" relativeToChangelogFile="true"/>
   <include file="8-changeset-roles-table.xml" relativeToChangelogFile="true"/>
   <include file="9-changeset-user_roles-table.xml" relativeToChangelogFile="true"/>
+  <include file="10-changeset-notifications-table.xml" relativeToChangelogFile="true"/>
+  <include file="11-changeset-user_notifications-table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

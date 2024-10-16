@@ -6,7 +6,7 @@
     <!-- ChangeSet for creating the user_roles table -->
     <changeSet id="10" author="Mihai">
         <createTable tableName="notifications">
-            <column name="id" type="BIGINT">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" />
             </column>
             <column name="message" type="VARCHAR(255)">

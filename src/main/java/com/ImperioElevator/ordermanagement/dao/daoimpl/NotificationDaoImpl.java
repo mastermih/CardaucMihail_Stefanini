@@ -58,7 +58,7 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
     }
 
     @Override
-    public List<Notification> getNotifications(Long userId) throws SQLException {
+    public List<Notification> getNotifications(Long userId) {
         String sql = "SELECT n.id, n.message, n.created_date FROM notifications n "+
                 "JOIN user_notifications un ON n.id = un.notification_id "+
                 "WHERE un.user_id = ? AND un.is_disabled = 0";
