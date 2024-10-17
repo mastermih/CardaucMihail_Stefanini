@@ -12,6 +12,8 @@ services:
       SPRING_DATASOURCE_PASSWORD: sql
     depends_on:
       - mysql
+    volumes:
+      - logs_data:/app
     networks:
       - app-network
 
@@ -34,14 +36,24 @@ services:
             dockerfile: Dockerfile
           container_name: react-frontend
           ports:
-          - "3000:80"
+          - "3000:3000"
           networks:
             - app-network
           depends_on:
             - app
+
+  log-inspector:
+           image: alpine
+           container_name: log-inspector
+           command: tail -f /app/log-file.log
+           volumes:
+              -  logs_data:/app
+           networks:
+             - app-network
 
 networks:
   app-network:
 
 volumes:
   db_data:
+  logs_data:

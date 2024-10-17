@@ -7,7 +7,6 @@
     <changeSet id="11" author="Mihai">
         <createTable tableName="user_notifications">
             <column name="user_id" type="BIGINT">
-                <constraints primaryKey="true" />
             </column>
             <column name="notification_id" type="BIGINT">
                 <constraints nullable="false"/>
