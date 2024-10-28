@@ -19,6 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -100,7 +101,8 @@ public class SecurityConfig {
             "/catalog/**",
             "/product/**",
             "/sendMail/confirm/user/*",
-            "/ws/**"
-            //"/ws/notifications"
+            "/ws/**",
+            "/actuator/**",
+            "/actuator/prometheus"
     };
 }

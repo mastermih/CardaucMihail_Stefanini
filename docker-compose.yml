@@ -10,11 +10,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/test
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: sql
+    restart: unless-stopped
+
     depends_on:
       - mysql
     volumes:
       - logs_data:/app
-      - ./public/userProfileImages:/app/public/userProfileImages
+      - files_data:/app/public/userProfilei
     logging:
       driver: "json-file"
       options:
@@ -22,6 +24,7 @@ services:
         max-file: "3"
     networks:
       - app-network
+      - monitoring
 
   mysql:
     image: mysql:8.0
@@ -33,6 +36,37 @@ services:
       - "3307:3306"
     networks:
       - app-network
+
+  grafana:
+    image: grafana/grafana:10.1.0
+    container_name: grafana
+    depends_on:
+      - prometheus
+    volumes:
+      - ./grafana:/var/lib/grafana
+    ports:
+      - "3001:3000"
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+       - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+    - "9090:9090"
+    networks:
+     - monitoring
+     - app-network
+
+
 
   frontend:
           build:
@@ -48,17 +82,84 @@ services:
 
 
   fluentd:
-    image: fluent/fluentd:v1.14-1
+    build:
+      context: .
+      dockerfile: Dockerfile-fluentd
     container_name: fluentd
     ports:
       - "24224:24224"
       - "24224:24224/udp"
+      - "24231:24231"
     volumes:
-      - logs_data:/app/logs:ro
-      - D:/fluentd/fluentd.conf:/fluentd/etc/fluent.conf
+      - logs_data:/app/logs
+      - ./fluentd.conf:/fluentd/etc/fluent.conf
+    networks:
+      - monitoring
+    depends_on:
+      - elasticsearch
+
+  loki:
+    image: grafana/loki:2.7.1
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./loki-config.yaml:/etc/loki/local-config.yaml
+    networks:
+      - monitoring
+
+  elasticsearch:
+      image: docker.elastic.co/elasticsearch/elasticsearch:8.2.0
+      environment:
+        - discovery.type=single-node
+        - xpack.security.enabled=false
+        - xpack.security.http.ssl.enabled=false
+      networks:
+        - elastic-net
+      ports:
+        - "9200:9200"
+
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.2.0
+    ports:
+     - "5601:5601"
+    depends_on:
+     - elasticsearch
+    environment:
+     - ELASTICSEARCH_HOSTS=http://order-management-elasticsearch-1:9200
+    networks:
+     - elastic-net
+
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.2.0
+    container_name: logstash
+    environment:
+      - xpack.monitoring.elasticsearch.username=elastic
+      - xpack.monitoring.elasticsearch.password=your_password
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./logstash-config.yml:/usr/share/logstash/config/logstash.yml
+      - logs_data:/app/logs
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    depends_on:
+      - elasticsearch
+    networks:
+      - monitoring
+      - elastic-net
+
+
 
 networks:
   app-network:
+  monitoring:
+  elastic-net:
+      driver: bridge
+
 
 volumes:
   logs_data:
+  files_data:
