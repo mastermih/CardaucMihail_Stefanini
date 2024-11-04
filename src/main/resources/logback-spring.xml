@@ -23,6 +23,10 @@
     <logger name="org.springframework.web" level="DEBUG" additivity="false">
         <appender-ref ref="FILE" />
     </logger>
+    <logger name="com.ImperioElevator.ordermanagement.controller.ImageController" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+
 
 
     <root level="INFO">

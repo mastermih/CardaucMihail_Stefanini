@@ -1,18 +1,17 @@
 package com.ImperioElevator.ordermanagement.controller;
 
 
+import com.ImperioElevator.ordermanagement.security.JwtService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
-import org.apache.juli.logging.Log;
+import com.ImperioElevator.ordermanagement.service.serviceimpl.CdnService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
-
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -23,35 +22,49 @@ public class ImageController {
 
     private static final String UPLOAD_DIRECTORY = "public/userProfileImages";
     private  final UserSevice userService;
-    public ImageController(UserSevice userSevice){
+    private final CdnService cdnService;
+    private final JwtService jwtService;
+
+    public ImageController(UserSevice userSevice, CdnService cdnService, JwtService jwtService){
         this.userService = userSevice;
+        this.cdnService = cdnService;
+        this.jwtService = jwtService;
     }
+
     private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
+
     @PostMapping("/uploadImage")
-    public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile image, @RequestParam("userId") Long userId) {
+    public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile image,
+                                              @RequestParam("userId") Long userId,
+                                              @RequestHeader("Authorization") String authorizationHeader) {
+        System.out.println("WAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  " + authorizationHeader);
+        logger.debug("waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: " + authorizationHeader);
+        System.out.println("WAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  " + authorizationHeader);
+
         try {
             if (image.isEmpty() || !isImage(image)) {
                 return new ResponseEntity<>("Please upload a valid image file.", HttpStatus.BAD_REQUEST);
             }
-
+            String jwtToken = authorizationHeader.replace("Bearer ", "");
             String curentImagePath = userService.getUserImage(userId);
+            logger.debug("waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: " + authorizationHeader);
+            System.out.println("WAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  " + authorizationHeader);
+
+
+            if (authorizationHeader == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Authorization header is missing");
+            }
 
             if(curentImagePath != null){
                 deleteExistingImage(curentImagePath);
             }
 
-            File uploadDir = new File(UPLOAD_DIRECTORY);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdirs();
+            String cdnUrl = cdnService.sendImageToCDN(image, userId, jwtToken);
+            if (cdnUrl == null) {
+                return new ResponseEntity<>("Failed to upload image to CDN", HttpStatus.INTERNAL_SERVER_ERROR);
             }
 
-            String fileName = userId + "_" + image.getOriginalFilename();
-            Path filePath = Paths.get(UPLOAD_DIRECTORY, fileName);
-
-            Files.write(filePath, image.getBytes());
-            String relativePath = "userProfileImages/" + fileName;
-
-            userService.addImageForUSer(userId, relativePath);
+            userService.addImageForUSer(userId, cdnUrl);
             return new ResponseEntity<>("Image uploaded successfully", HttpStatus.OK);
         } catch (IOException | SQLException e) {
             return new ResponseEntity<>("Error occurred while uploading image.", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -80,5 +93,7 @@ public class ImageController {
                   throw new IOException("Failed to delete the old image");
               }
           }
+
     }
+
 }

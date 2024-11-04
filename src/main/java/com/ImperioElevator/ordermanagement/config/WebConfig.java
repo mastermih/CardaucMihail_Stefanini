@@ -15,19 +15,20 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/userProfileImages/**")
-                .addResourceLocations("file:./public/userProfileImages/");
+                .addResourceLocations("file:./public/userProfileImages/", "file:/app/public/userProfileImages/");
     }
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins(
                         "http://localhost:3000",
-                        "http://localhost:3001",
-                        "http://spring-boot-app"
+                        "http://localhost:9090",
+                        "http://cdn-service"
 
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
+                .allowedHeaders("Authorization", "Content-Type", "*")
                 .allowCredentials(true);
     }
 

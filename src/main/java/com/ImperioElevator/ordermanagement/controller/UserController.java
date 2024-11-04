@@ -69,7 +69,7 @@ public class UserController {
         }
 
         if (result.hasErrors()) {
-         throw new UserRegistrationInvalidCredentialsException("XAXAXAXAXAXA  XD lost it lil bro ");
+         throw new UserRegistrationInvalidCredentialsException("Registration Contains Invalid Credentials ");
         }
         Long userId = userSevice.addNewUser(userRegistrationDTO.getUser());
 
@@ -86,21 +86,11 @@ public class UserController {
         return userSevice.getUserImage(userId);
     }
 
-    @Operation(
-            summary = "Get a specific user by ID",
-            description = "Fetch a user from the system by their unique identifier"
-    )
-
-    // THe original one for geting the Profile of user by id  // May be i can use this one but with no id as path variable
+    // THe original one for getting the Profile of user by id  // Maybe I can use this one but with no id as path variable
     @GetMapping("/UserProfile")
     public User getUserProfile(@RequestParam Long userId) throws SQLException{
         return userSevice.getUserProfile(userId);
     }
-
-//    @GetMapping("/UserProfile/{token}")
-//    public User getUserProfileByToken(@PathVariable String token) throws SQLException {
-//        return userSevice.fiendUserByToken(token);
-//    }
 
 
     @PutMapping("/UserProfile")
@@ -120,5 +110,5 @@ public class UserController {
         return userSevice.findAllUsers();
     }
 //    @GetMapping("/GetManagementUsers")
-//    public List<Uuser>
+//    public List<User>
 }

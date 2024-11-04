@@ -341,7 +341,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     public String getUserImage(Long userId) throws SQLException {
         String sql = "SELECT image FROM user WHERE id = ?";
         try {
-            logger.debug("Geting the user image " + sql);
+            logger.debug("Getting the user image " + sql);
             return jdbcTemplate.queryForObject(sql, new Object[]{userId}, String.class);
         } catch (DataAccessException e) {
             logger.error("Failed to get the user image ", e, sql);

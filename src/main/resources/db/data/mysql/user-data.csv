@@ -1,5 +1,5 @@
 id,username,email,password,image,account_not_locked,phone_number
-1,Model Isimov,model@gmail.com,$2a$09$E14ujmwgAH.zhlgbuKbEj.CczCQ.Bn2U6YN1dgdOSGrimEravUa4W,userProfileImages/1_images.jpg,1,6866786788
-2,Talian Miloman,tolik@gmail.com,$2a$09$E14ujmwgAH.zhlgbuKbEj.CczCQ.Bn2U6YN1dgdOSGrimEravUa4W,userProfileImages/2_product-jpeg-500x500.jpg,1,6866786788
-3,Alisa Murunova,alisa@gmail.com,$2a$09$E14ujmwgAH.zhlgbuKbEj.CczCQ.Bn2U6YN1dgdOSGrimEravUa4W,userProfileImages/3_pexels-albinberlin-919073.jpg,1,6866786788
+1,Model Isimov,model@gmail.com,$2a$09$E14ujmwgAH.zhlgbuKbEj.CczCQ.Bn2U6YN1dgdOSGrimEravUa4W,NULL,1,6866786788
+2,Talian Miloman,tolik@gmail.com,$2a$09$E14ujmwgAH.zhlgbuKbEj.CczCQ.Bn2U6YN1dgdOSGrimEravUa4W,NULL,1,6866786788
+3,Alisa Murunova,alisa@gmail.com,$2a$09$E14ujmwgAH.zhlgbuKbEj.CczCQ.Bn2U6YN1dgdOSGrimEravUa4W,NULL,1,6866786788
 4,Nicu Gonta,nicu@gmail.com,$2a$09$E14ujmwgAH.zhlgbuKbEj.CczCQ.Bn2U6YN1dgdOSGrimEravUa4W,NULL,1,6866786788

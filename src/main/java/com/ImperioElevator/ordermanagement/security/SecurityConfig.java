@@ -102,7 +102,7 @@ public class SecurityConfig {
             "/product/**",
             "/sendMail/confirm/user/*",
             "/ws/**",
-            "/actuator/**",
-            "/actuator/prometheus"
+            "/app/public/userProfileImages/**",
+            "/app/**"
     };
 }
