@@ -37,19 +37,12 @@ public class ImageController {
     public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile image,
                                               @RequestParam("userId") Long userId,
                                               @RequestHeader("Authorization") String authorizationHeader) {
-        System.out.println("WAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  " + authorizationHeader);
-        logger.debug("waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: " + authorizationHeader);
-        System.out.println("WAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  " + authorizationHeader);
-
         try {
             if (image.isEmpty() || !isImage(image)) {
                 return new ResponseEntity<>("Please upload a valid image file.", HttpStatus.BAD_REQUEST);
             }
             String jwtToken = authorizationHeader.replace("Bearer ", "");
             String curentImagePath = userService.getUserImage(userId);
-            logger.debug("waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: " + authorizationHeader);
-            System.out.println("WAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  " + authorizationHeader);
-
 
             if (authorizationHeader == null) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Authorization header is missing");
