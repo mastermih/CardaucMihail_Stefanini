@@ -9,7 +9,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
-//ToDo fix the usr validation for name and Email
 public record User(
         Id userId,
         @Valid

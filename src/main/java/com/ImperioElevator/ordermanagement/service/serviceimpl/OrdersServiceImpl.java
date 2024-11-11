@@ -7,6 +7,10 @@ import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
+import com.ImperioElevator.ordermanagement.factory.EmailServiceFactory;
+import com.ImperioElevator.ordermanagement.factory.ServiceFactory;
+import com.ImperioElevator.ordermanagement.service.EmailService;
+import com.ImperioElevator.ordermanagement.service.NotificationService;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import com.ImperioElevator.ordermanagement.service.OrderProductService;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
@@ -15,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,17 +29,17 @@ public class OrdersServiceImpl implements OrdersService {
     private final OrderProductService orderProductService;
     private final OrderProductDaoImpl orderProductDaoImpl;
     private final ProductDaoImpl productDao;
-    private final EmailServiceImpl emailService;
-    private final NotificationServiceImpl notificationService;
+    private final ServiceFactory serviceFactory;
+    private final EmailServiceFactory emailServiceFactory;
     private final UserDaoImpl userDao;
-    public OrdersServiceImpl(OrderDaoImpl orderDao, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, EmailServiceImpl emailService, NotificationServiceImpl notificationService,UserDaoImpl userDao) {
+    public OrdersServiceImpl(OrderDaoImpl orderDao, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao,UserDaoImpl userDao, ServiceFactory serviceFactory, EmailServiceFactory emailServiceFactory) {
         this.orderDao = orderDao;
         this.orderProductService = orderProductService;
         this.orderProductDaoImpl = orderProductDaoImpl;
         this.productDao = productDao;
-        this.emailService = emailService;
-        this.notificationService = notificationService;
         this.userDao = userDao;
+        this.serviceFactory = serviceFactory;
+        this.emailServiceFactory = emailServiceFactory;
     }
 
     @Override
@@ -46,7 +49,7 @@ public class OrdersServiceImpl implements OrdersService {
         Long orderId = orderDao.insert(order);
         order = new Order(new Id(orderId), order.userId(), order.orderStatus(), order.createdDate(), order.updatedDate(), orderProducts);
 
-
+        NotificationService notificationService = serviceFactory.notificationService();
         //  Create OrderProduct entities linked to  order
         for (OrderProduct orderProduct : orderProducts) {
             // Update OrderProduct with the new orderId
@@ -58,7 +61,7 @@ public class OrdersServiceImpl implements OrdersService {
                     orderProduct.parentProductId(),
                     orderProduct.product()
             );
-            //ToDO Ne notification have to be safe when the order is created add it in the return or insert idk
+            //ToDO the notification have to be safe when the order is created add it in the return or insert
             //One of the problem is that if something fails here you will not know that happened you will get 401 user UNAUTHORIZED so you know
             Notification notification = new Notification();
             notification.setMessage("New order has been created by the customer with ID " + order.userId().userId().id());
@@ -113,6 +116,7 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
         // Retrieve order products associated with the order
+        EmailService emailService = emailServiceFactory.createEmailService("gmail");
         List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
         boolean priceChanged = false;
 
@@ -156,6 +160,7 @@ public class OrdersServiceImpl implements OrdersService {
 
         //  Construct and send confirmation email
         EmailDetails emailDetails = constructEmailDetails(order, token);
+      //  String emailResult = emailService.sendConfirmationMail(emailDetails, order.orderId().id());
         String emailResult = emailService.sendConfirmationMail(emailDetails, order.orderId().id());
         System.out.println("Email Result: " + emailResult);
 
@@ -192,6 +197,8 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public String assigneeOperatorToOrder(Long id, String name) throws SQLException {
         Notification notification = new Notification();
+        NotificationService notificationService = serviceFactory.notificationService();
+
         notification.setMessage("New order has been assigned to the operator with name " + name);
         Long notificationId =  notificationService.insert(notification);
 
@@ -240,7 +247,9 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException {
-                Order order = orderDao.findById(orderId);
+        NotificationService notificationService = serviceFactory.notificationService();
+
+        Order order = orderDao.findById(orderId);
                 Order updatedOrder = new Order(
                 order.orderId(),
                 order.userId(),

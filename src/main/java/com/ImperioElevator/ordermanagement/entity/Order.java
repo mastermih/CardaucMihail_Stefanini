@@ -24,7 +24,4 @@ public record Order(
             orderProducts = List.of();
         }
     }
-//    public void setOrderId(Id orderId) {
-//        this.orderId = orderId;
-//    }
 }
