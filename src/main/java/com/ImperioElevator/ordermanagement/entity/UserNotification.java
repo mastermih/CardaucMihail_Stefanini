@@ -8,42 +8,60 @@ public class UserNotification {
 
     public UserNotification(){}
 
-    public UserNotification(Long userId, Long notificationId, Boolean isRead, Boolean isDisabled) {
-        this.userId = userId;
-        this.notificationId = notificationId;
-        this.isRead = isRead;
-        this.isDisabled = isDisabled;
+    public UserNotification(UserNotificationBuilder builder) {
+        this.userId = builder.userId;
+        this.notificationId = builder.notificationId;
+        this.isRead = builder.isRead;
+        this.isDisabled = builder.isDisabled;
     }
 
     public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public Long getNotificationId() {
         return notificationId;
-    }
-
-    public void setNotificationId(Long notificationId) {
-        this.notificationId = notificationId;
     }
 
     public Boolean getRead() {
         return isRead;
     }
 
-    public void setRead(Boolean read) {
-        isRead = read;
-    }
-
     public Boolean getDisabled() {
         return isDisabled;
     }
 
-    public void setDisabled(Boolean disabled) {
-        isDisabled = disabled;
+
+public static class UserNotificationBuilder {
+    Long userId;
+    Long notificationId;
+    Boolean isRead = Boolean.FALSE;
+    Boolean isDisabled = Boolean.FALSE;
+
+    public UserNotificationBuilder userId(Long userId){
+        this.userId = userId;
+        return this;
     }
+
+    public UserNotificationBuilder notificationId(Long notificationId){
+        this.notificationId = notificationId;
+        return this;
+    }
+
+    public UserNotificationBuilder isRead(Boolean isRead){
+        this.isRead = isRead;
+        return  this;
+    }
+
+    public UserNotificationBuilder isDisabled(Boolean isDisabled){
+        this.isDisabled = isDisabled;
+        return this;
+    }
+
+    public UserNotification build(){
+        return new UserNotification(this);
+    }
+
 }
+}
+

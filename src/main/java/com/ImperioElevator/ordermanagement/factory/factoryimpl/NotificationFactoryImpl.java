@@ -1,15 +1,9 @@
 package com.ImperioElevator.ordermanagement.factory.factoryimpl;
 
-import com.ImperioElevator.ordermanagement.dao.daoimpl.NotificationDaoImpl;
-import com.ImperioElevator.ordermanagement.dao.daoimpl.UserNotificationDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.Notification;
-import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.entity.UserNotification;
 import com.ImperioElevator.ordermanagement.factory.NotifiactionFactory;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 //ToDO I think I can set the is read to false from the dao directly
 @Component
@@ -42,30 +36,27 @@ public class NotificationFactoryImpl implements NotifiactionFactory {
     // UserNotification
     //1
     public UserNotification createUserNotificationOrderWithProducts(Long notificationId, Long userId) {
-        UserNotification userNotification = new UserNotification();
-        userNotification.setNotificationId(notificationId);
-        userNotification.setUserId(userId);
-        userNotification.setRead(Boolean.FALSE);
-        return userNotification;
+        return new UserNotification.UserNotificationBuilder()
+                .notificationId(notificationId)
+                .userId(userId)
+                .build();
     }
 
     //2
     @Override
     public UserNotification createUserNotificationAssigneeOperatorToOrder(Long notificationId, Long userId) {
-        UserNotification userNotification = new UserNotification();
-        userNotification.setNotificationId(notificationId);
-        userNotification.setUserId(userId);
-        userNotification.setRead(Boolean.FALSE);
-        return userNotification;
+        return new UserNotification.UserNotificationBuilder()
+                .notificationId(notificationId)
+                .userId(userId)
+                .build();
     }
 
     //3
     @Override
     public UserNotification createUserNotificationAssineOrderToMe(Long notificationId, Long userId) {
-        UserNotification userNotification = new UserNotification();
-        userNotification.setNotificationId(notificationId);
-        userNotification.setUserId(userId);
-        userNotification.setRead(Boolean.FALSE);
-        return userNotification;
+        return new UserNotification.UserNotificationBuilder()
+                .notificationId(notificationId)
+                .userId(userId)
+                .build();
     }
 }
