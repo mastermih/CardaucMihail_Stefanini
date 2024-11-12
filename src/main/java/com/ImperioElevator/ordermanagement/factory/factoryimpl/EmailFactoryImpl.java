@@ -20,6 +20,8 @@ public class EmailFactoryImpl implements EmailServiceFactory {
         this.orderDao = orderDao;
         this.userDao = userDao;
     }
+    //ToDO Service ce trimite email to ce primieste  mesage in dependenta the  parametrii//
+    //Factory la notification object diferite filduri //la creiarea notificarilor  unde trimit parametrii si creiaza  obiectul de notificare
 
     @Override
     public EmailService createEmailService(String provider) {

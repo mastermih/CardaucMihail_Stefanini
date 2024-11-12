@@ -8,7 +8,8 @@ import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.factory.EmailServiceFactory;
-import com.ImperioElevator.ordermanagement.factory.ServiceFactory;
+import com.ImperioElevator.ordermanagement.factory.NotifiactionFactory;
+import com.ImperioElevator.ordermanagement.factory.factoryimpl.NotificationFactoryImpl;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
@@ -29,16 +30,19 @@ public class OrdersServiceImpl implements OrdersService {
     private final OrderProductService orderProductService;
     private final OrderProductDaoImpl orderProductDaoImpl;
     private final ProductDaoImpl productDao;
-    private final ServiceFactory serviceFactory;
+    private final NotificationFactoryImpl notificationFactoryImpl;
+    private final NotificationService notificationService;
+
     private final EmailServiceFactory emailServiceFactory;
     private final UserDaoImpl userDao;
-    public OrdersServiceImpl(OrderDaoImpl orderDao, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao,UserDaoImpl userDao, ServiceFactory serviceFactory, EmailServiceFactory emailServiceFactory) {
+    public OrdersServiceImpl(OrderDaoImpl orderDao, NotificationService notificationService, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, UserDaoImpl userDao, NotificationFactoryImpl notificationFactoryImpl, EmailServiceFactory emailServiceFactory) {
         this.orderDao = orderDao;
         this.orderProductService = orderProductService;
         this.orderProductDaoImpl = orderProductDaoImpl;
         this.productDao = productDao;
         this.userDao = userDao;
-        this.serviceFactory = serviceFactory;
+        this.notificationService = notificationService;
+        this.notificationFactoryImpl = notificationFactoryImpl;
         this.emailServiceFactory = emailServiceFactory;
     }
 
@@ -48,8 +52,6 @@ public class OrdersServiceImpl implements OrdersService {
         // Create the Order and get the generated orderId
         Long orderId = orderDao.insert(order);
         order = new Order(new Id(orderId), order.userId(), order.orderStatus(), order.createdDate(), order.updatedDate(), orderProducts);
-
-        NotificationService notificationService = serviceFactory.notificationService();
         //  Create OrderProduct entities linked to  order
         for (OrderProduct orderProduct : orderProducts) {
             // Update OrderProduct with the new orderId
@@ -61,19 +63,16 @@ public class OrdersServiceImpl implements OrdersService {
                     orderProduct.parentProductId(),
                     orderProduct.product()
             );
-            //ToDO the notification have to be safe when the order is created add it in the return or insert
+            //ToDO the notification have to be safe when the order is created add it in the return or insert also I think I can set the message somewhere else
             //One of the problem is that if something fails here you will not know that happened you will get 401 user UNAUTHORIZED so you know
-            Notification notification = new Notification();
-            notification.setMessage("New order has been created by the customer with ID " + order.userId().userId().id());
+            String message = "New order has been created by the customer with ID " + order.userId().userId().id();
+            Notification notification = notificationFactoryImpl.createOrderCreationNotification(message);
             // Save the notification to the database
             Long notificationId = notificationService.insert(notification);
             List<User> userManagement = userDao.getManagementUsers();
             for (User user : userManagement) {
-                // Create a UserNotification entry for each management user
-                UserNotification userNotification = new UserNotification();
-                userNotification.setNotificationId(notificationId);
-                userNotification.setUserId(user.userId().id());
-                userNotification.setRead(Boolean.FALSE);
+                // Create a UserNotification entry for each management user // This parameters are extra because we add them in the factory method
+                UserNotification userNotification = notificationFactoryImpl.createUserNotificationOrderWithProducts(notificationId, user.userId().id());
 
                 notificationService.insertUserNotification(userNotification);
             }
@@ -160,7 +159,6 @@ public class OrdersServiceImpl implements OrdersService {
 
         //  Construct and send confirmation email
         EmailDetails emailDetails = constructEmailDetails(order, token);
-      //  String emailResult = emailService.sendConfirmationMail(emailDetails, order.orderId().id());
         String emailResult = emailService.sendConfirmationMail(emailDetails, order.orderId().id());
         System.out.println("Email Result: " + emailResult);
 
@@ -196,19 +194,15 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public String assigneeOperatorToOrder(Long id, String name) throws SQLException {
-        Notification notification = new Notification();
-        NotificationService notificationService = serviceFactory.notificationService();
+        String message = "New order has been assigned to the operator with name " + name;
 
-        notification.setMessage("New order has been assigned to the operator with name " + name);
+        Notification notification = notificationFactoryImpl.createOrderAssignmentNotification(message);
+
         Long notificationId =  notificationService.insert(notification);
 
-        Long userId = userDao.findUserIdByName(name);
+        Long userId = userDao.findUserIdByName(name); // This is a 'castili' so I had no idea how to get the user id
 
-        UserNotification userNotification = new UserNotification();
-
-        userNotification.setUserId(userId);
-        userNotification.setNotificationId(notificationId);
-        userNotification.setRead(Boolean.FALSE);
+        UserNotification userNotification = notificationFactoryImpl.createUserNotificationAssigneeOperatorToOrder(notificationId, userId);
 
         notificationService.insertUserNotification(userNotification);
 
@@ -247,8 +241,6 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException {
-        NotificationService notificationService = serviceFactory.notificationService();
-
         Order order = orderDao.findById(orderId);
                 Order updatedOrder = new Order(
                 order.orderId(),
@@ -260,16 +252,14 @@ public class OrdersServiceImpl implements OrdersService {
         );
                 Long userId = updatedOrder.userId().userId().id();
                 orderDao.updateStatus(updatedOrder);
-                Notification notification = new Notification();
-                notification.setMessage("The status of your order with Id " + orderId + " was updated to " + updatedOrder.orderStatus());
 
+                String message = "The status of your order with Id " + orderId + " was updated to " + updatedOrder.orderStatus();
+
+                Notification notification = notificationFactoryImpl.createOrderStatusUpdateNotification(message);
                 Long notificationId = notificationService.insert(notification);
 
-                UserNotification userNotification = new UserNotification();
+                UserNotification userNotification =  notificationFactoryImpl.createUserNotificationAssineOrderToMe(notificationId, userId);
 
-                userNotification.setNotificationId(notificationId);
-                userNotification.setUserId(userId);
-                userNotification.setRead(Boolean.FALSE);
                 notificationService.insertUserNotification(userNotification);
         return orderDao.assineOrderToMe(orderId, operatorId);
     }

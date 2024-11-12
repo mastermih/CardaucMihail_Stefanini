@@ -32,11 +32,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public Long insert(Notification entity) throws SQLException {
-        //try {
             return notificationDao.insert(entity);
-        //}catch (Exception e){
-         //   throw new NotificationException("The notification service failed :( ");
-       // }
     }
 
     @Override
@@ -52,29 +48,18 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public Long insertUserNotification(UserNotification userNotification) throws SQLException {
-    //  try {
           userNotification.setDisabled(false);
           return userNotificationDao.insertUserNotification(userNotification);
-    //  }catch (Exception e){
-    //      throw new NotificationException("The notification service failed :( ");
-   //   }
       }
 
     @Override
     public Long notificationIsRead(Long userId) throws SQLException {
-      //  try {
             return userNotificationDao.notificationIsRead(userId);
-     //   }catch (Exception e){
-      //      throw new NotificationException("The notification service failed :( ");
-       // }
     }
 
     @Override
     public Long notificationIsDisabled(Long notificationId, Long userId) throws SQLException {
-    //    try {
             return userNotificationDao.notificationIsDisabled(notificationId, userId);
-       // }catch (Exception e){
-       //     throw new NotificationException("The notification service failed :( ");
-     //   }
+
         }
 }

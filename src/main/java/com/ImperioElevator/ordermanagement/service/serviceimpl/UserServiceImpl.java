@@ -9,7 +9,9 @@ import com.ImperioElevator.ordermanagement.exception.AccountLockedException;
 import com.ImperioElevator.ordermanagement.exception.DoublePasswordVerificationException;
 import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
 import com.ImperioElevator.ordermanagement.exception.ThisUserAlreadyExistException;
+import com.ImperioElevator.ordermanagement.factory.factoryimpl.EmailFactoryImpl;
 import com.ImperioElevator.ordermanagement.security.JwtService;
+import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.Authentication;
@@ -27,15 +29,15 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserSevice {
     public final UserDaoImpl userDao;
-    public final EmailServiceImpl emailService;
+    public final EmailFactoryImpl emailServiceFactory;
     private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
     private  final JwtService jwtService;
     private final BCryptPasswordEncoder encoder;
     private final AuthenticationManager authManager;
 
-    public UserServiceImpl(UserDaoImpl userDao, EmailServiceImpl emailService, JwtService jwtService,BCryptPasswordEncoder encoder, AuthenticationManager authManager) {
+    public UserServiceImpl(UserDaoImpl userDao, EmailFactoryImpl emailServiceFactory, JwtService jwtService,BCryptPasswordEncoder encoder, AuthenticationManager authManager) {
         this.userDao = userDao;
-        this.emailService = emailService;
+        this.emailServiceFactory = emailServiceFactory;
         this.jwtService = jwtService;
         this.encoder = encoder;
         this.authManager = authManager;
@@ -79,6 +81,7 @@ public class UserServiceImpl implements UserSevice {
 
         // Generate confirmation token and send the email
         String token = userDao.getTheConfirmationToken(userId);
+        EmailService emailService = emailServiceFactory.createEmailService("gmail");
         EmailDetails emailDetails = constructEmailDetails(user, token);
         emailService.sendConfirmationMail(emailDetails, userId);
         return userId;
@@ -124,6 +127,7 @@ public class UserServiceImpl implements UserSevice {
 
         // Generate confirmation token and send the email
         String token = userDao.getTheConfirmationToken(userId);
+        EmailService emailService = emailServiceFactory.createEmailService("gmail");
         EmailDetails emailDetails = constructEmailDetails(user, token);
         emailService.sendConfirmationMail(emailDetails, userId);
         return userId;

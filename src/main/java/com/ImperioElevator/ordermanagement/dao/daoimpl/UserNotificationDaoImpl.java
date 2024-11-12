@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.List;
+
+
+//ToDO Theoretically we can set the is read boolean to false from here because it always start with false
 @Repository
 public class UserNotificationDaoImpl extends AbstractDao<UserNotification> implements UserNotificationDao {
     private final JdbcTemplate jdbcTemplate;

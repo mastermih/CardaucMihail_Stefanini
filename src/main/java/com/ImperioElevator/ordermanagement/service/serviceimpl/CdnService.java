@@ -13,20 +13,26 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import org.springframework.web.client.RestTemplate;
 
-@Service
 public class CdnService {
     private static final Logger logger = LoggerFactory.getLogger(CdnService.class);
 
+    private final String uploadUrl;
+    private final RestTemplate restTemplate;
+
+    public CdnService(CdnServiceBuilder builder) {
+        this.uploadUrl = builder.uploadUrl;
+        this.restTemplate = builder.restTemplate;
+    }
 
     public String sendImageToCDN(MultipartFile image, Long userId, String jwtToken) {
         try {
-            String uploadUrl = "http://cdn-service:9090/cdn/upload";
             HttpHeaders headers = new HttpHeaders();
             headers.setBearerAuth(jwtToken);
             headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
-            // Convert the image to a ByteArrayResource to avoid InputStream issues
+            // Convert the image to a ByteArrayResource
             ByteArrayResource imageResource = new ByteArrayResource(image.getBytes()) {
                 @Override
                 public String getFilename() {
@@ -34,12 +40,10 @@ public class CdnService {
                 }
             };
 
-
             MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
             body.add("image", imageResource);
 
             HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
-            RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<String> response = restTemplate.postForEntity(uploadUrl, requestEntity, String.class);
 
             if (response.getStatusCode() == HttpStatus.OK) {
