@@ -5,7 +5,6 @@ import com.ImperioElevator.ordermanagement.entity.UserNotification;
 import com.ImperioElevator.ordermanagement.factory.NotifiactionFactory;
 import org.springframework.stereotype.Component;
 
-//ToDO I think I can set the is read to false from the dao directly
 @Component
 public class NotificationFactoryImpl implements NotifiactionFactory {
 

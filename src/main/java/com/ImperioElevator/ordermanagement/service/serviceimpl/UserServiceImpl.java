@@ -29,18 +29,20 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserSevice {
     public final UserDaoImpl userDao;
+    private final EmailServiceImpl emailService;
     public final EmailFactoryImpl emailServiceFactory;
     private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
     private  final JwtService jwtService;
     private final BCryptPasswordEncoder encoder;
     private final AuthenticationManager authManager;
 
-    public UserServiceImpl(UserDaoImpl userDao, EmailFactoryImpl emailServiceFactory, JwtService jwtService,BCryptPasswordEncoder encoder, AuthenticationManager authManager) {
+    public UserServiceImpl(UserDaoImpl userDao, EmailServiceImpl emailService, EmailFactoryImpl emailServiceFactory, JwtService jwtService,BCryptPasswordEncoder encoder, AuthenticationManager authManager) {
         this.userDao = userDao;
         this.emailServiceFactory = emailServiceFactory;
         this.jwtService = jwtService;
         this.encoder = encoder;
         this.authManager = authManager;
+        this.emailService = emailService;
     }
 
 //Encoding the user password useing BCryptPasswordEncoder
@@ -81,8 +83,13 @@ public class UserServiceImpl implements UserSevice {
 
         // Generate confirmation token and send the email
         String token = userDao.getTheConfirmationToken(userId);
-        EmailService emailService = emailServiceFactory.createEmailService("gmail");
-        EmailDetails emailDetails = constructEmailDetails(user, token);
+
+        String confirmationLink = "http://localhost:3000/sendMail/confirm/user/" + token;
+
+        String message = "Dear " + user.name().name() + ",\n\n" + confirmationLink;
+
+
+        EmailDetails emailDetails = emailServiceFactory.createEmailServiceUserCreation(message);
         emailService.sendConfirmationMail(emailDetails, userId);
         return userId;
     }
@@ -127,8 +134,13 @@ public class UserServiceImpl implements UserSevice {
 
         // Generate confirmation token and send the email
         String token = userDao.getTheConfirmationToken(userId);
-        EmailService emailService = emailServiceFactory.createEmailService("gmail");
-        EmailDetails emailDetails = constructEmailDetails(user, token);
+
+        String confirmationLink = "http://localhost:3000/sendMail/confirm/user/" + token;
+
+        String message = "Dear " + user.name().name() + ",\n\n" + confirmationLink;
+
+
+        EmailDetails emailDetails = emailServiceFactory.createEmailServiceUserCreation(message);
         emailService.sendConfirmationMail(emailDetails, userId);
         return userId;
     }
@@ -190,22 +202,6 @@ public class UserServiceImpl implements UserSevice {
             throw new LoginUserNotFoundException(loginRequest.email() + " Invalid login credentials");
         }
         return "";
-    }
-
-    private EmailDetails constructEmailDetails(User user, String token) {
-        // Construct email details based on the order information
-        String recipient = "cardaucmihai@gmail.com";
-        String subject = "Registration Confirmation";
-        String confirmationLink = "http://localhost:3000/sendMail/confirm/user/" + token;
-        String messageBody = "Dear " + user.name().name() + ",\n\n"
-                + "Please confirm your user creation  by clicking the link below:\n"
-                + confirmationLink;
-        EmailDetails details = new EmailDetails();
-        details.setRecipient(recipient);
-        details.setSubject(subject);
-        details.setMsgBody(messageBody);
-        details.setOrderId(user.userId().id());
-        return details;
     }
 
 }

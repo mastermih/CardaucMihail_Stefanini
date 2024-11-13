@@ -46,10 +46,8 @@ public class NotificationServiceImpl implements NotificationService {
         return notifications;
     }
 
-    //ToDo i want to set the  userNotification.setDisabled(false); in the Factroy and then in the builder
     @Override
     public Long insertUserNotification(UserNotification userNotification) throws SQLException {
-          //userNotification.setDisabled(false);
           return userNotificationDao.insertUserNotification(userNotification);
       }
 

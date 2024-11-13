@@ -32,10 +32,11 @@ public class OrdersServiceImpl implements OrdersService {
     private final ProductDaoImpl productDao;
     private final NotificationFactoryImpl notificationFactoryImpl;
     private final NotificationService notificationService;
+    private final EmailServiceImpl emailService;
 
     private final EmailServiceFactory emailServiceFactory;
     private final UserDaoImpl userDao;
-    public OrdersServiceImpl(OrderDaoImpl orderDao, NotificationService notificationService, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, UserDaoImpl userDao, NotificationFactoryImpl notificationFactoryImpl, EmailServiceFactory emailServiceFactory) {
+    public OrdersServiceImpl(OrderDaoImpl orderDao, EmailServiceImpl emailService ,NotificationService notificationService, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, UserDaoImpl userDao, NotificationFactoryImpl notificationFactoryImpl, EmailServiceFactory emailServiceFactory) {
         this.orderDao = orderDao;
         this.orderProductService = orderProductService;
         this.orderProductDaoImpl = orderProductDaoImpl;
@@ -44,6 +45,7 @@ public class OrdersServiceImpl implements OrdersService {
         this.notificationService = notificationService;
         this.notificationFactoryImpl = notificationFactoryImpl;
         this.emailServiceFactory = emailServiceFactory;
+        this.emailService = emailService;
     }
 
     @Override
@@ -115,7 +117,6 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
         // Retrieve order products associated with the order
-        EmailService emailService = emailServiceFactory.createEmailService("gmail");
         List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
         boolean priceChanged = false;
 
@@ -157,29 +158,20 @@ public class OrdersServiceImpl implements OrdersService {
             throw new SQLException("No confirmation token found for order ID: " + order.orderId().id());
         }
 
-        //  Construct and send confirmation email
-        EmailDetails emailDetails = constructEmailDetails(order, token);
-        String emailResult = emailService.sendConfirmationMail(emailDetails, order.orderId().id());
-        System.out.println("Email Result: " + emailResult);
+
+       // String message = "Your order with ID " + order.orderId().id() + " has been updated. Please confirm " + conf;
+        String confirmationLink = "http://localhost:3000/sendMail/confirm/" + token;
+
+        String message = "Your order with ID " + order.orderId().id() + " has been updated. Please confirm " + confirmationLink;
+
+
+        // Create email details and send confirmation email
+        EmailDetails emailDetails = emailServiceFactory.createEmailServiceUpdateOrderStatus(message);
+
+        emailService.sendConfirmationMail(emailDetails, order.orderId().id());
 
         //  Update the order status CONFIRMED
         return orderDao.updateStatus(order);
-    }
-
-    private EmailDetails constructEmailDetails(Order order, String token) {
-        // Construct email details based on the order information
-        String recipient = "cardaucmihai@gmail.com";
-        String subject = "Order Confirmation";
-        String confirmationLink = "http://localhost:3000/sendMail/confirm/" + token;
-        String messageBody = "Your order with ID " + order.orderId().id() + " has been successfully created.\n\n"
-                + "Please confirm your order by clicking the link below:\n"
-                + confirmationLink;
-        EmailDetails details = new EmailDetails();
-        details.setRecipient(recipient);
-        details.setSubject(subject);
-        details.setMsgBody(messageBody);
-        details.setOrderId(order.orderId().id()); // Ensure orderId is included
-        return details;
     }
 
     @Override
