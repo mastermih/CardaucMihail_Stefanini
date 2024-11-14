@@ -1,7 +1,6 @@
 package com.ImperioElevator.ordermanagement.controller;
 
-import com.ImperioElevator.ordermanagement.dao.daoimpl.NotificationDaoImpl;
-import com.ImperioElevator.ordermanagement.entity.EntityCreationResponse;
+import com.ImperioElevator.ordermanagement.dto.EntityCreationResponse;
 import com.ImperioElevator.ordermanagement.entity.Notification;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
 import org.springframework.http.HttpStatus;

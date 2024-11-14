@@ -2,20 +2,14 @@ package com.ImperioElevator.ordermanagement.controller;
 
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dto.UserRegistrationDTO;
-import com.ImperioElevator.ordermanagement.entity.EntityCreationResponse;
 import com.ImperioElevator.ordermanagement.entity.LoginRequest;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.entity.UserCreationResponse;
-import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.exception.DoublePasswordVerificationException;
-import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
 import com.ImperioElevator.ordermanagement.exception.UserRegistrationInvalidCredentialsException;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
 import com.ImperioElevator.ordermanagement.service.serviceimpl.EmailServiceImpl;
-import com.ImperioElevator.ordermanagement.service.serviceimpl.UserServiceImpl;
-import com.ImperioElevator.ordermanagement.valueobjects.Id;
-import io.swagger.v3.oas.annotations.Operation;
 //import liquibase.sql.Sql;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -28,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.MediaType;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -74,11 +74,11 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
 
     @Override
     public Notification mapResultSetToEntity(ResultSet resultSet) throws SQLException {
-        Notification notification = new Notification();
-        notification.setNotificationId(resultSet.getLong("id"));
-        notification.setMessage(resultSet.getString("message"));
-        notification.setCreatedDate(resultSet.getTimestamp("created_date").toLocalDateTime());
-        return notification;
+        return new Notification.NotificationBuilder()
+                .notificationId(resultSet.getLong("id"))
+                .message(resultSet.getString("message"))
+                .createDate(resultSet.getTimestamp("created_date").toLocalDateTime())
+                .build();
     }
 
 }

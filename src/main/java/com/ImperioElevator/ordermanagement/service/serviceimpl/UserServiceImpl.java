@@ -191,7 +191,6 @@ public class UserServiceImpl implements UserSevice {
                 List<String> roles = userDetails.getAuthorities().stream()
                         .map(grantedAuthority -> grantedAuthority.getAuthority())
                         .toList();
-
                 userId = userDao.findUserIdByEmail(userDetails.getUsername());
                 return jwtService.generateToken(userDetails.getUsername(), roles, userDetails.isAccountNonLocked(), userId);
             }

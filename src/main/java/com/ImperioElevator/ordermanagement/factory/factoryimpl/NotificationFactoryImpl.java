@@ -11,25 +11,24 @@ public class NotificationFactoryImpl implements NotifiactionFactory {
 
     @Override
     public Notification createOrderCreationNotification(String message) {
-        Notification notification = new Notification();
-        notification.setMessage(message);
-        return notification;
+       return new Notification.NotificationBuilder()
+               .message(message)
+               .build();
     }
 
     @Override
     public Notification createOrderAssignmentNotification(String message) {
-        Notification notification = new Notification();
-        notification.setMessage(message);
-        return notification;
+        return new Notification.NotificationBuilder()
+                .message(message)
+                .build();
     }
 
 
     @Override
     public Notification createOrderStatusUpdateNotification(String message) {
-        Notification notification = new Notification();
-        notification.setMessage(message);
-
-        return notification;
+        return new Notification.NotificationBuilder()
+                .message(message)
+                .build();
     }
 
     // UserNotification
