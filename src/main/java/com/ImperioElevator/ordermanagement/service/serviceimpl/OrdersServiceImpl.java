@@ -1,5 +1,6 @@
 package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
+import com.ImperioElevator.ordermanagement.command.NotificationCommander;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
@@ -33,10 +34,12 @@ public class OrdersServiceImpl implements OrdersService {
     private final NotificationFactoryImpl notificationFactoryImpl;
     private final NotificationService notificationService;
     private final EmailServiceImpl emailService;
+    private final NotificationCommander notificationCommander;
 
     private final EmailServiceFactory emailServiceFactory;
     private final UserDaoImpl userDao;
-    public OrdersServiceImpl(OrderDaoImpl orderDao, EmailServiceImpl emailService ,NotificationService notificationService, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, UserDaoImpl userDao, NotificationFactoryImpl notificationFactoryImpl, EmailServiceFactory emailServiceFactory) {
+
+    public OrdersServiceImpl(NotificationCommander notificationCommander,OrderDaoImpl orderDao, EmailServiceImpl emailService ,NotificationService notificationService, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, UserDaoImpl userDao, NotificationFactoryImpl notificationFactoryImpl, EmailServiceFactory emailServiceFactory) {
         this.orderDao = orderDao;
         this.orderProductService = orderProductService;
         this.orderProductDaoImpl = orderProductDaoImpl;
@@ -46,6 +49,7 @@ public class OrdersServiceImpl implements OrdersService {
         this.notificationFactoryImpl = notificationFactoryImpl;
         this.emailServiceFactory = emailServiceFactory;
         this.emailService = emailService;
+        this.notificationCommander = notificationCommander;
     }
 
     @Override
@@ -70,15 +74,16 @@ public class OrdersServiceImpl implements OrdersService {
             String message = "New order has been created by the customer with ID " + order.userId().userId().id();
             Notification notification = notificationFactoryImpl.createOrderCreationNotification(message);
             // Save the notification to the database
-            Long notificationId = notificationService.insert(notification);
+            Long notificationId = notificationCommander.executeInAppNotification(notification);
             List<User> userManagement = userDao.getManagementUsers();
             for (User user : userManagement) {
-                // Create a UserNotification entry for each management user // This parameters are extra because we add them in the factory method
+                //UserNotification does not have a instance in the commander because of it's logics is easier to keep it here
                 UserNotification userNotification = notificationFactoryImpl.createUserNotificationOrderWithProducts(notificationId, user.userId().id());
 
                 notificationService.insertUserNotification(userNotification);
             }
-            orderProductDaoImpl.insert(updatedOrderProduct);
+
+                orderProductDaoImpl.insert(updatedOrderProduct);
         }
 
         return orderId;
@@ -159,7 +164,6 @@ public class OrdersServiceImpl implements OrdersService {
         }
 
 
-       // String message = "Your order with ID " + order.orderId().id() + " has been updated. Please confirm " + conf;
         String confirmationLink = "http://localhost:3000/sendMail/confirm/" + token;
 
         String message = "Your order with ID " + order.orderId().id() + " has been updated. Please confirm " + confirmationLink;
@@ -190,7 +194,8 @@ public class OrdersServiceImpl implements OrdersService {
 
         Notification notification = notificationFactoryImpl.createOrderAssignmentNotification(message);
 
-        Long notificationId =  notificationService.insert(notification);
+        Long notificationId = notificationCommander.executeInAppNotification(notification);
+
 
         Long userId = userDao.findUserIdByName(name); // This is a 'castili' so I had no idea how to get the user id
 
@@ -248,9 +253,11 @@ public class OrdersServiceImpl implements OrdersService {
                 String message = "The status of your order with Id " + orderId + " was updated to " + updatedOrder.orderStatus();
 
                 Notification notification = notificationFactoryImpl.createOrderStatusUpdateNotification(message);
-                Long notificationId = notificationService.insert(notification);
 
-                UserNotification userNotification =  notificationFactoryImpl.createUserNotificationAssineOrderToMe(notificationId, userId);
+        Long notificationId = notificationCommander.executeInAppNotification(notification);
+
+
+        UserNotification userNotification =  notificationFactoryImpl.createUserNotificationAssineOrderToMe(notificationId, userId);
 
                 notificationService.insertUserNotification(userNotification);
         return orderDao.assineOrderToMe(orderId, operatorId);

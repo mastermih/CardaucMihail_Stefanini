@@ -1,5 +1,6 @@
 package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
+import com.ImperioElevator.ordermanagement.command.NotificationCommander;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.EmailDetails;
@@ -35,14 +36,17 @@ public class UserServiceImpl implements UserSevice {
     private  final JwtService jwtService;
     private final BCryptPasswordEncoder encoder;
     private final AuthenticationManager authManager;
+    private final NotificationCommander notificationCommander;
 
-    public UserServiceImpl(UserDaoImpl userDao, EmailServiceImpl emailService, EmailFactoryImpl emailServiceFactory, JwtService jwtService,BCryptPasswordEncoder encoder, AuthenticationManager authManager) {
+
+    public UserServiceImpl(NotificationCommander notificationCommander,UserDaoImpl userDao, EmailServiceImpl emailService, EmailFactoryImpl emailServiceFactory, JwtService jwtService,BCryptPasswordEncoder encoder, AuthenticationManager authManager) {
         this.userDao = userDao;
         this.emailServiceFactory = emailServiceFactory;
         this.jwtService = jwtService;
         this.encoder = encoder;
         this.authManager = authManager;
         this.emailService = emailService;
+        this.notificationCommander = notificationCommander;
     }
 
 //Encoding the user password useing BCryptPasswordEncoder
@@ -90,7 +94,8 @@ public class UserServiceImpl implements UserSevice {
 
 
         EmailDetails emailDetails = emailServiceFactory.createEmailServiceUserCreation(message);
-        emailService.sendConfirmationMail(emailDetails, userId);
+       // emailService.sendConfirmationMail(emailDetails, userId);
+        notificationCommander.executeEmailNotification(emailDetails, String.valueOf(userId));
         return userId;
     }
     //ToDo ths method have wrong name and have to be fixed
@@ -141,7 +146,8 @@ public class UserServiceImpl implements UserSevice {
 
 
         EmailDetails emailDetails = emailServiceFactory.createEmailServiceUserCreation(message);
-        emailService.sendConfirmationMail(emailDetails, userId);
+        notificationCommander.executeEmailNotification(emailDetails, String.valueOf(userId));
+
         return userId;
     }
 
