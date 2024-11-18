@@ -11,6 +11,7 @@ import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.factory.EmailServiceFactory;
 import com.ImperioElevator.ordermanagement.factory.NotifiactionFactory;
 import com.ImperioElevator.ordermanagement.factory.factoryimpl.NotificationFactoryImpl;
+import com.ImperioElevator.ordermanagement.functional.PriceChecker;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
@@ -23,6 +24,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 @Service
 public class OrdersServiceImpl implements OrdersService {
@@ -55,38 +60,51 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     @Transactional //  atomicity
     public Long createOrderWithProducts(Order order, List<OrderProduct> orderProducts) throws SQLException {
-        // Create the Order and get the generated orderId
-        Long orderId = orderDao.insert(order);
-        order = new Order(new Id(orderId), order.userId(), order.orderStatus(), order.createdDate(), order.updatedDate(), orderProducts);
-        //  Create OrderProduct entities linked to  order
-        for (OrderProduct orderProduct : orderProducts) {
-            // Update OrderProduct with the new orderId
-            OrderProduct updatedOrderProduct = new OrderProduct(
-                    new Id(orderId),
-                    order,
-                    orderProduct.quantity(),
-                    orderProduct.priceOrder(),
-                    orderProduct.parentProductId(),
-                    orderProduct.product()
-            );
+        try {
+            // Create the Order and get the generated orderId
+            Long orderId = orderDao.insert(order);
+            final Order finalOrder = new Order(new Id(orderId), order.userId(), order.orderStatus(), order.createdDate(), order.updatedDate(), orderProducts);
+            BiConsumer<OrderProduct, Order> orderProductConsumer = (orderProduct, orderInstance) -> {
+                try {
+                    OrderProduct updatedOrderProduct = new OrderProduct(
+                            new Id(orderId),
+                            orderInstance,
+                            orderProduct.quantity(),
+                            orderProduct.priceOrder(),
+                            orderProduct.parentProductId(),
+                            orderProduct.product()
+                    );
+                    // Insert the updated OrderProduct into the database
+                    orderProductDaoImpl.insert(updatedOrderProduct);
+                } catch (SQLException e) {
+                    throw new RuntimeException("Failed to process OrderProduct: " + e.getMessage(), e);
+                }
+            };
+
             //ToDO the notification have to be safe when the order is created add it in the return or insert also I think I can set the message somewhere else
             //One of the problem is that if something fails here you will not know that happened you will get 401 user UNAUTHORIZED so you know
-            String message = "New order has been created by the customer with ID " + order.userId().userId().id();
+            String message = "New order has been created by the customer with ID " + finalOrder.userId().userId().id();
             Notification notification = notificationFactoryImpl.createOrderCreationNotification(message);
             // Save the notification to the database
             Long notificationId = notificationCommander.executeInAppNotification(notification);
-            List<User> userManagement = userDao.getManagementUsers();
-            for (User user : userManagement) {
-                //UserNotification does not have a instance in the commander because of it's logics is easier to keep it here
-                UserNotification userNotification = notificationFactoryImpl.createUserNotificationOrderWithProducts(notificationId, user.userId().id());
 
-                notificationService.insertUserNotification(userNotification);
-            }
+            Consumer<User> userManagement = user -> {
+                try {
+                    UserNotification userNotification = notificationFactoryImpl.createUserNotificationOrderWithProducts(notificationId, user.userId().id());
+                    notificationService.insertUserNotification(userNotification);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            };
 
-                orderProductDaoImpl.insert(updatedOrderProduct);
+            List<User> usersManagement = userDao.getManagementUsers();
+            usersManagement.forEach(userManagement);
+
+            orderProducts.forEach(orderProduct -> orderProductConsumer.accept(orderProduct, finalOrder));
+            return orderId;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-        return orderId;
     }
 
     @Override
@@ -123,35 +141,37 @@ public class OrdersServiceImpl implements OrdersService {
     public Long updateOrderStatus(Order order) throws SQLException {
         // Retrieve order products associated with the order
         List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
-        boolean priceChanged = false;
+        AtomicBoolean priceChanged = new AtomicBoolean(false);
 
         // Check if the prices of any of the products have changed
-        for (OrderProduct orderProduct : orderProducts) {
-            Product product = productDao.findById(orderProduct.product().productId().id());
-            if (product == null) {
-                throw new SQLException("Product not found for ID: " + orderProduct.product().productId().id());
+        Predicate<OrderProduct> hasPriceChanged = orderProduct -> {
+            try {
+                Product product = productDao.findById(orderProduct.product().productId().id());
+                if (product == null) {
+                    throw new SQLException("Product not found for ID: " + orderProduct.product().productId().id());
+                }
+                boolean changed =  !product.price().equals(orderProduct.priceOrder());
+                   if(changed) {
+                       priceChanged.set(true);
+                       orderProduct = new OrderProduct(
+                               orderProduct.orderId(),
+                               order,
+                               orderProduct.quantity(),
+                               product.price(),
+                               orderProduct.parentProductId(),
+                               orderProduct.product()
+                       );
+                       orderProductDaoImpl.update(orderProduct);
+                   }
+                  return changed;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
+        };
 
-            if (!product.price().equals(orderProduct.priceOrder())) {
-                priceChanged = true;
+        orderProducts.forEach(hasPriceChanged::test);
 
-                // Update the product price in the orderProduct
-                orderProduct = new OrderProduct(
-                        orderProduct.orderId(),
-                        order,
-                        orderProduct.quantity(),
-                        product.price(),
-                        orderProduct.parentProductId(),
-                        orderProduct.product()
-                );
-
-                // Update the orderProduct with new price
-                orderProductDaoImpl.update(orderProduct);
-            }
-        }
-
-        //  Send confirmation email with token if necessary
-        if (!priceChanged) {
+        if (!priceChanged.get()) {
             System.out.println("No price changes detected for order " + order.orderId().id());
         } else {
             System.out.println("Prices were updated for the order " + order.orderId().id());
