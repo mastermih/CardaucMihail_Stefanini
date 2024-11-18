@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Service
 public class UserServiceImpl implements UserSevice {
@@ -65,9 +66,15 @@ public class UserServiceImpl implements UserSevice {
         );
         String name = user.name().name();
         String email = user.email().email();
-        boolean exists = userDao.registrationThatUserCredentialsAlreadyExists(name, email);
-        if(exists){
-            throw new ThisUserAlreadyExistException("User with this email or user name already exists " + email + " " + name);
+        Predicate<User> existingUser = existinUser -> {
+            try{
+                return userDao.registrationThatUserCredentialsAlreadyExists(existinUser.name().name(), existinUser.email().email());
+            }catch (RuntimeException e){
+                throw new RuntimeException("Error checking user existence: " + e.getMessage(), e);
+            }
+        };
+        if(existingUser.test(user)){
+            throw new ThisUserAlreadyExistException("User with this email or user name already exists: " + email + " " + name);
         }
         Long userId = userDao.insert(encriptedUser);
         // Fetch all role ids for users roles
@@ -96,60 +103,61 @@ public class UserServiceImpl implements UserSevice {
         EmailDetails emailDetails = emailServiceFactory.createEmailServiceUserCreation(message);
        // emailService.sendConfirmationMail(emailDetails, userId);
         notificationCommander.executeEmailNotification(emailDetails, String.valueOf(userId));
+        System.out.println("This is the first one method");
         return userId;
     }
     //ToDo ths method have wrong name and have to be fixed
-    @Override
-    public Long createUserUnauthorized(User user, String verifyPassword) throws SQLException {
-        String encryptedPassword = encoder.encode(user.password());
-        User encriptedUser = new User(
-                user.userId(),
-                user.name(),
-                user.email(),
-                encryptedPassword,  // Set the encrypted password
-                user.phoneNumber(),
-                user.image(),
-                user.roles(),
-                user.accountNonLocked()
-        );
-        String name = user.name().name();
-        String email = user.email().email();
-
-         boolean exists = userDao.registrationThatUserCredentialsAlreadyExists(name, email);
-        System.out.println("Checking if user exists: " + exists);
-        logger.info("User exists check for {} with email {}: {}", name, email, exists);
-        if(exists){
-            throw new ThisUserAlreadyExistException("User with this email or user name already exists " + email + " " + name);
-        }
-        Long userId = userDao.createUserUnauthorized(encriptedUser);
-        // Fetch all role ids for users roles
-        List<Long> roleIds = user.roles().stream()
-                .map(role -> {
-                    try {
-                        return userDao.getRoleIdFromRoleName("USER");
-                    } catch (SQLException e) {
-                        logger.error("Error fetching role ID for role: {}", role.name(), e);
-                        throw new RuntimeException(e);
-                    }
-                })
-                .toList();  // Collect role ids
-
-        // Assign multiple roles to the user
-        userDao.giveToUserRoles(userId, roleIds);
-
-        // Generate confirmation token and send the email
-        String token = userDao.getTheConfirmationToken(userId);
-
-        String confirmationLink = "http://localhost:3000/sendMail/confirm/user/" + token;
-
-        String message = "Dear " + user.name().name() + ",\n\n" + confirmationLink;
-
-
-        EmailDetails emailDetails = emailServiceFactory.createEmailServiceUserCreation(message);
-        notificationCommander.executeEmailNotification(emailDetails, String.valueOf(userId));
-
-        return userId;
-    }
+//    @Override
+//    public Long createUserUnauthorized(User user, String verifyPassword) throws SQLException {
+//        String encryptedPassword = encoder.encode(user.password());
+//        User encriptedUser = new User(
+//                user.userId(),
+//                user.name(),
+//                user.email(),
+//                encryptedPassword,  // Set the encrypted password
+//                user.phoneNumber(),
+//                user.image(),
+//                user.roles(),
+//                user.accountNonLocked()
+//        );
+//        String name = user.name().name();
+//        String email = user.email().email();
+//
+//         boolean exists = userDao.registrationThatUserCredentialsAlreadyExists(name, email);
+//        System.out.println("Checking if user exists: " + exists);
+//        logger.info("User exists check for {} with email {}: {}", name, email, exists);
+//        if(exists){
+//            throw new ThisUserAlreadyExistException("User with this email or user name already exists " + email + " " + name);
+//        }
+//        Long userId = userDao.createUserUnauthorized(encriptedUser);
+//        // Fetch all role ids for users roles
+//        List<Long> roleIds = user.roles().stream()
+//                .map(role -> {
+//                    try {
+//                        return userDao.getRoleIdFromRoleName("USER");
+//                    } catch (SQLException e) {
+//                        logger.error("Error fetching role ID for role: {}", role.name(), e);
+//                        throw new RuntimeException(e);
+//                    }
+//                })
+//                .toList();  // Collect role ids
+//
+//        // Assign multiple roles to the user
+//        userDao.giveToUserRoles(userId, roleIds);
+//
+//        // Generate confirmation token and send the email
+//        String token = userDao.getTheConfirmationToken(userId);
+//
+//        String confirmationLink = "http://localhost:3000/sendMail/confirm/user/" + token;
+//
+//        String message = "Dear " + user.name().name() + ",\n\n" + confirmationLink;
+//
+//
+//        EmailDetails emailDetails = emailServiceFactory.createEmailServiceUserCreation(message);
+//        notificationCommander.executeEmailNotification(emailDetails, String.valueOf(userId));
+//        System.out.println("This is the second one method");
+//        return userId;
+//    }
 
     @Override
     public List<User> findAllUsers() throws SQLException {

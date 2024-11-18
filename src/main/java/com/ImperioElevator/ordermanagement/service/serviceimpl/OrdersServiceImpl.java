@@ -11,7 +11,6 @@ import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.factory.EmailServiceFactory;
 import com.ImperioElevator.ordermanagement.factory.NotifiactionFactory;
 import com.ImperioElevator.ordermanagement.factory.factoryimpl.NotificationFactoryImpl;
-import com.ImperioElevator.ordermanagement.functional.PriceChecker;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
@@ -150,7 +149,7 @@ public class OrdersServiceImpl implements OrdersService {
                 if (product == null) {
                     throw new SQLException("Product not found for ID: " + orderProduct.product().productId().id());
                 }
-                boolean changed =  !product.price().equals(orderProduct.priceOrder());
+                boolean changed = !product.price().equals(orderProduct.priceOrder());
                    if(changed) {
                        priceChanged.set(true);
                        orderProduct = new OrderProduct(
