@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public interface EmailService {
 
-    String sendSimpleMail(EmailDetails details);
+  //  String sendSimpleMail(EmailDetails details);
     String sendConfirmationMail(EmailDetails details, Long token);
     String updateOrderEmailConfirmStatus(String token) throws SQLException;
 

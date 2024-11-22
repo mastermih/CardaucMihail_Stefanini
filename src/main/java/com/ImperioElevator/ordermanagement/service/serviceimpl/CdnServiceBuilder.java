@@ -1,9 +1,12 @@
 package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
 public class CdnServiceBuilder {
-     String uploadUrl = "http://cdn-service:9090/cdn/upload";
+    @Value("${cdn.server.url}")
+    String uploadUrl;
+
      RestTemplate restTemplate;
 
     public CdnServiceBuilder withUploadUrl(String uploadUrl) {

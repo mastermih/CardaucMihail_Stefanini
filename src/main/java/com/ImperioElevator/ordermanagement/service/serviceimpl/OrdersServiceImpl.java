@@ -19,7 +19,6 @@ import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -90,7 +89,7 @@ public class OrdersServiceImpl implements OrdersService {
             Consumer<User> userManagement = user -> {
                 try {
                     UserNotification userNotification = notificationFactoryImpl.createUserNotificationOrderWithProducts(notificationId, user.userId().id());
-                    notificationService.insertUserNotification(userNotification);
+                    notificationService.insertUserNotification(userNotification);// This is notifications for management users
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -139,6 +138,7 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
         // Retrieve order products associated with the order
+        //ToDo fail the confirm order if price was changed
         List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
         AtomicBoolean priceChanged = new AtomicBoolean(false);
 
@@ -181,7 +181,6 @@ public class OrdersServiceImpl implements OrdersService {
         if (token == null || token.isEmpty()) {
             throw new SQLException("No confirmation token found for order ID: " + order.orderId().id());
         }
-
 
         String confirmationLink = "http://localhost:3000/sendMail/confirm/" + token;
 

@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.function.Function;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -30,38 +31,39 @@ public class EmailServiceImpl implements EmailService {
         this.userDao = userDao;
     }
 //TODO delete this method because this was a test
-    public String sendSimpleMail(EmailDetails details) {
-        try {
 
-            // Creating a simple mail message
-            SimpleMailMessage mailMessage
-                    = new SimpleMailMessage();
-
-            // Setting up necessary details
-            mailMessage.setFrom(sender);
-            mailMessage.setTo(details.getRecipient());
-            mailMessage.setText(details.getMsgBody());
-
-            mailMessage.setSubject(details.getSubject());
-
-            // Sending the mail
-            javaMailSender.send(mailMessage);
-            return "Mail Sent Successfully...";
-        }
-
-        // Catch block to handle the exceptions
-        catch (Exception e) {
-            return "Error while Sending Mail " + e;
-        }
-    }
+//    public String sendSimpleMail(EmailDetails details) {
+//        try {
+//
+//            // Creating a simple mail message
+//            SimpleMailMessage mailMessage
+//                    = new SimpleMailMessage();
+//
+//            // Setting up necessary details
+//            mailMessage.setFrom(sender);
+//            mailMessage.setTo(details.getRecipient());
+//            mailMessage.setText(details.getMsgBody());
+//
+//            mailMessage.setSubject(details.getSubject());
+//
+//            // Sending the mail
+//            javaMailSender.send(mailMessage);
+//            return "Mail Sent Successfully...";
+//        }
+//
+//        // Catch block to handle the exceptions
+//        catch (Exception e) {
+//            return "Error while Sending Mail " + e;
+//        }
+//    }
 
     @Override
     public String sendConfirmationMail(EmailDetails details, Long token) {
         try {
-            SimpleMailMessage mailMessage = new SimpleMailMessage();
-
+            Function<EmailDetails, String> getEmailBody  = EmailDetails::getMsgBody;
       //    Constructing the email body
-          String emailBody = details.getMsgBody() ;
+          String emailBody = getEmailBody.apply(details);
+          SimpleMailMessage mailMessage = new SimpleMailMessage();
             // Setting up necessary details
             mailMessage.setFrom(sender);
             mailMessage.setTo(details.getRecipient());

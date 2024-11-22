@@ -16,6 +16,8 @@ public interface OrderProductDao {
 
     Long deleteByIdAndName(Long orderId, String productName) throws SQLException;
 
+    List<OrderProduct> findByUserId(Long userId) throws SQLException;
+
     OrderProduct findByIdAndName(Long orderId, String productName) throws SQLException;
 
     List<OrderProduct> findLastCreatedOrderProducts(Number limit) throws SQLException;

@@ -107,6 +107,10 @@ public class UserServiceImpl implements UserSevice {
         return userId;
     }
     //ToDo ths method have wrong name and have to be fixed
+    //Admin and user create the user using one method, the above one ^
+    //                                                               |
+    //                                                               |
+    //                                                               |
 //    @Override
 //    public Long createUserUnauthorized(User user, String verifyPassword) throws SQLException {
 //        String encryptedPassword = encoder.encode(user.password());
@@ -195,10 +199,11 @@ public class UserServiceImpl implements UserSevice {
     public String verifyUser(LoginRequest loginRequest) throws SQLException {
         Long userId = null;
         try {
+            Predicate<Authentication> isAuthenticated  = Authentication::isAuthenticated;
             Authentication authentication = authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
             );
-            if (authentication.isAuthenticated()) {
+            if (isAuthenticated.test(authentication)) {
                 // Extract UserDetails from the Authentication object
                 UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 

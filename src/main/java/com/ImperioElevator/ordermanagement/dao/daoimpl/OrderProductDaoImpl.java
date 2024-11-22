@@ -20,7 +20,7 @@ import java.util.List;
 
 @Component
 public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements OrderProductDao {
-
+    //fiend orderporuduct where by user id  then order id where the order_status will be IN_PROGRESS
     private final JdbcTemplate jdbcTemplate;
     private static final Logger logger = LoggerFactory.getLogger(OrderProductDaoImpl.class);
 
@@ -104,6 +104,26 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
 
         } catch (DataAccessException ex) {
             logger.error("Failed to delete OrderProduct with orderId: {} and productName: {}", orderId, productName, ex);
+            throw ex;
+        }
+    }
+
+    //This is the method for the sql fille
+    @Override
+    public List<OrderProduct> findByUserId(Long userId) throws SQLException {
+        String sql = "SELECT op.* FROM order_product " +
+                    "JOIN orders o ON o.id = user_id " +
+                     "WHERE o.order_status = 'IN_PROGRESS' " +
+                     "ORDER BY o.id ASC LIMIT 1";
+        try{
+            logger.debug("Executing the SQL to fiend the order product By userId ", sql );
+            List<OrderProduct> orderProducts = new ArrayList<>();
+            jdbcTemplate.query(sql, new Object[]{userId}, result ->{
+                orderProducts.add(mapResultSetToEntity(result));
+            });
+            return orderProducts;
+        }catch (DataAccessException ex){
+            logger.error("Failed to fiend OrderProduct with userId: {}", userId, ex);
             throw ex;
         }
     }
