@@ -22,7 +22,11 @@ public interface OrdersService {
     List<OrdersFoundLastCreatedDTO> findLastCreatedOrders(Number limit)throws SQLException;
     List<Order> findLastCreatedOrdersForUserRole(Number limit, Long id)throws SQLException;
     Long createOrder(Order order) throws SQLException;
+
     Long updateOrderStatus(Order order) throws SQLException;
+    Long updateOrderStatusReadyForPayment(Order order) throws SQLException;
+
+
     Order fiendOrderById(Long id) throws SQLException;
     Order getOrderWithExtraProducts(Long orderId) throws SQLException;
     String assigneeOperatorToOrder(Long id, String name) throws SQLException;
@@ -31,4 +35,5 @@ public interface OrdersService {
     Long deleteOperatorAssignedToOrderByOperatorId (Long orderId, Long operatorId) throws SQLException;
     Long deleteAllOperatorsAssignedToOrderByOperatorId(Long orderId)throws SQLException;
     Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException;
+    Long addOrderInvoice(Long orderId, String orderInvoice) throws SQLException;
 }

@@ -4,54 +4,59 @@ import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
+import com.ImperioElevator.ordermanagement.service.ExcelService;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExcelServiceImpl {
-    private final OrderDaoImpl orderDao;
+public class ExcelServiceImpl implements ExcelService {
     private final OrderProductDaoImpl orderProductDaoImpl;
-    private final UserDaoImpl userDao;
 
-    private List<Object[]> orderData = new ArrayList<>();
-    private Workbook workbook;
-
-    public ExcelServiceImpl(OrderDaoImpl orderDao, OrderProductDaoImpl orderProductDaoImpl, UserDaoImpl userDao){
-        this.orderDao = orderDao;
+    public ExcelServiceImpl(OrderProductDaoImpl orderProductDaoImpl) {
         this.orderProductDaoImpl = orderProductDaoImpl;
-        this.userDao = userDao;
     }
 
-    public void ExcelOrderInvoice() {
-        // Initialize the workbook and create the sheet
-        workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("excel-sheet");
+    @Override
+    public void createOrderInvoice(String fileName, Long orderId) {
+        try(FileInputStream templateStream = new FileInputStream("src/main/resources/templates/OrderInvoiceTemplate.xlsx");
+         Workbook workbook = new XSSFWorkbook(templateStream)){
 
-        Row rowHeader = sheet.createRow(0);
+        Sheet sheet = workbook.getSheetAt(0);
 
-        rowHeader.createCell(0).setCellValue("Name of the product");
-        rowHeader.createCell(1).setCellValue("price");
-        rowHeader.createCell(2).setCellValue("discount in %");
-        rowHeader.createCell(3).setCellValue("VAT");
-        rowHeader.createCell(4).setCellValue("price with vat");
+        List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(orderId);
+        int rowIndex = 1; //because 0 are the headers
 
+        for (OrderProduct orderProduct : orderProducts) {
+            Row row = sheet.createRow(rowIndex++);
+
+            String nameOfTheProduct = orderProduct.product().productName().productName();
+
+            Long price = (long) orderProduct.priceOrder().price();
+            Long discountProcentanges = 10L;
+            Long priceWithDiscount = price - (price * discountProcentanges / 100);
+            Long VAT = 20L;
+            Long priceWithVAT = priceWithDiscount + (priceWithDiscount * VAT / 200);
+
+            row.createCell(0).setCellValue(nameOfTheProduct);
+            row.createCell(1).setCellValue(price);
+            row.createCell(2).setCellValue(discountProcentanges);
+            row.createCell(3).setCellValue(priceWithDiscount);
+            row.createCell(4).setCellValue(VAT);
+            row.createCell(5).setCellValue(priceWithVAT);
+        }
+        try(FileOutputStream outputStream = new FileOutputStream(fileName)) {
+            workbook.write(outputStream);
+            System.out.println("Excel file created " + fileName);
+        }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-    List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId();
-    int rowIndex = 1; //because 0 are the headers
-
-    for(OrderProduct orderProduct : orderProducts) {
-
-    }
-    public Workbook getWorkbook() {
-        return workbook;
-    }
-
-    public List<Object[]> getEmployeeData() {
-        return orderData;
-    }
 }

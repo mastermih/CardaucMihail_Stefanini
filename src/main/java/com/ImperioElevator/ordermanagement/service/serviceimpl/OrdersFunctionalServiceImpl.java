@@ -11,13 +11,16 @@ import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
+import org.apache.logging.log4j.util.TriConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.proxy.Factory;
 import org.springframework.stereotype.Service;
 
+import java.rmi.MarshalledObject;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.*;
 
@@ -96,22 +99,6 @@ public class OrdersFunctionalServiceImpl {
             }
         };
 
-       public final Function<Order, Long> orderPipeline  = order -> {
-           Long orderId = createOrder.apply(order);
-           List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(orderId);
-           orderProducts.forEach(orderProduct -> processOrderProduct.accept(orderProduct, orderId));
-           Notification notification = createNotification.apply(order);
-           notifyUsers.accept(notification);
-           return orderId;
-       };
-
-    public Long createOrderWithProducts(Order order) {
-        // pipeline
-        return orderPipeline.apply(order);
-    }
-
-//
-
      Predicate<OrderProduct> hasPriceChanged = orderProduct -> {
         try {
             // Fetch the product from the database
@@ -153,14 +140,7 @@ public class OrdersFunctionalServiceImpl {
         }
     };
 
-    public final Function<Order, Long> updateOrderStatusPipeline = order ->
-            validateOrderProducts.andThen(emailConfirmation).apply(order);
-
-   //Controller
-    public Long updateOrderStatus(Order order){
-      return updateOrderStatusPipeline.apply(order);
-    }
-
+    //toDo I think we can create man interface for the notification
      BiConsumer<Long, String> operatorAssigneeNotification = (orderId, operatorName) -> {
         try {
             Notification notification = notificationFactoryImpl.createOrderAssignmentNotification("New order has been assigned to the operator with name " + operatorName);
@@ -202,25 +182,11 @@ public class OrdersFunctionalServiceImpl {
         }
     };
 
-    BiFunction<Order,String, String> assignOperatorToOrderPipeline  = (order,operator) -> {
-        try {
-            operatorAssigneeNotification.accept(order.orderId().id(), operator);
-            return operatorAssignmentToOrder.apply(order.orderId().id(), operator);
-        }catch (Exception e){
-            throw new RuntimeException("Pipeline failed for assigning operator: " + e.getMessage(), e);
-        }
-
-    };
-    //Check once again
-    public String assigneeOperatorToOrder(Order order, String operatorName) {
-        return assignOperatorToOrderPipeline.apply(order, operatorName);
-    }
-
     // One last method left assineOrderToMe
 
     //I think it have to be operator id do not forget to check
 
-    BiFunction<Long,Long, Long> updateOrderStatusAssigneOrderToMe = (orderId, operatorId) -> {
+    public final BiFunction<Long,Long, AssignOrderResult> updateOrderStatusAssigneOrderToMe = (orderId, operatorId) -> {
         try {
             Order order = orderDao.findById(orderId);
             if (order == null) {
@@ -236,7 +202,10 @@ public class OrdersFunctionalServiceImpl {
             );
             Long userId = updatedOrder.userId().userId().id();
             orderDao.updateStatus(updatedOrder);
-            return orderDao.assineOrderToMe(orderId, operatorId);
+            Long result  = orderDao.assineOrderToMe(orderId, operatorId);
+            //DO not forget to fix that
+            Map<Long,Long> entry1  = (Map<Long, Long>) Map.entry(userId, result);
+            return new AssignOrderResult(userId, result);
         }catch (SQLException e){
         throw new RuntimeException("Failed to updateOrderStatusAssigneOrderToMe " + e);
         }
@@ -246,11 +215,12 @@ public class OrdersFunctionalServiceImpl {
             "The status of your order with Id " + orderToNotify.orderId().id() + " was updated to " + orderToNotify.orderStatus()
     );
 
-    public final BiConsumer<Notification, Long> notifyUsersWithAssineOrderToMe = (orderId, operatorId) -> {
+
+    //ToDO to I think I messed the update fo the order in my functions after I add the operator
+    public final TriConsumer<Long, Long, Long> notifyUsersWithAssineOrderToMe = (orderId, operatorId, userId) -> {
         try {
             Long notificationId = notificationCommander.executeInAppNotification(orderId);
             UserNotification userNotification =  notificationFactoryImpl.createUserNotificationAssineOrderToMe(notificationId, userId);
-
             notificationService.insertUserNotification(userNotification);
             return orderDao.assineOrderToMe(orderId, operatorId);
         } catch (SQLException e) {
@@ -258,18 +228,5 @@ public class OrdersFunctionalServiceImpl {
         }
     };
 
-    BiFunction<Order, Long, Long>assineOrderToMePipeLine = (order,operatorId) -> {
-        try {
-            updateOrderStatusAssigneOrderToMe.apply(order.orderId().id(), operatorId);
-            return createNotificationAssineOrderToMe.apply(order).getNotificationId();
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    };
-
-    public Long assineOrderToMe(Order order, Long operatorId) throws SQLException {
-        assineOrderToMePipeLine.apply(order,operatorId);
-        return order.orderId().id();
-    };
     }
 

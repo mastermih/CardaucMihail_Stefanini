@@ -356,6 +356,19 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
+    public Long addOrderInvoice(Long orderId, String invoiceName) throws SQLException {
+        String sql = "INSERT INTO orders (order_invoice) VALUES (?) WHERE order_status = 'READY_FOR_PAYMENT' ";
+        try{
+            logger.debug("Set the invoice for the order " + sql);
+            jdbcTemplate.update(sql, orderId, invoiceName);
+            return orderId;
+        }catch (DataAccessException e){
+            logger.error("Failed to add the invoice to the order " + e);
+            throw e;
+        }
+    }
+
+    @Override
     public Long deleteById(Long id) throws SQLException {
         String sql = "DELETE FROM orders WHERE id = ?";
         logger.debug("Deleted Order by id: {}", sql);

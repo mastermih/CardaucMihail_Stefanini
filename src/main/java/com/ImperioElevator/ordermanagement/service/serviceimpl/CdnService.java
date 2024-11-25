@@ -12,7 +12,11 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.management.GarbageCollectorMXBean;
+import java.nio.file.Files;
+
 import org.springframework.web.client.RestTemplate;
 
 public class CdnService {
@@ -57,4 +61,37 @@ public class CdnService {
             return null;
         }
     }
+
+    public String sendExcelInvoiceToCDN(String filePath, Long userId, String jwtToken) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setBearerAuth(jwtToken);
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+            File excelFile = new File(filePath);
+            ByteArrayResource excelResource = new ByteArrayResource(Files.readAllBytes(excelFile.toPath())) {
+                @Override
+                public String getFilename() {
+                    return userId + "-" + excelFile.getName();
+                }
+            };
+
+            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+            body.add("file", excelResource);
+
+            HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+            ResponseEntity<String> response = restTemplate.postForEntity(uploadUrl, requestEntity, String.class);
+
+            if (response.getStatusCode() == HttpStatus.OK) {
+                return response.getBody();
+            } else {
+                logger.error("Failed to upload Excel file to CDN. Status: " + response.getStatusCode());
+                return null;
+            }
+        } catch (IOException e) {
+            logger.error("Error during Excel file upload to CDN: ", e);
+            return null;
+        }
+    }
+
 }

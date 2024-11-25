@@ -7,6 +7,7 @@ public enum Status {
     INITIALISED, // First state of the order / After it was added to cart by user   -1
     CANCELED, // This state comes after the New state / After user removed the item from the cart   - ?
     IN_PROGRESS, // This state comes after the Confirmed / - 4
+    READY_FOR_PAYMENT,
     CONFIRMED, // This state comes after the New state / After user confirmed the order throw Email  -3
     DECLINED_BY_CLIENT,
     EXPIRED

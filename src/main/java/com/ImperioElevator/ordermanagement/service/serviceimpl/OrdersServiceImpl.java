@@ -30,6 +30,7 @@ import java.util.function.Predicate;
 @Service
 public class OrdersServiceImpl implements OrdersService {
 
+    private final OrderPipelineServiceImpl orderPipelineServiceImpl;
     private final OrderDaoImpl orderDao;
     private final OrderProductService orderProductService;
     private final OrderProductDaoImpl orderProductDaoImpl;
@@ -42,7 +43,7 @@ public class OrdersServiceImpl implements OrdersService {
     private final EmailServiceFactory emailServiceFactory;
     private final UserDaoImpl userDao;
 
-    public OrdersServiceImpl(NotificationCommander notificationCommander,OrderDaoImpl orderDao, EmailServiceImpl emailService ,NotificationService notificationService, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, UserDaoImpl userDao, NotificationFactoryImpl notificationFactoryImpl, EmailServiceFactory emailServiceFactory) {
+    public OrdersServiceImpl(OrderPipelineServiceImpl orderPipelineServiceImpl, NotificationCommander notificationCommander, OrderDaoImpl orderDao, EmailServiceImpl emailService, NotificationService notificationService, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, UserDaoImpl userDao, NotificationFactoryImpl notificationFactoryImpl, EmailServiceFactory emailServiceFactory) {
         this.orderDao = orderDao;
         this.orderProductService = orderProductService;
         this.orderProductDaoImpl = orderProductDaoImpl;
@@ -53,6 +54,7 @@ public class OrdersServiceImpl implements OrdersService {
         this.emailServiceFactory = emailServiceFactory;
         this.emailService = emailService;
         this.notificationCommander = notificationCommander;
+        this.orderPipelineServiceImpl = orderPipelineServiceImpl;
     }
 
     @Override
@@ -104,15 +106,18 @@ public class OrdersServiceImpl implements OrdersService {
             throw new RuntimeException(e);
         }
     }
+    //      public Long createOrderWithProducts(Order order, List<OrderProduct> orderProducts) throws SQLException {
+//                    return orderPipelineServiceImpl.orderPipeline.apply(order);
+//    }
 
     @Override
-    public  Paginable<OrdersFoundLastCreatedDTO> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {
+    public Paginable<OrdersFoundLastCreatedDTO> findPaginableOrderByCreatedDate(LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {
         return orderDao.findPaginableOrderByCreatedDate(startDate, endDate, numberOfOrders, page);
     }
 
     @Override
     public Paginable<Order> findPaginableUserOrderByCreatedDate(Long id, LocalDateTime startDate, LocalDateTime endDate, Long numberOfOrders, Long page) throws SQLException {
-        return orderDao.findPaginableUserOrderByCreatedDate(id,startDate,endDate,numberOfOrders,page);
+        return orderDao.findPaginableUserOrderByCreatedDate(id, startDate, endDate, numberOfOrders, page);
     }
 
     @Override
@@ -138,7 +143,6 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
         // Retrieve order products associated with the order
-        //ToDo fail the confirm order if price was changed
         List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
         AtomicBoolean priceChanged = new AtomicBoolean(false);
 
@@ -150,19 +154,19 @@ public class OrdersServiceImpl implements OrdersService {
                     throw new SQLException("Product not found for ID: " + orderProduct.product().productId().id());
                 }
                 boolean changed = !product.price().equals(orderProduct.priceOrder());
-                   if(changed) {
-                       priceChanged.set(true);
-                       orderProduct = new OrderProduct(
-                               orderProduct.orderId(),
-                               order,
-                               orderProduct.quantity(),
-                               product.price(),
-                               orderProduct.parentProductId(),
-                               orderProduct.product()
-                       );
-                       orderProductDaoImpl.update(orderProduct);
-                   }
-                  return changed;
+                if (changed) {
+                    priceChanged.set(true);
+                    orderProduct = new OrderProduct(
+                            orderProduct.orderId(),
+                            order,
+                            orderProduct.quantity(),
+                            product.price(),
+                            orderProduct.parentProductId(),
+                            orderProduct.product()
+                    );
+                    orderProductDaoImpl.update(orderProduct);
+                }
+                return changed;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -195,6 +199,21 @@ public class OrdersServiceImpl implements OrdersService {
         //  Update the order status CONFIRMED
         return orderDao.updateStatus(order);
     }
+    //    public Long updateOrderStatus(Order order) throws SQLException {
+//        return orderPipelineServiceImpl.updateOrderStatusPipeline(order);
+//    }
+
+
+    @Override
+    public Long updateOrderStatusReadyForPayment(Order order) throws SQLException {
+         // change the order status to Ready for payment
+        // add the email / the excel fille
+        // add the notification for the management
+        // set the name of the invoice fille in the order table
+
+        return orderDao.updateStatus(order);
+    }
+
 
     @Override
     public Order fiendOrderById(Long id) throws SQLException {
@@ -233,6 +252,10 @@ public class OrdersServiceImpl implements OrdersService {
         orderDao.updateStatus(updatedOrder);
         return orderDao.assigneeOperatorToOrder(id, name);
     }
+//    public String assigneeOperatorToOrder(Long id, String name) throws SQLException {
+//    return OrderPipelineServiceImpl.assignOperatorToOrderPipeline(Long id, String name);
+//    }
+
 
     @Override
     public List<String> finedOperatorByName(String name) throws SQLException {
@@ -240,7 +263,7 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public  List<String>  getOperatorAssignedToOrder(Long orderId) throws SQLException {
+    public List<String> getOperatorAssignedToOrder(Long orderId) throws SQLException {
         return orderDao.getOperatorAssignedToOrder(orderId);
     }
 
@@ -257,7 +280,7 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException {
         Order order = orderDao.findById(orderId);
-                Order updatedOrder = new Order(
+        Order updatedOrder = new Order(
                 order.orderId(),
                 order.userId(),
                 Status.IN_PROGRESS,
@@ -265,20 +288,28 @@ public class OrdersServiceImpl implements OrdersService {
                 new UpdateDateTime(LocalDateTime.now()),
                 order.orderProducts()
         );
-                Long userId = updatedOrder.userId().userId().id();
-                orderDao.updateStatus(updatedOrder);
+        Long userId = updatedOrder.userId().userId().id();
+        orderDao.updateStatus(updatedOrder);
 
-                String message = "The status of your order with Id " + orderId + " was updated to " + updatedOrder.orderStatus();
+        String message = "The status of your order with Id " + orderId + " was updated to " + updatedOrder.orderStatus();
 
-                Notification notification = notificationFactoryImpl.createOrderStatusUpdateNotification(message);
+        Notification notification = notificationFactoryImpl.createOrderStatusUpdateNotification(message);
 
         Long notificationId = notificationCommander.executeInAppNotification(notification);
 
 
-        UserNotification userNotification =  notificationFactoryImpl.createUserNotificationAssineOrderToMe(notificationId, userId);
+        UserNotification userNotification = notificationFactoryImpl.createUserNotificationAssineOrderToMe(notificationId, userId);
 
-                notificationService.insertUserNotification(userNotification);
+        notificationService.insertUserNotification(userNotification);
         return orderDao.assineOrderToMe(orderId, operatorId);
     }
 
+    @Override
+    public Long addOrderInvoice(Long orderId, String orderInvoice) throws SQLException {
+        return orderDao.addOrderInvoice(orderId, orderInvoice);
+    }
+
+//    public Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException {
+//        return OrderPipelineServiceImpl.assineOrderToMePipeLine(orderId, operatorId);
+//    }
 }
