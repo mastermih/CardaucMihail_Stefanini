@@ -153,6 +153,8 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
 
+
+
     @Override
     public void disableTokenAfterConfirmation(String token) throws SQLException {
         String sql = "UPDATE token SET is_enabled = false WHERE token_value = ?";
@@ -405,26 +407,28 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         );
     }
 
-
-
     private OrderProduct mapOrderProduct(ResultSet resultSet, int i) throws SQLException {
         Long parentProductId = resultSet.getLong("parent_product_id");
 
         return new OrderProduct(
-                new Id(resultSet.getLong("product_id")),
-                null,
-                new Quantity(resultSet.getInt("quantity")),
-                new Price(resultSet.getDouble("price_product")),
+                        new Id(resultSet.getLong("product_id")),
+                        null,
+                        new Quantity(resultSet.getInt("quantity")),
+                        new Price(resultSet.getDouble("price_product")),
+                new DiscountPercentages(resultSet.getLong("discount_percentages")),
+                new Price(resultSet.getLong("price_discount")),
+                new Vat(resultSet.getLong("VAT")),
+                new Price(resultSet.getLong("price_with_VAT")),
                 new Id(parentProductId),
                 new Product(
-                        new Id(resultSet.getLong("product_id")),
-                        null, null, null, null, null, null,
-                        new ProductName(resultSet.getString("product_name")),
-                        null, null,
-                        new Image(resultSet.getString("image_path")),
-                        CategoryType.valueOf(resultSet.getString("category_type"))
-                )
-        );
+                                new Id(resultSet.getLong("product_id")),
+                                null, null, null, null, null, null,
+                                new ProductName(resultSet.getString("product_name")),
+                                null, null,
+                                new Image(resultSet.getString("image_path")),
+                                CategoryType.valueOf(resultSet.getString("category_type"))
+                        )
+                );
     }
 
     private OrdersFoundLastCreatedDTO mapResultSetToEntityDTO(ResultSet resultSet) throws SQLException {

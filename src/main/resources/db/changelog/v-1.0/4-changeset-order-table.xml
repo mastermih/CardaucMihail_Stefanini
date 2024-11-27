@@ -22,7 +22,6 @@
                 <constraints nullable="false"/>
             </column>
             <column name="order_invoice" type="VARCHAR(50)">
-                <constraints nullable="true"/>
             </column>
         </createTable>
     </changeSet>

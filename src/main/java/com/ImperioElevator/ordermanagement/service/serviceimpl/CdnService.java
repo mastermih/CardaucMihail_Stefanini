@@ -18,7 +18,7 @@ import java.lang.management.GarbageCollectorMXBean;
 import java.nio.file.Files;
 
 import org.springframework.web.client.RestTemplate;
-
+@Service
 public class CdnService {
     private static final Logger logger = LoggerFactory.getLogger(CdnService.class);
 
@@ -62,22 +62,14 @@ public class CdnService {
         }
     }
 
-    public String sendExcelInvoiceToCDN(String filePath, Long userId, String jwtToken) {
+    public String sendExcelInvoiceToCDN(ByteArrayResource  invoiceFile, String jwtToken) {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setBearerAuth(jwtToken);
             headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
-            File excelFile = new File(filePath);
-            ByteArrayResource excelResource = new ByteArrayResource(Files.readAllBytes(excelFile.toPath())) {
-                @Override
-                public String getFilename() {
-                    return userId + "-" + excelFile.getName();
-                }
-            };
-
             MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-            body.add("file", excelResource);
+            body.add("file", invoiceFile);
 
             HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
             ResponseEntity<String> response = restTemplate.postForEntity(uploadUrl, requestEntity, String.class);
@@ -88,7 +80,7 @@ public class CdnService {
                 logger.error("Failed to upload Excel file to CDN. Status: " + response.getStatusCode());
                 return null;
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error("Error during Excel file upload to CDN: ", e);
             return null;
         }

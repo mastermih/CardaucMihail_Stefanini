@@ -7,10 +7,11 @@ import com.ImperioElevator.ordermanagement.entity.UserNotification;
 import com.ImperioElevator.ordermanagement.factory.factoryimpl.NotificationFactoryImpl;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
+import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
 import java.util.List;
-
+@Component
 public class NotificationCommander {
 
     private final NotificationService notificationService;

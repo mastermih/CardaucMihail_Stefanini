@@ -17,9 +17,14 @@ import com.ImperioElevator.ordermanagement.service.OrdersService;
 import com.ImperioElevator.ordermanagement.service.OrderProductService;
 import com.ImperioElevator.ordermanagement.valueobjects.Id;
 import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -27,10 +32,12 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+import static com.ImperioElevator.ordermanagement.enumobects.Status.READY_FOR_PAYMENT;
+
 @Service
 public class OrdersServiceImpl implements OrdersService {
 
-    private final OrderPipelineServiceImpl orderPipelineServiceImpl;
+   // private final OrderPipelineServiceImpl orderPipelineServiceImpl;
     private final OrderDaoImpl orderDao;
     private final OrderProductService orderProductService;
     private final OrderProductDaoImpl orderProductDaoImpl;
@@ -39,11 +46,14 @@ public class OrdersServiceImpl implements OrdersService {
     private final NotificationService notificationService;
     private final EmailServiceImpl emailService;
     private final NotificationCommander notificationCommander;
+    private final InvoiceServiceImpl invoiceService;
+    private final CdnService cdnService;
 
     private final EmailServiceFactory emailServiceFactory;
     private final UserDaoImpl userDao;
 
-    public OrdersServiceImpl(OrderPipelineServiceImpl orderPipelineServiceImpl, NotificationCommander notificationCommander, OrderDaoImpl orderDao, EmailServiceImpl emailService, NotificationService notificationService, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, UserDaoImpl userDao, NotificationFactoryImpl notificationFactoryImpl, EmailServiceFactory emailServiceFactory) {
+    private final Logger logger = LoggerFactory.getLogger(OrdersServiceImpl.class);
+    public OrdersServiceImpl(CdnService cdnService,InvoiceServiceImpl invoiceService,NotificationCommander notificationCommander, OrderDaoImpl orderDao, EmailServiceImpl emailService, NotificationService notificationService, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, UserDaoImpl userDao, NotificationFactoryImpl notificationFactoryImpl, EmailServiceFactory emailServiceFactory) {
         this.orderDao = orderDao;
         this.orderProductService = orderProductService;
         this.orderProductDaoImpl = orderProductDaoImpl;
@@ -54,8 +64,12 @@ public class OrdersServiceImpl implements OrdersService {
         this.emailServiceFactory = emailServiceFactory;
         this.emailService = emailService;
         this.notificationCommander = notificationCommander;
-        this.orderPipelineServiceImpl = orderPipelineServiceImpl;
+        this.invoiceService = invoiceService;
+        this.cdnService = cdnService;
+       // this.orderPipelineServiceImpl = orderPipelineServiceImpl;
     }
+    @Value("${front.url}")
+    private String frontUrl;
 
     @Override
     @Transactional //  atomicity
@@ -71,6 +85,10 @@ public class OrdersServiceImpl implements OrdersService {
                             orderInstance,
                             orderProduct.quantity(),
                             orderProduct.priceOrder(),
+                            orderProduct.discount_percentages(),
+                            orderProduct.price_discount(),
+                            orderProduct.VAT(),
+                            orderProduct.price_with_VAT(),
                             orderProduct.parentProductId(),
                             orderProduct.product()
                     );
@@ -143,6 +161,7 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
         // Retrieve order products associated with the order
+
         List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
         AtomicBoolean priceChanged = new AtomicBoolean(false);
 
@@ -161,6 +180,10 @@ public class OrdersServiceImpl implements OrdersService {
                             order,
                             orderProduct.quantity(),
                             product.price(),
+                            orderProduct.discount_percentages(),
+                            orderProduct.price_discount(),
+                            orderProduct.VAT(),
+                            orderProduct.price_with_VAT(),
                             orderProduct.parentProductId(),
                             orderProduct.product()
                     );
@@ -186,7 +209,10 @@ public class OrdersServiceImpl implements OrdersService {
             throw new SQLException("No confirmation token found for order ID: " + order.orderId().id());
         }
 
-        String confirmationLink = "http://localhost:3000/sendMail/confirm/" + token;
+
+        String confirmationLink = frontUrl + "sendMail/confirm/" + token;
+
+       // String confirmationLink = "http://localhost:3000/sendMail/confirm/" + token;
 
         String message = "Your order with ID " + order.orderId().id() + " has been updated. Please confirm " + confirmationLink;
 
@@ -205,13 +231,41 @@ public class OrdersServiceImpl implements OrdersService {
 
 
     @Override
-    public Long updateOrderStatusReadyForPayment(Order order) throws SQLException {
-         // change the order status to Ready for payment
-        // add the email / the excel fille
-        // add the notification for the management
-        // set the name of the invoice fille in the order table
+    public Long updateOrderStatusReadyForPayment(Order order, String jwtToken) throws SQLException {
 
-        return orderDao.updateStatus(order);
+        Order updatedOrder = new Order(
+                order.orderId(),
+                order.userId(),
+                Status.READY_FOR_PAYMENT, // Updated status
+                order.createdDate(),
+                new UpdateDateTime(new Timestamp(System.currentTimeMillis()).toLocalDateTime()),
+                order.orderProducts()
+        );
+        orderDao.updateStatus(updatedOrder);
+        if(order.orderStatus() != READY_FOR_PAYMENT){
+            logger.error("Failed to set the order READY_FOR_PAYMENT " + (order.orderStatus()));
+            throw new RuntimeException();
+        }
+
+        String fileName = "OrderInvoice_User_" + order.userId().userId().id() + "_Order_" + order.orderId().id() + ".xlsx";
+        ByteArrayResource byteArrayResource = invoiceService.createOrderInvoice(fileName, order.userId().userId().id());
+
+        System.out.println("Start");
+        String invoiceFullPath = cdnService.sendExcelInvoiceToCDN(byteArrayResource,jwtToken);
+        System.out.println("Done");
+        // CDN service have to return the full path of the saved file in the CDN
+        // Add the full path of the invoice in the DB
+        orderDao.addOrderInvoice(order.orderId().id(), invoiceFullPath);
+
+        //Email service add
+        String message = "Your order with ID " + order.orderId().id() + " is ready for payment. Here you can find the Invoice for your order";
+        EmailDetails emailDetails = emailServiceFactory.sendInvoiceEmail(message);
+        emailService.sendInvoiceEmail(emailDetails, byteArrayResource);
+
+        //Below will be the notification for the management users
+
+
+        return order.orderId().id();
     }
 
 

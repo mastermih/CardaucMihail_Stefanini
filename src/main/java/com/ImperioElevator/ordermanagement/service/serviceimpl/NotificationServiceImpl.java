@@ -11,6 +11,7 @@ import com.ImperioElevator.ordermanagement.exception.NotificationException;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,8 @@ public class NotificationServiceImpl implements NotificationService {
     private final NotificationDaoImpl notificationDao;
     private final UserNotificationDaoImpl userNotificationDao;
 
-    private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
+
+    private static final Logger logger = LoggerFactory.getLogger(NotificationServiceImpl.class);
 
     public NotificationServiceImpl(NotificationDaoImpl notificationDao, UserNotificationDaoImpl userNotificationDao) {
         this.notificationDao = notificationDao;
@@ -61,4 +63,9 @@ public class NotificationServiceImpl implements NotificationService {
             return userNotificationDao.notificationIsDisabled(notificationId, userId);
 
         }
+
+    @Override
+    public Long insertInvoiceNotificationManagement(UserNotification userNotification, ByteArrayResource attachment) throws SQLException {
+        return 1L;
+    }
 }

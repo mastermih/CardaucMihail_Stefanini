@@ -1,1 +1,1 @@
-order_id,product_id,quantity,price_product,parent
+order_id,product_name,quantity,price_product,discount_percentages,price_discount,VAT,price_with_VAT,parent_product_id,product_id

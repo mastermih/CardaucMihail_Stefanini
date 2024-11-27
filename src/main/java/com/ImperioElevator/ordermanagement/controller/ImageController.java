@@ -31,7 +31,7 @@ public class ImageController {
         this.jwtService = jwtService;
     }
 
-    private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
+   private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
 
     @PostMapping("/uploadImage")
     public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile image,

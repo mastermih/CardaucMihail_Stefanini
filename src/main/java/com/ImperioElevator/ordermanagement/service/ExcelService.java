@@ -1,7 +1,8 @@
 package com.ImperioElevator.ordermanagement.service;
 
+import org.springframework.core.io.ByteArrayResource;
+
 public interface ExcelService {
 
-        void createOrderInvoice(String fileName, Long orderId);
-       //Email service
+        ByteArrayResource createOrderInvoice(String fileName, Long orderId);
 }

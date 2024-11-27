@@ -8,4 +8,6 @@ public interface EmailServiceFactory {
     EmailDetails createEmailServiceUpdateOrderStatus(String message);
 
     EmailDetails createEmailServiceUserCreation(String message);
+
+    EmailDetails sendInvoiceEmail(String message);
 }

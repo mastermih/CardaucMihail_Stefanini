@@ -10,10 +10,12 @@ import com.ImperioElevator.ordermanagement.exception.AccountLockedException;
 import com.ImperioElevator.ordermanagement.exception.DoublePasswordVerificationException;
 import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
 import com.ImperioElevator.ordermanagement.exception.ThisUserAlreadyExistException;
+import com.ImperioElevator.ordermanagement.factory.EmailServiceFactory;
 import com.ImperioElevator.ordermanagement.factory.factoryimpl.EmailFactoryImpl;
 import com.ImperioElevator.ordermanagement.security.JwtService;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,22 +33,19 @@ import java.util.function.Predicate;
 @Service
 public class UserServiceImpl implements UserSevice {
     public final UserDaoImpl userDao;
-    private final EmailServiceImpl emailService;
-    public final EmailFactoryImpl emailServiceFactory;
-    private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
+    public final EmailServiceFactory emailServiceFactory;
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     private  final JwtService jwtService;
     private final BCryptPasswordEncoder encoder;
     private final AuthenticationManager authManager;
     private final NotificationCommander notificationCommander;
 
-
-    public UserServiceImpl(NotificationCommander notificationCommander,UserDaoImpl userDao, EmailServiceImpl emailService, EmailFactoryImpl emailServiceFactory, JwtService jwtService,BCryptPasswordEncoder encoder, AuthenticationManager authManager) {
+    public UserServiceImpl(NotificationCommander notificationCommander,UserDaoImpl userDao, EmailServiceFactory emailServiceFactory, JwtService jwtService,BCryptPasswordEncoder encoder, AuthenticationManager authManager) {
         this.userDao = userDao;
         this.emailServiceFactory = emailServiceFactory;
         this.jwtService = jwtService;
         this.encoder = encoder;
         this.authManager = authManager;
-        this.emailService = emailService;
         this.notificationCommander = notificationCommander;
     }
 
@@ -94,6 +93,7 @@ public class UserServiceImpl implements UserSevice {
 
         // Generate confirmation token and send the email
         String token = userDao.getTheConfirmationToken(userId);
+        //ToDo change the local host
 
         String confirmationLink = "http://localhost:3000/sendMail/confirm/user/" + token;
 

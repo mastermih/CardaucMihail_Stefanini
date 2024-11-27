@@ -192,4 +192,10 @@ public class OrderController {
  public Long assineOrderToMe(@RequestParam Long orderId, @RequestParam Long operatorId) throws SQLException {
  return ordersService.assineOrderToMe(orderId, operatorId);
  }
+
+ @PostMapping("orders/orderReadyToPay")
+ public Long updateOrderStatusReadyForPayment(@RequestParam Order order,
+                                              @RequestParam String jwtToken) throws SQLException{
+  return ordersService.updateOrderStatusReadyForPayment(order, jwtToken);
+ }
 }

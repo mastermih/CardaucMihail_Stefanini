@@ -24,7 +24,7 @@ public interface OrdersService {
     Long createOrder(Order order) throws SQLException;
 
     Long updateOrderStatus(Order order) throws SQLException;
-    Long updateOrderStatusReadyForPayment(Order order) throws SQLException;
+    Long updateOrderStatusReadyForPayment(Order order, String jwtToken) throws SQLException;
 
 
     Order fiendOrderById(Long id) throws SQLException;

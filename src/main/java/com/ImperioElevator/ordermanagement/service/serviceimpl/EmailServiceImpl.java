@@ -4,10 +4,13 @@ import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.EmailDetails;
 import com.ImperioElevator.ordermanagement.service.EmailService;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -100,6 +103,31 @@ public class EmailServiceImpl implements EmailService {
        userDao.disableTokenAfterUserConfirmation(token);
 
         return "User confirmed and token disabled.";
+    }
+
+    @Override
+    public String sendInvoiceEmail(EmailDetails details, ByteArrayResource attachment) throws SQLException {
+        try {
+            Function<EmailDetails, String> getEmailBody  = EmailDetails::getMsgBody;
+            //    Constructing the email body
+            String emailBody = getEmailBody.apply(details);
+//            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            // Setting up necessary details
+            helper.setFrom(sender);
+            helper.setTo(details.getRecipient());
+            helper.setText(emailBody);
+            helper.setSubject(details.getSubject());
+            helper.addAttachment("Invoice.xlsx",attachment);
+            // Sending the mail
+            javaMailSender.send(message);
+            return "Mail Sent Successfully...";
+        }
+
+        catch (Exception e) {
+            return "Error while Sending Mail " + e;
+        }
     }
 
 }
