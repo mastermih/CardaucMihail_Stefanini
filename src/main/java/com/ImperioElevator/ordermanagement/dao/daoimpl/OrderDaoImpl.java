@@ -184,7 +184,8 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 "    o.user_id, " +
                 "    o.order_status, " +
                 "    o.created_date, " +
-                "    o.updated_date " +
+                "    o.updated_date, " +
+                "    o.order_invoice " +
                 "FROM " +
                 "    orders o " +
                 "WHERE " +
@@ -194,6 +195,10 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 "    op.order_id, " +
                 "    op.quantity, " +
                 "    op.price_product, " +
+                "    op.discount_percentages, " +
+                "    op.price_discount, " +
+                "    op.VAT, " +
+                "    op.price_with_VAT, " +
                 "    op.product_id, " +
                 "    op.parent_product_id, " +
                 "    p.product_name, " +
@@ -407,6 +412,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         LocalDateTime updatedDateTime = resultSet.getTimestamp("updated_date").toLocalDateTime();
         Status orderStatus = Status.valueOf(resultSet.getString("order_status"));
         String orderInvoice = resultSet.getString("order_invoice");
+
         return new Order(
                 new Id(orderId),
                 new User(new Id(userId), null, null, null, null,null, null, true),
@@ -448,7 +454,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         LocalDateTime updatedDateTime = resultSet.getTimestamp("updated_date").toLocalDateTime();
         Status orderStatus = Status.valueOf(resultSet.getString("order_status"));
         String orderInvoice = resultSet.getString("order_invoice");
-        OrderInvoice orderInvoiceObject = new OrderInvoice(orderInvoice);
 
         Order order = new Order(
                 new Id(orderId),
@@ -456,7 +461,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 orderStatus,
                 new CreateDateTime(createdDateTime),
                 new UpdateDateTime(updatedDateTime),
-                orderInvoiceObject,
+                new OrderInvoice(orderInvoice),
                 new ArrayList<>()
         );
 

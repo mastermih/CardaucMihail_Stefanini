@@ -12,6 +12,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,9 @@ public class InvoiceServiceImpl implements InvoiceService {
         this.notificationService = notificationService;
     }
 
+    @Value("${invoice.template}")
+    private String template;
+
     @Override
     public void handleInvoiceForOrder(Order order, String jwtToken) throws SQLException {
         ByteArrayResource byteArrayResource = createOrderInvoice(order);
@@ -53,6 +57,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public ByteArrayResource createOrderInvoice(Order order) {
+
+        // add this in the conf file
         try (FileInputStream templateStream = new FileInputStream("src/main/resources/templates/OrderInvoiceTemplate.xlsx");
              Workbook workbook = new XSSFWorkbook(templateStream)) {
 
@@ -90,9 +96,8 @@ public class InvoiceServiceImpl implements InvoiceService {
                     }
                 };
             }
-            //ToDo add logging for catch
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Failed to create order invoice " + e);
         }
         return null;
     }
