@@ -15,14 +15,16 @@ import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import com.ImperioElevator.ordermanagement.service.OrderProductService;
-import com.ImperioElevator.ordermanagement.valueobjects.Id;
-import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
+import com.ImperioElevator.ordermanagement.valueobjects.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.lang.Number;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -76,8 +78,25 @@ public class OrdersServiceImpl implements OrdersService {
     public Long createOrderWithProducts(Order order, List<OrderProduct> orderProducts) throws SQLException {
         try {
             // Create the Order and get the generated orderId
+
+            if (order == null || orderProducts == null || orderProducts.isEmpty()) {
+                logger.error("Invalid input: Order is null or Order Products are null/empty");
+                throw new IllegalArgumentException("Order and Order Products must not be null or empty");
+            }
+
             Long orderId = orderDao.insert(order);
-            final Order finalOrder = new Order(new Id(orderId), order.userId(), order.orderStatus(), order.createdDate(), order.updatedDate(), orderProducts);
+            logger.debug("Created Order with ID: {}", orderId);
+
+
+            final Order finalOrder = new Order(
+                    new Id(orderId),
+                    order.userId(),
+                    order.orderStatus(),
+                    order.createdDate(),
+                    order.updatedDate(),
+                    order.orderInvoice(),
+                    orderProducts
+            );
             BiConsumer<OrderProduct, Order> orderProductConsumer = (orderProduct, orderInstance) -> {
                 try {
                     OrderProduct updatedOrderProduct = new OrderProduct(
@@ -85,9 +104,9 @@ public class OrdersServiceImpl implements OrdersService {
                             orderInstance,
                             orderProduct.quantity(),
                             orderProduct.priceOrder(),
-                            orderProduct.discount_percentages(),
-                            orderProduct.price_discount(),
-                            orderProduct.VAT(),
+                            orderProduct.discount_percentages(), // Hardcoded discount percentage
+                            orderProduct.price_discount(),              // Hardcoded price discount
+                            orderProduct.VAT(),               // Hardcoded VAT
                             orderProduct.price_with_VAT(),
                             orderProduct.parentProductId(),
                             orderProduct.product()
@@ -110,7 +129,7 @@ public class OrdersServiceImpl implements OrdersService {
                 try {
                     UserNotification userNotification = notificationFactoryImpl.createUserNotificationOrderWithProducts(notificationId, user.userId().id());
                     notificationService.insertUserNotification(userNotification);// This is notifications for management users
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             };
@@ -120,7 +139,7 @@ public class OrdersServiceImpl implements OrdersService {
 
             orderProducts.forEach(orderProduct -> orderProductConsumer.accept(orderProduct, finalOrder));
             return orderId;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -239,31 +258,21 @@ public class OrdersServiceImpl implements OrdersService {
                 Status.READY_FOR_PAYMENT, // Updated status
                 order.createdDate(),
                 new UpdateDateTime(new Timestamp(System.currentTimeMillis()).toLocalDateTime()),
+                order.orderInvoice(),
                 order.orderProducts()
         );
         orderDao.updateStatus(updatedOrder);
-        if(order.orderStatus() != READY_FOR_PAYMENT){
+        if(!READY_FOR_PAYMENT.equals(order.orderStatus())){
             logger.error("Failed to set the order READY_FOR_PAYMENT " + (order.orderStatus()));
-            throw new RuntimeException();
+            throw new RuntimeException("Order status update failed.");
         }
 
-        String fileName = "OrderInvoice_User_" + order.userId().userId().id() + "_Order_" + order.orderId().id() + ".xlsx";
-        ByteArrayResource byteArrayResource = invoiceService.createOrderInvoice(fileName, order.userId().userId().id());
+        //ToDO  principle singe responsibility / Invoice service migration
 
-        System.out.println("Start");
-        String invoiceFullPath = cdnService.sendExcelInvoiceToCDN(byteArrayResource,jwtToken);
-        System.out.println("Done");
-        // CDN service have to return the full path of the saved file in the CDN
-        // Add the full path of the invoice in the DB
-        orderDao.addOrderInvoice(order.orderId().id(), invoiceFullPath);
-
-        //Email service add
-        String message = "Your order with ID " + order.orderId().id() + " is ready for payment. Here you can find the Invoice for your order";
-        EmailDetails emailDetails = emailServiceFactory.sendInvoiceEmail(message);
-        emailService.sendInvoiceEmail(emailDetails, byteArrayResource);
+        //prepare invoice,prepare,execute Rename
+        invoiceService.handleInvoiceForOrder(order, jwtToken);
 
         //Below will be the notification for the management users
-
 
         return order.orderId().id();
     }
@@ -301,6 +310,7 @@ public class OrdersServiceImpl implements OrdersService {
                 Status.IN_PROGRESS,
                 order.createdDate(),
                 new UpdateDateTime(LocalDateTime.now()),
+                order.orderInvoice(),
                 order.orderProducts()
         );
         orderDao.updateStatus(updatedOrder);
@@ -340,6 +350,7 @@ public class OrdersServiceImpl implements OrdersService {
                 Status.IN_PROGRESS,
                 order.createdDate(),
                 new UpdateDateTime(LocalDateTime.now()),
+                order.orderInvoice(),
                 order.orderProducts()
         );
         Long userId = updatedOrder.userId().userId().id();

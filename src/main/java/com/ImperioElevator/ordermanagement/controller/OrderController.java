@@ -113,9 +113,9 @@ public class OrderController {
  //Creation of The Order + OrderProduct the initialization /1
  @PostMapping("/MakeOrder")
  public ResponseEntity<EntityCreationResponse> createOrderWithProducts(@RequestBody OrderWithProductsDTO orderWithProductsDTO) throws SQLException {
+
   Order order = orderWithProductsDTO.getOrder();
   List<OrderProduct> orderProducts = orderWithProductsDTO.getOrderProducts();
-
   Long orderId = ordersService.createOrderWithProducts(order, orderProducts);
 
   EntityCreationResponse response = new EntityCreationResponse(
@@ -195,7 +195,8 @@ public class OrderController {
 
  @PostMapping("orders/orderReadyToPay")
  public Long updateOrderStatusReadyForPayment(@RequestParam Order order,
-                                              @RequestParam String jwtToken) throws SQLException{
+                                              @RequestHeader("Authorization") String authorizationHeader) throws SQLException{
+  String jwtToken = authorizationHeader.replace("Bearer ", "");
   return ordersService.updateOrderStatusReadyForPayment(order, jwtToken);
  }
 }

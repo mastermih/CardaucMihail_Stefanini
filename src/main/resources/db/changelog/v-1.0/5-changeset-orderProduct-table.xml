@@ -16,20 +16,23 @@
             <column name="quantity" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="price_product" type="BIGINT">
+            <column name="price_product" type="DECIMAL(10,2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="discount_percentages" type="BIGINT">
+            <column name="discount_percentages" type="BIGINT" defaultValue="42">
+                <constraints nullable="true"/>
             </column>
-            <column name="price_discount" type="DECIMAL(10,2)">
+            <column name="price_discount" type="DECIMAL(10,2)" defaultValue='42.00'>
+                <constraints nullable="true"/>
             </column>
-            <column name="VAT" type="BIGINT">
-                <constraints nullable="false"/>
+            <column name="VAT" type="BIGINT" defaultValue="20">
+                <constraints nullable="true"/>
             </column>
-            <column name="price_with_VAT" type="DECIMAL(10,2)">
-                <constraints nullable="false"/>
+            <column name="price_with_VAT" type="DECIMAL(10,2)" defaultValue="42.00">
+                <constraints nullable="true"/>
             </column>
             <column name="parent_product_id" type="BIGINT">
+                <constraints nullable="true"/>
             </column>
             <column name="product_id" type="BIGINT">
                 <constraints nullable="false"/>

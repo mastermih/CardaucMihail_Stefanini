@@ -48,7 +48,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
                 ps.setDouble(6, product.width().getWidth());
                 ps.setDouble(7, product.height().getHeight());
                 ps.setDouble(8, product.depth().getDepth());
-                ps.setDouble(9, product.price().price());
+                ps.setBigDecimal(9, product.price().price());
                 ps.setString(10, product.path().getPath());
                 ps.setString(11, String.valueOf(product.categoryType()));
                 return ps;
@@ -146,7 +146,7 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         Width width = new Width(resultSet.getDouble("product_width"));
         Height height = new Height(resultSet.getDouble("product_height"));
         Depth depth = new Depth(resultSet.getDouble("product_depth"));
-        Price price = new Price(resultSet.getInt("price"));
+        Price price = new Price(resultSet.getBigDecimal("price"));
         Image image = new Image(resultSet.getString("image_path"));
         CategoryType categoryType = CategoryType.valueOf(resultSet.getString("category_type"));
         Category category = new Category(categoryId, null, null);

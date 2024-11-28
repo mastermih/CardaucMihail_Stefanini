@@ -39,9 +39,13 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Long insert(Order order) throws SQLException {
+        if (order == null || order.userId() == null || order.userId().userId() == null) {
+            logger.error("Order or User ID is null. Cannot insert order.");
+            throw new IllegalArgumentException("Order and User ID must not be null.");
+        }
         logger.debug("Order received with userId: " + order.userId().userId().id());
 
-        String orderSql = "INSERT INTO orders (user_id, created_date, updated_date, order_status) VALUES (?, ?, ?, ?)";
+        String orderSql = "INSERT INTO orders (user_id, created_date, updated_date, order_status,order_invoice) VALUES (?, ?, ?, ?, ?)";
         String tokenSql = "INSERT INTO token (order_id, user_id, token_type, token_value, is_enabled) VALUES (?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         LocalDateTime currentDateTime = LocalDateTime.now();
@@ -51,21 +55,26 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
         CreateDateTime createdDate = order.createdDate() != null ? order.createdDate() : new CreateDateTime(currentDateTime);
         UpdateDateTime updatedDate = order.updatedDate() != null ? order.updatedDate() : new UpdateDateTime(currentDateTime);
+        OrderInvoice orderInvoice =  order.orderInvoice() != null ? order.orderInvoice() : new OrderInvoice("ZAHAO");
 
         try {
             // Insert the order first
             logger.debug("Executing creation of the Order: {}", orderSql);
             jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection.prepareStatement(orderSql, Statement.RETURN_GENERATED_KEYS);
+                logger.debug("Order received with userId: " + order.userId().userId().id());
                 ps.setLong(1, order.userId().userId().id());
                 ps.setTimestamp(2, Timestamp.valueOf(createdDate.createDateTime()));
                 ps.setTimestamp(3, Timestamp.valueOf(updatedDate.updateDateTime()));
                 ps.setString(4, order.orderStatus().name());
+                ps.setString(5, String.valueOf(orderInvoice.orderInvoice()));
                 return ps;
             }, keyHolder);
 
             // Get the generated order ID
             Long orderId = keyHolder.getKey().longValue();
+
+
             logger.info("Successfully inserted Order for userId: {}", order.userId().userId().id());
 
             // Insert the token into the token table
@@ -397,12 +406,14 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         LocalDateTime createdDateTime = resultSet.getTimestamp("created_date").toLocalDateTime();
         LocalDateTime updatedDateTime = resultSet.getTimestamp("updated_date").toLocalDateTime();
         Status orderStatus = Status.valueOf(resultSet.getString("order_status"));
+        String orderInvoice = resultSet.getString("order_invoice");
         return new Order(
                 new Id(orderId),
                 new User(new Id(userId), null, null, null, null,null, null, true),
                 orderStatus,
                 new CreateDateTime(createdDateTime),
                 new UpdateDateTime(updatedDateTime),
+                new OrderInvoice(orderInvoice),
                 new ArrayList<>()
         );
     }
@@ -414,11 +425,11 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                         new Id(resultSet.getLong("product_id")),
                         null,
                         new Quantity(resultSet.getInt("quantity")),
-                        new Price(resultSet.getDouble("price_product")),
+                        new Price(resultSet.getBigDecimal("price_product")),
                 new DiscountPercentages(resultSet.getLong("discount_percentages")),
-                new Price(resultSet.getLong("price_discount")),
+                new PriceDiscount(resultSet.getBigDecimal("price_discount")),
                 new Vat(resultSet.getLong("VAT")),
-                new Price(resultSet.getLong("price_with_VAT")),
+                new PriceWithVAT(resultSet.getBigDecimal("price_with_VAT")),
                 new Id(parentProductId),
                 new Product(
                                 new Id(resultSet.getLong("product_id")),
@@ -436,6 +447,8 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         LocalDateTime createdDateTime = resultSet.getTimestamp("created_date").toLocalDateTime();
         LocalDateTime updatedDateTime = resultSet.getTimestamp("updated_date").toLocalDateTime();
         Status orderStatus = Status.valueOf(resultSet.getString("order_status"));
+        String orderInvoice = resultSet.getString("order_invoice");
+        OrderInvoice orderInvoiceObject = new OrderInvoice(orderInvoice);
 
         Order order = new Order(
                 new Id(orderId),
@@ -443,6 +456,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                 orderStatus,
                 new CreateDateTime(createdDateTime),
                 new UpdateDateTime(updatedDateTime),
+                orderInvoiceObject,
                 new ArrayList<>()
         );
 

@@ -2,9 +2,7 @@ package com.ImperioElevator.ordermanagement.entity;
 
 import com.ImperioElevator.ordermanagement.enumobects.Role;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
-import com.ImperioElevator.ordermanagement.valueobjects.CreateDateTime;
-import com.ImperioElevator.ordermanagement.valueobjects.Id;
-import com.ImperioElevator.ordermanagement.valueobjects.UpdateDateTime;
+import com.ImperioElevator.ordermanagement.valueobjects.*;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,6 +14,7 @@ public record Order(
         @JsonProperty("orderStatus") Status orderStatus,
         @JsonProperty("createdDate") CreateDateTime createdDate,
         @JsonProperty("updatedDate") UpdateDateTime updatedDate,
+        @JsonProperty("orderInvoice")OrderInvoice orderInvoice,
         @JsonProperty("orderProducts") List<OrderProduct> orderProducts
 ) {
     @JsonCreator
@@ -23,5 +22,7 @@ public record Order(
         if (orderProducts == null) {
             orderProducts = List.of();
         }
+
     }
 }
+

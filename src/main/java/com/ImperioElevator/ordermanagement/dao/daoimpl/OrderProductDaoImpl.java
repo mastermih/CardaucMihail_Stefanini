@@ -19,6 +19,7 @@ import java.util.List;
 @Component
 public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements OrderProductDao {
     //fiend orderporuduct where by user id  then order id where the order_status will be IN_PROGRESS
+
     private final JdbcTemplate jdbcTemplate;
     private static final Logger logger = LoggerFactory.getLogger(OrderProductDaoImpl.class);
 
@@ -30,39 +31,35 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
     public Long insert(OrderProduct orderProduct) throws SQLException {
         String sql = "INSERT INTO order_product (order_id, product_name, quantity, price_product, discount_percentages, price_discount, VAT, price_with_VAT, parent_product_id, product_id) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,?, ?)";
 
-        // Default values
-        long VAT = 20L;
-        long discountPercentages = 0L;
-
-        BigDecimal priceProduct = BigDecimal.valueOf(orderProduct.priceOrder().price());
-
-        double priceDiscount = orderProduct.product().price().price();
-
-        double priceWithVAT = priceDiscount + (priceDiscount * VAT / 100);
-
-
         Long parentId = orderProduct.parentProductId() != null ? orderProduct.parentProductId().id() : null;
         String productName = orderProduct.product().productName().productName();
 
-        try {
+        //try {
             logger.debug("Executing SQL for order product insert: {}", sql);
+            logger.info("Executing SQL for order product insert: {}", sql);
 
             jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setLong(1, orderProduct.order().orderId().id());
                 ps.setString(2, productName);
                 ps.setInt(3, orderProduct.quantity().quantity());
-                ps.setBigDecimal(4, BigDecimal.valueOf(orderProduct.priceOrder().price()));
+                ps.setBigDecimal(4, orderProduct.priceOrder().price());
                 ps.setLong(5, orderProduct.discount_percentages().discount_percentages());
-                ps.setDouble(6, orderProduct.price_discount().price());
+                ps.setBigDecimal(6, orderProduct.price_discount().price());
                 ps.setLong(7, orderProduct.VAT().VAT());
-                ps.setDouble(8, orderProduct.price_with_VAT().price());
+                ps.setBigDecimal(8, orderProduct.price_with_VAT().priceWithVAT());
+
                 if (parentId != null) {
-                    ps.setLong(9, parentId);
+                    ps.setLong(9,  orderProduct.parentProductId().id());
                 } else {
                     ps.setNull(9, Types.BIGINT);
                 }
-                ps.setBigDecimal(10, BigDecimal.valueOf(orderProduct.product().productId().id()));
+                Long productId = orderProduct.product().productId().id();
+                if (productId != null) {
+                    ps.setBigDecimal(10, BigDecimal.valueOf(productId));
+                } else {
+                    ps.setNull(10, Types.BIGINT);
+                }
                 return ps;
             });
 
@@ -70,10 +67,10 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
 
             return orderProduct.order().orderId().id();
 
-        } catch (DataAccessException ex) {
-            logger.error("Failed to insert OrderProduct with orderId: {}", orderProduct.order().orderId().id(), ex);
-            throw ex;
-        }
+//        } catch (DataAccessException ex) {
+//            logger.error("Failed to insert OrderProduct with orderId: {}", orderProduct.order().orderId().id(), ex);
+//            throw ex;
+//        }
     }
 
     @Override
@@ -231,25 +228,25 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
     public OrderProduct mapResultSetToEntity(ResultSet resultSet) throws SQLException {
         Long orderId = resultSet.getLong("order_id");
         int quantity = resultSet.getInt("quantity");
-        double priceOrder = resultSet.getInt("price_product");
+        BigDecimal priceOrder = resultSet.getBigDecimal("price_product");
         String productName = resultSet.getString("product_name");
         Long parentId = resultSet.getLong("parent_product_id");
         Long productId = resultSet.getLong("product_id");
         Long discount_percentages = resultSet.getLong("discount_percentages");
-        double price_discount = resultSet.getDouble("price_discount");
+        BigDecimal price_discount = resultSet.getBigDecimal("price_discount");
         Long VAT = resultSet.getLong("VAT");
-        double price_with_VAT =  resultSet.getDouble("price_with_VAT");
+        BigDecimal price_with_VAT =  resultSet.getBigDecimal("price_with_VAT");
 
         // Create and return a new OrderProduct object
         return new OrderProduct(
                 new Id(null),
-                new Order(new Id(orderId), null, null, null, null, null),
+                new Order(new Id(orderId), null, null, null, null, null, null),
                 new Quantity(quantity),
                 new Price(priceOrder),
                 new DiscountPercentages(discount_percentages),
-                new Price(price_discount),
+                new PriceDiscount(price_discount),
                 new Vat(VAT),
-                new Price(price_with_VAT),
+                new PriceWithVAT(price_with_VAT),
                 new Id(parentId),
                 new Product(new Id(productId), null, null, null, null, null, null, new ProductName(productName), null, null, null, null)
         );

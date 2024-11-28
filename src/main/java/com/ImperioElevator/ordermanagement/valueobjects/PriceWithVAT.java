@@ -5,9 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 
-public record Price(@JsonProperty("price") BigDecimal price) {
+public record PriceWithVAT(@JsonProperty("price_with_VAT") BigDecimal priceWithVAT) {
     @JsonCreator
-    public Price {
-        // This compact constructor ensures the class invariants
+    public PriceWithVAT {
     }
 }

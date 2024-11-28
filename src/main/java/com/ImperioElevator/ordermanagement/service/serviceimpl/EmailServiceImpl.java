@@ -3,6 +3,7 @@ package com.ImperioElevator.ordermanagement.service.serviceimpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.EmailDetails;
+import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,29 +106,31 @@ public class EmailServiceImpl implements EmailService {
         return "User confirmed and token disabled.";
     }
 
+
+    //Here i do not use the factory pattern for the email so I will fix that
     @Override
-    public String sendInvoiceEmail(EmailDetails details, ByteArrayResource attachment) throws SQLException {
+    public String sendInvoiceEmail(Order order, ByteArrayResource attachment) throws SQLException {
         try {
-            Function<EmailDetails, String> getEmailBody  = EmailDetails::getMsgBody;
-            //    Constructing the email body
-            String emailBody = getEmailBody.apply(details);
-//            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            String subject = "Order Invoice for Order #" + order.orderId().id();
+            String body = "Your order with ID " + order.orderId().id() + " is ready for payment. " +
+                    "Please find the attached invoice for your reference.";
+
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            // Setting up necessary details
-            helper.setFrom(sender);
-            helper.setTo(details.getRecipient());
-            helper.setText(emailBody);
-            helper.setSubject(details.getSubject());
-            helper.addAttachment("Invoice.xlsx",attachment);
-            // Sending the mail
-            javaMailSender.send(message);
-            return "Mail Sent Successfully...";
-        }
 
-        catch (Exception e) {
-            return "Error while Sending Mail " + e;
+            // Set email details
+            helper.setFrom(sender);
+            helper.setTo("cardaucmihai@gmail.com"); // This have to be fixed
+            helper.setSubject(subject);
+            helper.setText(body);
+            helper.addAttachment("Invoice_Order_" + order.orderId().id() + ".xlsx", attachment);
+
+            // Send email
+            javaMailSender.send(message);
+
+            return "Invoice email sent successfully.";
+        } catch (Exception e) {
+            return "Error while sending invoice email: " + e.getMessage();
         }
     }
-
 }

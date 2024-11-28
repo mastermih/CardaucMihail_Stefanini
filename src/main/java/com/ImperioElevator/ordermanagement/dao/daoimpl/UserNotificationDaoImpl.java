@@ -29,9 +29,10 @@ public class UserNotificationDaoImpl extends AbstractDao<UserNotification> imple
             jdbcTemplate.update(sql,
                     entity.getUserId(),
                     entity.getNotificationId(),
-                    entity.getRead(),
-                    entity.getDisabled());
+                    entity.getRead() != null ? entity.getRead() : false, // Default to false if null
+                    entity.getDisabled() != null ? entity.getDisabled() : false);
         return entity.getNotificationId();
+
         }catch (DataAccessException ex){
             logger.error("Failed to insert in user_notification values related to the notification " + ex);
             throw ex;
