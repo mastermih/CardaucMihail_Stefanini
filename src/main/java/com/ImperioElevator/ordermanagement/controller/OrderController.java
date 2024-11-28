@@ -194,9 +194,9 @@ public class OrderController {
  }
 
  @PostMapping("orders/orderReadyToPay")
- public Long updateOrderStatusReadyForPayment(@RequestParam Order order,
+ public Long updateOrderStatusReadyForPayment(@RequestParam  Long orderId,
                                               @RequestHeader("Authorization") String authorizationHeader) throws SQLException{
   String jwtToken = authorizationHeader.replace("Bearer ", "");
-  return ordersService.updateOrderStatusReadyForPayment(order, jwtToken);
+  return ordersService.updateOrderStatusReadyForPayment(orderId, jwtToken);
  }
 }

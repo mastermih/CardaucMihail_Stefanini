@@ -250,31 +250,32 @@ public class OrdersServiceImpl implements OrdersService {
 
 
     @Override
-    public Long updateOrderStatusReadyForPayment(Order order, String jwtToken) throws SQLException {
+    public Long updateOrderStatusReadyForPayment(Long orderId, String jwtToken) throws SQLException {
 
-        Order updatedOrder = new Order(
-                order.orderId(),
-                order.userId(),
-                Status.READY_FOR_PAYMENT, // Updated status
-                order.createdDate(),
-                new UpdateDateTime(new Timestamp(System.currentTimeMillis()).toLocalDateTime()),
-                order.orderInvoice(),
-                order.orderProducts()
-        );
-        orderDao.updateStatus(updatedOrder);
-        if(!READY_FOR_PAYMENT.equals(order.orderStatus())){
-            logger.error("Failed to set the order READY_FOR_PAYMENT " + (order.orderStatus()));
+//        Order updatedOrder = new Order(
+//                order.orderId(),
+//                order.userId(),
+//                Status.READY_FOR_PAYMENT, // Updated status
+//                order.createdDate(),
+//                new UpdateDateTime(new Timestamp(System.currentTimeMillis()).toLocalDateTime()),
+//                order.orderInvoice(),
+//                order.orderProducts()
+//        );
+        Order orderOperations = getOrderWithExtraProducts(orderId);
+        orderDao.setOrderStatusToReadyPayment(orderOperations.orderId().id());
+        if(!READY_FOR_PAYMENT.equals(orderOperations.orderStatus())){
+            logger.error("Failed to set the order READY_FOR_PAYMENT " + (orderOperations.orderStatus()));
             throw new RuntimeException("Order status update failed.");
         }
 
         //ToDO  principle singe responsibility / Invoice service migration
 
         //prepare invoice,prepare,execute Rename
-        invoiceService.handleInvoiceForOrder(order, jwtToken);
+        invoiceService.handleInvoiceForOrder(orderOperations, jwtToken);
 
         //Below will be the notification for the management users
 
-        return order.orderId().id();
+        return orderOperations.orderId().id();
     }
 
 
@@ -372,6 +373,11 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Long addOrderInvoice(Long orderId, String orderInvoice) throws SQLException {
         return orderDao.addOrderInvoice(orderId, orderInvoice);
+    }
+
+    @Override
+    public Long setOrderStatusToReadyPayment(Long orderId) throws SQLException {
+        return setOrderStatusToReadyPayment(orderId);
     }
 
 //    public Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException {

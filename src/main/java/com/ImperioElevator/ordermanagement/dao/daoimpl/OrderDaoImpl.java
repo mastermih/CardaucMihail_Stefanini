@@ -385,6 +385,18 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
+    public Long setOrderStatusToReadyPayment(Long orderId) throws SQLException {
+        String sql = "UPDATE orders SET order_status = 'READY_FOR_PAYMENT' WHERE id = ?";
+        try{
+            logger.debug("Seting the order status in Ready for payment " + sql);
+            jdbcTemplate.update(sql, orderId);
+        }catch (Exception e){
+            logger.error("Failed to set the order as Ready For Payment " + e);
+        }
+        return orderId;
+    }
+
+    @Override
     public Long deleteById(Long id) throws SQLException {
         String sql = "DELETE FROM orders WHERE id = ?";
         logger.debug("Deleted Order by id: {}", sql);

@@ -44,5 +44,6 @@ public interface OrderDao extends Dao<Order>{
     Long deleteAllOperatorsAssignedToOrderByOperatorId (Long orderId) throws SQLException;
     Long assineOrderToMe(Long orderId, Long operatorId) throws SQLException;
     Long addOrderInvoice(Long orderId, String invoiceName) throws SQLException;
+    Long setOrderStatusToReadyPayment(Long orderId) throws SQLException;
 
 }
