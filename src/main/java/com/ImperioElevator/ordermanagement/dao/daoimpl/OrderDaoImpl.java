@@ -373,10 +373,10 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public Long addOrderInvoice(Long orderId, String invoiceName) throws SQLException {
-        String sql = "INSERT INTO orders (order_invoice) VALUES (?) WHERE order_status = 'READY_FOR_PAYMENT' ";
+        String sql = "UPDATE orders SET order_invoice = ? WHERE id = ? AND order_status = 'READY_FOR_PAYMENT'";
         try{
             logger.debug("Set the invoice for the order " + sql);
-            jdbcTemplate.update(sql, orderId, invoiceName);
+            jdbcTemplate.update(sql, invoiceName, orderId);
             return orderId;
         }catch (DataAccessException e){
             logger.error("Failed to add the invoice to the order " + e);
@@ -388,7 +388,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     public Long setOrderStatusToReadyPayment(Long orderId) throws SQLException {
         String sql = "UPDATE orders SET order_status = 'READY_FOR_PAYMENT' WHERE id = ?";
         try{
-            logger.debug("Seting the order status in Ready for payment " + sql);
+            logger.debug("Setting the order status in Ready for payment " + sql);
             jdbcTemplate.update(sql, orderId);
         }catch (Exception e){
             logger.error("Failed to set the order as Ready For Payment " + e);

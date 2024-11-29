@@ -17,7 +17,9 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
@@ -40,10 +42,10 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Value("${invoice.template}")
-    private String template;
+    private  String TEMPLATE_PATH;
 
     @Override
-    public void handleInvoiceForOrder(Order order, String jwtToken) throws SQLException {
+    public void prepareInvoiceForOrder(Order order, String jwtToken) throws SQLException {
         ByteArrayResource byteArrayResource = createOrderInvoice(order);
 
         String invoiceFullPath = cdnService.sendExcelInvoiceToCDN(byteArrayResource, jwtToken);
@@ -59,8 +61,22 @@ public class InvoiceServiceImpl implements InvoiceService {
     public ByteArrayResource createOrderInvoice(Order order) {
 
         // add this in the conf file
-        try (FileInputStream templateStream = new FileInputStream("src/main/resources/templates/OrderInvoiceTemplate.xlsx");
-             Workbook workbook = new XSSFWorkbook(templateStream)) {
+        String templatePath = System.getenv("TEMPLATE_PATH");
+        try (FileInputStream templateStream = new FileInputStream(templatePath)){
+
+            //Do not forget to remove this
+            File file = new File("/app/templates/OrderInvoiceTemplate.xlsx");
+            if (!file.exists()) {
+                logger.error("Template file not found at: " + file.getAbsolutePath());
+            }
+
+            if(templateStream == null){
+                logger.error("No template file was found " + templateStream);
+                throw new FileNotFoundException("File template was not found" + templateStream);
+            }
+
+             Workbook workbook = new XSSFWorkbook(templateStream);
+
 
             Sheet sheet = workbook.getSheetAt(0);
 

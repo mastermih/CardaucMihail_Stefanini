@@ -118,7 +118,6 @@ public class OrdersServiceImpl implements OrdersService {
                 }
             };
 
-            //ToDO the notification have to be safe when the order is created add it in the return or insert also I think I can set the message somewhere else
             //One of the problem is that if something fails here you will not know that happened you will get 401 user UNAUTHORIZED so you know
             String message = "New order has been created by the customer with ID " + finalOrder.userId().userId().id();
             Notification notification = notificationFactoryImpl.createOrderCreationNotification(message);
@@ -252,15 +251,6 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Long updateOrderStatusReadyForPayment(Long orderId, String jwtToken) throws SQLException {
 
-//        Order updatedOrder = new Order(
-//                order.orderId(),
-//                order.userId(),
-//                Status.READY_FOR_PAYMENT, // Updated status
-//                order.createdDate(),
-//                new UpdateDateTime(new Timestamp(System.currentTimeMillis()).toLocalDateTime()),
-//                order.orderInvoice(),
-//                order.orderProducts()
-//        );
         Order orderOperations = getOrderWithExtraProducts(orderId);
         orderDao.setOrderStatusToReadyPayment(orderOperations.orderId().id());
         if(!READY_FOR_PAYMENT.equals(orderOperations.orderStatus())){
@@ -268,10 +258,7 @@ public class OrdersServiceImpl implements OrdersService {
             throw new RuntimeException("Order status update failed.");
         }
 
-        //ToDO  principle singe responsibility / Invoice service migration
-
-        //prepare invoice,prepare,execute Rename
-        invoiceService.handleInvoiceForOrder(orderOperations, jwtToken);
+        invoiceService.prepareInvoiceForOrder(orderOperations, jwtToken);
 
         //Below will be the notification for the management users
 

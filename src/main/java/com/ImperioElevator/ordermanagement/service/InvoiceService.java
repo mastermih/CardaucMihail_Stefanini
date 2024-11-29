@@ -8,5 +8,5 @@ import java.sql.SQLException;
 public interface InvoiceService {
 
         ByteArrayResource createOrderInvoice(Order order);
-        void handleInvoiceForOrder(Order order, String jwtToken) throws SQLException;
+        void prepareInvoiceForOrder(Order order, String jwtToken) throws SQLException;
 }
