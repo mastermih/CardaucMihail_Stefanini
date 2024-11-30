@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -62,13 +63,11 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         // add this in the conf file
         String templatePath = System.getenv("TEMPLATE_PATH");
+        if (templatePath == null || templatePath.isEmpty()) {
+            templatePath = "/app/templates/OrderInvoiceTemplate.xlsx";
+            logger.debug("The template file is here " + templatePath);
+        }
         try (FileInputStream templateStream = new FileInputStream(templatePath)){
-
-            //Do not forget to remove this
-            File file = new File("/app/templates/OrderInvoiceTemplate.xlsx");
-            if (!file.exists()) {
-                logger.error("Template file not found at: " + file.getAbsolutePath());
-            }
 
             if(templateStream == null){
                 logger.error("No template file was found " + templateStream);
@@ -93,8 +92,6 @@ public class InvoiceServiceImpl implements InvoiceService {
                 Long VAT = orderProduct.VAT().VAT();
                 BigDecimal priceWithVAT = BigDecimal.valueOf(orderProduct.price_with_VAT().priceWithVAT().doubleValue());
 
-
-
                 row.createCell(0).setCellValue(nameOfTheProduct);
                 row.createCell(1).setCellValue(price.doubleValue());
                 row.createCell(2).setCellValue(discountPercentages);
@@ -114,7 +111,7 @@ public class InvoiceServiceImpl implements InvoiceService {
             }
         } catch (Exception e) {
             logger.error("Failed to create order invoice " + e);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }

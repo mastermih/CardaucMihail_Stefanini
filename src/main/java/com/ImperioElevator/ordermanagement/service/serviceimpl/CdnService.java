@@ -4,6 +4,7 @@ import com.ImperioElevator.ordermanagement.security.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -21,17 +22,23 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class CdnService {
     private static final Logger logger = LoggerFactory.getLogger(CdnService.class);
+//
+//    @Value("${cdn.server.url}")
+//    private final String uploadUrl;
+//    private final RestTemplate restTemplate;
 
-    private final String uploadUrl;
-    private final RestTemplate restTemplate;
-
-    public CdnService(CdnServiceBuilder builder) {
-        this.uploadUrl = builder.uploadUrl;
-        this.restTemplate = builder.restTemplate;
-    }
+//    public CdnService(CdnServiceBuilder builder) {
+//        this.uploadUrl = builder.uploadUrl;
+//        this.restTemplate = builder.restTemplate;
+//    }
+//    public CdnService( String uploadUrl, RestTemplate restTemplate) {
+//        this.uploadUrl = uploadUrl;
+//        this.restTemplate = restTemplate;
+//    }
 
     public String sendImageToCDN(MultipartFile image, Long userId, String jwtToken) {
         try {
+            String uploadUrl = "http://cdn-service:9090/cdn/upload";
             HttpHeaders headers = new HttpHeaders();
             headers.setBearerAuth(jwtToken);
             headers.setContentType(MediaType.MULTIPART_FORM_DATA);
@@ -48,6 +55,7 @@ public class CdnService {
             body.add("image", imageResource);
 
             HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+            RestTemplate restTemplate = new RestTemplate(); // new aded
             ResponseEntity<String> response = restTemplate.postForEntity(uploadUrl, requestEntity, String.class);
 
             if (response.getStatusCode() == HttpStatus.OK) {
@@ -68,10 +76,18 @@ public class CdnService {
             headers.setBearerAuth(jwtToken);
             headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
+            logger.debug("This is the header " + headers);
+            String uploadUrl = "http://cdn-service:9090/cdn/invoices/upload/invoice";
+
             MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-            body.add("file", invoiceFile);
+            body.add("Invoice", invoiceFile);
+            logger.debug("This is the body " + body);
+
 
             HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+
+            RestTemplate restTemplate = new RestTemplate(); // new aded
+
             ResponseEntity<String> response = restTemplate.postForEntity(uploadUrl, requestEntity, String.class);
 
             if (response.getStatusCode() == HttpStatus.OK) {
@@ -81,8 +97,8 @@ public class CdnService {
                 return null;
             }
         } catch (Exception e) {
-            logger.error("Error during Excel file upload to CDN: ", e);
-            return null;
+            logger.error("Error during Excel file upload to CDN: " +  " ZZZ " + invoiceFile + " ZZZ " + e + " JWT " + jwtToken);
+            throw new RuntimeException(jwtToken);
         }
     }
 

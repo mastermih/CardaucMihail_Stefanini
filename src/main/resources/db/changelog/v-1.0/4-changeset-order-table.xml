@@ -21,7 +21,7 @@
             <column name="order_status" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="order_invoice" type="VARCHAR(50)" defaultValue="Default Invoice">
+            <column name="order_invoice" type="VARCHAR(250)" defaultValue="Default Invoice">
                 <constraints nullable="true"/>
             </column>
         </createTable>

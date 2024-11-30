@@ -392,6 +392,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
             jdbcTemplate.update(sql, orderId);
         }catch (Exception e){
             logger.error("Failed to set the order as Ready For Payment " + e);
+            throw e;
         }
         return orderId;
     }

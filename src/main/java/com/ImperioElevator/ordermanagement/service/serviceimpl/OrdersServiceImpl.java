@@ -253,16 +253,18 @@ public class OrdersServiceImpl implements OrdersService {
 
         Order orderOperations = getOrderWithExtraProducts(orderId);
         orderDao.setOrderStatusToReadyPayment(orderOperations.orderId().id());
-        if(!READY_FOR_PAYMENT.equals(orderOperations.orderStatus())){
-            logger.error("Failed to set the order READY_FOR_PAYMENT " + (orderOperations.orderStatus()));
+        // Reload the updated order to verify the status
+        Order updatedOrder = getOrderWithExtraProducts(orderId);
+        if(!READY_FOR_PAYMENT.equals(updatedOrder.orderStatus())){
+            logger.error("Failed to set the order READY_FOR_PAYMENT " + (updatedOrder.orderStatus()));
             throw new RuntimeException("Order status update failed.");
         }
 
-        invoiceService.prepareInvoiceForOrder(orderOperations, jwtToken);
+        invoiceService.prepareInvoiceForOrder(updatedOrder, jwtToken);
 
         //Below will be the notification for the management users
 
-        return orderOperations.orderId().id();
+        return updatedOrder.orderId().id();
     }
 
 
