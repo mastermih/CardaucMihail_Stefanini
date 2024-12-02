@@ -1,6 +1,6 @@
 package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
-import com.ImperioElevator.ordermanagement.command.NotificationCommander;
+import com.ImperioElevator.ordermanagement.command.commandImpl.NotificationCommander;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
@@ -9,9 +9,7 @@ import com.ImperioElevator.ordermanagement.dto.OrdersFoundLastCreatedDTO;
 import com.ImperioElevator.ordermanagement.entity.*;
 import com.ImperioElevator.ordermanagement.enumobects.Status;
 import com.ImperioElevator.ordermanagement.factory.EmailServiceFactory;
-import com.ImperioElevator.ordermanagement.factory.NotifiactionFactory;
 import com.ImperioElevator.ordermanagement.factory.factoryimpl.NotificationFactoryImpl;
-import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
 import com.ImperioElevator.ordermanagement.service.OrdersService;
 import com.ImperioElevator.ordermanagement.service.OrderProductService;
@@ -24,9 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.Number;
-import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -50,7 +46,6 @@ public class OrdersServiceImpl implements OrdersService {
     private final NotificationCommander notificationCommander;
     private final InvoiceServiceImpl invoiceService;
     private final CdnService cdnService;
-
     private final EmailServiceFactory emailServiceFactory;
     private final UserDaoImpl userDao;
 
@@ -206,6 +201,7 @@ public class OrdersServiceImpl implements OrdersService {
                             orderProduct.product()
                     );
                     orderProductDaoImpl.update(orderProduct);
+
                 }
                 return changed;
             } catch (SQLException e) {
@@ -260,7 +256,8 @@ public class OrdersServiceImpl implements OrdersService {
             throw new RuntimeException("Order status update failed.");
         }
 
-        invoiceService.prepareInvoiceForOrder(updatedOrder, jwtToken);
+        List<String> operators = getOperatorAssignedToOrder(orderId);
+        invoiceService.prepareInvoiceForOrder(updatedOrder, jwtToken, operators);
 
         //Below will be the notification for the management users
 

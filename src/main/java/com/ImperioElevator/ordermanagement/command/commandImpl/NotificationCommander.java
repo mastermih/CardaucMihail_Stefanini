@@ -1,25 +1,22 @@
-package com.ImperioElevator.ordermanagement.command;
+package com.ImperioElevator.ordermanagement.command.commandImpl;
 
+import com.ImperioElevator.ordermanagement.command.NotificationCommanderInterface;
 import com.ImperioElevator.ordermanagement.entity.EmailDetails;
 import com.ImperioElevator.ordermanagement.entity.Notification;
-import com.ImperioElevator.ordermanagement.entity.User;
-import com.ImperioElevator.ordermanagement.entity.UserNotification;
-import com.ImperioElevator.ordermanagement.factory.factoryimpl.NotificationFactoryImpl;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.NotificationService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
-import java.util.List;
+
 @Component
-public class NotificationCommander {
+public class NotificationCommander implements NotificationCommanderInterface {
 
     private final NotificationService notificationService;
     private final EmailService emailService;
 
-
-
-    public NotificationCommander(NotificationService notificationService, EmailService emailService) {
+    public NotificationCommander( NotificationService notificationService, EmailService emailService) {
         this.notificationService = notificationService;
         this.emailService = emailService;
     }

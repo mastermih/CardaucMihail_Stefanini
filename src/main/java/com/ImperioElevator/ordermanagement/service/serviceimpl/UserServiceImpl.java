@@ -1,22 +1,16 @@
 package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
-import com.ImperioElevator.ordermanagement.command.NotificationCommander;
-import com.ImperioElevator.ordermanagement.dao.daoimpl.ProductDaoImpl;
+import com.ImperioElevator.ordermanagement.command.commandImpl.NotificationCommander;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.UserDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.EmailDetails;
 import com.ImperioElevator.ordermanagement.entity.LoginRequest;
 import com.ImperioElevator.ordermanagement.entity.User;
 import com.ImperioElevator.ordermanagement.exception.AccountLockedException;
-import com.ImperioElevator.ordermanagement.exception.DoublePasswordVerificationException;
 import com.ImperioElevator.ordermanagement.exception.LoginUserNotFoundException;
 import com.ImperioElevator.ordermanagement.exception.ThisUserAlreadyExistException;
 import com.ImperioElevator.ordermanagement.factory.EmailServiceFactory;
-import com.ImperioElevator.ordermanagement.factory.factoryimpl.EmailFactoryImpl;
 import com.ImperioElevator.ordermanagement.security.JwtService;
-import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.UserSevice;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

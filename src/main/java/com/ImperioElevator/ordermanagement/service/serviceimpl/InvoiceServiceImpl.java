@@ -2,10 +2,12 @@ package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderProductDaoImpl;
+import com.ImperioElevator.ordermanagement.entity.Notification;
 import com.ImperioElevator.ordermanagement.entity.Order;
 import com.ImperioElevator.ordermanagement.entity.OrderProduct;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.InvoiceService;
+import com.ImperioElevator.ordermanagement.service.NotificationHelperService;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -31,22 +33,22 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final CdnService cdnService;
     private final EmailService emailService;
     private final OrderDaoImpl orderDao;
-    private final NotificationServiceImpl notificationService;
+    private final NotificationHelperService notificationHelperService;
 
     private final Logger logger = LoggerFactory.getLogger(NotificationServiceImpl.class);
-    public InvoiceServiceImpl(NotificationServiceImpl notificationService,OrderDaoImpl orderDao, EmailService emailService, CdnService cdnService, OrderProductDaoImpl orderProductDaoImpl) {
+    public InvoiceServiceImpl(NotificationHelperService notificationHelperService,OrderDaoImpl orderDao, EmailService emailService, CdnService cdnService, OrderProductDaoImpl orderProductDaoImpl) {
         this.orderProductDaoImpl = orderProductDaoImpl;
         this.cdnService = cdnService;
         this.emailService = emailService;
         this.orderDao = orderDao;
-        this.notificationService = notificationService;
+        this.notificationHelperService = notificationHelperService;
     }
 
     @Value("${invoice.template}")
-    private  String TEMPLATE_PATH;
+    public String TEMPLATE_PATH;
 
     @Override
-    public void prepareInvoiceForOrder(Order order, String jwtToken) throws SQLException {
+    public void prepareInvoiceForOrder(Order order, String jwtToken, List<String> operators) throws SQLException {
         ByteArrayResource byteArrayResource = createOrderInvoice(order);
 
         String invoiceFullPath = cdnService.sendExcelInvoiceToCDN(byteArrayResource, jwtToken);
@@ -55,18 +57,20 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         emailService.sendInvoiceEmail(order, byteArrayResource);
 
+        notificationHelperService.insertNotificationWithInvoice(order,byteArrayResource,operators);
+
+
+        //Idk if this works
+     //   notificationService.insertNotificationWithInvoice(order, byteArrayResource);
+        //.insertNotificationWithInvoice(order,byteArrayResource);
     }
 
 
     @Override
     public ByteArrayResource createOrderInvoice(Order order) {
 
-        // add this in the conf file
-        String templatePath = System.getenv("TEMPLATE_PATH");
-        if (templatePath == null || templatePath.isEmpty()) {
-            templatePath = "/app/templates/OrderInvoiceTemplate.xlsx";
-            logger.debug("The template file is here " + templatePath);
-        }
+        String templatePath = TEMPLATE_PATH;
+
         try (FileInputStream templateStream = new FileInputStream(templatePath)){
 
             if(templateStream == null){

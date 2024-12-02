@@ -4,6 +4,7 @@ import com.ImperioElevator.ordermanagement.dao.NotificationDao;
 import com.ImperioElevator.ordermanagement.entity.Notification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -50,12 +51,12 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
         }
     }
 
-    //toDO it seams to be extra here
-    @Override
-    public Notification findById(Long id) throws SQLException {
-        String sql = "SELECT user_id, message, is_read FROM notifications WHERE user_id";
-        return super.findById(id);
-    }
+//    //toDO it seams to be extra here
+//    @Override
+//    public Notification findById(Long id) throws SQLException {
+//        String sql = "SELECT user_id, message, is_read FROM notifications WHERE user_id";
+//        return super.findById(id);
+//    }
 
     @Override
     public List<Notification> getNotifications(Long userId) {
@@ -69,6 +70,13 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
             logger.error("Failed to get the customer create order notification from db " + e);
         throw e;
         }
+    }
+
+    @Override
+    public Long insertNotificationWithAttachment(Notification entity, ByteArrayResource attachment) {
+      // String sql = ""
+
+        return 0L;
     }
 
 

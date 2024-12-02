@@ -1,5 +1,7 @@
 package com.ImperioElevator.ordermanagement.entity;
 
+import org.springframework.core.io.ByteArrayResource;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -7,6 +9,7 @@ public class Notification {
     private Long notificationId;
     private String message;
     private LocalDateTime createdDate;
+    private ByteArrayResource attachmentFile;
     private List<UserNotification> userNotifications;
 
     //Because I use builder I think I can remove it
@@ -17,6 +20,7 @@ public class Notification {
         this.message = builder.message;
         this.createdDate = builder.createdDate;
         this.userNotifications = builder.userNotifications;
+        this.attachmentFile = builder.attachmentFile;
     }
 
     public Long getNotificationId() {
@@ -35,6 +39,10 @@ public class Notification {
         return userNotifications;
     }
 
+    public ByteArrayResource getAttachmentFile(){
+        return attachmentFile;
+    }
+
     public void setUserNotifications(List<UserNotification> userNotifications) {
         this.userNotifications = userNotifications;
     }
@@ -43,7 +51,13 @@ public class Notification {
         Long notificationId;
         String message;
         LocalDateTime createdDate;
+        ByteArrayResource attachmentFile;
         List<UserNotification> userNotifications;
+
+        public NotificationBuilder attachmentFile(ByteArrayResource attachmentFile){
+            this.attachmentFile = attachmentFile;
+            return this;
+        }
 
         public NotificationBuilder notificationId(Long notificationId){
             this.notificationId = notificationId;
