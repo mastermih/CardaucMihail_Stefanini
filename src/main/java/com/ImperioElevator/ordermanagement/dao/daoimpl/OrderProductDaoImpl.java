@@ -75,7 +75,7 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
 
     @Override
     public Long update(OrderProduct orderProduct) throws SQLException {
-        String sql = "UPDATE order_product SET quantity = ?, price_product = ?, product_id = ? WHERE order_id = ? AND product_name = ?";
+        String sql = "UPDATE order_product SET quantity = ?, price_product = ?, price_discount = ?, price_with_VAT = ?, product_id = ? WHERE order_id = ? AND product_name = ?";
         String productName = orderProduct.product().productName().productName();
 
         try {
@@ -84,6 +84,8 @@ public class OrderProductDaoImpl extends AbstractDao<OrderProduct> implements Or
             jdbcTemplate.update(sql,
                     orderProduct.quantity().quantity(),
                     orderProduct.priceOrder().price(),
+                    orderProduct.price_discount().price(),
+                    orderProduct.price_with_VAT().priceWithVAT(),
                     orderProduct.product().productId().id(),
                     orderProduct.order().orderId().id(),
                     productName);

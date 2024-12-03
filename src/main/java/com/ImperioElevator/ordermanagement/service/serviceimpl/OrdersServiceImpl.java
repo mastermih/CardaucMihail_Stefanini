@@ -22,6 +22,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.Number;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -174,71 +176,75 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Long updateOrderStatus(Order order) throws SQLException {
         // Retrieve order products associated with the order
-
         List<OrderProduct> orderProducts = orderProductDaoImpl.findByOrderId(order.orderId().id());
-        AtomicBoolean priceChanged = new AtomicBoolean(false);
 
-        // Check if the prices of any of the products have changed
-        Predicate<OrderProduct> hasPriceChanged = orderProduct -> {
+        // Process each product to update VAT and discount prices
+        Predicate<OrderProduct> processOrderProduct = orderProduct -> {
             try {
+                // Retrieve product details
                 Product product = productDao.findById(orderProduct.product().productId().id());
                 if (product == null) {
                     throw new SQLException("Product not found for ID: " + orderProduct.product().productId().id());
                 }
-                boolean changed = !product.price().equals(orderProduct.priceOrder());
-                if (changed) {
-                    priceChanged.set(true);
-                    orderProduct = new OrderProduct(
-                            orderProduct.orderId(),
-                            order,
-                            orderProduct.quantity(),
-                            product.price(),
-                            orderProduct.discount_percentages(),
-                            orderProduct.price_discount(),
-                            orderProduct.VAT(),
-                            orderProduct.price_with_VAT(),
-                            orderProduct.parentProductId(),
-                            orderProduct.product()
-                    );
-                    orderProductDaoImpl.update(orderProduct);
 
-                }
-                return changed;
+                // Calculate the updated prices
+                BigDecimal price = product.price().price();
+                BigDecimal discountPercentage = BigDecimal.valueOf(orderProduct.discount_percentages().discount_percentages());
+                BigDecimal VAT = BigDecimal.valueOf(orderProduct.VAT().VAT());
+
+                BigDecimal priceWithDiscount = price.subtract(
+                        price.multiply(discountPercentage).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP)
+                );
+
+                BigDecimal priceWithVAT = priceWithDiscount.add(
+                        priceWithDiscount.multiply(VAT).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP)
+                );
+
+                // Update the order product with new prices
+                OrderProduct updatedOrderProduct = new OrderProduct(
+                        orderProduct.orderId(),
+                        order,
+                        orderProduct.quantity(),
+                        new Price(price),
+                        orderProduct.discount_percentages(),
+                        new PriceDiscount(priceWithDiscount),
+                        orderProduct.VAT(),
+                        new PriceWithVAT(priceWithVAT),
+                        orderProduct.parentProductId(),
+                        orderProduct.product()
+                );
+
+                orderProductDaoImpl.update(updatedOrderProduct);
+                return true;
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("Error processing order product with ID: " + orderProduct.orderId().id(), e);
             }
         };
 
-        orderProducts.forEach(hasPriceChanged::test);
+        // Process all products
+        orderProducts.forEach(processOrderProduct::test);
 
-        if (!priceChanged.get()) {
-            System.out.println("No price changes detected for order " + order.orderId().id());
-        } else {
-            System.out.println("Prices were updated for the order " + order.orderId().id());
-        }
+        // Log the result of the operation
+        System.out.println("Prices updated for order " + order.orderId().id());
 
-        // Retrieve the token for the order
+        // Retrieve the token for confirmation
         String token = orderDao.getTheConfirmationToken(order.orderId().id());
         if (token == null || token.isEmpty()) {
             throw new SQLException("No confirmation token found for order ID: " + order.orderId().id());
         }
 
-
+        // Generate the confirmation link
         String confirmationLink = frontUrl + "sendMail/confirm/" + token;
+        String message = "Your order with ID " + order.orderId().id() + " has been updated. Please confirm using the following link: " + confirmationLink;
 
-       // String confirmationLink = "http://localhost:3000/sendMail/confirm/" + token;
-
-        String message = "Your order with ID " + order.orderId().id() + " has been updated. Please confirm " + confirmationLink;
-
-
-        // Create email details and send confirmation email
+        // Send confirmation email
         EmailDetails emailDetails = emailServiceFactory.createEmailServiceUpdateOrderStatus(message);
-
         emailService.sendConfirmationMail(emailDetails, order.orderId().id());
 
-        //  Update the order status CONFIRMED
+        // Update the order status to CONFIRMED
         return orderDao.updateStatus(order);
     }
+
     //    public Long updateOrderStatus(Order order) throws SQLException {
 //        return orderPipelineServiceImpl.updateOrderStatusPipeline(order);
 //    }

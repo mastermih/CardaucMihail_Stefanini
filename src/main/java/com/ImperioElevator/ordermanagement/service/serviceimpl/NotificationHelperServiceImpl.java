@@ -1,6 +1,5 @@
 package com.ImperioElevator.ordermanagement.service.serviceimpl;
 
-import com.ImperioElevator.ordermanagement.command.NotificationCommanderInterface;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.OrderDaoImpl;
 import com.ImperioElevator.ordermanagement.dao.daoimpl.UserNotificationDaoImpl;
 import com.ImperioElevator.ordermanagement.entity.Notification;
@@ -21,16 +20,14 @@ import java.util.List;
 public class NotificationHelperServiceImpl implements NotificationHelperService {
 
     private final NotificationFactoryImpl notificationFactoryImpl;
-    //private final NotificationCommanderInterface notificationCommander;
     private final UserServiceImpl userService;
     private final UserNotificationDaoImpl userNotificationDao;
     private final NotificationService notificationService;
 
     private static final Logger logger = LoggerFactory.getLogger(NotificationServiceImpl.class);
 
-    public NotificationHelperServiceImpl(NotificationService notificationService,UserNotificationDaoImpl userNotificationDao,NotificationFactoryImpl notificationFactoryImpl, NotificationCommanderInterface notificationCommander,UserServiceImpl userService){
+    public NotificationHelperServiceImpl(NotificationService notificationService,UserNotificationDaoImpl userNotificationDao,NotificationFactoryImpl notificationFactoryImpl,UserServiceImpl userService){
    this.notificationFactoryImpl = notificationFactoryImpl;
-//   this.notificationCommander = notificationCommander;
    this.userService = userService;
    this.userNotificationDao = userNotificationDao;
    this.notificationService = notificationService;

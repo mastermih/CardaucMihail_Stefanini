@@ -7,5 +7,5 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface NotificationHelperService {
-    Long insertNotificationWithInvoice(Order order, ByteArrayResource attachment, List<String> operators) throws SQLException;
+   Long insertNotificationWithInvoice(Order order, ByteArrayResource attachment, List<String> operators) throws SQLException;
 }

@@ -8,6 +8,7 @@ import com.ImperioElevator.ordermanagement.entity.OrderProduct;
 import com.ImperioElevator.ordermanagement.service.EmailService;
 import com.ImperioElevator.ordermanagement.service.InvoiceService;
 import com.ImperioElevator.ordermanagement.service.NotificationHelperService;
+import com.ImperioElevator.ordermanagement.service.NotificationService;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -59,10 +60,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         notificationHelperService.insertNotificationWithInvoice(order,byteArrayResource,operators);
 
-
-        //Idk if this works
-     //   notificationService.insertNotificationWithInvoice(order, byteArrayResource);
-        //.insertNotificationWithInvoice(order,byteArrayResource);
     }
 
 

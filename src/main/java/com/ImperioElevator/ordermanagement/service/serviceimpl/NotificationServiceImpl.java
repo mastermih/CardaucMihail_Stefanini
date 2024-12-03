@@ -29,37 +29,12 @@ public class NotificationServiceImpl implements NotificationService {
     public NotificationServiceImpl(NotificationDaoImpl notificationDao, UserNotificationDaoImpl userNotificationDao) {
         this.notificationDao = notificationDao;
         this.userNotificationDao = userNotificationDao;
-
-
     }
 
     @Override
     public Long insert(Notification entity) throws SQLException {
             return notificationDao.insert(entity);
     }
-
-//    @Override
-//    public Long insertNotificationWithInvoice(Order order, ByteArrayResource attachment) throws SQLException {
-//        String message = "Invoice has been created for the order with ID " + order.orderId();
-//        Notification notification = notificationFactoryImpl.createInvoiceNotification(message, attachment);
-//        Long notificationId = notificationCommander.executeInAppNotification(notification);
-
-        //List<String> operators = ordersService.getOperatorAssignedToOrder(order.orderId().id());
-//        operators.forEach(operatorName -> {
-//            try {
-//                Long operatorId = userService.userDao.findUserIdByName(operatorName);
-//                if (operatorId != null) {
-//                    UserNotification userNotification = notificationFactoryImpl.createUserNotificationAssigneeOperatorToOrder(notificationId, operatorId);
-//                    insertUserNotification(userNotification);
-//                } else {
-//                    logger.error("No user ID found for operator: " + operatorName);
-//                }
-//            } catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
-//        return order.orderId().id();
-//    }
 
     @Override
     public List<Notification> getNotifications(Long userId) {

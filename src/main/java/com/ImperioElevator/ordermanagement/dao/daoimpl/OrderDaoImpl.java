@@ -55,7 +55,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
         CreateDateTime createdDate = order.createdDate() != null ? order.createdDate() : new CreateDateTime(currentDateTime);
         UpdateDateTime updatedDate = order.updatedDate() != null ? order.updatedDate() : new UpdateDateTime(currentDateTime);
-        OrderInvoice orderInvoice =  order.orderInvoice() != null ? order.orderInvoice() : new OrderInvoice("ZAHAO");
+        OrderInvoice orderInvoice =  order.orderInvoice() != null ? order.orderInvoice() : new OrderInvoice("Empty order Invoice");
 
         try {
             // Insert the order first
