@@ -50,9 +50,10 @@ public class OrdersServiceImpl implements OrdersService {
     private final CdnService cdnService;
     private final EmailServiceFactory emailServiceFactory;
     private final UserDaoImpl userDao;
+    private final PipeLineInvoiceService pipeLineInvoiceService;
 
     private final Logger logger = LoggerFactory.getLogger(OrdersServiceImpl.class);
-    public OrdersServiceImpl(CdnService cdnService,InvoiceServiceImpl invoiceService,NotificationCommander notificationCommander, OrderDaoImpl orderDao, EmailServiceImpl emailService, NotificationService notificationService, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, UserDaoImpl userDao, NotificationFactoryImpl notificationFactoryImpl, EmailServiceFactory emailServiceFactory) {
+    public OrdersServiceImpl(PipeLineInvoiceService pipeLineInvoiceService,CdnService cdnService,InvoiceServiceImpl invoiceService,NotificationCommander notificationCommander, OrderDaoImpl orderDao, EmailServiceImpl emailService, NotificationService notificationService, OrderProductService orderProductService, OrderProductDaoImpl orderProductDaoImpl, ProductDaoImpl productDao, UserDaoImpl userDao, NotificationFactoryImpl notificationFactoryImpl, EmailServiceFactory emailServiceFactory) {
         this.orderDao = orderDao;
         this.orderProductService = orderProductService;
         this.orderProductDaoImpl = orderProductDaoImpl;
@@ -65,7 +66,8 @@ public class OrdersServiceImpl implements OrdersService {
         this.notificationCommander = notificationCommander;
         this.invoiceService = invoiceService;
         this.cdnService = cdnService;
-       // this.orderPipelineServiceImpl = orderPipelineServiceImpl;
+        this.pipeLineInvoiceService =pipeLineInvoiceService;
+         // this.orderPipelineServiceImpl = orderPipelineServiceImpl;
     }
     @Value("${front.url}")
     private String frontUrl;
@@ -269,6 +271,21 @@ public class OrdersServiceImpl implements OrdersService {
 
         return updatedOrder.orderId().id();
     }
+
+    //ToDo the function have to be independent so take out the external methods
+    @Override
+    public Long updateOrderStatusReadyForPaymentFunctional(Long orderId, String jwtToken) throws SQLException {
+        PrepareOrderPipeline prepareOrderPipeline = new PrepareOrderPipeline(new PrepareOrderFunction(orderDao));
+        Order updatedOrder = prepareOrderPipeline.prepareOrder(orderId, orderDao);
+        // 2 -
+        List<String> operators = prepareOrderPipeline.fetchOperators(orderId, orderDao);
+
+        //PipeLineInvoiceService invoicePipeline = new PipeLineInvoiceService()
+        pipeLineInvoiceService.buildPipeline(updatedOrder, jwtToken, operators);
+
+        return updatedOrder.orderId().id();
+    }
+
 
 
     @Override

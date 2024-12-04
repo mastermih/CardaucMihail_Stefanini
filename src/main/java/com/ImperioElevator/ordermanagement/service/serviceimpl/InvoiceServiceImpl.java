@@ -58,6 +58,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         emailService.sendInvoiceEmail(order, byteArrayResource);
 
+        //ToDo for invocie notification attachmner must be created another column in db
         notificationHelperService.insertNotificationWithInvoice(order,byteArrayResource,operators);
 
     }
